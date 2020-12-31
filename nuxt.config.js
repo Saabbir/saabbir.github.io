@@ -3,9 +3,9 @@ export default {
   target: 'static',
 
   /// Consult https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-router#base
-  router: {
-    base: '/saabbir.github.io/'
-  },  
+  // router: {
+  //   base: '/saabbir.github.io/'
+  // },  
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
