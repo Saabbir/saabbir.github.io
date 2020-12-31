@@ -1,0 +1,35 @@
+.c-buttons {
+  margin-top: 3rem;
+}
+
+.c-button {
+  border: 0;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: $accent-color-1;
+  background-image: linear-gradient(45deg, $accent-color-1, $accent-color-2);
+  color: #fff;
+  padding: 10px 30px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: .15s;
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    background-color: $accent-color-2;
+    background-image: linear-gradient(45deg, $accent-color-2, $accent-color-1);
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &--lg {
+    padding: 1rem;
+  }
+}

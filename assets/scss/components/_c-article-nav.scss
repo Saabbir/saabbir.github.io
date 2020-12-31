@@ -1,0 +1,14 @@
+.c-article-nav {
+  ul {
+    padding: 1rem;
+    border: 1px dotted #ccc;
+    list-style-type: decimal;
+    padding-left: 30px;
+    position: sticky;
+    top: 1rem;
+  }
+
+  li:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}

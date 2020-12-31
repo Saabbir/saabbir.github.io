@@ -1,0 +1,35 @@
+body {
+  line-height: 1.5;
+}
+
+a {
+  color: $accent-color-1;
+  text-decoration: none;
+  transition: .15s;
+
+  &:hover,
+  &:focus {
+    color: $accent-color-2;
+    text-decoration: underline;
+  }
+}
+
+p {
+  line-height: 1.5;
+}
+
+.container {
+  padding: 0 1rem;
+  max-width: 660px;
+  margin: 0 auto;
+
+  &--lg {
+    max-width: 1200px;
+  }
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

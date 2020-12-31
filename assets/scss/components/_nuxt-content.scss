@@ -1,0 +1,121 @@
+.nuxt-content {
+
+  h1, h2, h3, h4, h5, h6,
+  blockquote,
+  ul, ol, p {
+    &:not(:first-child) {
+      margin-top: 1rem;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    position: relative;
+
+    &:first-child {
+      margin-bottom: 0;
+    }
+
+    &:not(:first-child) {
+      margin-top: 1.5rem;
+    }    
+
+    &:hover .icon-link {
+      opacity: .5;
+    }
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 28px;
+  }
+
+  h3 {
+    font-weight: bold;
+    font-size: 22px;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ul, ol {
+    padding-left: 20px;
+
+    ul, ol {
+      margin-top: 10px;
+    }
+  }
+
+  li:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  a {
+    color: $accent-color-1;
+    transition: .15s;
+
+    &:hover,
+    &:focus {
+      color: $accent-color-2;
+      text-decoration: underline;
+    }
+  }
+
+  blockquote {
+    border-left: 5px solid $accent-color-2;
+    padding: 15px 15px 15px 30px;
+    background-color: rgba($accent-color-2, .1);
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    border-radius: 0 4px 4px 0;
+    font-size: 1.1em;
+    color: $accent-color-2;
+  }
+
+  code {
+    color: $accent-color-2;
+    background-color: rgba($accent-color-2, .1);
+    padding: 2px 4px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .nuxt-content-highlight code {
+    white-space: pre;
+    color: inherit;
+    background-color: transparent;
+  }
+
+  .icon-link {
+    background-image: url('~assets/svg/icon-hashtag.svg');
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    opacity: 0;
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+}
+
+.nuxt-content-highlight {
+  position: relative;
+
+  .filename {
+    position: absolute;
+    right: 8px;
+    top: 5px;
+    color: rgba(255, 255, 255, .5);
+    z-index: 1;
+  }
+}

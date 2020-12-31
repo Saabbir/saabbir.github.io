@@ -1,0 +1,24 @@
+.c-article {
+  &__title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0 0 20px;
+    line-height: 1.3;
+  }
+
+  &__description {
+    font-size: 1.2rem;
+    color: #999;
+    margin: 1rem 0;
+  }
+
+  &__featured-img {
+    max-width: 100%;
+    display: block;
+  }
+
+  &__updatedat {
+    font-style: italic;
+    color: #999;
+  }
+}
