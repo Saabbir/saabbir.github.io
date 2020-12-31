@@ -8,7 +8,19 @@
 
 <script>
   export default {
-    name: 'Home'
+    name: 'Home',
+    head() {
+      return {
+        title: 'Home - Saabbir Hossain',
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: 'Welcome to saabbir.com'
+          }
+        ]
+      }
+    }
   }
 </script>
 
