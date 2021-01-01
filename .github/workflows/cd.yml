@@ -1,3 +1,5 @@
+# Consult https://nuxtjs.org/faq/github-pages#github-actions
+
 name: cd
 
 on: [push, pull_request]

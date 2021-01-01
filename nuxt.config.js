@@ -1,11 +1,6 @@
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
-  target: 'static',
-
-  /// Consult https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-router#base
-  // router: {
-  //   base: '/saabbir.github.io/'
-  // },  
+  target: 'static', 
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
