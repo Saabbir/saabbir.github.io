@@ -1,4 +1,8 @@
-# nuxt-blog
+# My personal website
+
+My personal website using nuxtjs.
+
+Demo can be seen in here - https://saabbir.github.io/
 
 ## Build Setup
 
