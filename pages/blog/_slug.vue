@@ -101,7 +101,7 @@
     overflow: hidden;
     
     @media (min-width: 768px) {
-      padding-left: 1rem;
+      padding-left: 1.5rem;
     }
 
     &__footer {
