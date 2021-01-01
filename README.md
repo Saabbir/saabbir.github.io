@@ -8,15 +8,19 @@ Demo can be seen in here - https://saabbir.github.io/
 
 Clone this repo:
 
-`git clone https://github.com/Saabbir/saabbir.github.io.git`
+```sh
+git clone https://github.com/Saabbir/saabbir.github.io.git
+```
 
 The project is based on [Node.js](https://nodejs.org/). To install the necessary packages, run the following command from the root of the project:
 
-`npm install`
+```sh
+npm install
+```
 
 ### After installation
 
-- Run `npm run dev` from root folder to serve with hot reload at localhost:3000
+- Run `npm run dev` from root folder to serve with hot reload at *localhost:3000*
 
 ### Build setup
 
@@ -31,7 +35,7 @@ $ npm run generate
 # preview generated static site
 $ npm run start
 
-# deploy from command line
+# deploy to github pages at `gh-pages` branch from command line
 $ npm run deploy
 ```
 
