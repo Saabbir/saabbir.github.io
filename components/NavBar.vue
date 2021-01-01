@@ -28,6 +28,7 @@
 .c-navbar {
   padding: 1rem 0;
   background-color: $accent-color-1;
+  background-image: linear-gradient(45deg, $accent-color-2, $accent-color-1);
 
   &__content {
     display: flex;
