@@ -7,7 +7,6 @@
     >
       &laquo; {{ prev.title }}
     </NuxtLink>
-    <span v-else>&nbsp;</span>
     <NuxtLink
       v-if="next"
       :to="{ name: 'blog-slug', params: { slug: next.slug } }"
@@ -15,7 +14,6 @@
     >
       {{ next.title }} &raquo;
     </NuxtLink>
-    <span v-else>&nbsp;</span>
   </div>
 </template>
 
@@ -39,6 +37,7 @@
     display: grid;
     grid-gap: 1rem;
     justify-content: space-between;
+    grid-template-columns: 1fr;
 
     @media (min-width: 500px) {
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));

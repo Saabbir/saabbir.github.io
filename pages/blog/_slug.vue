@@ -29,7 +29,7 @@
           </div>        
 
           <div class="c-article__pagination">
-            <prev-next :prev="prev" :next="next" />
+            <Pagination :prev="prev" :next="next" />
           </div>
         </article>
       </div>

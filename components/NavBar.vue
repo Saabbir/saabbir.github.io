@@ -69,7 +69,12 @@
     &:hover,
     &:focus {
       text-decoration: none;
-    }    
+
+      &:not(.nuxt-link-active) {
+        color: #fff;
+        background-color: rgba($accent-color-2, .3);
+      }
+    }
 
     &.nuxt-link-active {
       background: $accent-color-2;
