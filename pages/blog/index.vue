@@ -8,7 +8,7 @@
     </div>
     <div class="container">
       <div class="my-40">
-        <ul class="c-articles-list">
+        <ul class="c-articles-list" v-if="articles.length">
           <li v-for="article of articles" :key="article.slug" class="c-articles-list__item">
             <div class="c-blog-post">
               <div>
@@ -26,6 +26,7 @@
             </div> 
           </li>
         </ul>
+        <p v-else class="no-article-matched">No articles matched to your search query!</p>
       </div>
     </div>
   </div>
@@ -85,5 +86,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+.no-article-matched {
+  margin: 0;
+}
 </style>
