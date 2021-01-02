@@ -1,8 +1,8 @@
 ---
 title: JavaScript Introduction
 description: Brief introduction of JavaScript language.
-img: js-strings.jpg
-imgAlt: JavaScript Strings
+tags:
+  - javascript
 ---
 
 ## What is JavaScript porgrams?

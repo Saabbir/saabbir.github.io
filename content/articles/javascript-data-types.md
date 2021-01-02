@@ -1,8 +1,8 @@
 ---
 title: JavaScript Data Types
 description: Learn JavaScript data types
-img: js-strings.jpg
-imgAlt: JavaScript Strings
+tags:
+  - javascript
 ---
 
 ### How many data types in JavaScript?

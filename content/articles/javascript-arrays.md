@@ -1,8 +1,8 @@
 ---
 title: JavaScript Arrays
 description: Learn how we work with collections/list in JavaScript.
-img: js-strings.jpg
-imgAlt: JavaScript Strings
+tags:
+  - javascript
 ---
 
 ### Most used JavaScript array methods:

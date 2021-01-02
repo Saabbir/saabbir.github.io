@@ -1,13 +1,26 @@
 <template>
   <div class="page-content">
+    <div class="c-breadcrumb">
+      <div class="container">
+        <nuxt-link to="/blog" class="back-to-blog-list">&laquo; back to blog list</nuxt-link>
+      </div>      
+    </div>     
     <div class="c-blog-post-banner" 
       :style="{
         backgroundImage: `url(${articleImg})`
-      }">
+      }">     
       <div class="container">
-        <h1 class="c-blog-post-banner__title">{{ article.title }}</h1>
-        <!-- <img :src="articleImg" :alt="article.imgAlt" class="c-blog-post-banner__featured-img" /> -->
-        <!-- <p class="c-blog-post-banner__description">{{ article.description }}</p> -->
+        <p class="c-blog-post-banner__date">{{ formatDate(article.createdAt) }}</p>
+        <h1 class="c-page-title mt-20 mb-40">{{ article.title }}</h1>
+        <div v-if="article.tags" class="c-tags">
+          <nuxt-link 
+            v-for="(tag, index) in article.tags" 
+            :key="index"
+            class="c-tag"
+            :to="`/tag/${tag}`">
+            {{ tag }}
+          </nuxt-link>
+        </div>
       </div>      
     </div>
     <div class="container container--lg">
@@ -75,7 +88,10 @@
     },
     computed: {
       articleImg() {
-        return require(`~/assets/images/${this.article.img}`)
+        if (this.article.featuredImg) {
+          return require(`~/assets/images/article-featured-images/${this.article.featuredImg}`)
+        }
+        return require(`~/assets/images/article-featured-images/default.png`)
       }
     }
   }
@@ -93,6 +109,21 @@
 
     @media (min-width: 800px) {
       grid-template-columns: $article-nav-width 1fr;
+    }
+  }
+
+  .c-breadcrumb {
+    padding: 10px 0;
+    line-height: 1;
+    background: #108775;
+  }
+
+  .back-to-blog-list {
+    color: rgba(#fff, .75);
+    display: inline-block;
+
+    &:hover {
+      color: #fff;
     }
   }
 

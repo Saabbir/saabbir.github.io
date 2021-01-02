@@ -1,6 +1,10 @@
 .c-banner {
-  padding: 60px 0;
+  padding: 60px 15px;
   background-image: linear-gradient(45deg, rgba($accent-color-1, .9), rgba($accent-color-2, .9));
+
+  @media (min-width: 500px) {
+    padding: 60px 30px;
+  }
 
   &__title {
     margin: 0;

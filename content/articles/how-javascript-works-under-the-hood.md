@@ -1,21 +1,23 @@
 ---
 title: How JavaScript Works Under The Hood?
 description: Learn how JavaScript works under the hood?.
-img: how-js-works.gif
-imgAlt: How JavaScript Works Under The Hood
+featuredImg: how-js-works.gif
+tags:
+  - javascript
+  - theory
 ---
 
-### What is Global?
+### What is global?
 
 Code that aren't inside a function is global.
 
 Whenever we're opening a tab in the browser, the JavaScript engine of the browser creates a global execution context for us. That execution context gives us a global object named 'window' and a special variable named 'this' automatically. We can use it in our JavaScript program when we working on the browser.
 
-### What is Syntax Parsers?
+### What is syntax parsers?
 
 A program that reads your code and determines what it does and if its grammar is valid. Your code isn't magic. Someone else wrote a program to translate your code into machine readable code.
 
-### What is Lexical Environment?
+### What is lexical environment?
 
 Where something sits physically in the code you write. A lexical environment exists is programming languages in which where you write something is important.
 

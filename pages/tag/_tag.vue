@@ -1,12 +1,12 @@
 <template>
   <div class="page-content">
-    <div class="c-banner">
-      <div class="container">
-        <h1 class="c-page-title">My writings</h1>
-        <input type="text" placeholder="Search articles" v-model="searchQuery" class="c-search-input">
-      </div>
-    </div>
     <div class="container">
+      <div class="c-banner mt-40 br-4">
+        <h1 class="c-page-title">
+          <small class="c-page-title__small">Articles tagged</small>
+          <span class="c-page-title__text">{{ tag }}</span>
+        </h1>
+      </div>
       <div class="my-40">
         <ul class="c-articles-list">
           <li v-for="article of articles" :key="article.slug" class="c-articles-list__item">
@@ -33,31 +33,15 @@
 
 <script>
   export default {
-    name: 'Blog',
-    head() {
-      return {
-        title: 'Blog - Saabbir Hossain',
-        meta: [
-          {
-            hid: 'description',
-            name: 'description',
-            content: 'All blog posts of saabbir.com'
-          }
-        ]
-      }
-    },
-    async asyncData({ $content }) {
+    async asyncData({ params, $content }) {
       const articles = await $content('articles')
+        .where({ 'tags': { $contains: params.tag } })
         .sortBy('createdAt', 'desc')
         .fetch()
 
-      return {
-        articles
-      }
-    },
-    data() {
-      return {
-        searchQuery: ''
+      return { 
+        articles, 
+        tag: params.tag 
       }
     },
     methods: {
@@ -66,21 +50,6 @@
         return new Date(date).toLocaleDateString('en', options)
       }
     },
-    watch: {
-      async searchQuery(searchQuery) {
-        if (!searchQuery) {
-          this.articles = await this.$content('articles')
-            .sortBy('createdAt', 'desc')
-            .fetch()
-          return
-        }
-        this.articles = await this.$content('articles')
-          .limit(6)
-          .search(searchQuery)
-          .sortBy('createdAt', 'desc')
-          .fetch()
-      }
-    }    
   }
 </script>
 

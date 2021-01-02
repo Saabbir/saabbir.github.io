@@ -1,8 +1,11 @@
 ---
 title: Asynchronous JavaScript
 description: Learn about non-blocking JavaScript
-img: js-strings.jpg
-imgAlt: JavaScript Strings
+featuredImg: async.webp
+tags:
+  - theory
+  - async-js
+  - javascript
 ---
 
 ## What we mean by asynchronous?

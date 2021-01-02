@@ -1,8 +1,10 @@
 ---
 title: What is Execution Context in JavaScript?
 description: Learn what is execution context in JavaScript.
-img: no-code.png
-imgAlt: No Code
+featuredImg: no-code.png
+tags:
+  - javascript
+  - theory
 ---
 
 A wrapper to help manage the code that is running. There are lots of lexical environments. Which one is currently running is managed via execution contexts. It can contain things beyond what you've written in your code.

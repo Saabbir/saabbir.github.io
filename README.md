@@ -39,4 +39,8 @@ $ npm run start
 $ npm run deploy
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+### References
+
+- [Create a Blog with Nuxt Content](https://nuxtjs.org/blog/creating-blog-with-nuxt-content)
+
+- For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

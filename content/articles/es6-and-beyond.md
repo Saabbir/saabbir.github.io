@@ -1,8 +1,9 @@
 ---
 title: ES6 and Beyond
 description: Learn about JavaScript's new feature
-img: js-strings.jpg
-imgAlt: JavaScript Strings
+tags:
+  - javascript
+  - es6-and-beyond
 ---
 
 ### The most important features of ES2015
@@ -20,7 +21,7 @@ imgAlt: JavaScript Strings
 - Generator functions
 - Promise
 
-### Block Scoping (Let and Const)
+### Block scoping (Let and Const)
 
 [Mathias Bynens article on `let` and `const`](https://mathiasbynens.be/notes/es6-const)
 

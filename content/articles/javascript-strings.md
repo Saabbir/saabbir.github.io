@@ -1,8 +1,9 @@
 ---
 title: JavaScript Strings
 description: Learn about JavaScript string primitive datatype.
-img: js-strings.jpg
-imgAlt: JavaScript Strings
+featuredImg: js-strings.jpg
+tags:
+  - javascript
 ---
 
 ### What is the difference between string literals and string objects in JavaScript?
@@ -31,7 +32,7 @@ new String('Saabbir Hossain')
 
 - `String` function takes any types of data as an argument and converts it into it's corresponding primitive string value. So, `String(100)` will return the primitive string `"100"`. In here, the number value `100` gets converted into its corresponding `"100"` string value.
 
-### String Prototype Chain
+### String prototype chain
 
 ```js [js]
 new String('string').__proto__ === String.prototype

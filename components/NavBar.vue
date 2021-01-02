@@ -9,7 +9,11 @@
               <nuxt-link to="/" exact class="c-navbar__menu-link">Home</nuxt-link>
             </li>
             <li class="c-navbar__menu-item">
-              <nuxt-link to="/blog" class="c-navbar__menu-link">Blog</nuxt-link>
+              <nuxt-link 
+                to="/blog" 
+                class="c-navbar__menu-link"
+                :class="{ 'nuxt-link-active': $route.path.includes('tag') }"
+              >Blog</nuxt-link>
             </li>
           </ul>
         </nav>
@@ -40,6 +44,11 @@
     font-size: 1rem;
     font-weight: bold;
     color: #fff;
+    text-shadow: 0 2px 3px rgba(0,0,0,.5);
+
+    @media (min-width: 500px) {
+      font-size: 1.3rem;
+    }
     
     &:hover,
     &:focus {
@@ -65,6 +74,7 @@
     padding: .5rem 1rem;
     color: #fff;
     display: block;
+    border-radius: 4px;
 
     &:hover,
     &:focus {
@@ -79,6 +89,8 @@
     &.nuxt-link-active {
       background: $accent-color-2;
       color: #fff;
+      font-weight: bold;
+      text-shadow: 0 2px 3px rgba(0,0,0,.5);
     }
   }
 }

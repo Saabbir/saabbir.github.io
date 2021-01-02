@@ -1,0 +1,27 @@
+.c-tags {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -5px;
+}
+
+.c-tag {
+  display: inline-flex;
+  padding: 5px 10px;
+  border: 2px solid $accent-color-2;
+  border-radius: 5px;
+  color: #fff;
+  line-height: 1;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 5px;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    text-decoration: none;
+    border-color: #fff;
+  }
+}

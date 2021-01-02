@@ -1,11 +1,21 @@
 .c-blog-post {
-  border: 1px dotted #ccc;
+  border: 1px solid #eee;
   padding: 1rem;
   transition: .15s;
   position: relative;
+  display: grid;
+  grid-gap: 1rem;
+  border-radius: 4px;
+
+  @media (min-width: 500px) {
+    display: flex;
+    justify-content: space-between;
+    grid-gap: 0;
+  }
 
   &:hover {
-    border-style: solid;
+    background-color: rgba($accent-color-1, .1);
+    border-color: rgba($accent-color-2, .1);;
   }
 
   &__link {
@@ -23,6 +33,12 @@
     display: inline-flex;
     position: relative;
     z-index: 1;
+
+    background-image: linear-gradient(45deg, $accent-color-1, $accent-color-2);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-box-decoration-break: clone;
+    -webkit-text-fill-color: transparent;    
   }
 
   &__title-link {
@@ -32,5 +48,15 @@
   &__by {
     font-style: italic;
     color: #777;
+  }
+
+  &__date {
+    white-space: nowrap;
+    color: #999;
+    // font-style: italic;
+
+    @media (min-width: 500px) {
+      margin-left: 1.5rem;
+    }    
   }
 }

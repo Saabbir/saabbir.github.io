@@ -1,8 +1,9 @@
 ---
 title: Document Object Model
 description: Learn about DOM
-img: js-strings.jpg
-imgAlt: JavaScript Strings
+tags:
+  - javascript
+  - dom
 ---
 
 ### DOM tree structure as tree of nodes

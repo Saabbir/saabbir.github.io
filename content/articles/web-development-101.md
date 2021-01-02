@@ -1,8 +1,9 @@
 ---
 title: Web Development 101
 description: Learn web development
-img: js-strings.jpg
-imgAlt: JavaScript Strings
+tags:
+  - web-development
+  - theory
 ---
 
 ### Further reading

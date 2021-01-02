@@ -1,11 +1,12 @@
 body {
+  color: #333;
   line-height: 1.5;
 }
 
 a {
   color: $accent-color-1;
   text-decoration: none;
-  transition: .15s;
+  transition: .15s;  
 
   &:hover,
   &:focus {

@@ -1,8 +1,8 @@
 ---
 title: Entire JavaScript language in a table of contents
 description: Get whole JavaScript overiew in a table of contents
-img: js-strings.jpg
-imgAlt: JavaScript Strings
+tags:
+  - javascript
 ---
 
 **Inspired by**

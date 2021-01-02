@@ -1,8 +1,8 @@
 ---
 title: Curated list of JavaScript learning resources
 description: The best resources to learn JavaScript.
-img: js-strings.jpg
-imgAlt: JavaScript Strings
+tags:
+  - javascript
 ---
 
 ### Curated list of JavaScript learning resources

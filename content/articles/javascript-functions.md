@@ -1,8 +1,8 @@
 ---
 title: JavaScript Functions
 description: Learn about JavaScript first class function  reference datatype.
-img: js-strings.jpg
-imgAlt: JavaScript Strings
+tags:
+  - javascript
 ---
 
 ## What is a function in JavaScript?

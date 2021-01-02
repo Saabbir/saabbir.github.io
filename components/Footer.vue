@@ -2,7 +2,7 @@
   <footer class="c-footer">
     <div class="container container--lg">
       <div class="copyright-text">
-        <p>Made by <strong>Saabbir Hossain</strong></p>
+        <p>© Copyright {{ new Date().getUTCFullYear() }} <strong>Saabbir Hossain</strong></p>
       </div>
     </div>
   </footer>

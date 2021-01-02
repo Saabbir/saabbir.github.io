@@ -1,0 +1,15 @@
+.c-search-input {
+  padding: 10px 15px;
+  border: 0;
+  background-color: #fff;
+  width: 100%;
+  border-radius: 4px;
+  display: block;
+  margin-top: 2rem;
+  transition: .15s;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #108775, 0 0 0 3px #fff;
+  }
+}

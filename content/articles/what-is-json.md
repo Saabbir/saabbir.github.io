@@ -1,8 +1,8 @@
 ---
 title: What is JSON?
 description: Learn web's data exchange format JSON
-img: js-strings.jpg
-imgAlt: JavaScript Strings
+tags:
+  - javascript
 ---
 
 ## JSON in JavaScript

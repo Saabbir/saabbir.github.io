@@ -1,8 +1,8 @@
 ---
 title: JavaScript Objects
 description: Learn about JavaScript's most important data type Object.
-img: js-strings.jpg
-imgAlt: JavaScript Strings
+tags:
+  - javascript
 ---
 
 ## What is Object?
