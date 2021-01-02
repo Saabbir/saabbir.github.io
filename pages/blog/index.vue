@@ -86,7 +86,8 @@
 </script>
 
 <style lang="scss" scoped>
-.no-article-matched {
-  margin: 0;
-}
+  .no-article-matched {
+    margin: 0;
+    text-align: center;
+  }
 </style>
