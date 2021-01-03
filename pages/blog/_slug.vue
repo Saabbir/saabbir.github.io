@@ -107,15 +107,15 @@
       grid-template-columns: 250px 1fr;
     }
 
-    @media (min-width: 800px) {
+    @media (min-width: 850px) {
       grid-template-columns: $article-nav-width 1fr;
     }
   }
 
   .c-breadcrumb {
-    padding: 10px 0;
+    padding: 10px 1rem;
     line-height: 1;
-    background: #108775;
+    background: $accent-color-2;
   }
 
   .back-to-blog-list {
@@ -128,13 +128,6 @@
   }
 
   .c-article {
-    width: 100%;
-    overflow: hidden;
-    
-    @media (min-width: 768px) {
-      padding-left: 1.5rem;
-    }
-
     &__footer {
       margin-top: 60px;
     }

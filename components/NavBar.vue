@@ -46,6 +46,10 @@
     color: #fff;
     text-shadow: 0 2px 3px rgba(0,0,0,.5);
 
+    @media (min-width: 360px) {
+      font-size: 1.2rem;
+    }
+
     @media (min-width: 500px) {
       font-size: 1.3rem;
     }

@@ -25,7 +25,9 @@ p {
   margin: 0 auto;
 
   &--lg {
-    max-width: 960px;
+    @media (min-width: 768px) {
+      max-width: 960px;
+    }
   }
 }
 
@@ -33,4 +35,5 @@ p {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #fafafa;
 }

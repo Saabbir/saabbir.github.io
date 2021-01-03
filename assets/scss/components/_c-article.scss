@@ -1,4 +1,13 @@
 .c-article {
+  // background-color: #fff;
+  // box-shadow: 0 0 4px 2px rgba(0,0,0,.1);
+  width: 100%;
+  overflow: hidden;
+  
+  @media (min-width: 768px) {
+    padding-left: 1.5rem;
+  }
+
   &__title {
     font-size: 3rem;
     font-weight: bold;

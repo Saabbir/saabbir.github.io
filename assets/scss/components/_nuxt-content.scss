@@ -90,12 +90,17 @@
     }
   }
 
+  hr {
+    border: 0;
+    border-bottom: 1px solid #eee;
+  }
+
   code {
     color: $accent-color-2;
     background-color: rgba($accent-color-2, .1);
     padding: 2px 4px;
     border-radius: 4px;
-    white-space: nowrap;
+    // white-space: nowrap;
   }
 
   .nuxt-content-highlight code {
