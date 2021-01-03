@@ -1,13 +1,13 @@
 <template>
   <div class="page-content">
-    <div class="container">
-      <div class="c-banner mt-40 br-4">
+    <div class="l-container">
+      <div class="c-banner u-mt-40 u-br-4">
         <h1 class="c-page-title">
           <small class="c-page-title__small">Articles tagged</small>
           <span class="c-page-title__text">{{ tag }}</span>
         </h1>
       </div>
-      <div class="my-40">
+      <div class="u-my-40">
         <ul class="c-articles-list">
           <li v-for="article of articles" :key="article.slug" class="c-articles-list__item">
             <div class="c-blog-post">

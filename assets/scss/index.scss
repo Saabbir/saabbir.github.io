@@ -1,11 +1,23 @@
-// Settings
-@import './01-settings/settings.scss';
+/*
 
-// Base
-@import './base/base.scss';
+This project follows Sass architecture inspired by following articles:
 
-// Components
-@import './components/components.scss';
+- https://css-irl.info/a-modern-front-end-workflow-part-3/
 
-// Utilities
-@import './utilities/utilities.scss';
+- https://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/
+
+- https://zellwk.com/blog/css-architecture-3/
+
+*/
+
+// 01. CONFIG
+@import './01-config/config.scss';
+
+// 02. BASE
+@import './02-base/base.scss';
+
+// 03. COMPONENTS
+@import './03-components/components.scss';
+
+// 04. UTILITIES
+@import './04-utilities/utilities.scss';

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="container">
+  <div class="page-content page-content--home">
+    <div class="l-container">
       <Intro />
     </div>
   </div>

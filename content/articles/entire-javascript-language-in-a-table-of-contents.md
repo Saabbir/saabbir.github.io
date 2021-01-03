@@ -9,7 +9,7 @@ tags:
 
 [javascript-in-one-pic](https://github.com/coodict/javascript-in-one-pic)
 
-## Table of Contents
+## Table of contents
 --------------------
 
 <br>

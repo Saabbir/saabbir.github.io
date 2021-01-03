@@ -1,6 +1,6 @@
 <template>
   <div class="page-content">
-    <div class="container">
+    <div class="l-container">
       <h1>Browse articles by tags:</h1>
     </div>
   </div>

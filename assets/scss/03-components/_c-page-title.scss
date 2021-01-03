@@ -1,18 +1,18 @@
 .c-page-title {
-  font-size: 2rem;
+  font-size: rem(32px);
   text-transform: uppercase;
   margin: 0;
   line-height: 1.2;
   text-align: center;
   color: #fff;
-  text-shadow: 0 2px 3px rgba(0,0,0,.5);
+  text-shadow: $text-shadow-white;
 
   @media (min-width: 500px) {
-    font-size: 2.4rem;
+    font-size: rem(38px);
   }
 
   @media (min-width: 768px) {
-    font-size: 3rem;
+    font-size: rem(48px);
   }
 
   &__small {
@@ -27,6 +27,6 @@
   
   &__text {
     display: block;
-    margin-top: 10px;
+    margin-top: rem(10px);
   }  
 }

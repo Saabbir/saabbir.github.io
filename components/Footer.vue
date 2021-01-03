@@ -1,6 +1,6 @@
 <template>
   <footer class="c-footer">
-    <div class="container container--lg">
+    <div class="l-container l-container--lg">
       <div class="copyright-text">
         <p>© Copyright {{ new Date().getUTCFullYear() }} <strong>Saabbir Hossain</strong></p>
       </div>
@@ -8,28 +8,21 @@
   </footer>
 </template>
 
-<script>
-  export default {
-
-  }
-
-</script>
-
 <style lang="scss" scoped>
 .c-footer {
   margin-top: auto;
-  border-top: 1px solid #eee;
+  border-top: rem(1px) solid #ddd;
 
   .copyright-text {
     display: flex;
     align-items: center;
-    height: 70px;
+    height: rem(70px);
     justify-content: center;
     position: relative;
     overflow: hidden;
 
     @media (min-width: 768px) {
-      height: 100px;
+      height: rem(100px);
     }
 
     p {
@@ -40,8 +33,8 @@
     &::after {
       content: "Saabbir Hossain";
       position: absolute;
-      bottom: -13px;
-      font-size: 73px;
+      bottom: rem(-13px);
+      font-size: rem(73px);
       line-height: 1;
       color: #f7f7f7;
       font-weight: 900;
@@ -56,7 +49,7 @@
       }
 
       @media (min-width: 1200px) {
-        font-size: 83px;
+        font-size: rem(83px);
       }
     }
   }

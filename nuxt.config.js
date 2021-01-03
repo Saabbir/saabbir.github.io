@@ -26,7 +26,7 @@ export default {
    ** Global style resources - https://www.npmjs.com/package/@nuxtjs/style-resources
    */
   styleResources: {
-    scss: ['~/assets/scss/01-settings/variables/variables.scss']
+    scss: ['~/assets/scss/01-config/config.scss']
   },
 
   loading: {

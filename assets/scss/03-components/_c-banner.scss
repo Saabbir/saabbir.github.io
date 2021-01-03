@@ -1,19 +1,19 @@
 .c-banner {
-  padding: 60px 15px;
+  padding: rem(60px) rem(15px);
   background-image: radial-gradient(circle, rgba($accent-color-1, .9), rgba($accent-color-2, .9));
 
   @media (min-width: 500px) {
-    padding: 60px 30px;
+    padding: rem(60px) rem(30px);
   }
 
   &__title {
     margin: 0;
     color: #fff;
-    font-size: 2rem;
+    font-size: rem(32px);
     text-align: center;
 
     @media (min-width: 500px) {
-      font-size: 3rem;
+      font-size: rem(48px);
     }
   }
 }

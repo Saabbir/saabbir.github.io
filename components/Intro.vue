@@ -21,27 +21,21 @@
   </div>
 </template>
 
-<script>
-  export default {
-    
-  }
-</script>
-
 <style lang="scss" scoped>
 .c-intro {
   display: grid;
-  grid-gap: 1rem;
+  grid-gap: rem(16px);
   grid-template-columns: 1fr;
-  margin: 40px 0;
-  max-width: 500px;
+  margin: rem(40px) 0;
+  max-width: rem(500px);
 
   &__img-container {
-    width: 150px;
-    height: 150px;
+    width: rem(150px);
+    height: rem(150px);
     overflow: hidden;
     border-radius: 50%;
     background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,.4);
+    box-shadow: 0 rem(2px) rem(4px) rgba(0,0,0,.4);
     // order: 2;
   }
 
@@ -50,15 +44,15 @@
   }
 
   &__content {
-    font-size: 1.1rem;
+    font-size: rem(18px);
     line-height: 1.5;
 
     h1 {
-      margin: 0 0 1rem;
+      margin: 0 0 rem(16px);
     }
 
     p + p {
-      margin-top: 1rem;
+      margin-top: rem(16px);
     }
   }
 }

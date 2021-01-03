@@ -1,5 +1,5 @@
 <template>
-  <div class="pagination">
+  <div class="c-pagination">
     <NuxtLink
       v-if="prev"
       :to="{ name: 'blog-slug', params: { slug: prev.slug } }"
@@ -33,14 +33,14 @@
 </script>
 
 <style lang="scss" scoped>
-  .pagination {
+  .c-pagination {
     display: grid;
-    grid-gap: 1rem;
+    grid-gap: rem(16px);
     justify-content: space-between;
     grid-template-columns: 1fr;
 
     @media (min-width: 500px) {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(rem(264px), 1fr));
     }
   }
 </style>

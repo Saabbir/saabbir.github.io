@@ -1,15 +1,18 @@
 .nuxt-content {
-  max-width: 660px;
+  max-width: rem(660px);
 
   h1, h2, h3, h4, h5, h6,
   blockquote,
   ul, ol, p {
+    &:first-child {
+      margin-top: 0;
+    }
     &:not(:first-child) {
-      margin-top: 1rem;
+      margin-top: rem(16px);
     }
 
     &:not(:last-child) {
-      margin-bottom: 1rem;
+      margin-bottom: rem(16px);
     }
   }
 
@@ -21,7 +24,7 @@
     }
 
     &:not(:first-child) {
-      margin-top: 1.5rem;
+      margin-top: rem(24px);
     }    
 
     &:hover .icon-link {
@@ -31,21 +34,21 @@
 
   h2 {
     font-weight: bold;
-    font-size: 24px;
+    font-size: rem(24px);
     line-height: 1.3;
 
     @media (min-width: 768px) {
-      font-size: 28px;
+      font-size: rem(28px);
     }
   }
 
   h3 {
     font-weight: bold;
-    font-size: 20px;
+    font-size: rem(20px);
     line-height: 1.4;
 
     @media (min-width: 768px) {
-      font-size: 22px;
+      font-size: rem(22px);
     }    
   }
 
@@ -54,15 +57,15 @@
   }
 
   ul, ol {
-    padding-left: 20px;
+    padding-left: rem(20px);
 
     ul, ol {
-      margin-top: 10px;
+      margin-top: rem(10px);
     }
   }
 
   li:not(:last-child) {
-    margin-bottom: 10px;
+    margin-bottom: rem(10px);
   }
 
   a {
@@ -77,30 +80,29 @@
   }
 
   blockquote {
-    border-left: 5px solid $accent-color-2;
-    padding: 15px 15px 15px 20px;
+    border-left: rem(5px) solid $accent-color-2;
+    padding: rem(15px) rem(15px) rem(15px) rem(20px);
     background-color: rgba($accent-color-2, .1);
-    box-shadow: 0 2px 4px rgba(0,0,0,.1);
-    border-radius: 0 4px 4px 0;
+    box-shadow: 0 rem(2px) rem(4px) rgba(0,0,0,.1);
+    border-radius: 0 rem(4px) rem(4px) 0;
     font-size: 1.1em;
     color: $accent-color-2;
 
     @media (min-width: 768px) {
-      padding: 15px 15px 15px 30px;
+      padding: rem(15px) rem(15px) rem(15px) rem(30px);
     }
   }
 
   hr {
     border: 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: rem(1px) solid #ddd;
   }
 
   code {
     color: $accent-color-2;
     background-color: rgba($accent-color-2, .1);
-    padding: 2px 4px;
-    border-radius: 4px;
-    // white-space: nowrap;
+    padding: rem(2px) rem(4px);
+    border-radius: rem(4px);
   }
 
   .nuxt-content-highlight code {
@@ -112,12 +114,12 @@
   .icon-link {
     background-image: url('~assets/svg/icon-hashtag.svg');
     display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-size: 20px 20px;
+    width: rem(20px);
+    height: rem(20px);
+    background-size: rem(20px) rem(20px);
     opacity: 0;
     position: absolute;
-    left: -25px;
+    left: rem(-25px);
     top: 50%;
     transform: translateY(-50%);
     display: none;
@@ -133,8 +135,8 @@
 
   .filename {
     position: absolute;
-    right: 8px;
-    top: 5px;
+    right: rem(8px);
+    top: rem(5px);
     color: rgba(255, 255, 255, .5);
     z-index: 1;
   }

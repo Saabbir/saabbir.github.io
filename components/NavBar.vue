@@ -1,6 +1,6 @@
 <template>
   <div class="c-navbar">
-    <div class="container">
+    <div class="l-container">
       <div class="c-navbar__content">
         <nuxt-link to="/" class="c-navbar__brand">Saabbir Hossain</nuxt-link>
         <nav class="c-navbar__nav">
@@ -28,9 +28,9 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .c-navbar {
-  padding: 1rem 0;
+  padding: rem(16px) 0;
   background-color: $accent-color-1;
   background-image: linear-gradient(45deg, $accent-color-2, $accent-color-1);
 
@@ -41,17 +41,17 @@
   }
 
   &__brand {
-    font-size: 1rem;
+    font-size: rem(16px);
     font-weight: bold;
     color: #fff;
-    text-shadow: 0 2px 3px rgba(0,0,0,.5);
+    text-shadow: 0 rem(2px) rem(3px) rgba(0,0,0,.5);
 
     @media (min-width: 360px) {
-      font-size: 1.2rem;
+      font-size: rem(18px);
     }
 
     @media (min-width: 500px) {
-      font-size: 1.3rem;
+      font-size: rem(20px);
     }
     
     &:hover,
@@ -70,15 +70,15 @@
 
   &__menu-item {
     &:not(:last-child) {
-      margin-right: .5rem;
+      margin-right: rem(8px);
     }
   }
 
   &__menu-link {
-    padding: .5rem 1rem;
+    padding: rem(8px) rem(16px);
     color: #fff;
     display: block;
-    border-radius: 4px;
+    border-radius: rem(4px);
 
     &:hover,
     &:focus {
@@ -94,7 +94,7 @@
       background: $accent-color-2;
       color: #fff;
       font-weight: bold;
-      text-shadow: 0 2px 3px rgba(0,0,0,.5);
+      text-shadow: 0 rem(2px) rem(3px) rgba(0,0,0,.5);
     }
   }
 }

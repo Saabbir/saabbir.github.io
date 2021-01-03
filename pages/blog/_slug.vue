@@ -1,7 +1,7 @@
 <template>
   <div class="page-content">
     <div class="c-breadcrumb">
-      <div class="container">
+      <div class="l-container">
         <nuxt-link to="/blog" class="back-to-blog-list">&laquo; back to blog list</nuxt-link>
       </div>      
     </div>     
@@ -9,9 +9,9 @@
       :style="{
         backgroundImage: `url(${articleImg})`
       }">     
-      <div class="container">
+      <div class="l-container">
         <p class="c-blog-post-banner__date">{{ formatDate(article.createdAt) }}</p>
-        <h1 class="c-page-title mt-20 mb-40">{{ article.title }}</h1>
+        <h1 class="c-page-title u-mt-20 u-mb-40">{{ article.title }}</h1>
         <div v-if="article.tags" class="c-tags">
           <nuxt-link 
             v-for="(tag, index) in article.tags" 
@@ -23,22 +23,27 @@
         </div>
       </div>      
     </div>
-    <div class="container container--lg">
+    <div class="l-container l-container--lg">
       <div class="blog-post-single">
-        <nav class="c-article-nav">
-          <ul>
-            <li v-for="link of article.toc" :key="link.id">
-              <NuxtLink :to="`#${link.id}`" :class="{ 'py-2': link.depth === 2, 'ml-2 pb-2': link.depth === 3 }">{{ link.text }}</NuxtLink>
-            </li>
-          </ul>
-        </nav>    
+        <aside>
+          <nav class="c-article-nav">
+            <div class="c-on-this-page">
+              <strong>On this page</strong>
+            </div>
+            <ul>
+              <li v-for="link of article.toc" :key="link.id">
+                <NuxtLink :to="`#${link.id}`" :class="{ 'py-2': link.depth === 2, 'ml-2 pb-2': link.depth === 3 }">{{ link.text }}</NuxtLink>
+              </li>
+            </ul>
+          </nav>
+        </aside>
         <article class="c-article">
           <div class="c-article__body">
             <nuxt-content :document="article"></nuxt-content>
           </div>
 
           <div class="c-article__footer">
-            <p class="c-article__updatedat mb-30">Last updated: {{ formatDate(article.updatedAt) }}</p>
+            <p class="c-article__updatedat u-mb-30">Last updated: {{ formatDate(article.updatedAt) }}</p>
           </div>        
 
           <div class="c-article__pagination">
@@ -97,23 +102,34 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .blog-post-single {
     display: grid;
-    grid-gap: 1rem;
-    margin: 40px 0;
+    margin: rem(40px) 0;
+    background-color: #fff;
+    border: rem(1px) solid #ddd;
+    border-radius: rem(4px);    
 
     @media (min-width: 768px) {
-      grid-template-columns: 250px 1fr;
+      grid-template-columns: rem(250px) 1fr;
     }
 
     @media (min-width: 850px) {
-      grid-template-columns: $article-nav-width 1fr;
+      grid-template-columns: rem($article-nav-width) 1fr;
+    }
+  }
+
+  aside {
+    border-bottom: rem(1px) solid #ddd;
+
+    @media (min-width: 768px) {
+      border-bottom: 0;
+      border-right: rem(1px) solid #ddd;
     }
   }
 
   .c-breadcrumb {
-    padding: 10px 1rem;
+    padding: rem(10px) rem(16px);
     line-height: 1;
     background: $accent-color-2;
   }
@@ -127,13 +143,21 @@
     }
   }
 
+  .c-on-this-page {
+    padding: 1rem 1.5rem 1rem;
+    border-bottom: 1px solid #ddd;
+    color: #999;
+    text-transform: uppercase;
+    font-size: .9em;    
+  }
+
   .c-article {
     &__footer {
-      margin-top: 60px;
+      margin-top: rem(60px);
     }
 
     &__pagination {
-      margin-top: 30px;
+      margin-top: rem(30px);
     }
   }
 </style>

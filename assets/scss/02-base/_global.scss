@@ -1,0 +1,27 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  color: #333;
+  font: normal 100%/1.5 $proxima-nova;
+  // word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: $accent-color-1;
+  text-decoration: none;
+  transition: .15s;  
+
+  &:hover,
+  &:focus {
+    color: $accent-color-2;
+    text-decoration: underline;
+  }
+}
