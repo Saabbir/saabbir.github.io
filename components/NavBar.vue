@@ -92,6 +92,7 @@
 
     &.nuxt-link-active {
       background: $accent-color-2;
+      background-image: radial-gradient($accent-color-1, $accent-color-2);
       color: #fff;
       font-weight: bold;
       text-shadow: 0 rem(2px) rem(3px) rgba(0,0,0,.5);
