@@ -8,10 +8,15 @@ html {
   color: #333;
   font: normal 100%/1.5 $proxima-nova;
   // word-spacing: 1px;
+  word-break: break-word;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+}
+
+blockquote {
+  margin: 0;
 }
 
 a {

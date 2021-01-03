@@ -57,7 +57,7 @@
   }
 
   ul, ol {
-    padding-left: rem(20px);
+    padding-left: rem(17px);
 
     ul, ol {
       margin-top: rem(10px);
@@ -90,6 +90,10 @@
 
     @media (min-width: 768px) {
       padding: rem(15px) rem(15px) rem(15px) rem(30px);
+    }
+
+    p {
+      margin: 0;
     }
   }
 

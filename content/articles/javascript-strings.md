@@ -26,7 +26,7 @@ Strings created from `String` constructor function in a constructor context (i.e
 new String('Saabbir Hossain')
 ```
 
-**Key Takeaways**
+**Key takeaways**
 
 - Without using `new` operator, `String` function calls always returns string primitive value.
 

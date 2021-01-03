@@ -126,10 +126,22 @@
       border-bottom: 0;
       border-right: rem(1px) solid #ddd;
     }
+
+    .c-on-this-page {
+      padding: rem(16px);
+      border-bottom: rem(1px) solid #ddd;
+      color: #999;
+      text-transform: uppercase;
+      font-size: .9em;
+      
+      @media (min-width: 361px) {
+        padding: rem(16px) rem(24px) rem(16px);
+      }    
+    }    
   }
 
   .c-breadcrumb {
-    padding: rem(10px) rem(16px);
+    padding: rem(10px) 0;
     line-height: 1;
     background: $accent-color-2;
   }
@@ -141,14 +153,6 @@
     &:hover {
       color: #fff;
     }
-  }
-
-  .c-on-this-page {
-    padding: 1rem 1.5rem 1rem;
-    border-bottom: 1px solid #ddd;
-    color: #999;
-    text-transform: uppercase;
-    font-size: .9em;    
   }
 
   .c-article {
