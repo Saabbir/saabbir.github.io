@@ -1,6 +1,7 @@
 ---
 title: Curated list of JavaScript learning resources
 description: The best resources to learn JavaScript.
+createdAt: 01/01/2021
 tags:
   - javascript
 ---

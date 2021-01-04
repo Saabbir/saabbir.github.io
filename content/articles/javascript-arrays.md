@@ -1,6 +1,7 @@
 ---
 title: JavaScript Arrays
 description: Learn how we work with collections/list in JavaScript.
+createdAt: 01/01/2021
 tags:
   - javascript
 ---

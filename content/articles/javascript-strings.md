@@ -2,6 +2,7 @@
 title: JavaScript Strings
 description: Learn about JavaScript string primitive datatype.
 featuredImg: js-strings.jpg
+createdAt: 01/01/2021
 tags:
   - javascript
 ---

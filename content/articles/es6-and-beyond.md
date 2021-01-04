@@ -1,6 +1,7 @@
 ---
 title: ES6 and Beyond
 description: Learn about JavaScript's new feature
+createdAt: 01/01/2021
 tags:
   - javascript
   - es6-and-beyond

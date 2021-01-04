@@ -1,6 +1,7 @@
 ---
 title: JavaScript Data Types
 description: Learn JavaScript data types
+createdAt: 01/01/2021
 tags:
   - javascript
 ---

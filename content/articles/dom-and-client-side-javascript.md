@@ -1,6 +1,7 @@
 ---
 title: Document Object Model
 description: Learn about DOM
+createdAt: 01/01/2021
 tags:
   - javascript
   - dom

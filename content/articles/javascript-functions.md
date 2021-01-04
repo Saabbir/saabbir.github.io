@@ -1,6 +1,7 @@
 ---
 title: JavaScript Functions
 description: Learn about JavaScript first class function  reference datatype.
+createdAt: 01/01/2021
 tags:
   - javascript
 ---

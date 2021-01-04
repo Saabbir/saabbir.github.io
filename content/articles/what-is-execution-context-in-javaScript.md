@@ -2,6 +2,7 @@
 title: What is Execution Context in JavaScript?
 description: Learn what is execution context in JavaScript.
 featuredImg: no-code.png
+createdAt: 01/01/2021
 tags:
   - javascript
   - theory

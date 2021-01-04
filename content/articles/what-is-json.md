@@ -1,6 +1,7 @@
 ---
 title: What is JSON?
 description: Learn web's data exchange format JSON
+createdAt: 01/01/2021
 tags:
   - javascript
 ---

@@ -1,6 +1,7 @@
 ---
 title: Entire JavaScript language in a table of contents
 description: Get whole JavaScript overiew in a table of contents
+createdAt: 01/01/2021
 tags:
   - javascript
 ---

@@ -2,6 +2,7 @@
 title: Asynchronous JavaScript
 description: Learn about non-blocking JavaScript
 featuredImg: async.webp
+createdAt: 01/01/2021
 tags:
   - theory
   - async-js

@@ -2,6 +2,7 @@
 title: How JavaScript Works Under The Hood?
 description: Learn how JavaScript works under the hood?.
 featuredImg: how-js-works.gif
+createdAt: 01/01/2021
 tags:
   - javascript
   - theory

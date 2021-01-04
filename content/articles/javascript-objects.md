@@ -1,6 +1,7 @@
 ---
 title: JavaScript Objects
 description: Learn about JavaScript's most important data type Object.
+createdAt: 01/01/2021
 tags:
   - javascript
 ---
