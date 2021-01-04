@@ -17,7 +17,7 @@
             v-for="(tag, index) in article.tags" 
             :key="index"
             class="c-tag"
-            :to="`/tag/${tag}`">
+            :to="`/blog/tag/${tag}`">
             {{ tag }}
           </nuxt-link>
         </div>
