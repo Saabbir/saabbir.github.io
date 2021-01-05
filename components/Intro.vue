@@ -6,7 +6,7 @@
     <div class="c-intro__content">
       <h1>Hi, I'm Saabbir.</h1>
       <p>
-        A <strong>front-end web developer</strong> from Bangladesh, currently working as a independent contractor at <a class="link" href="https://www.upwork.com/o/profiles/users/_~0125f9d541d9412fba/" target="_blank">Upwork</a>. I build static sites and apps using <strong>Vuejs</strong> and <strong>Nuxtjs</strong>.
+        A <strong>front-end web developer</strong> from Bangladesh, currently working as an independent contractor at <a class="link" href="https://www.upwork.com/o/profiles/users/_~0125f9d541d9412fba/" target="_blank">Upwork</a>. I build static sites and apps using <strong>Vuejs</strong> and <strong>Nuxtjs</strong>.
       </p>
       <p>
         I've passion building awesome things on the web. I love everything about design and development but my skills place me at the intersection of both.
