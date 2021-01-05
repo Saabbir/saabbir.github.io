@@ -1,7 +1,7 @@
 <template>
   <div class="c-intro">
     <div class="c-intro__img-container">
-      <img src="~/assets/images/saabbir.png" alt="Saabbir Hossain">
+      <img src="~/assets/images/saabbir.png" alt="Saabbir Hossain's Profile Picture">
     </div>
     <div class="c-intro__content">
       <h1>Hi, I'm Saabbir.</h1>
@@ -36,6 +36,9 @@
     border-radius: 50%;
     background-color: #fff;
     box-shadow: 0 rem(2px) rem(4px) rgba(0,0,0,.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     // order: 2;
   }
 
