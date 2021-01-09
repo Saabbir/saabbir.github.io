@@ -1,6 +1,6 @@
 ---
 title: ES6 and Beyond
-description: Learn about JavaScript's new feature
+description: Learn modern JavaScript.
 createdAt: 01/01/2021
 tags:
   - javascript

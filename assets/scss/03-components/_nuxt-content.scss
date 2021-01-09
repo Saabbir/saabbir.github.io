@@ -7,6 +7,7 @@
     &:first-child {
       margin-top: 0;
     }
+
     &:not(:first-child) {
       margin-top: rem(16px);
     }
@@ -59,8 +60,9 @@
   ul, ol {
     padding-left: rem(17px);
 
-    ul, ol {
-      margin-top: rem(10px);
+    li ul, 
+    li ol {
+      margin-top: rem(10px) !important;
     }
   }
 
