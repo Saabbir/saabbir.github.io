@@ -1,6 +1,6 @@
 .c-blog-post {
   background-color: #fff;
-  border: rem(1px) solid #ddd;
+  border: rem(1px) solid $border-color;
   padding: rem(16px);
   transition: .15s;
   position: relative;
@@ -53,12 +53,12 @@
   }
 
   &__by {
-    color: #999;
+    color: #abacbf;
     font-style: italic;
   }
 
   &__date {
-    color: #999;
+    color: #abacbf;
     // font-style: italic;
     white-space: nowrap;
 

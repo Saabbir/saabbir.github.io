@@ -1,26 +1,44 @@
 <template>
   <div class="c-navbar">
-    <div class="l-container">
+    <div class="l-container l-container--fluid">
       <div class="c-navbar__content">
-        <nuxt-link to="/" class="c-navbar__brand">Saabbir Hossain</nuxt-link>
+        <nuxt-link to="/" class="c-navbar__brand">
+          <img 
+            src="~/assets/images/saabbir.png" 
+            alt="Saabbir's Profile Picture"
+            class="c-navbar__brand-img">
+          <div class="c-navbar__brand-text">
+            <span class="c-navbar__brand-text-name">Saabbir Hossain</span>
+            <span class="c-navbar__brand-text-role">Front-End Developer</span>
+          </div>
+        </nuxt-link>
         <nav class="c-navbar__nav">
           <ul class="c-navbar__menu">
             <li class="c-navbar__menu-item">
-              <nuxt-link to="/" exact class="c-navbar__menu-link">Home</nuxt-link>
-            </li>
-            <li class="c-navbar__menu-item">
-              <nuxt-link 
-                to="/blog" 
-                class="c-navbar__menu-link"
-                :class="{ 'nuxt-link-active': $route.path.includes('tag') }"
-              >Blog</nuxt-link>
+              <nuxt-link to="/" exact class="c-navbar__menu-link">
+                <strong>01</strong>
+                <span>home</span>
+              </nuxt-link>
             </li>
             <li class="c-navbar__menu-item">
               <nuxt-link 
                 to="/work" 
                 class="c-navbar__menu-link"
                 :class="{ 'nuxt-link-active': $route.path.includes('work') }"
-              >Work</nuxt-link>
+              >
+                <strong>02</strong>
+                <span>work</span>
+              </nuxt-link>
+            </li>
+            <li class="c-navbar__menu-item">
+              <nuxt-link 
+                to="/blog" 
+                class="c-navbar__menu-link"
+                :class="{ 'nuxt-link-active': $route.path.includes('tag') }"
+              >
+                <strong>03</strong>
+                <span>Blog</span>
+              </nuxt-link>
             </li>
           </ul>
         </nav>
@@ -36,75 +54,102 @@
 </script>
 
 <style lang="scss" scoped>
-.c-navbar {
-  padding: rem(16px) 0;
-  background-color: $accent-color-1;
-  background-image: linear-gradient(45deg, $accent-color-2, $accent-color-1);
+  .c-navbar {
+    padding: rem(32px) 0;
+    background-color: #fff;
 
-  &__content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-
-  &__brand {
-    font-size: rem(16px);
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 0 rem(2px) rem(3px) rgba(0,0,0,.5);
-
-    @media (min-width: 360px) {
-      font-size: rem(18px);
+    &__content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
     }
 
-    @media (min-width: 500px) {
-      font-size: rem(20px);
-    }
-    
-    &:hover,
-    &:focus {
-      color: #fff;
-      text-decoration: none;
-    }
-  }
+    &__brand {
+      display: flex;
+      align-items: center;
+      color: $text-color-dark;
 
-  &__menu {
-    display: flex;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  &__menu-item {
-    &:not(:last-child) {
-      margin-right: rem(8px);
-    }
-  }
-
-  &__menu-link {
-    padding: rem(8px) rem(16px);
-    color: #fff;
-    display: block;
-    border-radius: rem(4px);
-
-    &:hover,
-    &:focus {
-      text-decoration: none;
-
-      &:not(.nuxt-link-active) {
-        color: #fff;
-        background-color: rgba($accent-color-2, .3);
+      &:hover,
+      &:focus {
+        text-decoration: none;
       }
     }
 
-    &.nuxt-link-active {
-      background: $accent-color-2;
-      background-image: radial-gradient($accent-color-1, $accent-color-2);
-      color: #fff;
-      font-weight: bold;
-      text-shadow: 0 rem(2px) rem(3px) rgba(0,0,0,.5);
+    &__brand-img {
+      width: rem(43px);
+      border-radius: 50%;
+      margin-right: rem(10px);
+    }
+
+    &__brand-text {
+      display: grid;
+    }
+
+    &__brand-text-name {
+      font-weight: 900;
+    }
+
+    &__brand-text-role {
+      font-size: .83em;
+      color: $text-color-light;
+    }
+
+    &__menu {
+      display: flex;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    &__menu-item {
+      &:not(:last-child) {
+        margin-right: rem(8px);
+      }
+    }
+
+    &__menu-link {
+      padding: rem(16px);
+      color: $text-color-light;
+      display: flex;
+      align-items: center;
+      position: relative;
+      
+      span {
+        margin-left: rem(8px);
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        height: rem(4px);
+        background-color: $text-color-gray;
+        left: rem(16px);
+        right: rem(16px);
+        display: block;
+        bottom: 0;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: .3s;
+      }
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+
+        &::after {
+          transform: scaleX(1);
+        }
+      }
+
+      &.nuxt-link-active {
+        color: $text-color-dark;
+
+        &::after {
+          transform: scaleX(1);
+          background: $accent-color-1 linear-gradient(45deg, $accent-color-1, $accent-color-2);
+        }
+      }
     }
   }
-}
 </style>

@@ -15,15 +15,33 @@ skills:
   - Gulp
 ---
 
-The client first wanted to create a coming soon landing page by modeling another website. Then he asked for a few more pages for this project.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/02251ea2-4406-45ad-8534-05e17a8d4220/deploy-status)](https://app.netlify.com/sites/cesppa-redesign-v2/deploys)
 
-I have successfully developed all those pages by modeling the reference website.
+A PSD to HTML project.
 
-The project was successfully completed with 5-star feedback from the client. The client was very happy with my work as he continues to provide more work and becomes a long-term client.
+Demo can be seen in here - https://cesppa-redesign-v2.netlify.app/
 
-### Features
+## Features
 
-- 100% Responsive
-- Cross-browser compatible
-- 90+ lighthouse score
-- Load time under 2s
+- 100% responsive layout
+- Cross browser compatible
+- Uses Gulp 4 for automation
+
+#### Client
+
+<a href="https://cesppa.com/" target="_blank">
+  <img src="https://cesppa-prototype.netlify.app/images/logo.png" alt="CESPPA Logo" width="150">
+</a>
+
+#### Tools
+
+- Photoshop
+- HTML
+- CSS
+- SCSS
+- jQuery
+- Bootstrap
+
+#### Live URL
+
+- https://cesppa-redesign-v2.netlify.app/

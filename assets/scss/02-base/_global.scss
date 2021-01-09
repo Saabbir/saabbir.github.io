@@ -5,14 +5,20 @@
 }
 
 html {
-  color: #333;
-  font: normal 100%/1.5 $proxima-nova;
+  color: $text-color-dark;
+  font: normal 100%/1.5 $nunito;
   // word-spacing: 1px;
   word-break: break-word;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+}
+
+body {
+  color: $text-color-dark;
+  background-color: #fff;
+  // background: #fafafa url(~assets/images/tile.jpg) left top repeat fixed;
 }
 
 blockquote {
@@ -44,5 +50,13 @@ hr {
   margin: rem(20px) 0;
   border: 0;
   height: rem(1px);
-  background-color: #ddd;
+  background-color: $border-color;
+}
+
+strong {
+  color: $text-color-dark;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $text-color-dark;
 }

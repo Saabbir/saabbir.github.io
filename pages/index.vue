@@ -25,5 +25,9 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .page-content--home {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
 </style>

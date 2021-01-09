@@ -1,6 +1,6 @@
 <template>
   <div class="page-content">
-    <div class="u-py-40">
+    <div class="section-portfolio u-py-40">
       <div class="l-container">
         <div class="u-mb-20">
           <h2>Portfolio</h2>
@@ -19,7 +19,7 @@
                 :src="require(`~/assets/images/work/${work.coverImg}`)" 
                 :alt="`${work.title}-cover`">
               <figcaption class="c-work__figcaption">
-                <h3 class="c-work__title">{{ work.title }}</h3>
+                <h5 class="c-work__title">{{ work.title }}</h5>
                 <p>{{ work.category.join(', ') }}</p>
               </figcaption>
             </figure>
@@ -41,32 +41,39 @@
 </script>
 
 <style lang="scss" scoped>
-.l-works {
-  display: grid;
-  grid-gap: rem(20px);
-  grid-template-columns: repeat(auto-fit, minmax(rem(250px), 1fr));
-}
+  .section-portfolio {
+    background-color: $body-bg-alt;
+  }
+  .l-works {
+    display: grid;
+    grid-gap: rem(32px);
+    grid-template-columns: repeat(auto-fit, minmax(rem(250px), 1fr));
 
-.c-work {
-  background-color: #fff;
-  position: relative;
-  border: 1px solid #ddd;
-
-  &__link {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(auto-fit, minmax(rem(350px), 1fr));
+    }
   }
 
-  &__figcaption {
-    padding: rem(20px);
-    color: #999;
-  }
+  .c-work {
+    background-color: #fff;
+    position: relative;
+    border: 1px solid $border-color;
 
-  &__title {
-    color: #333;
+    &__link {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    &__figcaption {
+      padding: rem(32px);
+      color: $text-color-gray;
+    }
+
+    &__title {
+      margin-bottom: rem(10px);
+    }
   }
-}
 </style>

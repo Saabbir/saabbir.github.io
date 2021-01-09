@@ -4,6 +4,14 @@ Color
 
 $accent-color-1: #00c58e;
 $accent-color-2: #108775;
+$text-color-dark: #333;
+$text-color-light: #666;
+$text-color-gray: #abacbf;
+
+/*============================================
+Background
+============================================*/
+$body-bg-alt: #f6f5f7;
 
 /*============================================
 Typography
@@ -29,6 +37,8 @@ $font-family-sans-serif:
   "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";  
 
 $proxima-nova: 'Proxima Nova', $font-family-sans-serif;
+$nunito: 'Nunito', $font-family-sans-serif;
+$serif: 'Merriweather', $nunito;
 
 /*============================================
 Width
@@ -44,3 +54,8 @@ $box-shadow-default: 0 0 rem(4px) rem(2px) rgba(0,0,0,.1);
 Text Shadow
 ============================================*/
 $text-shadow-white: 0 rem(2px) rem(3px) rgba(black, .5);
+
+/*============================================
+Border
+============================================*/
+$border-color: #eee;

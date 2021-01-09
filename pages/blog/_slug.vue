@@ -1,7 +1,7 @@
 <template>
   <div class="page-content">
     <div class="c-breadcrumb">
-      <div class="l-container">
+      <div class="l-container l-container--fluid">
         <nuxt-link to="/blog" class="c-breadcrumb__link">&laquo; back to blog list</nuxt-link>
       </div>      
     </div>
@@ -23,11 +23,11 @@
         </div>
       </div>      
     </div>
-    <div class="l-container l-container--lg">
+    <div class="l-container ">
       <div class="blog-post-single">
         <aside>
           <nav class="c-article-nav">
-            <div class="c-on-this-page">
+            <div class="c-on-this-page u-text-serif">
               <strong>On this page</strong>
             </div>
             <ul>
@@ -107,7 +107,7 @@
     display: grid;
     margin: rem(40px) 0;
     background-color: #fff;
-    border: rem(1px) solid #ddd;
+    border: rem(1px) solid $border-color;
     border-radius: rem(4px);    
 
     @media (min-width: 768px) {
@@ -120,17 +120,17 @@
   }
 
   aside {
-    border-bottom: rem(1px) solid #ddd;
+    border-bottom: rem(1px) solid $border-color;
 
     @media (min-width: 768px) {
       border-bottom: 0;
-      border-right: rem(1px) solid #ddd;
+      border-right: rem(1px) solid $border-color;
     }
 
     .c-on-this-page {
       padding: rem(16px);
-      border-bottom: rem(1px) solid #ddd;
-      color: #999;
+      border-bottom: rem(1px) solid $border-color;
+      color: #abacbf;
       text-transform: uppercase;
       font-size: .9em;
       

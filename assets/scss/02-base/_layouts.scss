@@ -1,12 +1,22 @@
 .l-container {
   padding: 0 rem(16px);
-  max-width: rem(660px);
+  max-width: rem(1200px);
   margin: 0 auto;
 
-  &--lg {
-    @media (min-width: 768px) {
-      max-width: rem(960px);
-    }
+  @media (min-width: 768px) {
+    padding: 0 rem(32px);
+  }
+
+  &--sm {
+    max-width: rem(860px);
+  }
+
+  &--fluid {
+    max-width: 100%;
+
+    // @media (min-width: 1600px) {
+    //   max-width: 90%;
+    // }
   }
 }
 
@@ -14,5 +24,4 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #fafafa url(~assets/images/tile.jpg) left top repeat fixed;
 }

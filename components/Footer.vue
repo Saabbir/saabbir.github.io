@@ -1,6 +1,6 @@
 <template>
   <footer class="c-footer">
-    <div class="l-container l-container--lg">
+    <div class="l-container ">
       <div class="copyright-text">
         <p>© Copyright {{ new Date().getUTCFullYear() }} <strong>Saabbir Hossain</strong></p>
       </div>
@@ -11,7 +11,7 @@
 <style lang="scss" scoped>
 .c-footer {
   margin-top: auto;
-  border-top: rem(1px) solid #ddd;
+  border-top: rem(1px) solid $border-color;
 
   .copyright-text {
     display: flex;
@@ -27,7 +27,7 @@
 
     p {
       margin: 0;
-      color: #999;
+      color: #abacbf;
     }
 
     &::after {

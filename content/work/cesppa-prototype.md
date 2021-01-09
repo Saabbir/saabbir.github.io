@@ -15,15 +15,35 @@ skills:
   - Gulp
 ---
 
-The client first wanted to create a coming soon landing page by modeling another website. Then he asked for a few more pages for this project.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6f148d9b-bece-4b3a-98ac-d3d3a09bda54/deploy-status)](https://app.netlify.com/sites/cesppa-prototype/deploys)
 
-I have successfully developed all those pages by modeling the reference website.
+CESPPA first landing page by modeling https://getsling.com/ website.
 
-The project was successfully completed with 5-star feedback from the client. The client was very happy with my work as he continues to provide more work and becomes a long-term client.
+Demo can be seen in here - https://cesppa-prototype.netlify.app/
 
-### Features
+## Features
 
-- 100% Responsive
-- Cross-browser compatible
-- 90+ lighthouse score
-- Load time under 2s
+- 100% responsive layout
+- Cross browser compatible
+- Uses Gulp 3 for automation
+- Uses SCSS for CSS
+- Uses nunjucks for HTML
+
+#### Client
+
+<a href="https://cesppa.com/" target="_blank">
+  <img src="https://cesppa-prototype.netlify.app/images/logo.png" alt="CESPPA Logo" width="150">
+</a>
+
+#### Tools
+
+- Photoshop
+- HTML
+- CSS
+- SCSS
+- jQuery
+- Bootstrap
+
+#### Live URL
+
+- https://cesppa-prototype.netlify.app/

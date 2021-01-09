@@ -49,7 +49,7 @@
   }
 
   &__bio {
-    color: #999;
+    color: #abacbf;
     margin-top: rem(3px);
   }
 }

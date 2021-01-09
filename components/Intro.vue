@@ -22,41 +22,40 @@
 </template>
 
 <style lang="scss" scoped>
-.c-intro {
-  display: grid;
-  grid-gap: rem(16px);
-  grid-template-columns: 1fr;
-  margin: rem(40px) 0;
-  max-width: rem(500px);
+  .c-intro {
+    display: grid;
+    grid-gap: rem(32px);
+    grid-template-columns: 1fr;
+    margin: rem(40px) auto;
+    max-width: rem(500px);
 
-  &__img-container {
-    width: rem(150px);
-    height: rem(150px);
-    overflow: hidden;
-    border-radius: 50%;
-    background-color: #fff;
-    box-shadow: 0 rem(2px) rem(4px) rgba(0,0,0,.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    // order: 2;
-  }
-
-  &__img-container img {
-    max-width: 100%;
-  }
-
-  &__content {
-    font-size: rem(18px);
-    line-height: 1.5;
-
-    h1 {
-      margin: 0 0 rem(16px);
+    &__img-container {
+      width: rem(150px);
+      height: rem(150px);
+      overflow: hidden;
+      border-radius: 50%;
+      background-color: #fff;
+      box-shadow: 0 rem(2px) rem(4px) rgba(0,0,0,.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // order: 2;
     }
 
-    p + p {
-      margin-top: rem(16px);
+    &__img-container img {
+      max-width: 100%;
+    }
+
+    &__content {
+      font-size: rem(18px);
+
+      h1 {
+        margin: 0 0 rem(16px);
+      }
+
+      p + p {
+        margin-top: rem(16px);
+      }
     }
   }
-}
 </style>

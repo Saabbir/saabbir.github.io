@@ -1,12 +1,12 @@
 <template>
   <div class="page-content">
     <div class="c-banner">
-      <div class="l-container">
+      <div class="l-container l-container--sm">
         <h1 class="c-page-title">My writings</h1>
         <input type="text" placeholder="Search articles" v-model="searchQuery" class="c-search-input">
       </div>
     </div>
-    <div class="l-container">
+    <div class="l-container l-container--sm">
       <div class="u-my-40">
         <ul class="c-articles-list" v-if="articles.length">
           <li v-for="article of articles" :key="article.slug" class="c-articles-list__item">
