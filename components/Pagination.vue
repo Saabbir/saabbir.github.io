@@ -2,14 +2,14 @@
   <div class="c-pagination">
     <NuxtLink
       v-if="prev"
-      :to="{ name: 'blog-slug', params: { slug: prev.slug } }"
+      :to="{ name: routeName, params: { slug: prev.slug } }"
       class="c-button"
     >
       &laquo; {{ prev.title }}
     </NuxtLink>
     <NuxtLink
       v-if="next"
-      :to="{ name: 'blog-slug', params: { slug: next.slug } }"
+      :to="{ name: routeName, params: { slug: next.slug } }"
       class="c-button"
     >
       {{ next.title }} &raquo;
@@ -27,6 +27,10 @@
       next: {
         type: Object,
         default: () => null
+      },
+      routeName: {
+        type: String,
+        default: () => 'blog-slug'
       }
     }
   }

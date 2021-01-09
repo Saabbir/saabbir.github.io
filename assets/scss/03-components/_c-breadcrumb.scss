@@ -1,0 +1,14 @@
+.c-breadcrumb {
+  padding: rem(10px) 0;
+  line-height: 1;
+  background: $accent-color-2;
+
+  &__link {
+    color: rgba(#fff, .75);
+    display: inline-block;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}

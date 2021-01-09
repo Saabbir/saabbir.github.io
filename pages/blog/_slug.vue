@@ -2,9 +2,9 @@
   <div class="page-content">
     <div class="c-breadcrumb">
       <div class="l-container">
-        <nuxt-link to="/blog" class="back-to-blog-list">&laquo; back to blog list</nuxt-link>
+        <nuxt-link to="/blog" class="c-breadcrumb__link">&laquo; back to blog list</nuxt-link>
       </div>      
-    </div>     
+    </div>
     <div class="c-blog-post-banner" 
       :style="{
         backgroundImage: `url(${articleImg})`
@@ -138,21 +138,6 @@
         padding: rem(16px) rem(24px) rem(16px);
       }    
     }    
-  }
-
-  .c-breadcrumb {
-    padding: rem(10px) 0;
-    line-height: 1;
-    background: $accent-color-2;
-  }
-
-  .back-to-blog-list {
-    color: rgba(#fff, .75);
-    display: inline-block;
-
-    &:hover {
-      color: #fff;
-    }
   }
 
   .c-article {

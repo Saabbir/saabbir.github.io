@@ -15,6 +15,13 @@
                 :class="{ 'nuxt-link-active': $route.path.includes('tag') }"
               >Blog</nuxt-link>
             </li>
+            <li class="c-navbar__menu-item">
+              <nuxt-link 
+                to="/work" 
+                class="c-navbar__menu-link"
+                :class="{ 'nuxt-link-active': $route.path.includes('work') }"
+              >Work</nuxt-link>
+            </li>
           </ul>
         </nav>
       </div>

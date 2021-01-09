@@ -30,3 +30,19 @@ a {
     text-decoration: underline;
   }
 }
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, p, blockquote, figure {
+  margin: 0;
+}
+
+hr {
+  margin: rem(20px) 0;
+  border: 0;
+  height: rem(1px);
+  background-color: #ddd;
+}
