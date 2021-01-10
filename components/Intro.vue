@@ -4,64 +4,28 @@
       <img src="~/assets/images/saabbir.png" alt="Saabbir Hossain's Profile Picture">
     </div> -->
     <div class="c-intro__content">
-      <h1>Hi, I'm Saabbir.</h1>
+      <h1 class="c-intro__title u-text-serif">Hi, I'm Saabbir.</h1>
       <p>
-        A <strong>front-end web developer</strong> from Bangladesh, currently working as an independent contractor at <a class="link" href="https://www.upwork.com/o/profiles/users/_~0125f9d541d9412fba/" target="_blank">Upwork</a>. I build static sites and apps using <strong>Vuejs</strong> and <strong>Nuxtjs</strong>.
+        A <strong>front-end web developer</strong> based in Barisal, Bangladesh, currently working as an independent contractor at <a class="link" href="https://www.upwork.com/o/profiles/users/_~0125f9d541d9412fba/" target="_blank">Upwork</a>. I build static sites and apps using <strong>Vuejs</strong> and <strong>Nuxtjs</strong>.
       </p>
       <p>
         I've passion building awesome things on the web. I love everything about design and development but my skills place me at the intersection of both.
       </p>
-      <div class="c-buttons">
-        <nuxt-link to="/work" class="c-button c-button--lg">View my work</nuxt-link>
-        <!-- <a 
+      <div class="c-buttons u-mt-48">
+        <!-- <a href="mailto:thesaabbir@gmail.com" class="c-button">Get in touch</a> -->
+        <!-- <nuxt-link to="/work" class="c-button c-button--lg">View my work</nuxt-link> -->
+        <a 
           href="https://www.upwork.com/o/profiles/users/~0125f9d541d9412fba/" 
           class="c-button c-button--lg" 
-          target="_blank">Checkout my Upwork profile</a> -->
+          target="_blank">Checkout my Upwork profile</a>
       </div>
+    </div>
+    <div class="c-intro__img-container">
+      <img src="~/assets/images/saabbir.png" alt="Saabbir">
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-  .c-intro {
-    display: grid;
-    grid-gap: rem(32px);
-    grid-template-columns: 1fr;
-    width: 100%;
 
-    &__content {
-      max-width: rem(500px);
-    }
-
-    &__img-container {
-      width: rem(150px);
-      height: rem(150px);
-      overflow: hidden;
-      border-radius: 50%;
-      background-color: #fff;
-      box-shadow: 0 rem(2px) rem(4px) rgba(0,0,0,.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      // order: 2;
-    }
-
-    &__img-container img {
-      max-width: 100%;
-    }
-
-    &__content {
-      font-size: rem(18px);
-      line-height: 1.75;
-
-      h1 {
-        margin: 0 0 rem(32px);
-        font-size: 3rem;
-      }
-
-      p + p {
-        margin-top: rem(16px);
-      }
-    }
-  }
 </style>

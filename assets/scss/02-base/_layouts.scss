@@ -3,6 +3,10 @@
   max-width: rem(932px);
   margin: 0 auto;
 
+  @media (min-width: 768px) {
+    padding: 0 rem(32px);
+  }
+
   @media (min-width: 1024px) {
     width: rem(932px);
   }  

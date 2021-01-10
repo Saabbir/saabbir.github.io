@@ -1,0 +1,130 @@
+.c-navbar {
+  padding: rem(32px) 0;
+  background-color: #fff;
+  border-bottom: rem(1px) solid $border-color;
+
+  &__content {
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-between;
+    // flex-wrap: wrap;
+    display: grid;
+    grid-gap: rem(16px);
+    
+    @media (min-width: 768px) {
+      grid-template-columns: rem(215px) 1fr;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  &__brand {
+    display: grid;
+    grid-template-columns: rem(60px) 1fr;
+    grid-gap: rem(16px);
+    align-items: center;
+    color: $text-color-dark;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  &__brand-img-container {
+    width: rem(60px);
+    height: rem(60px);
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 rem(2px) rem(4px) rgba(0,0,0,.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: rem(10px);    
+  }
+
+  &__brand-img {
+    display: block;
+    max-width: 100%;
+  }
+
+  &__brand-text {
+    display: grid;
+    font-size: rem(18px);
+  }
+
+  &__brand-text-name {
+    font-weight: 700;
+  }
+
+  &__brand-text-role {
+    font-size: .8em;
+    color: $text-color-light;
+  }
+
+  &__menu {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__menu-item {
+    &:not(:last-child) {
+      margin-right: rem(8px);
+    }
+  }
+
+  &__menu-link {
+    padding: rem(16px);
+    color: $text-color-light;
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-size: rem(16px);
+    
+    span {
+      margin-left: rem(8px);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      height: rem(4px);
+      background-color: $text-color-gray;
+      left: rem(16px);
+      right: rem(16px);
+      display: block;
+      bottom: 0;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: .3s;
+    }
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    &.nuxt-link-active {
+      color: $text-color-dark;
+      font-weight: bold;
+
+      &::after {
+        transform: scaleX(1);
+        background: $accent-color-1 linear-gradient(45deg, $accent-color-1, $accent-color-2);
+      }
+    }
+  }
+}

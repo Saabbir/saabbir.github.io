@@ -1,5 +1,5 @@
 .c-buttons {
-  margin-top: rem(48px);
+  
 }
 
 .c-button {
@@ -11,6 +11,7 @@
   color: #fff;
   padding: rem(10px) rem(30px);
   font-weight: bold;
+  line-height: 1.5;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -18,6 +19,7 @@
   transition: .15s;
   border-radius: rem(4px);
   text-shadow: $text-shadow-white;
+  min-width: rem(200px);
 
   &:hover,
   &:focus {
@@ -32,6 +34,11 @@
   }
 
   &--lg {
-    padding: rem(16px) rem(40px);
+    padding: rem(16px) rem(32px);
+    min-width: rem(250px);
+
+    @media (min-width: 768px) {
+      padding: rem(16px) rem(40px);
+    }
   }
 }

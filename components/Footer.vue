@@ -20,6 +20,7 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
+    text-align: center;
 
     @media (min-width: 768px) {
       height: rem(100px);
