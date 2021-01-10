@@ -1,7 +1,7 @@
 ---
 createdAt: 01/09/2021
-title: Aperfectspace
-coverImg: Aperfectspace_Cover.png
+title: A Perfect Space
+coverImg: a-perfect-space-cover.png
 featured: true
 url: https://aperfectspace-html.netlify.app/
 category:
@@ -29,9 +29,11 @@ Demo can be seen in here - https://aperfectspace-html.netlify.app/
 
 #### Client
 
-<a href="https://aperfectspace.com/" target="_blank">
+<!-- <a href="https://aperfectspace.com/" target="_blank">
   <img src="https://aperfectspace-html.netlify.app/images/site-logos/logo-black.png" alt="Aperfectspace Logo">
-</a>
+</a> -->
+
+[<MarkdownImage src="clients/aperfectspace.png" alt="A Perfect Space"></MarkdownImage>](https://aperfectspace.com/)
 
 #### Tools
 
