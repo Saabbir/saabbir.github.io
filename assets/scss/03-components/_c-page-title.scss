@@ -1,14 +1,13 @@
 .c-page-title {
   font-size: rem(32px);
-  text-transform: uppercase;
   margin: 0;
   line-height: 1.2;
-  text-align: center;
   color: #fff;
   text-shadow: $text-shadow-white;
 
   &--black {
     color: $text-color-dark;
+    text-shadow: none;
   }
 
   @media (min-width: 500px) {

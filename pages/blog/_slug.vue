@@ -16,7 +16,7 @@
       }">     
       <div class="l-container">
         <p class="c-blog-post-banner__date">{{ formatDate(article.createdAt) }}</p>
-        <h1 class="c-page-title u-mt-20 u-mb-40">{{ article.title }}</h1>
+        <h1 class="c-page-title u-text-center u-text-uppercase u-mt-20 u-mb-40">{{ article.title }}</h1>
         <div v-if="article.tags" class="c-tags">
           <nuxt-link 
             v-for="(tag, index) in article.tags" 

@@ -69,25 +69,5 @@
 </script>
 
 <style lang="scss" scoped>
-  .c-portfolio {
 
-    &__header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 2rem;
-
-      @media (max-width: 767px) {
-        display: grid;
-        grid-gap: 1rem;
-        grid-template-columns: 1fr;
-      }
-    }
-
-    &__header-title {
-      @media (min-width: 768px) {
-        margin-right: 1rem;
-      }
-    }
-  }
 </style>

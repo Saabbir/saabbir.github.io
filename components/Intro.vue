@@ -13,11 +13,11 @@
       </p>
       <div class="c-buttons u-mt-48">
         <!-- <a href="mailto:thesaabbir@gmail.com" class="c-button">Get in touch</a> -->
-        <!-- <nuxt-link to="/work" class="c-button c-button--lg">View my work</nuxt-link> -->
-        <a 
+        <nuxt-link to="/work" class="c-button c-button--lg">View recent works</nuxt-link>
+        <!-- <a 
           href="https://www.upwork.com/o/profiles/users/~0125f9d541d9412fba/" 
           class="c-button c-button--lg" 
-          target="_blank">Checkout my Upwork profile</a>
+          target="_blank">Checkout my Upwork profile</a> -->
       </div>
     </div>
     <div class="c-intro__img-container">

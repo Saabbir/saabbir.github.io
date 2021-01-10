@@ -2,24 +2,25 @@
   <div class="l-main">
     <div class="section-portfolio u-py-40">
       <div class="l-container">
-        <div class="u-mb-20">
-          <h2>Portfolio</h2>
+        <div class="u-mb-32">
+          <h2 class="c-page-title c-page-title--black u-text-serif">Recent work</h2>
+          <p class="u-mt-16">Selected projects.</p>
         </div>
         <div class="l-works">
           <div 
             v-for="work of works" 
             :key="work.slug"
-            class="c-work">
+            class="c-portfolio-card">
             <nuxt-link
               :to="{ name: 'work-slug', params: { slug: work.slug } }"
-              class="c-work__link"
+              class="c-portfolio-card__link"
             ></nuxt-link>
-            <figure class="c-work__figure">
+            <figure class="c-portfolio-card__figure">
               <img 
                 :src="require(`~/assets/images/work/${work.coverImg}`)" 
                 :alt="`${work.title}-cover`">
-              <figcaption class="c-work__figcaption">
-                <h5 class="c-work__title">{{ work.title }}</h5>
+              <figcaption class="c-portfolio-card__figcaption">
+                <h5 class="c-portfolio-card__title">{{ work.title }}</h5>
                 <p>{{ work.category.join(', ') }}</p>
               </figcaption>
             </figure>
@@ -68,10 +69,16 @@
     }
   }
 
-  .c-work {
+  .c-portfolio-card {
     background-color: #fff;
     position: relative;
-    border: 1px solid $border-color;
+    box-shadow: 0 0 0 rem(1px) $border-color;
+    transition: .3s;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 rem(32px) rem(1px) rgba(black, .1);
+    }
 
     &__link {
       position: absolute;

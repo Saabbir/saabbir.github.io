@@ -2,7 +2,7 @@
   <div class="l-main">
     <div class="c-banner">
       <div class="l-container l-container--sm">
-        <h1 class="c-page-title">My writings</h1>
+        <h1 class="c-page-title u-text-center u-text-uppercase">My writings</h1>
         <input type="text" placeholder="Search articles" v-model="searchQuery" class="c-search-input">
       </div>
     </div>
