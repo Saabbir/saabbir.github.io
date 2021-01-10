@@ -1,5 +1,5 @@
 <template>
-  <div class="page-content">
+  <div class="l-main">
     <div class="l-container">
       <h1 class="c-page-title">Browse articles by tags:</h1>
     </div>
@@ -8,6 +8,7 @@
 
 <script>
   export default {
+    name: 'Tag Index',
     middleware({ redirect }) {
       return redirect('/')
     }

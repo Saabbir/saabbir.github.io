@@ -1,8 +1,8 @@
 <template>
   <!-- Consult https://nuxtjs.org/docs/2.x/concepts/views#error-page for this page -->
-  <div class="page-content">
-    <div class="l-container">
-      <div class="c-error-content u-text-center">
+  <div class="c-error-content">
+    <div class="l-container l-container--sm">
+      <div class="u-text-center">
         <h1 v-if="error.statusCode === 404" class="c-page-title c-page-title--black">Page not found</h1>
         <h1 v-else class="c-page-title c-page-title--black">An error occurred</h1>
         <div class="u-mt-20">
@@ -33,6 +33,9 @@
 
 <style lang="scss" scoped>
   .c-error-content {
-    margin: rem(40px) 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    padding: rem(40px) 0;
   }
 </style>

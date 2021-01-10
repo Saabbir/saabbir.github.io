@@ -1,8 +1,13 @@
 <template>
-  <div class="page-content">
+  <div class="l-main">
     <div class="c-breadcrumb">
-      <div class="l-container l-container--fluid">
-        <nuxt-link to="/blog" class="c-breadcrumb__link">&laquo; back to blog list</nuxt-link>
+      <div class="l-container">
+        <nav class="c-breadcrumb__nav">
+          <nuxt-link to="/" class="c-breadcrumb__link">&#127968; home</nuxt-link>
+          <nuxt-link to="/blog" class="c-breadcrumb__link">blog</nuxt-link>
+          <nuxt-link 
+            :to="{ name: 'blog-slug', params: { slug: article.slug } }" class="c-breadcrumb__link c-breadcrumb__link--disabled">{{ article.slug }}</nuxt-link>
+        </nav>
       </div>      
     </div>
     <div class="c-blog-post-banner" 

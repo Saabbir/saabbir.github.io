@@ -1,12 +1,14 @@
 <template>
   <div class="c-navbar">
-    <div class="l-container l-container--fluid">
+    <div class="l-container">
       <div class="c-navbar__content">
         <nuxt-link to="/" class="c-navbar__brand">
-          <img 
-            src="~/assets/images/saabbir.png" 
-            alt="Saabbir's Profile Picture"
-            class="c-navbar__brand-img">
+          <div class="c-navbar__brand-img-container">
+            <img 
+              src="~/assets/images/saabbir.png" 
+              alt="Saabbir's Profile Picture"
+              class="c-navbar__brand-img">
+          </div>
           <div class="c-navbar__brand-text">
             <span class="c-navbar__brand-text-name">Saabbir Hossain</span>
             <span class="c-navbar__brand-text-role">Front-End Developer</span>
@@ -37,7 +39,7 @@
                 :class="{ 'nuxt-link-active': $route.path.includes('tag') }"
               >
                 <strong>03</strong>
-                <span>Blog</span>
+                <span>blog</span>
               </nuxt-link>
             </li>
           </ul>
@@ -57,6 +59,7 @@
   .c-navbar {
     padding: rem(32px) 0;
     background-color: #fff;
+    border-bottom: rem(1px) solid $border-color;
 
     &__content {
       display: flex;
@@ -76,22 +79,35 @@
       }
     }
 
-    &__brand-img {
-      width: rem(43px);
+    &__brand-img-container {
+      width: rem(60px);
+      height: rem(60px);
+      overflow: hidden;
       border-radius: 50%;
-      margin-right: rem(10px);
+      background-color: #fff;
+      box-shadow: 0 rem(2px) rem(4px) rgba(0,0,0,.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: rem(10px);    
+    }
+
+    &__brand-img {
+      display: block;
+      max-width: 100%;
     }
 
     &__brand-text {
       display: grid;
+      font-size: rem(18px);
     }
 
     &__brand-text-name {
-      font-weight: 900;
+      font-weight: 700;
     }
 
     &__brand-text-role {
-      font-size: .83em;
+      font-size: .8em;
       color: $text-color-light;
     }
 
@@ -114,6 +130,7 @@
       display: flex;
       align-items: center;
       position: relative;
+      font-size: rem(16px);
       
       span {
         margin-left: rem(8px);
@@ -144,6 +161,7 @@
 
       &.nuxt-link-active {
         color: $text-color-dark;
+        font-weight: bold;
 
         &::after {
           transform: scaleX(1);

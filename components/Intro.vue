@@ -1,8 +1,8 @@
 <template>
   <div class="c-intro">
-    <div class="c-intro__img-container">
+    <!-- <div class="c-intro__img-container">
       <img src="~/assets/images/saabbir.png" alt="Saabbir Hossain's Profile Picture">
-    </div>
+    </div> -->
     <div class="c-intro__content">
       <h1>Hi, I'm Saabbir.</h1>
       <p>
@@ -12,10 +12,11 @@
         I've passion building awesome things on the web. I love everything about design and development but my skills place me at the intersection of both.
       </p>
       <div class="c-buttons">
-        <a 
+        <nuxt-link to="/work" class="c-button c-button--lg">View my work</nuxt-link>
+        <!-- <a 
           href="https://www.upwork.com/o/profiles/users/~0125f9d541d9412fba/" 
           class="c-button c-button--lg" 
-          target="_blank">Checkout my Upwork profile</a>
+          target="_blank">Checkout my Upwork profile</a> -->
       </div>
     </div>
   </div>
@@ -26,8 +27,11 @@
     display: grid;
     grid-gap: rem(32px);
     grid-template-columns: 1fr;
-    margin: rem(40px) auto;
-    max-width: rem(500px);
+    width: 100%;
+
+    &__content {
+      max-width: rem(500px);
+    }
 
     &__img-container {
       width: rem(150px);
@@ -48,9 +52,11 @@
 
     &__content {
       font-size: rem(18px);
+      line-height: 1.75;
 
       h1 {
-        margin: 0 0 rem(16px);
+        margin: 0 0 rem(32px);
+        font-size: 3rem;
       }
 
       p + p {

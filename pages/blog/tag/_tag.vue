@@ -1,5 +1,5 @@
 <template>
-  <div class="page-content">
+  <div class="l-main">
     <div class="l-container">
       <div class="c-banner u-mt-40 u-br-4">
         <h1 class="c-page-title">
@@ -33,6 +33,19 @@
 
 <script>
   export default {
+    name: 'Tag',
+    head() {
+      return {
+        title: 'Articles tagged: ' + tag,
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: 'All blog posts tagged in: ' + tag
+          }
+        ]
+      }
+    },        
     async asyncData({ params, $content }) {
       const articles = await $content('articles')
         .where({ 'tags': { $contains: params.tag } })

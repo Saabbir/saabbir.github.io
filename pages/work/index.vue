@@ -1,5 +1,5 @@
 <template>
-  <div class="page-content">
+  <div class="l-main">
     <div class="section-portfolio u-py-40">
       <div class="l-container">
         <div class="u-mb-20">
@@ -32,6 +32,19 @@
 
 <script>
   export default {
+    name: 'Work Index',
+    head() {
+      return {
+        title: 'Work - Saabbir Hossain',
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: 'Saabbir Hossain is a professional front-end developer based in Barisal, Bangladesh.'
+          }
+        ]
+      }
+    },    
     async asyncData({ params, $content }) {
       const works = await $content('work').fetch()
       
@@ -44,6 +57,7 @@
   .section-portfolio {
     background-color: $body-bg-alt;
   }
+
   .l-works {
     display: grid;
     grid-gap: rem(32px);

@@ -1,15 +1,20 @@
 <template>
-  <div class="page-content">
+  <div class="l-main">
     <div class="c-breadcrumb">
-      <div class="l-container l-container--fluid">
-        <nuxt-link to="/work" class="c-breadcrumb__link">&laquo; back to portfolio</nuxt-link>
+      <div class="l-container">
+        <nav class="c-breadcrumb__nav">
+          <nuxt-link to="/" class="c-breadcrumb__link">&#127968; home</nuxt-link>
+          <nuxt-link to="/work" class="c-breadcrumb__link">work</nuxt-link>
+          <nuxt-link 
+            :to="{ name: 'work-slug', params: { slug: work.slug } }" class="c-breadcrumb__link c-breadcrumb__link--disabled">{{ work.slug }}</nuxt-link>
+        </nav>
       </div>      
     </div>
-    <div class="u-py-40">     
+    <div class="u-py-32">     
       <div class="l-container">
         <div class="c-portfolio">
           <div class="c-portfolio__header">
-            <h2>{{ work.title }}</h2>
+            <h2 class="c-portfolio__header-title">{{ work.title }}</h2>
             <a 
               v-if="work.url"
               :href="work.url"
@@ -32,6 +37,19 @@
 
 <script>
   export default {
+    name: 'Work',
+    head() {
+      return {
+        title: this.work.title + ' - Case Study',
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: 'Saabbir Hossain is a professional front-end developer based in Barisal, Bangladesh.'
+          }
+        ]
+      }
+    },
     async asyncData({ $content, params }) {
       const work = await $content('work', params.slug).fetch()
 
@@ -51,22 +69,25 @@
 </script>
 
 <style lang="scss" scoped>
-  .c-portfolio__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2rem;
+  .c-portfolio {
 
-    @media (max-width: 767px) {
-      display: grid;
-      grid-gap: 1rem;
-      grid-template-columns: 1fr;
+    &__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+
+      @media (max-width: 767px) {
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-columns: 1fr;
+      }
     }
-  }
 
-  .c-portfolio__header h2 {
-    @media (min-width: 768px) {
-      margin-right: 1rem;
+    &__header-title {
+      @media (min-width: 768px) {
+        margin-right: 1rem;
+      }
     }
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="page-content page-content--home">
+  <div class="l-main l-main--home">
     <div class="l-container">
       <Intro />
     </div>
@@ -16,7 +16,7 @@
           {
             hid: 'description',
             name: 'description',
-            content: 'Welcome to saabbir.com'
+            content: 'Saabbir Hossain is a professional front-end developer based in Barisal, Bangladesh.'
           }
         ]
       }
@@ -25,9 +25,10 @@
 </script>
 
 <style lang="scss" scoped>
-  .page-content--home {
+  .l-main--home {
     flex-grow: 1;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
   }
 </style>

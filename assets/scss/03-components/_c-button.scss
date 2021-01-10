@@ -11,7 +11,7 @@
   color: #fff;
   padding: rem(10px) rem(30px);
   font-weight: bold;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -32,6 +32,6 @@
   }
 
   &--lg {
-    padding: rem(16px);
+    padding: rem(16px) rem(40px);
   }
 }

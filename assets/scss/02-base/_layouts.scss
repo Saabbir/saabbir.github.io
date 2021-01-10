@@ -1,22 +1,30 @@
 .l-container {
   padding: 0 rem(16px);
-  max-width: rem(1200px);
+  max-width: rem(932px);
   margin: 0 auto;
 
-  @media (min-width: 768px) {
-    padding: 0 rem(32px);
-  }
+  @media (min-width: 1024px) {
+    width: rem(932px);
+  }  
 
   &--sm {
-    max-width: rem(860px);
+    max-width: rem(832px);
+
+    @media (min-width: 1024px) {
+      width: rem(832px);
+    }    
   }
+
+  &--lg {
+    max-width: rem(992px);
+
+    @media (min-width: 1024px) {
+      width: rem(992px);
+    }    
+  }  
 
   &--fluid {
     max-width: 100%;
-
-    // @media (min-width: 1600px) {
-    //   max-width: 90%;
-    // }
   }
 }
 

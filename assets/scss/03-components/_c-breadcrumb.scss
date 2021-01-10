@@ -1,14 +1,47 @@
 .c-breadcrumb {
   padding: rem(10px) 0;
   line-height: 1;
-  background: $accent-color-2;
+  // background-color: #fafafa;
+  // border-bottom: rem(1px) solid $border-color;
 
   &__link {
-    color: rgba(#fff, .75);
+    color: $text-color-gray;
     display: inline-block;
+    position: relative;
+    line-height: 1;
+    // text-decoration: underline;
 
-    &:hover {
-      color: #fff;
+    &::after {
+      content: ">";
+      // width: rem(1px);
+      // height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      // background-color: $text-color-gray;
+      // transform: rotate(20deg);
+      transform: translateX(50%);
+    }
+    
+    &--disabled {
+      cursor: auto;
+      pointer-events: none;
+      // opacity: .75;
+    }
+
+    &:hover,
+    &:focus {
+      color: $text-color-dark;
+      text-decoration: none;
+    }
+
+    &:not(:last-child) {
+      padding-right: rem(16px);
+      margin-right: (16px);
+    }
+
+    &:last-child::after {
+      display: none;
     }
   }
 }

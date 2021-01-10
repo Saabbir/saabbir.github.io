@@ -1,5 +1,5 @@
 <template>
-  <div class="page-content">
+  <div class="l-main">
     <div class="c-banner">
       <div class="l-container l-container--sm">
         <h1 class="c-page-title">My writings</h1>
@@ -34,7 +34,7 @@
 
 <script>
   export default {
-    name: 'Blog',
+    name: 'Blog Index',
     head() {
       return {
         title: 'Blog - Saabbir Hossain',
@@ -42,7 +42,7 @@
           {
             hid: 'description',
             name: 'description',
-            content: 'All blog posts of saabbir.com'
+            content: 'Saabbir Hossain is a professional front-end developer based in Barisal, Bangladesh.'
           }
         ]
       }
