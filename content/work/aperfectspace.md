@@ -49,7 +49,7 @@ tools:
   </ul>
 </work-feature>
 
-<work-feature src="svg/css.svg" alt="CSS3 Logo">
+<work-feature src="svg/sass.svg" alt="Sass Logo">
   <h4>CSS architechture</h4>
   <ul>
     <li>Created a SCSS architecture by providing namespaces to CSS classes for better maintaiability.</li>

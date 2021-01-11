@@ -3,29 +3,30 @@
 }
 
 .c-button {
-  border: 0;
-  text-decoration: none;
-  cursor: pointer;
+  align-items: center;
   background-color: $accent-color-1;
   background-image: linear-gradient(45deg, $accent-color-1, $accent-color-2);
+  border: 0;
+  box-shadow: rem(4px) rem(4px) 0 0 $vue-black;
   color: #fff;
-  padding: rem(10px) rem(30px);
-  font-weight: bold;
-  line-height: 1.5;
+  cursor: pointer;
   display: inline-flex;
-  align-items: center;
+  font-weight: bold;
   justify-content: center;
-  text-align: center;
-  transition: .15s;
-  border-radius: rem(4px);
-  text-shadow: $text-shadow-white;
+  line-height: 1.5;
   min-width: rem(200px);
+  padding: rem(10px) rem(30px);
+  text-align: center;
+  text-decoration: none;
+  text-shadow: $text-shadow-white;
+  transition: .15s;
 
   &:hover,
   &:focus {
-    color: #fff;
     background-color: $accent-color-2;
     background-image: linear-gradient(45deg, $accent-color-2, $accent-color-1);
+    box-shadow: 0 0 0 0 $vue-black;
+    color: #fff;
     text-decoration: none;
   }
 
@@ -34,8 +35,9 @@
   }
 
   &--lg {
-    padding: rem(16px) rem(32px);
+    box-shadow: rem(6px) rem(6px) 0 0 $vue-black;
     min-width: rem(250px);
+    padding: rem(16px) rem(32px);
 
     @media (min-width: 768px) {
       padding: rem(16px) rem(40px);
