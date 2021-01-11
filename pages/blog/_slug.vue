@@ -28,13 +28,11 @@
         </div>
       </div>      
     </div>
-    <div class="l-container ">
-      <div class="blog-post-single">
-        <aside>
+    <div class="l-container">
+      <div class="l-article">
+        <aside class="l-article__aside">
           <nav class="c-article-nav">
-            <div class="c-on-this-page u-text-serif">
-              <strong>On this page</strong>
-            </div>
+            <div class="c-article__toc">Table of contents</div>
             <ul>
               <li v-for="link of article.toc" :key="link.id">
                 <NuxtLink :to="`#${link.id}`" :class="{ 'py-2': link.depth === 2, 'ml-2 pb-2': link.depth === 3 }">{{ link.text }}</NuxtLink>
@@ -47,8 +45,8 @@
             <nuxt-content :document="article"></nuxt-content>
           </div>
 
-          <div class="c-article__footer">
-            <p class="c-article__updatedat u-mb-30">Last updated: {{ formatDate(article.updatedAt) }}</p>
+          <div class="c-article__footer u-mt-48">
+            <p class="c-article__updatedat">Last updated: {{ formatDate(article.updatedAt) }}</p>
           </div>
         </article>
       </div>
@@ -108,7 +106,7 @@
 </script>
 
 <style lang="scss">
-  .blog-post-single {
+  .l-article {
     display: grid;
     margin: rem(40px) 0;
     background-color: #fff;
@@ -116,15 +114,11 @@
     border-radius: rem(4px);    
 
     @media (min-width: 768px) {
-      grid-template-columns: rem(250px) 1fr;
-    }
-
-    @media (min-width: 850px) {
       grid-template-columns: rem($article-nav-width) 1fr;
     }
   }
 
-  aside {
+  .l-article__aside {
     border-bottom: rem(1px) solid $border-color;
 
     @media (min-width: 768px) {
@@ -132,26 +126,18 @@
       border-right: rem(1px) solid $border-color;
     }
 
-    .c-on-this-page {
-      padding: rem(16px);
+    .c-article__toc {
       border-bottom: rem(1px) solid $border-color;
-      color: #abacbf;
-      text-transform: uppercase;
+      color: $text-color-dark;
       font-size: .9em;
+      font-weight: bold;
+      letter-spacing: rem(1px);
+      padding: rem(16px);
+      text-transform: uppercase;
       
       @media (min-width: 361px) {
         padding: rem(16px) rem(24px) rem(16px);
       }    
     }    
-  }
-
-  .c-article {
-    &__footer {
-      margin-top: rem(60px);
-    }
-
-    &__pagination {
-      margin-top: rem(30px);
-    }
   }
 </style>

@@ -1,19 +1,25 @@
 <template>
   <div class="c-pagination">
-    <NuxtLink
-      v-if="prev"
-      :to="{ name: routeName, params: { slug: prev.slug } }"
-      class="c-button"
-    >
-      &laquo; {{ prev.title }}
-    </NuxtLink>
-    <NuxtLink
-      v-if="next"
-      :to="{ name: routeName, params: { slug: next.slug } }"
-      class="c-button"
-    >
-      {{ next.title }} &raquo;
-    </NuxtLink>
+    <div class="c-pagination__prev">
+      <div v-if="prev" class="c-pagination__link-label">Previous Post</div>
+      <NuxtLink
+        v-if="prev"
+        :to="{ name: routeName, params: { slug: prev.slug } }"
+        class="c-button"
+      >
+        &laquo; {{ prev.title }}
+      </NuxtLink>      
+    </div>
+    <div class="c-pagination__next">
+      <div v-if="next" class="c-pagination__link-label">Next Post</div>
+      <NuxtLink
+        v-if="next"
+        :to="{ name: routeName, params: { slug: next.slug } }"
+        class="c-button"
+      >
+        {{ next.title }} &raquo;
+      </NuxtLink>
+    </div>
   </div>
 </template>
 
@@ -39,12 +45,24 @@
 <style lang="scss" scoped>
   .c-pagination {
     display: grid;
-    grid-gap: rem(16px);
+    grid-gap: rem(32px);
     justify-content: space-between;
     grid-template-columns: 1fr;
 
     @media (min-width: 500px) {
       grid-template-columns: repeat(auto-fit, minmax(rem(264px), 1fr));
+    }
+
+    &__link-label {
+      font-weight: bold;
+      color: $text-color-dark;
+      text-transform: uppercase;
+      letter-spacing: rem(1px);
+      margin-bottom: rem(16px);
+    }
+
+    &__next {
+      text-align: right;
     }
   }
 </style>
