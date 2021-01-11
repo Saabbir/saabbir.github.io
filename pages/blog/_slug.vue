@@ -49,13 +49,13 @@
 
           <div class="c-article__footer">
             <p class="c-article__updatedat u-mb-30">Last updated: {{ formatDate(article.updatedAt) }}</p>
-          </div>        
-
-          <div class="c-article__pagination">
-            <Pagination :prev="prev" :next="next" />
           </div>
         </article>
       </div>
+
+      <div class="u-my-48">
+        <Pagination :prev="prev" :next="next" />
+      </div>      
     </div>
   </div>
 </template>

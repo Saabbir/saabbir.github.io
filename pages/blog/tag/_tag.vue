@@ -9,21 +9,19 @@
       </div>
       <div class="u-my-40">
         <ul class="c-articles-list">
-          <li v-for="article of articles" :key="article.slug" class="c-articles-list__item">
-            <div class="c-blog-post">
-              <div>
-                <NuxtLink 
-                  :to="{ name: 'blog-slug', params: { slug: article.slug } }" class="c-blog-post__link">
-                </NuxtLink>
-                <NuxtLink :to="{ name: 'blog-slug', params: { slug: article.slug } }" class="c-blog-post__title-link">
-                  <h2 class="c-blog-post__title">{{ article.title }}</h2>
-                </NuxtLink>
-                <p class="c-blog-post__text">{{ article.description }}</p>
-              </div>
-              <div class="c-blog-post__date">
-                {{ formatDate(article.createdAt) }}
-              </div>
-            </div> 
+          <li v-for="article of articles" :key="article.slug" class="c-blog-post">
+            <div>
+              <NuxtLink 
+                :to="{ name: 'blog-slug', params: { slug: article.slug } }" class="c-blog-post__link">
+              </NuxtLink>
+              <NuxtLink :to="{ name: 'blog-slug', params: { slug: article.slug } }" class="c-blog-post__title-link">
+                <h2 class="c-blog-post__title">{{ article.title }}</h2>
+              </NuxtLink>
+              <p class="c-blog-post__text">{{ article.description }}</p>
+            </div>
+            <div class="c-blog-post__date">
+              {{ formatDate(article.createdAt) }}
+            </div>
           </li>
         </ul>
       </div>

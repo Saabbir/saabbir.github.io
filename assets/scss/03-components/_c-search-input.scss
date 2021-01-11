@@ -1,12 +1,13 @@
 .c-search-input {
-  padding: rem(10px) rem(15px);
-  border: 0;
   background-color: #fff;
-  width: 100%;
+  border: 0;
   border-radius: rem(4px);
   display: block;
+  height: rem(48px);
   margin-top: rem(32px);
+  padding: rem(10px) rem(15px);
   transition: .15s;
+  width: 100%;
 
   &:focus {
     outline: none;

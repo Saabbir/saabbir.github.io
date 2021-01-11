@@ -83,10 +83,10 @@ tools:
 <!-- Start Client Section -->
 <section>
 <div class="l-container l-container--sm">
-
 <hr>
-
-<div class="u-space-between u-my-48">
+<div class="u-my-48">
+<div class="u-space-between">
+        
 <div>
 
 #### Client
@@ -101,8 +101,9 @@ tools:
 <a href="https://aperfectspace-html.netlify.app/" class="c-button c-button--lg" target="_blank">Check Live Demo</a>
 
 </div>
-</div>
 
+</div><!-- /.u-space-between -->
+</div><!-- /.u-my-48 -->
 </div><!-- /.l-container -->
 </section>
 <!-- End Client Section -->

@@ -9,21 +9,19 @@
     <div class="l-container l-container--sm">
       <div class="u-my-40">
         <ul class="c-articles-list" v-if="articles.length">
-          <li v-for="article of articles" :key="article.slug" class="c-articles-list__item">
-            <div class="c-blog-post">
-              <div>
-                <NuxtLink 
-                  :to="{ name: 'blog-slug', params: { slug: article.slug } }" class="c-blog-post__link">
-                </NuxtLink>
-                <NuxtLink :to="{ name: 'blog-slug', params: { slug: article.slug } }">
-                  <h2 class="c-blog-post__title">{{ article.title }}</h2>
-                </NuxtLink>
-                <p class="c-blog-post__text">{{ article.description }}</p>
-              </div>
-              <div class="c-blog-post__date">
-                {{ formatDate(article.createdAt) }}
-              </div>
-            </div> 
+          <li v-for="article of articles" :key="article.slug" class="c-blog-post">
+            <div>
+              <NuxtLink 
+                :to="{ name: 'blog-slug', params: { slug: article.slug } }" class="c-blog-post__link">
+              </NuxtLink>
+              <NuxtLink :to="{ name: 'blog-slug', params: { slug: article.slug } }">
+                <h2 class="c-blog-post__title">{{ article.title }}</h2>
+              </NuxtLink>
+              <p class="c-blog-post__text">{{ article.description }}</p>
+            </div>
+            <div class="c-blog-post__date">
+              {{ formatDate(article.createdAt) }}
+            </div>
           </li>
         </ul>
         <p v-else class="no-article-matched">No articles matched to your search query!</p>

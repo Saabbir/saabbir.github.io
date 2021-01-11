@@ -43,4 +43,9 @@ flex helpers
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  margin: rem(-16px);
+  
+  & > div {
+    padding: rem(16px);
+  }
 }

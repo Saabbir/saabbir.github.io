@@ -21,9 +21,13 @@
 
   &__stats {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
     grid-gap: rem(16px);
     margin: rem(48px) 0;
+
+    @media (min-width: 600px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
 
     dt {
       text-transform: uppercase;

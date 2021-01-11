@@ -1,8 +1,13 @@
 .c-breadcrumb {
   padding: rem(10px) 0;
-  line-height: 1;
+  display: none;
+  // line-height: 1;
   // background-color: #fafafa;
   // border-bottom: rem(1px) solid $border-color;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
 
   &__link {
     color: $text-color-gray;
@@ -26,13 +31,7 @@
     &--disabled {
       cursor: auto;
       pointer-events: none;
-      // opacity: .75;
-    }
-
-    &:hover,
-    &:focus {
-      color: $text-color-dark;
-      text-decoration: none;
+      // opacity: .5;
     }
 
     &:not(:last-child) {

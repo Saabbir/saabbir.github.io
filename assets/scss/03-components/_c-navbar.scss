@@ -21,6 +21,10 @@
     align-items: center;
     justify-content: flex-end;
     flex-wrap: wrap;
+
+    @media (max-width: 767px) {
+      justify-content: flex-start;
+    }
   }
 
   &__brand {

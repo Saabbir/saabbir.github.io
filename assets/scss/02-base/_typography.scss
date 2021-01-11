@@ -72,18 +72,24 @@ small {
 }
 
 .display-1 {
+  font-size: rem(32px);
+
   @media (min-width: 768px) {
     font-size: rem(48px);
   }  
 }
 
 .display-2 {
+  font-size: rem(30px);
+
   @media (min-width: 768px) {
     font-size: rem(44px);
   }  
 }
 
 .display-3 {
+  font-size: rem(26px);
+
   @media (min-width: 768px) {
     font-size: rem(40px);
   }  

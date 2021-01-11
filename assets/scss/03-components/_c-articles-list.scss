@@ -2,10 +2,10 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  display: grid;
+  grid-gap: rem(16px);
 
-  &__item {
-    &:not(:last-child) {
-      margin-bottom: rem(16px);
-    }
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(auto-fit, minmax(calc(100% / 2 - #{rem(16px)}), 1fr));    
   }
 }
