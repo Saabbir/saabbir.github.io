@@ -1,8 +1,8 @@
 <template>
   <div class="l-main">
-    <div class="l-container">
+    <div class="l-container l-container--sm">
       <div class="c-banner u-mt-40 u-br-4">
-        <h1 class="c-page-title">
+        <h1 class="c-page-title u-text-uppercase u-text-center">
           <small class="c-page-title__small">Articles tagged</small>
           <span class="c-page-title__text">{{ tag }}</span>
         </h1>
@@ -36,12 +36,12 @@
     name: 'Tag',
     head() {
       return {
-        title: 'Articles tagged: ' + tag,
+        title: 'Articles tagged: ' + this.tag,
         meta: [
           {
             hid: 'description',
             name: 'description',
-            content: 'All blog posts tagged in: ' + tag
+            content: 'All blog posts tagged in: ' + this.tag
           }
         ]
       }

@@ -21,7 +21,7 @@
                 :alt="`${work.title}-cover`">
               <figcaption class="c-portfolio-card__figcaption">
                 <h5 class="c-portfolio-card__title">{{ work.title }}</h5>
-                <p>{{ work.category.join(', ') }}</p>
+                <p>{{ work.highlight }}</p>
               </figcaption>
             </figure>
           </div>
@@ -65,7 +65,7 @@
     grid-template-columns: repeat(auto-fit, minmax(rem(250px), 1fr));
 
     @media (min-width: 1024px) {
-      grid-template-columns: repeat(auto-fit, minmax(rem(350px), 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(calc(100% / 3 - #{32px}), 1fr));
     }
   }
 

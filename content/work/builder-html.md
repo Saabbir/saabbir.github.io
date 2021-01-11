@@ -1,28 +1,19 @@
 ---
 createdAt: 01/09/2021
-title: Builder
-coverImg: Builder_Cover.png
-featured: false
-themeforestUrl: https://themeforest.net/item/builder-construction-responsive-html5-template/16267586
+title: Builder Construction HTML Template
+highlight: A ThemeForest item.
+description: Builder is a modern looking construction template created using Bootstrap to sell on ThemeForest back in 2016 when I worked at ThemeEbit.
+type: Full-time
+coverImg: builder-cover.png
+featured: true
+url: https://themeforest.net/item/builder-construction-responsive-html5-template/16267586
 category:
   - Site Templates
-skills:
+tools:
   - HTML
   - CSS
   - SCSS
-  - jQuery
+  - JavaScript
+  - Bootstrap
   - Gulp
 ---
-
-#### Tools
-
-- Photoshop
-- HTML
-- CSS
-- SCSS
-- jQuery
-- Bootstrap
-
-#### Live URL
-
-- https://themeforest.net/item/builder-construction-responsive-html5-template/16267586

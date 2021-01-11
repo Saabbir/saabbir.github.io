@@ -1,5 +1,5 @@
 .nuxt-content {
-  max-width: rem(660px);
+  // max-width: rem(660px);
   // font-family: $serif;
   // line-height: 2;
 
@@ -36,15 +36,22 @@
   }
 
   ul {
-    list-style-type: disc;
+    list-style: none;
   }
 
-  ul, ol {
+  ul li {
+    position: relative;
     padding-left: rem(17px);
 
-    li ul, 
-    li ol {
-      margin-top: rem(10px) !important;
+    &::before {
+      content: "";
+      width: rem(6px);
+      height: rem(6px);
+      background-color: $accent-color-2;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: rem(9px);      
     }
   }
 
@@ -52,7 +59,17 @@
     margin-bottom: rem(10px);
   }
 
-  a {
+  ul, ol {
+    // padding-left: rem(17px);
+    padding: 0;
+
+    li ul, 
+    li ol {
+      margin-top: rem(10px) !important;
+    }
+  }
+
+  a:not(.c-button) {
     color: $accent-color-1;
     transition: .15s;
 
@@ -81,11 +98,6 @@
     }
   }
 
-  hr {
-    border: 0;
-    border-bottom: rem(1px) solid $border-color;
-  }
-
   code {
     color: $accent-color-2;
     background-color: rgba($accent-color-2, .1);
@@ -100,7 +112,7 @@
   }
 
   .icon-link {
-    background-image: url('~assets/svg/icon-hashtag.svg');
+    background-image: url('~assets/images/svg/icon-hashtag.svg');
     display: inline-block;
     width: rem(20px);
     height: rem(20px);

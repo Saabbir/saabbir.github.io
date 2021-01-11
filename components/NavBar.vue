@@ -25,8 +25,9 @@
             <li class="c-navbar__menu-item">
               <nuxt-link 
                 to="/work" 
+                exact
                 class="c-navbar__menu-link"
-                :class="{ 'nuxt-link-active': $route.path.includes('work') }"
+                :class="{ 'nuxt-link-active': $route.path.includes('/work') }"
               >
                 <strong>02</strong>
                 <span>work</span>
@@ -34,9 +35,10 @@
             </li>
             <li class="c-navbar__menu-item">
               <nuxt-link 
-                to="/blog" 
+                to="/blog"
+                exact 
                 class="c-navbar__menu-link"
-                :class="{ 'nuxt-link-active': $route.path.includes('tag') }"
+                :class="{ 'nuxt-link-active': $route.path.includes('/blog') }"
               >
                 <strong>03</strong>
                 <span>blog</span>

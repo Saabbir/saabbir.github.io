@@ -3,10 +3,10 @@
   <div class="c-error-content">
     <div class="l-container l-container--sm">
       <div class="u-text-center">
-        <h1 v-if="error.statusCode === 404" class="c-page-title c-page-title--black">Page not found</h1>
-        <h1 v-else class="c-page-title c-page-title--black">An error occurred</h1>
-        <div class="u-mt-20">
-          <NuxtLink to="/" class="c-button">Go back to home page</NuxtLink>
+        <h1 v-if="error.statusCode === 404" class="c-page-title c-page-title--black u-text-serif u-text-uppercase">Page not found</h1>
+        <h1 v-else class="c-page-title c-page-title--black u-text-serif u-text-uppercase">An error occurred</h1>
+        <div class="u-mt-32">
+          <NuxtLink to="/" class="c-button c-button--lg">Go back to home page</NuxtLink>
         </div>
       </div>
     </div>

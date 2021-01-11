@@ -60,3 +60,31 @@ h6 {
 small {
   font-size: .8em;
 }
+
+.t-18 {
+  font-size: rem(18px);
+}
+
+.display-1,
+.display-2,
+.display-3 {
+  font-family: $serif;
+}
+
+.display-1 {
+  @media (min-width: 768px) {
+    font-size: rem(48px);
+  }  
+}
+
+.display-2 {
+  @media (min-width: 768px) {
+    font-size: rem(44px);
+  }  
+}
+
+.display-3 {
+  @media (min-width: 768px) {
+    font-size: rem(40px);
+  }  
+}

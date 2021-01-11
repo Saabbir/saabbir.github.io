@@ -1,35 +1,40 @@
 <template>
-  <div class="l-main">
-    <div class="c-breadcrumb">
-      <div class="l-container">
-        <nav class="c-breadcrumb__nav">
-          <nuxt-link to="/" class="c-breadcrumb__link">&#127968; home</nuxt-link>
-          <nuxt-link to="/work" class="c-breadcrumb__link">work</nuxt-link>
-          <nuxt-link 
-            :to="{ name: 'work-slug', params: { slug: work.slug } }" class="c-breadcrumb__link c-breadcrumb__link--disabled">{{ work.slug }}</nuxt-link>
-        </nav>
-      </div>      
-    </div>
+  <div class="l-main page-single-work">
     <div class="u-py-32">     
       <div class="l-container">
         <div class="c-portfolio">
           <div class="c-portfolio__header">
-            <h2 class="c-portfolio__header-title">{{ work.title }}</h2>
-            <a 
-              v-if="work.url"
-              :href="work.url"
-              class="c-button"
-              target="_blank">&#128065; Live Preview</a>
+            <h1 class="c-portfolio__header-title display-1">{{ work.title }}</h1>
+            <h3 v-if="work.highlight" class="u-mt-16 u-text-gray">{{ work.highlight }}</h3>
+            <div class="l-container--sm">
+              <p v-if="work.description" class="u-mt-32 t-18">{{ work.description }}</p>
+            </div>
           </div>
-          <div class="u-mb-40">
+          <div class="c-portfolio__stats">
+            <dl>
+              <dt>Type</dt>
+              <dd>{{ work.type }}</dd>
+            </dl>
+            <dl>
+              <dt>Tools used:</dt>
+              <dd v-for="tool in work.tools" :key="tool">{{ tool }}</dd>
+            </dl>
+            <dl>
+              <dt>Live</dt>
+              <dd>
+                <a :href="work.url" class="c-button" target="_blank">View Live</a>
+              </dd>
+            </dl>
+          </div>
+          <div>
             <img 
               :src="require(`~/assets/images/work/${work.coverImg}`)" 
               :alt="`${work.title}-cover`">
           </div>
-          <div class="u-mt-20">
-            <nuxt-content :document="work"></nuxt-content>
-          </div>
         </div>
+      </div><!-- /.l-container -->
+      <div class="nuxt-content-wrapper">
+        <nuxt-content :document="work"></nuxt-content>
       </div>
     </div>
   </div>

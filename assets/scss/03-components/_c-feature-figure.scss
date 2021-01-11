@@ -1,0 +1,21 @@
+.c-feature-figure-container {
+  margin-top: rem(64px);
+}
+
+.c-feature-figure {
+  display: grid;
+  grid-template-columns: rem(100px) 1fr;
+  grid-gap: rem(64px);
+
+  &:not(:last-child) {
+    margin-bottom: rem(96px);
+  }
+
+  &:nth-child(odd) {
+    grid-template-columns: 1fr rem(100px);
+
+    .c-feature-figure__img-container {
+      order: 2;
+    }
+  }
+}

@@ -1,28 +1,19 @@
 ---
 createdAt: 01/09/2021
-title: PersonX
-coverImg: Personx_Cover.png
+title: PersonX Portfolio Template
+highlight: A ThemeForest item.
+description: PersonX is a modern looking personal template created using Bootstrap to sell on ThemeForest back in 2017 when I worked at CoderPixel.
+type: Job
+coverImg: personx-cover.png
+featured: true
 url: https://saabbir.gitlab.io/personx-original-live/
-featured: false
 category:
-  - Site Templates
-skills:
+  - Site Templates, Landing Page
+tools:
   - HTML
   - CSS
   - SCSS
-  - jQuery
+  - JavaScript
+  - Bootstrap
   - Gulp
 ---
-
-#### Tools
-
-- Photoshop
-- HTML
-- CSS
-- SCSS
-- jQuery
-- Bootstrap
-
-#### Live URL
-
-- https://saabbir.gitlab.io/personx-original-live/

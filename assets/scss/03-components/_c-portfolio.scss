@@ -1,21 +1,44 @@
 .c-portfolio {
 
-  &__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2rem;
+  // &__header {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: space-between;
+  //   margin-bottom: 2rem;
 
-    @media (max-width: 767px) {
-      display: grid;
-      grid-gap: 1rem;
-      grid-template-columns: 1fr;
+  //   @media (max-width: 767px) {
+  //     display: grid;
+  //     grid-gap: 1rem;
+  //     grid-template-columns: 1fr;
+  //   }
+  // }
+
+  // &__header-title {
+  //   @media (min-width: 768px) {
+  //     margin-right: 1rem;
+  //   }
+  // }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: rem(16px);
+    margin: rem(48px) 0;
+
+    dt {
+      text-transform: uppercase;
+      font-weight: bold;
+      color: $text-color-dark;
+      letter-spacing: rem(1px);
+      margin-bottom: rem(16px);
     }
-  }
 
-  &__header-title {
-    @media (min-width: 768px) {
-      margin-right: 1rem;
+    dl, dd {
+      margin: 0;
+    }
+
+    dd + dd {
+      margin-top: rem(8px);
     }
   }
 }
