@@ -5,7 +5,7 @@
         <nuxt-link to="/" class="c-navbar__brand">
           <div class="c-navbar__brand-img-container">
             <img 
-              src="~/assets/images/saabbir.png" 
+              src="~/assets/images/saabbir.jpg" 
               alt="Saabbir's Profile Picture"
               class="c-navbar__brand-img">
           </div>

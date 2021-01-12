@@ -1,7 +1,7 @@
 <template>
   <div class="c-intro">
     <!-- <div class="c-intro__img-container">
-      <img src="~/assets/images/saabbir.png" alt="Saabbir Hossain's Profile Picture">
+      <img src="~/assets/images/saabbir.jpg" alt="Saabbir Hossain's Profile Picture">
     </div> -->
     <div class="c-intro__content">
       <h1 class="c-intro__title u-text-serif">Hi, I'm Saabbir.</h1>
@@ -22,7 +22,10 @@
       </div>
     </div>
     <div class="c-intro__img-container">
-      <img src="~/assets/images/saabbir.png" alt="Saabbir">
+      <picture>
+        <source :srcset="require('~/assets/images/saabbir.jpg?webp')" type="image/webp">
+        <img :src="require('~/assets/images/saabbir.jpg')">
+      </picture>
     </div>
   </div>
 </template>
