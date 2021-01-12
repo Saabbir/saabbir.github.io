@@ -4,7 +4,7 @@ title: Jump Work
 highlight: An Invision to HTML project.
 description: I had the opportunity to create the first version of jump.work website back in 2017.
 type: Contract
-coverImg: jump-work-cover.png
+coverImg: jump-work-cover.jpg
 featured: true
 url: https://jump-work-html.netlify.app/
 category:
