@@ -19,11 +19,21 @@
     "tailwindcss": "^2.0.2"
   },
   "devDependencies": {
+    "@aceforth/nuxt-optimized-images": "^1.4.0",
     "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "fibers": "^5.0.0",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-pngquant": "^9.0.1",
+    "imagemin-svgo": "^8.0.0",
+    "lqip-loader": "^2.2.1",
     "push-dir": "^0.4.1",
+    "responsive-loader": "^2.3.0",
     "sass": "^1.32.0",
-    "sass-loader": "^10.1.0"
+    "sass-loader": "^10.1.0",
+    "sharp": "^0.27.0",
+    "sqip-loader": "^1.0.0",
+    "webp-loader": "^0.6.0"
   }
 }

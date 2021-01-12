@@ -59,8 +59,16 @@ export default {
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
-    '@nuxtjs/google-analytics'
+    '@nuxtjs/google-analytics',
+    // Consult https://github.com/juliomrqz/nuxt-optimized-images
+    '@aceforth/nuxt-optimized-images',
   ],
+
+  // Consult https://github.com/juliomrqz/nuxt-optimized-images
+  optimizedImages: {
+    optimizeImages: true
+  },
+  optimizeImagesInDev: true,
 
   // Consult https://google-analytics.nuxtjs.org/setup/#configure
   googleAnalytics: {
