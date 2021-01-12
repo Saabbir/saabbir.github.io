@@ -98,7 +98,7 @@ tools:
 
 #### Live Demo
 
-<a href="https://aperfectspace-html.netlify.app/" class="c-button c-button--lg" target="_blank">Check Live Demo</a>
+<a href="https://aperfectspace-html.netlify.app/" class="c-button" target="_blank">Check Live Demo</a>
 
 </div>
 

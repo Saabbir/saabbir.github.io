@@ -1,6 +1,6 @@
 <template>
   <div class="l-main page-single-work">
-    <div class="u-py-32">     
+    <div class="u-py-48">     
       <div class="l-container">
         <div class="c-portfolio">
           <div class="c-portfolio__header">
@@ -36,6 +36,14 @@
       <div class="nuxt-content-wrapper">
         <nuxt-content :document="work"></nuxt-content>
       </div>
+      <div class="u-my-48">
+        <hr>
+      </div>      
+      <div class="">
+        <div class="l-container">
+          <Pagination routeName="work-slug" :prev="prev" :next="next" />
+        </div>
+      </div>      
     </div>
   </div>
 </template>
@@ -60,7 +68,7 @@
 
       const [prev, next] = await $content('work')
         .only(['title', 'slug'])
-        .sortBy('createdAt', 'desc')
+        .sortBy('createdAt', 'asc')
         .surround(params.slug)
         .fetch()
 
