@@ -3,7 +3,7 @@
     <div class="section-portfolio u-py-40">
       <div class="l-container">
         <div class="u-mb-32">
-          <h2 class="c-page-title c-page-title--black u-text-serif">Featured work</h2>
+          <h2 class="c-page-title c-page-title--black u-text-serif">Featured works</h2>
           <p class="u-mt-16 t-18">Selected projects.</p>
         </div>
         <div class="l-works">
