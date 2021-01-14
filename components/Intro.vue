@@ -24,7 +24,7 @@
     <div class="c-intro__img-container">
       <picture>
         <source :srcset="require('~/assets/images/saabbir.png?webp')" type="image/webp">
-        <img :src="require('~/assets/images/saabbir.png')">
+        <img :src="require('~/assets/images/saabbir.png')" width="300" height="345">
       </picture>
     </div>
   </div>
