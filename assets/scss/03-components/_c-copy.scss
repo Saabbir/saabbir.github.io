@@ -1,0 +1,18 @@
+.c-copy {
+  p {
+    font-size: rem(18px);
+    margin: rem(24px) 0;
+  }
+  p:not(:first-child) {
+    margin-top: rem(24px);
+  }
+  p:not(:last-child) {
+    margin-bottom: rem(24px);
+  }
+
+  figcaption {
+    font-size: rem(16px);
+    color: $text-color-gray;
+    font-style: italic;
+  }
+}

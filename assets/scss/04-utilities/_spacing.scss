@@ -18,9 +18,18 @@ margin
   margin: rem(96px) 0;
 }
 
+.u-mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /*============================================
 margin-top
 ============================================*/
+
+.u-mt-8 {
+  margin-top: rem(8px);
+}
 
 .u-mt-16 {
   margin-top: rem(16px);
@@ -28,6 +37,10 @@ margin-top
 
 .u-mt-20 {
   margin-top: rem(20px);
+}
+
+.u-mt-24 {
+  margin-top: rem(24px);
 }
 
 .u-mt-32 {
@@ -58,8 +71,16 @@ margin-right
 margin-bottom
 ============================================*/
 
+.u-mb-16 {
+  margin-bottom: rem(16px);
+}
+
 .u-mb-20 {
   margin-bottom: rem(20px);
+}
+
+.u-mb-24 {
+  margin-bottom: rem(24px);
 }
 
 .u-mb-30 {

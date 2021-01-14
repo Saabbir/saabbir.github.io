@@ -47,6 +47,16 @@
                 <span>blog</span>
               </nuxt-link>
             </li>
+            <li class="c-navbar__menu-item">
+              <nuxt-link 
+                to="/about"
+                exact 
+                class="c-navbar__menu-link"
+              >
+                <strong>04</strong>
+                <span>About</span>
+              </nuxt-link>
+            </li>
           </ul>
         </nav>
       </div>

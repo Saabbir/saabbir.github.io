@@ -1,34 +1,35 @@
 .l-container {
   padding: 0 rem(16px);
-  max-width: rem(932px);
+  width: 100%;
   margin: 0 auto;
 
+  @media (max-width: 767px) {
+    max-width: rem(414px);
+  }
+
   @media (min-width: 768px) {
-    padding: 0 rem(32px);
+    width: 736px;
   }
 
   @media (min-width: 1024px) {
-    width: rem(932px);
+    padding: 0 rem(32px);
+    width: rem(960px);
   }  
 
-  &--sm {
-    max-width: rem(760px);
-
-    @media (min-width: 1024px) {
-      width: rem(760px);
-    }    
+  &--sm {    
+    @media (min-width: 768px) {
+      width: 736px;
+    }   
   }
 
   &--lg {
-    max-width: rem(992px);
-
-    @media (min-width: 1024px) {
-      width: rem(992px);
+    @media (min-width: 1280px) {
+      width: rem(1200px);
     }    
   }  
 
   &--fluid {
-    max-width: 100%;
+    width: 100%;
   }
 }
 

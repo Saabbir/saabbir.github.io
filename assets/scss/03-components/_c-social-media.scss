@@ -1,0 +1,39 @@
+.c-social-media-grid {
+  display: grid;
+  grid-gap: rem(16px);
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: rem(32px);
+  }
+}
+
+.c-social-media {
+  border: rem(1px) solid $border-color;
+  display: grid;
+  align-items: center;
+  grid-gap: rem(16px);
+  grid-template-columns: rem(48px) 1fr;
+  padding: rem(16px);
+  border-radius: rem(4px);
+  color: $text-color-dark;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+  
+  img {
+    width: rem(48px);
+  }
+
+  &__name {
+    font-weight: bold;
+  }
+
+  &__handle {
+    font-size: .8em;
+    font-style: italic;
+    color: $text-color-gray;
+  }
+}
