@@ -9,7 +9,7 @@
               <img 
                 src="~/assets/images/saabbir.png" 
                 alt="Saabbir's Profile Picture"
-                class="c-navbar__brand-img">              
+                class="c-navbar__brand-img" width="60" height="69">              
             </picture>
           </div>
           <div class="c-navbar__brand-text">
