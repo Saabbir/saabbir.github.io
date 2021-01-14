@@ -17,9 +17,9 @@
             ></nuxt-link>
             <figure class="c-portfolio-card__figure">
               <picture>
-                <source :srcset="require(`~/assets/images/work/${work.coverImg}?webp`)" type="image/webp">
+                <source :srcset="require(`~/assets/images/work/${work.coverImg}-sm.jpg?webp`)" type="image/webp">
                 <img 
-                  :src="require(`~/assets/images/work/${work.coverImg}`)" 
+                  :src="require(`~/assets/images/work/${work.coverImg}-sm.jpg`)" 
                   :alt="`${work.title}-cover`">                
               </picture>
               <figcaption class="c-portfolio-card__figcaption">
@@ -36,7 +36,7 @@
 
 <script>
   export default {
-    name: 'Work Index',
+    name: 'WorkIndex',
     head() {
       return {
         title: 'Work - Saabbir Hossain',

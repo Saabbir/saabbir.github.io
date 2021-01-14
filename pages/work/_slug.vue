@@ -28,9 +28,9 @@
           </div>
           <div>
             <picture>
-              <source :srcset="require(`~/assets/images/work/${work.coverImg}?webp`)" type="image/webp">
+              <source :srcset="require(`~/assets/images/work/${work.coverImg}.jpg?webp`)" type="image/webp">
               <img 
-                :src="require(`~/assets/images/work/${work.coverImg}`)" 
+                :src="require(`~/assets/images/work/${work.coverImg}.jpg`)" 
                 :alt="`${work.title}-cover`">
             </picture>
           </div>
