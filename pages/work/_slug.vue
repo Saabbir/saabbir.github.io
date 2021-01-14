@@ -27,9 +27,12 @@
             </dl>
           </div>
           <div>
-            <img 
-              :src="require(`~/assets/images/work/${work.coverImg}`)" 
-              :alt="`${work.title}-cover`">
+            <picture>
+              <source :srcset="require(`~/assets/images/work/${work.coverImg}?webp`)" type="image/webp">
+              <img 
+                :src="require(`~/assets/images/work/${work.coverImg}`)" 
+                :alt="`${work.title}-cover`">
+            </picture>
           </div>
         </div>
       </div><!-- /.l-container -->

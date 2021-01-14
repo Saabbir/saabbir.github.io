@@ -16,9 +16,12 @@
               class="c-portfolio-card__link"
             ></nuxt-link>
             <figure class="c-portfolio-card__figure">
-              <img 
-                :src="require(`~/assets/images/work/${work.coverImg}`)" 
-                :alt="`${work.title}-cover`">
+              <picture>
+                <source :srcset="require(`~/assets/images/work/${work.coverImg}?webp`)" type="image/webp">
+                <img 
+                  :src="require(`~/assets/images/work/${work.coverImg}`)" 
+                  :alt="`${work.title}-cover`">                
+              </picture>
               <figcaption class="c-portfolio-card__figcaption">
                 <h5 class="c-portfolio-card__title">{{ work.title }}</h5>
                 <p>{{ work.highlight }}</p>

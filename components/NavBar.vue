@@ -4,10 +4,13 @@
       <div class="c-navbar__content">
         <nuxt-link to="/" class="c-navbar__brand">
           <div class="c-navbar__brand-img-container">
-            <img 
-              src="~/assets/images/saabbir.jpg" 
-              alt="Saabbir's Profile Picture"
-              class="c-navbar__brand-img">
+            <picture>
+              <source srcset="~/assets/images/saabbir.png?webp" type="image/webp">
+              <img 
+                src="~/assets/images/saabbir.png" 
+                alt="Saabbir's Profile Picture"
+                class="c-navbar__brand-img">              
+            </picture>
           </div>
           <div class="c-navbar__brand-text">
             <span class="c-navbar__brand-text-name">Saabbir Hossain</span>
