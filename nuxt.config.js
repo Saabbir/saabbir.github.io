@@ -1,3 +1,5 @@
+const googleFontCSSURL = 'https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Nunito:wght@400;700;900&display=swap'
+
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static', 
@@ -12,17 +14,24 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      // connect to domain of font files
       {
         rel: 'preconnect',
-        href: 'https://fonts.gstatic.com'
+        href: 'https://fonts.gstatic.com',
+        crossorigin: true
       },
+      //  optionally increase loading priority
+      {
+        rel: 'preload',
+        as: 'style',
+        href: googleFontCSSURL,
+      },
+      // async CSS
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap'
-      },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap'
+        media: 'print',
+        onload: "this.onload=null;this.removeAttribute('media');",
+        href: googleFontCSSURL,
       },
     ]
   },
