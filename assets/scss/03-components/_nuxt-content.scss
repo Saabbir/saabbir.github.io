@@ -69,6 +69,10 @@
     }
   }
 
+  ol {
+    padding-left: rem(17px);
+  }
+
   a:not(.c-button) {
     color: $accent-color-1;
     transition: .15s;
