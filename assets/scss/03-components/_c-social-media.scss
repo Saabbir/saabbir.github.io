@@ -20,8 +20,22 @@
 
   &:hover,
   &:focus {
+    background-color: rgba($accent-color-1, .1);
+    border-color: rgba($accent-color-2, .1);
     text-decoration: none;
   }
+
+  &__icon {
+    display: block;
+    line-height: 0;
+  }
+
+  &__icon-facebook svg { fill: #3b5998; }
+  &__icon-twitter svg { fill: #1da1f2; }
+  &__icon-linkedin svg { fill: #0077b5; }
+  &__icon-github svg { fill: #24292E; }
+  &__icon-codepen svg { fill: #0A0A08; }
+  &__icon-stackoverflow svg { fill: #f48024; }
   
   img {
     width: rem(48px);

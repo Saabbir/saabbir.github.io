@@ -1,5 +1,3 @@
-const googleFontCSSURL = 'https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Nunito:wght@400;700;900&display=swap'
-
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static', 
@@ -13,26 +11,7 @@ export default {
       { hid: 'description', name: 'description', content: 'Welcome to my personal website' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      // connect to domain of font files
-      {
-        rel: 'preconnect',
-        href: 'https://fonts.gstatic.com',
-        crossorigin: true
-      },
-      //  optionally increase loading priority
-      {
-        rel: 'preload',
-        as: 'style',
-        href: googleFontCSSURL,
-      },
-      // async CSS
-      {
-        rel: 'stylesheet',
-        media: 'print',
-        onload: "this.onload=null;this.removeAttribute('media');",
-        href: googleFontCSSURL,
-      },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
 
@@ -90,8 +69,19 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/google-fonts'
   ],
+
+  googleFonts: {
+    families: {
+      Merriweather: [700],
+      Nunito: [400, 700, 900]
+    },
+    display: 'swap',
+    download: true,
+    base64: true
+  },  
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
