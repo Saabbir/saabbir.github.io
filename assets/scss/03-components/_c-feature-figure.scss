@@ -11,6 +11,7 @@
 .c-feature-figure {
   display: grid;
   grid-gap: rem(48px);
+  align-items: center;
 
   @media (min-width: 500px) {
     grid-template-columns: rem(100px) 1fr;
@@ -30,5 +31,18 @@
 
   &__img-container {
     max-width: 6rem;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  &__svg-container {
+    line-height: 0;
+
+    svg {
+      max-width: 100%;
+      height: auto;
+    }
   }
 }
