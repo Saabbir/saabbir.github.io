@@ -74,13 +74,16 @@ export default {
   ],
 
   googleFonts: {
+    prefetch: true,
+    preconnect: true,
+    preload: true,
+    display: 'swap',
     families: {
       Merriweather: [700],
       Nunito: [400, 700, 900]
     },
-    display: 'swap',
-    download: true,
-    base64: true
+    // download: true,
+    // base64: true
   },  
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
