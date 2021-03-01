@@ -5,17 +5,18 @@
 
   h1, h2, h3, h4, h5, h6,
   blockquote,
-  ul, ol, p {
+  ul, ol, p,
+  .c-table-responsive {
     &:first-child {
       margin-top: 0;
     }
 
     &:not(:first-child) {
-      margin-top: rem(16px);
+      margin-top: rem(24px);
     }
 
     &:not(:last-child) {
-      margin-bottom: rem(16px);
+      margin-bottom: rem(24px);
     }
   }
 
@@ -27,8 +28,12 @@
     }
 
     &:not(:first-child) {
-      margin-top: rem(24px);
-    }    
+      margin-top: rem(48px);
+    } 
+
+    &:not(:last-child) {
+      margin-bottom: rem(24px);
+    }   
 
     &:hover .icon-link {
       opacity: .5;
@@ -107,6 +112,10 @@
     background-color: rgba($accent-color-2, .1);
     padding: rem(2px) rem(4px);
     border-radius: rem(4px);
+  }
+
+  code.inline {
+    white-space: nowrap;
   }
 
   .nuxt-content-highlight code {

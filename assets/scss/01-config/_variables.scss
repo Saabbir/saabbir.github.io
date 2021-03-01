@@ -1,5 +1,5 @@
 /*============================================
-Color
+| Color
 ============================================*/
 
 $accent-color-1: #00c58e;
@@ -11,13 +11,16 @@ $text-color-gray: #abacbf;
 $vue-green: #42b883;
 $vue-black: #35495e;
 
+$border-color: #eee;
+$table-row-even-color: #fafafa;
+
 /*============================================
-Background
+| Background
 ============================================*/
 $body-bg-alt: #f6f5f7;
 
 /*============================================
-Typography
+| Typography
 ============================================*/
 
 $font-family-sans-serif:
@@ -44,21 +47,20 @@ $nunito: 'Nunito', $font-family-sans-serif;
 $serif: 'Merriweather', $nunito;
 
 /*============================================
-Width
+| Width
 ============================================*/
 $article-nav-width: 250px;
 
 /*============================================
-Box Shadow
+| Box Shadow
 ============================================*/
 $box-shadow-default: 0 0 rem(4px) rem(2px) rgba(0,0,0,.1);
 
 /*============================================
-Text Shadow
+| Text Shadow
 ============================================*/
 $text-shadow-white: 0 rem(2px) rem(3px) rgba(black, .5);
 
 /*============================================
-Border
+| Border
 ============================================*/
-$border-color: #eee;

@@ -113,18 +113,22 @@
     border: rem(1px) solid $border-color;
     border-radius: rem(4px);    
 
-    @media (min-width: 768px) {
-      grid-template-columns: rem($article-nav-width) 1fr;
-    }
+    // @media (min-width: 768px) {
+    //   grid-template-columns: rem($article-nav-width) 1fr;
+    // }
   }
 
   .l-article__aside {
     border-bottom: rem(1px) solid $border-color;
+    background-color: #fff;
+    // position: sticky;
+    // top: 0;
+    // z-index: 1;
 
-    @media (min-width: 768px) {
-      border-bottom: 0;
-      border-right: rem(1px) solid $border-color;
-    }
+    // @media (min-width: 768px) {
+    //   border-bottom: 0;
+    //   border-right: rem(1px) solid $border-color;
+    // }
 
     .c-article__toc {
       border-bottom: rem(1px) solid $border-color;
