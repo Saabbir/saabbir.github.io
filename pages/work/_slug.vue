@@ -53,7 +53,7 @@
 
 <script>
   export default {
-    name: 'Work',
+    name: 'SingleWork',
     head() {
       return {
         title: this.work.title + ' - Case Study',

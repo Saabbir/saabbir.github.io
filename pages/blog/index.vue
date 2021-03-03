@@ -32,7 +32,7 @@
 
 <script>
   export default {
-    name: 'Blog Home',
+    name: 'BlogIndex',
     head() {
       return {
         title: 'Blog - Saabbir Hossain',

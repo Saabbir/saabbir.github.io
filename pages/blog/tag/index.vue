@@ -8,7 +8,7 @@
 
 <script>
   export default {
-    name: 'Tag Index',
+    name: 'TagIndex',
     middleware({ redirect }) {
       return redirect('/')
     }

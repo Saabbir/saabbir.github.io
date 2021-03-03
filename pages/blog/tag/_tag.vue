@@ -31,7 +31,7 @@
 
 <script>
   export default {
-    name: 'Tag',
+    name: 'SingleTag',
     head() {
       return {
         title: 'Articles tagged: ' + this.tag,
