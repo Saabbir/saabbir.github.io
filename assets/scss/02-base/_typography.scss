@@ -1,9 +1,10 @@
 html {
-  font: normal normal 112.5%/1.5 $nunito;
+  font: normal normal 100%/1.5 $nunito;
 }
 
 body {
-  line-height: 1.5;
+  font-size: rem(18px);
+  line-height: 1.8;
 }
 
 h1,

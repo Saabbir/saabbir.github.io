@@ -3,7 +3,7 @@
     <div class="l-container l-container--sm">
       <h1 class="display-1 u-text-serif u-mb-32">Hi, I'm Saabbir.</h1>
       <p>
-        A <strong>front-end web developer</strong> based in Barisal, Bangladesh, currently working as an independent contractor at <a class="c-link" href="https://www.upwork.com/o/profiles/users/_~0125f9d541d9412fba/" target="_blank">Upwork</a>. I build static sites and apps using <strong>Vuejs</strong> and <strong>Nuxtjs</strong>.
+        A <strong>front-end web developer</strong> based in Barisal, Bangladesh, currently working as an independent contractor at <a class="c-custom-link" href="https://www.upwork.com/o/profiles/users/_~0125f9d541d9412fba/" target="_blank">Upwork</a>. I build static sites and apps using <strong>Vuejs</strong> and <strong>Nuxtjs</strong>.
       </p>
       <p>
         I've passion building awesome things on the web. I love everything about design and development but my skills place me at the intersection of both.
@@ -23,7 +23,7 @@
     </div>
     <div class="l-container u-mt-48">
       <h2>Contact</h2>
-      <p>If you want to get in touch, <a href="mailto:thesaabbir@gmail.com" class="c-link">send me an email</a> or find me elsewhere on the web:</p>
+      <p>If you want to get in touch, <a href="mailto:thesaabbir@gmail.com" class="c-custom-link">send me an email</a> or find me elsewhere on the web:</p>
       <div class="c-social-media-grid u-mt-32">
         <a href="https://www.facebook.com/thesaabbir" class="c-social-media" target="_blank">
           <div class="c-social-media__icon">

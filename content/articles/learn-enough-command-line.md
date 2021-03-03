@@ -579,3 +579,195 @@ tags:
     </tfoot>
   </table>
 </div>
+
+### The most important less commands
+
+<div class="c-table-responsive">
+  <table class="c-table">
+    <!-- <caption>The most important less commands</caption> -->
+    <thead>
+      <th>Command</th>
+      <th>Description</th>
+      <th>Example</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="inline">up &amp; down arrow keys</code></td>
+        <td>Move up or down one line</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code class="inline">spacebar</code></td>
+        <td>Move forward one page</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code class="inline">f</code></td>
+        <td>Move forward one page</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code class="inline">b</code></td>
+        <td>Move backward one page</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code class="inline">G</code></td>
+        <td>Move to end of file</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code class="inline">1G</code></td>
+        <td>Move to beginning of file</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code class="inline">11G</code></td>
+        <td>Move to the line number 11</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code class="inline">/string</code></td>
+        <td>Search file for string</td>
+        <td><code class="inline">/rose</code></td>
+      </tr>
+      <tr>
+        <td><code class="inline">n</code></td>
+        <td>Move to next search result</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code class="inline">N</code></td>
+        <td>Move to previous search result</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code class="inline">q</code></td>
+        <td>Quit</td>
+        <td></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">*** Case Sensitive</td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <a href="https://en.wikipedia.org/wiki/Less_(Unix)">Wikipedia page on less</a>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+### References
+
+- [Official GNU Manual](https://www.gnu.org/software/coreutils/manual/html_node/index.html)
+- [List of Unix commands (Wikipedia page)](https://en.wikipedia.org/wiki/List_of_Unix_commands)
+- [Overview of Unix and Linux commands (Computerhope)](https://www.computerhope.com/unix/overview.htm)
+- [Unix and Linux Commands Help (Computerhope)](https://www.computerhope.com/unix.htm)
+- [An A-Z Index of the Bash command line for Linux (ss64)](https://ss64.com/bash/)
+- [The Ultimate A To Z List of Linux Commands (Fossbytes)](https://fossbytes.com/a-z-list-linux-command-line-reference/)
+- [An A-Z Index of the Windows CMD command line (ss64)](https://ss64.com/nt/)
+- [The Ultimate A to Z List Of Windows CMD Commands (Fossbytes)](https://fossbytes.com/complete-windows-cmd-commands-list-index/)
+
+### Further Reading
+
+- [What is Unix? (Indiana University)](https://kb.iu.edu/d/agat)
+- [Introduction to Unix commands (Indiana University)](https://kb.iu.edu/d/afsk)
+- [UNIX Tutorial for Beginners (University of Surrey)](http://www.ee.surrey.ac.uk/Teaching/Unix/)
+- [Basic UNIX commands (Stanford University)](http://mally.stanford.edu/~sr/computing/basic-unix.html)
+- [Linux Beginner Tutorials (Guru99)](https://www.guru99.com/introduction-linux.html)
+
+### Recommened Books
+
+- [Recommended UNIX Books (University of Surrey)](http://www.ee.surrey.ac.uk/Teaching/Unix/books-uk.html)
+
+### Notes
+
+- In the Git Bash on windows, <code class="inline">/</code> represents root directory.
+
+- In the Command Prompt on windows, <code class="inline">C:\\&gt;</code> represents root directory.
+
+- In the Git Bash on windows, <code class="inline">~</code> (tilde) represents home directory. Which is <code class="inline">/c/Users/Saabbir</code>.
+
+- In the Command Prompt on windows, <code class="inline">C:\Users\Saabbir&gt;</code> represents home directory.
+
+- In the Git Bash on windows, <code class="inline">cd /</code> (forwardslash) will take you to the root directory.
+
+- In the Command Prompt on windows, <code class="inline">cd \\</code> (backslash) will take you to the root directory.
+
+- In the command-line, control key (<code class="inline">Ctrl</code>) usually written as <code class="inline">^</code>.
+
+- Combined keyboard shortcut like <code class="inline">Ctrl+C</code> doesn't have to be uppercase.
+
+- Pressing up arrow key in the keyboard will get you the previous command you executed.
+
+- To move around the command line we use <code>^A</code>, <code>^E</code>, <code>^U</code>.
+
+### Keyboard Shortcuts
+
+<div class="c-table-responsive">
+  <table class="c-table">
+    <!-- <caption>Keyboard Shortcuts</caption> -->
+    <thead>
+      <th>Shortcut</th>
+      <th>Description</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="inline">^A</code></td>
+        <td>To get to the beginning of the line.</td>
+      </tr>
+      <tr>
+        <td><code class="inline">^E</code></td>
+        <td>To get to the end of the line.</td>
+      </tr>
+      <tr>
+        <td><code class="inline">^U</code></td>
+        <td>Clears to the beginning of the line and lets us start over.</td>
+      </tr>
+      <tr>
+        <td><code class="inline">^C</code></td>
+        <td>Get out of any trouble. Like terminal gets hang or not taking any command.</td>
+      </tr>
+      <tr>
+        <td><code class="inline">^L</code></td>
+        <td>To clear the screen. Similiar to the <code class="inline">clear</code> command.</td>
+      </tr>
+      <tr>
+        <td><code class="inline">^D</code></td>
+        <td>To exit the window. Similiar to the <code class="inline">exit</code> command.</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">*** In here, <code class="inline">^</code> key represents <code class="inline">Ctrl</code> key. Therefore, <code class="inline">^A</code> = <code class="inline">Ctrl+A</code></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+### Windows Command Prompt Commands
+
+<div class="c-table-responsive">
+  <table class="c-table">
+    <!-- <caption>Windows Command Prompt Commands</caption> -->
+    <thead>
+      <tr>
+        <th>Command</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="inline">dir</code></td>
+        <td>To list all the files and folders in the current directory. Similiar to the <code class="inline">ls</code> UNIX command.</td>
+      </tr>
+      <tr>
+        <td><code class="inline">cls</code></td>
+        <td>Clear the current window by moving the cursor at the top. Similiar to the <code class="inline">clear</code> UNIX command.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

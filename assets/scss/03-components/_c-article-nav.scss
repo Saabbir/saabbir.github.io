@@ -2,19 +2,25 @@
   position: sticky;
   top: 0;
 
-  ul {
-    margin: 0;
+  &__title {
+    border-bottom: rem(1px) solid $border-color;
+    color: $text-color-dark;
+    font-size: .9em;
+    font-weight: bold;
+    letter-spacing: rem(1px);
     padding: rem(16px);
-    padding-left: rem(33px);
-    list-style-type: disc;
-
+    text-transform: uppercase;
+    
     @media (min-width: 361px) {
-      padding: rem(16px) rem(24px);
-      padding-left: rem(41px);
+      padding: rem(16px) rem(24px) rem(16px);
     }    
   }
 
-  li:not(:last-child) {
-    margin-bottom: rem(10px);
+  &__menu {
+    padding: rem(16px);
+
+    @media (min-width: 361px) {
+      padding: rem(16px) rem(24px);
+    }    
   }
 }
