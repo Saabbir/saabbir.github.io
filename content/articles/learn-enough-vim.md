@@ -1,6 +1,6 @@
 ---
 title: Learn Enough Vim
-description: Learn how to code in command-lin editor.
+description: Learn how to code in command-line editor.
 # featuredImg: async.webp
 createdAt: 03/03/2021
 tags:

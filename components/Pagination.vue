@@ -1,7 +1,7 @@
 <template>
   <div class="c-pagination">
     <div class="c-pagination__prev">
-      <div v-if="prev" class="c-pagination__link-label">Previous</div>
+      <div v-if="prev" class="c-pagination__link-label">Previous {{type}}</div>
       <NuxtLink
         v-if="prev"
         :to="{ name: routeName, params: { slug: prev.slug } }"
@@ -11,7 +11,7 @@
       </NuxtLink>      
     </div>
     <div class="c-pagination__next">
-      <div v-if="next" class="c-pagination__link-label">Next</div>
+      <div v-if="next" class="c-pagination__link-label">Next {{type}}</div>
       <NuxtLink
         v-if="next"
         :to="{ name: routeName, params: { slug: next.slug } }"
@@ -37,6 +37,10 @@
       routeName: {
         type: String,
         default: () => 'blog-slug'
+      },
+      type: {
+        type: String,
+        default: () => 'Post'
       }
     }
   }

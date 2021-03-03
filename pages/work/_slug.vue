@@ -44,7 +44,7 @@
       </div>      
       <div class="">
         <div class="l-container">
-          <Pagination routeName="work-slug" :prev="prev" :next="next" />
+          <Pagination routeName="work-slug" :prev="prev" :next="next" type="Work" />
         </div>
       </div>      
     </div>

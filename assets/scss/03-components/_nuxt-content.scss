@@ -56,21 +56,16 @@
         border-radius: 50%;
         position: absolute;
         left: 0;
-        top: rem(12px);      
+        top: rem(13px);      
       }
     }
-  }  
+  }
 
-  // a:not(.c-button) {
-  //   color: $accent-color-1;
-  //   transition: .15s;
-
-  //   &:hover,
-  //   &:focus {
-  //     color: $accent-color-2;
-  //     text-decoration: underline;
-  //   }
-  // }
+  ul, ol {
+    @media (min-width: 768px) {
+      padding-left: rem(16px);
+    }
+  }
 
   blockquote {
     border-left: rem(5px) solid $accent-color-2;

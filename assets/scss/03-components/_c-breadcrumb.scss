@@ -10,7 +10,7 @@
   }
 
   &__link {
-    color: $text-color-gray;
+    color: $accent-color-2;
     display: inline-block;
     position: relative;
     line-height: 1;
@@ -29,6 +29,7 @@
     }
     
     &--disabled {
+      color: $text-color-gray;
       cursor: auto;
       pointer-events: none;
       // opacity: .5;
