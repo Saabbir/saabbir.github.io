@@ -1,8 +1,8 @@
 ---
 title: Learn Enough Command Line
-# description: Learn enough command-line
+description: Learn enough command-line commands to work with unix and windows environments.
 # featuredImg: async.webp
-createdAt: 01/03/2021
+createdAt: 03/01/2021
 tags:
 - command
 ---
