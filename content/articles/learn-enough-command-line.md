@@ -4,7 +4,7 @@ description: Learn enough command-line commands to work with unix and windows en
 # featuredImg: async.webp
 createdAt: 03/01/2021
 tags:
-- command
+- command-line
 ---
 
 ### Most used UNIX commands
