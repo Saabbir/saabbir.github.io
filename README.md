@@ -20,14 +20,13 @@ npm install
 
 ### After installation
 
-- Run `npm run dev` from root folder to serve with hot reload at *localhost:3000*
+- Run `npm run dev` from root folder to serve with hot reload at _localhost:3000_
 
 ### Build setup
 
 ```bash
-# build for production and launch server
+# build for production
 $ npm run build
-$ npm run start
 
 # generate static project
 $ npm run generate
