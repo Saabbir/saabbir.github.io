@@ -6,12 +6,75 @@ export default {
   head: {
     title: "Saabbir Hossain",
     meta: [
+      // Primary Meta Tags
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
+        hid: "title",
+        name: "title",
+        content: "Saabbir Hossain"
+      },
+      {
         hid: "description",
         name: "description",
-        content: "Welcome to my personal website"
+        content:
+          "Saabbir Hossain is a professional front-end developer from Bangladesh."
+      },
+      // Open Graph / Facebook
+      {
+        hid: "og:type",
+        property: "og:type",
+        content: "website"
+      },
+      {
+        hid: "og:url",
+        property: "og:url",
+        content: "https://saabbir.github.io/"
+      },
+      {
+        hid: "og:title",
+        property: "og:title",
+        content: "Saabbir Hossain"
+      },
+      {
+        hid: "og:description",
+        property: "og:description",
+        content:
+          "Saabbir Hossain is a professional front-end developer from Bangladesh."
+      },
+      {
+        hid: "og:image",
+        property: "og:image",
+        content:
+          "https://raw.githubusercontent.com/Saabbir/saabbir.github.io/master/assets/images/saabbir.png"
+      },
+      // Twitter
+      {
+        hid: "twitter:card",
+        property: "twitter:card",
+        content: "summary_large_image"
+      },
+      {
+        hid: "twitter:url",
+        property: "twitter:url",
+        content: "https://saabbir.github.io/"
+      },
+      {
+        hid: "twitter:title",
+        property: "twitter:title",
+        content: "Saabbir Hossain"
+      },
+      {
+        hid: "twitter:description",
+        property: "twitter:description",
+        content:
+          "Saabbir Hossain is a professional front-end developer from Bangladesh."
+      },
+      {
+        hid: "twitter:image",
+        property: "twitter:image",
+        content:
+          "https://raw.githubusercontent.com/Saabbir/saabbir.github.io/master/assets/images/saabbir.png"
       }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
