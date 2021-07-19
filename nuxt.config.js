@@ -18,7 +18,7 @@ export default {
         hid: "description",
         name: "description",
         content:
-          "Saabbir Hossain is a professional front-end developer from Bangladesh."
+          "Saabbir Hossain is a professional front-end developer from Bangladesh, currently working as a Solutions Engineer at EchoLogyx Ltd."
       },
       // Open Graph / Facebook
       {
@@ -40,7 +40,7 @@ export default {
         hid: "og:description",
         property: "og:description",
         content:
-          "Saabbir Hossain is a professional front-end developer from Bangladesh."
+          "Saabbir Hossain is a professional front-end developer from Bangladesh, currently working as a Solutions Engineer at EchoLogyx Ltd."
       },
       {
         hid: "og:image",
@@ -68,7 +68,7 @@ export default {
         hid: "twitter:description",
         property: "twitter:description",
         content:
-          "Saabbir Hossain is a professional front-end developer from Bangladesh."
+          "Saabbir Hossain is a professional front-end developer from Bangladesh, currently working as a Solutions Engineer at EchoLogyx Ltd."
       },
       {
         hid: "twitter:image",
