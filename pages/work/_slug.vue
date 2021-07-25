@@ -52,6 +52,7 @@
 </template>
 
 <script>
+  import driftBot from '../../utils/driftBot';
   export default {
     name: 'SingleWork',
     head() {
@@ -65,6 +66,9 @@
           }
         ]
       }
+    },
+    mounted() {
+      window.onload = driftBot;
     },
     async asyncData({ $content, params }) {
       const work = await $content('work', params.slug).fetch()

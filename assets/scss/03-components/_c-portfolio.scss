@@ -1,5 +1,4 @@
 .c-portfolio {
-
   // &__header {
   //   display: flex;
   //   align-items: center;
@@ -8,7 +7,7 @@
 
   //   @media (max-width: 767px) {
   //     display: grid;
-  //     grid-gap: 1rem;
+  //     gap: 1rem;
   //     grid-template-columns: 1fr;
   //   }
   // }
@@ -22,7 +21,7 @@
   &__stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
-    grid-gap: rem(16px);
+    gap: rem(16px);
     margin: rem(48px) 0;
 
     @media (min-width: 600px) {
@@ -37,7 +36,8 @@
       margin-bottom: rem(16px);
     }
 
-    dl, dd {
+    dl,
+    dd {
       margin: 0;
     }
 

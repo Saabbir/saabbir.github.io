@@ -14,6 +14,7 @@
     display: inline-block;
     position: relative;
     line-height: 1;
+    font-size: rem(16px);
     // text-decoration: underline;
 
     &::after {
@@ -27,7 +28,7 @@
       // transform: rotate(20deg);
       transform: translateX(50%);
     }
-    
+
     &--disabled {
       color: $text-color-gray;
       cursor: auto;
@@ -37,7 +38,7 @@
 
     &:not(:last-child) {
       padding-right: rem(16px);
-      margin-right: (16px);
+      margin-right: rem(16px);
     }
 
     &:last-child::after {

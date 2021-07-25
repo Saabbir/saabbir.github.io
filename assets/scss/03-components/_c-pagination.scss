@@ -1,6 +1,6 @@
 .c-pagination {
   display: grid;
-  grid-gap: rem(32px);
+  gap: rem(32px);
   justify-content: space-between;
   grid-template-columns: 1fr;
 
@@ -20,9 +20,9 @@
     text-align: right;
   }
 
-  &__prev, 
+  &__prev,
   &__next {
     /* padding: 2rem; */
     /* border: 1px solid #eee; */
-  }    
+  }
 }

@@ -38,25 +38,35 @@
             </li>
             <li class="c-navbar__menu-item">
               <nuxt-link 
+                to="/about"
+                exact 
+                class="c-navbar__menu-link"
+              >
+                <strong>03</strong>
+                <span>about</span>
+              </nuxt-link>
+            </li>
+            <li class="c-navbar__menu-item">
+              <nuxt-link 
+                to="/contact"
+                exact 
+                class="c-navbar__menu-link"
+              >
+                <strong>04</strong>
+                <span>contact</span>
+              </nuxt-link>
+            </li>
+            <!-- <li class="c-navbar__menu-item">
+              <nuxt-link 
                 to="/blog"
                 exact 
                 class="c-navbar__menu-link"
                 :class="{ 'nuxt-link-active': $route.path.includes('/blog') }"
               >
-                <strong>03</strong>
+                <strong>05</strong>
                 <span>blog</span>
               </nuxt-link>
-            </li>
-            <li class="c-navbar__menu-item">
-              <nuxt-link 
-                to="/about"
-                exact 
-                class="c-navbar__menu-link"
-              >
-                <strong>04</strong>
-                <span>About</span>
-              </nuxt-link>
-            </li>
+            </li> -->
           </ul>
         </nav>
       </div>

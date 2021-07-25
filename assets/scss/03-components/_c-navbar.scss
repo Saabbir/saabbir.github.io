@@ -9,8 +9,8 @@
     // justify-content: space-between;
     // flex-wrap: wrap;
     display: grid;
-    grid-gap: rem(16px);
-    
+    gap: rem(16px);
+
     @media (min-width: 768px) {
       grid-template-columns: rem(215px) 1fr;
     }
@@ -30,7 +30,7 @@
   &__brand {
     display: grid;
     grid-template-columns: rem(60px) 1fr;
-    grid-gap: rem(16px);
+    gap: rem(16px);
     align-items: center;
     color: $text-color-dark;
 
@@ -46,11 +46,11 @@
     overflow: hidden;
     border-radius: 50%;
     background-color: #fff;
-    box-shadow: 0 rem(2px) rem(4px) rgba(0,0,0,.4);
+    box-shadow: 0 rem(2px) rem(4px) rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: rem(10px);    
+    margin-right: rem(10px);
   }
 
   &__brand-img {
@@ -70,7 +70,7 @@
   }
 
   &__brand-text-role {
-    font-size: .8em;
+    font-size: 0.8em;
     color: $text-color-gray;
   }
 
@@ -95,7 +95,7 @@
     align-items: center;
     position: relative;
     font-size: rem(16px);
-    
+
     span {
       margin-left: rem(8px);
     }
@@ -111,7 +111,7 @@
       bottom: 0;
       transform: scaleX(0);
       transform-origin: left;
-      transition: .3s;
+      transition: 0.3s;
     }
 
     &:hover,
@@ -129,7 +129,8 @@
 
       &::after {
         transform: scaleX(1);
-        background: $accent-color-1 linear-gradient(45deg, $accent-color-1, $accent-color-2);
+        background: $accent-color-1
+          linear-gradient(45deg, $accent-color-1, $accent-color-2);
       }
     }
   }

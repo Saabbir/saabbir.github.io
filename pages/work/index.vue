@@ -35,6 +35,7 @@
 </template>
 
 <script>
+  import driftBot from '../../utils/driftBot';
   export default {
     name: 'WorkIndex',
     head() {
@@ -48,7 +49,10 @@
           }
         ]
       }
-    },    
+    },
+    mounted() {
+      window.onload = driftBot;
+    },  
     async asyncData({ params, $content }) {
       const works = await $content('work').fetch()
       
@@ -64,7 +68,7 @@
 
   .l-works {
     display: grid;
-    grid-gap: rem(32px);
+    gap: rem(32px);
     grid-template-columns: repeat(auto-fit, minmax(rem(250px), 1fr));
 
     @media (min-width: 1024px) {

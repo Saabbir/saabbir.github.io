@@ -1,25 +1,24 @@
 .c-feature-figure-container {
   margin-top: rem(64px);
   display: grid;
-  grid-gap: rem(64px);
+  gap: rem(64px);
 
   @media (min-width: 768px) {
-    grid-gap: rem(96px);
+    gap: rem(96px);
   }
 }
 
 .c-feature-figure {
   display: grid;
-  grid-gap: rem(48px);
+  gap: rem(48px);
   align-items: center;
 
   @media (min-width: 500px) {
     grid-template-columns: rem(100px) 1fr;
-    grid-gap: rem(64px);
+    gap: rem(64px);
   }
 
   &:nth-child(odd) {
-
     @media (min-width: 500px) {
       grid-template-columns: 1fr rem(100px);
 
