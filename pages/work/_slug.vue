@@ -1,6 +1,6 @@
 <template>
   <div class="l-main page-single-work">
-    <div class="u-py-48">     
+    <div class="u-py-32">     
       <div class="l-container">
         <div class="c-portfolio">
           <div class="c-portfolio__header">
@@ -39,7 +39,7 @@
       <div class="nuxt-content-wrapper">
         <nuxt-content :document="work"></nuxt-content>
       </div>
-      <div class="u-my-48">
+      <div class="u-my-32">
         <hr>
       </div>      
       <div class="">

@@ -1,4 +1,4 @@
-@import './spacing';
+@import "./spacing";
 
 /*============================================
 border-radius
@@ -36,7 +36,6 @@ text helpers
   color: $text-color-gray;
 }
 
-
 /*============================================
 flex helpers
 ============================================*/
@@ -46,11 +45,7 @@ flex helpers
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  margin: rem(-16px);
-  
-  & > div {
-    padding: rem(16px);
-  }
+  gap: 1rem;
 }
 
 /*============================================

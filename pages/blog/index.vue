@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="l-container l-container--sm">
-      <div class="u-my-40">
+      <div class="u-py-32">
         <ul class="c-articles-list" v-if="articles.length">
           <li v-for="article of articles" :key="article.slug" class="c-blog-post">
             <div>

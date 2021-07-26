@@ -3,30 +3,22 @@
   width: 100%;
   margin: 0 auto;
 
-  @media (max-width: 767px) {
-    max-width: rem(414px);
-  }
-
-  @media (min-width: 768px) {
-    width: 736px;
-  }
-
   @media (min-width: 1024px) {
     padding: 0 rem(32px);
     width: rem(960px);
-  }  
+  }
 
-  &--sm {    
+  &--sm {
     @media (min-width: 768px) {
       width: 736px;
-    }   
+    }
   }
 
   &--lg {
     @media (min-width: 1280px) {
       width: rem(1200px);
-    }    
-  }  
+    }
+  }
 
   &--fluid {
     width: 100%;

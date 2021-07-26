@@ -52,6 +52,10 @@
       </div>
 
       <div class="u-my-48">
+        <hr>
+      </div>
+
+      <div class="u-my-48">
         <Pagination :prev="prev" :next="next" />
       </div>      
     </div>

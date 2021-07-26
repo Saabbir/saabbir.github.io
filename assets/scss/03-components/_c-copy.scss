@@ -1,11 +1,20 @@
 .c-copy {
+  ul,
+  ol {
+    & > li:not(:last-child) {
+      margin-bottom: rem(10px);
+    }
+  }
+
   p {
     font-size: rem(18px);
     margin: rem(24px) 0;
   }
+
   p:not(:first-child) {
     margin-top: rem(24px);
   }
+
   p:not(:last-child) {
     margin-bottom: rem(24px);
   }

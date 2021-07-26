@@ -24,6 +24,10 @@
     font-size: 1.3em;
     display: block;
     line-height: 1;
+
+    @media (min-width: 768px) {
+      display: none;
+    }
   }
 
   &__nav {

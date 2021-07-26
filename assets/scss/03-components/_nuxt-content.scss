@@ -4,9 +4,23 @@
   // font-family: $serif;
   line-height: 1.8;
 
-  h1, h2, h3, h4, h5, h6,
+  ul,
+  ol {
+    & > li:not(:last-child) {
+      margin-bottom: rem(10px);
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
   blockquote,
-  ul, ol, p,
+  ul,
+  ol,
+  p,
   .c-table-responsive {
     &:first-child {
       margin-top: 0;
@@ -21,7 +35,12 @@
     }
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     position: relative;
 
     &:first-child {
@@ -30,24 +49,24 @@
 
     &:not(:first-child) {
       margin-top: rem(48px);
-    } 
+    }
 
     &:not(:last-child) {
       margin-bottom: rem(24px);
-    }   
+    }
 
     &:hover .icon-link {
-      opacity: .5;
+      opacity: 0.5;
     }
   }
-  
+
   ul {
     list-style: none;
-  
+
     li {
       position: relative;
       padding-left: rem(17px);
-    
+
       &::before {
         content: "";
         width: rem(6px);
@@ -56,12 +75,13 @@
         border-radius: 50%;
         position: absolute;
         left: 0;
-        top: rem(13px);      
+        top: rem(13px);
       }
     }
   }
 
-  ul, ol {
+  ul,
+  ol {
     @media (min-width: 768px) {
       padding-left: rem(16px);
     }
@@ -70,8 +90,8 @@
   blockquote {
     border-left: rem(5px) solid $accent-color-2;
     padding: rem(15px) rem(15px) rem(15px) rem(20px);
-    background-color: rgba($accent-color-2, .1);
-    box-shadow: 0 rem(2px) rem(4px) rgba(0,0,0,.1);
+    background-color: rgba($accent-color-2, 0.1);
+    box-shadow: 0 rem(2px) rem(4px) rgba(0, 0, 0, 0.1);
     border-radius: 0 rem(4px) rem(4px) 0;
     font-size: 1.1em;
     color: $accent-color-2;
@@ -87,7 +107,7 @@
 
   code {
     color: $accent-color-2;
-    background-color: rgba($accent-color-2, .1);
+    background-color: rgba($accent-color-2, 0.1);
     padding: rem(2px) rem(4px);
     border-radius: rem(4px);
   }
@@ -103,7 +123,7 @@
   }
 
   .icon-link {
-    background-image: url('~assets/images/svg/icon-hashtag.svg');
+    background-image: url("~assets/images/svg/icon-hashtag.svg");
     display: inline-block;
     width: rem(20px);
     height: rem(20px);
@@ -128,7 +148,7 @@
     position: absolute;
     right: rem(8px);
     top: rem(5px);
-    color: rgba(255, 255, 255, .5);
+    color: rgba(255, 255, 255, 0.5);
     z-index: 1;
   }
 }

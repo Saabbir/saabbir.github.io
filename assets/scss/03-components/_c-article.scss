@@ -1,6 +1,16 @@
+.l-article,
+.c-article {
+  ul,
+  ol {
+    & > li:not(:last-child) {
+      margin-bottom: rem(10px);
+    }
+  }
+}
+
 .l-article {
   display: grid;
-  margin: rem(40px) 0;
+  margin: rem(32px) 0;
   background-color: #fff;
   // border: rem(1px) solid $border-color;
   border-radius: rem(4px);
@@ -28,7 +38,7 @@
   width: 100%;
   // overflow: hidden;
   // padding: rem(16px);
-  
+
   // @media (min-width: 361px) {
   //   padding: rem(32px);
   // }
@@ -54,5 +64,5 @@
   &__updatedat {
     color: #abacbf;
     font-style: italic;
-  }  
+  }
 }
