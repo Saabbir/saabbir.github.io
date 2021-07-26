@@ -45,7 +45,7 @@ flex helpers
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: rem(32px) rem(16px);
 }
 
 /*============================================
