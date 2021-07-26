@@ -1,6 +1,6 @@
 <template>
   <div class="l-main">
-    <div class="section-portfolio u-py-40">
+    <div class="section-portfolio u-py-32">
       <div class="l-container">
         <div class="u-mb-32">
           <h2 class="c-page-title c-page-title--black u-text-serif">Featured works</h2>

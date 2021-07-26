@@ -114,8 +114,15 @@ export default {
   buildModules: [
     "@nuxtjs/google-analytics",
     // Consult https://github.com/juliomrqz/nuxt-optimized-images
-    "@aceforth/nuxt-optimized-images"
+    "@aceforth/nuxt-optimized-images",
+    "@nuxtjs/fontawesome"
   ],
+
+  fontawesome: {
+    icons: {
+      solid: ["faBars"]
+    }
+  },
 
   // Consult https://github.com/juliomrqz/nuxt-optimized-images
   optimizedImages: {

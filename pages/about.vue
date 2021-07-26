@@ -1,5 +1,5 @@
 <template>
-  <div class="c-copy u-py-40">
+  <div class="c-copy u-py-32">
     <div class="l-container l-container--sm">
       <h1 class="display-1 u-text-serif u-mb-32">Hi, I'm Saabbir.</h1>
       <p>

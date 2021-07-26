@@ -1,5 +1,5 @@
 <template>
-  <div class="c-copy u-py-40">
+  <div class="c-copy u-py-32">
     <div class="l-container">
       <h2>Contact</h2>
       <p>If you want to get in touch, <a href="mailto:thesaabbir@gmail.com" class="c-custom-link">send me an email</a> or call me at <a href="tel:+8801789243439" class="c-custom-link">01789243439</a>.</p>

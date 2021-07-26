@@ -1,19 +1,29 @@
 .c-navbar {
-  padding: rem(32px) 0;
+  padding: rem(16px) 0;
   background-color: #fff;
   border-bottom: rem(1px) solid $border-color;
 
+  @media (min-width: 768px) {
+    padding: rem(32px) 0;
+  }
+
   &__content {
-    // display: flex;
-    // align-items: center;
-    // justify-content: space-between;
-    // flex-wrap: wrap;
-    display: grid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: rem(16px);
 
     @media (min-width: 768px) {
+      display: grid;
       grid-template-columns: rem(215px) 1fr;
     }
+  }
+
+  &__trigger {
+    cursor: pointer;
+    font-size: 1.3em;
+    display: block;
+    line-height: 1;
   }
 
   &__nav {
@@ -23,14 +33,31 @@
     flex-wrap: wrap;
 
     @media (max-width: 767px) {
+      position: absolute;
+      left: 0;
+      top: 81px;
+      background-color: #fff;
+      z-index: 1;
+      border-bottom: rem(1px) solid #eee;
       justify-content: flex-start;
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: 0.2s;
+      visibility: hidden;
+      opacity: 0;
+
+      &.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: scaleY(1);
+      }
     }
   }
 
   &__brand {
     display: grid;
-    grid-template-columns: rem(60px) 1fr;
-    gap: rem(16px);
+    grid-template-columns: rem(48px) 1fr;
+    gap: rem(12px);
     align-items: center;
     color: $text-color-dark;
 
@@ -38,11 +65,16 @@
     &:focus {
       text-decoration: none;
     }
+
+    @media (min-width: 768px) {
+      grid-template-columns: rem(60px) 1fr;
+      gap: rem(16px);
+    }
   }
 
   &__brand-img-container {
-    width: rem(60px);
-    height: rem(60px);
+    width: rem(48px);
+    height: rem(48px);
     overflow: hidden;
     border-radius: 50%;
     background-color: #fff;
@@ -50,7 +82,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: rem(10px);
+
+    @media (min-width: 768px) {
+      width: rem(60px);
+      height: rem(60px);
+    }
   }
 
   &__brand-img {

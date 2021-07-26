@@ -17,7 +17,10 @@
             <span class="c-navbar__brand-text-role">Front-End Developer</span>
           </div>
         </nuxt-link>
-        <nav class="c-navbar__nav">
+        <div class="c-navbar__trigger" @click="toggleNav">
+          <font-awesome-icon icon="bars"/>
+        </div>
+        <nav class="c-navbar__nav" ref="navbarNav" @click="hideNav">
           <ul class="c-navbar__menu">
             <li class="c-navbar__menu-item">
               <nuxt-link to="/" exact class="c-navbar__menu-link">
@@ -77,6 +80,14 @@
 <script>
   export default {
     name: 'NavBar',
+    methods: {
+      toggleNav() {
+        this.$refs.navbarNav.classList.toggle('is-open');
+      },
+      hideNav() {
+        this.$refs.navbarNav.classList.remove('is-open');
+      }
+    }
   }
 </script>
 

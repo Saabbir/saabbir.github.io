@@ -13,7 +13,7 @@
         I love everything about design and development but my skills place me at the intersection of both.
       </p>
       <!-- <p>I'm <strong>open to work</strong> for a <strong>full-time position</strong> where I can work as a creative front-end developer.</p> -->
-      <div class="c-buttons u-mt-48">
+      <div class="c-buttons u-mt-32 u-mt-sm-48">
         <!-- <a href="mailto:thesaabbir@gmail.com" class="c-button">Get in touch</a> -->
         <nuxt-link to="/work" class="c-button c-button--lg">View my work</nuxt-link>
         <!-- <a 
