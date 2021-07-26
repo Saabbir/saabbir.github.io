@@ -61,21 +61,21 @@ small {
   font-size: rem(18px);
 }
 
-.display-1,
-.display-2,
-.display-3 {
+.t-display-1,
+.t-display-2,
+.t-display-3 {
   font-family: $serif;
 }
 
-.display-1 {
-  font-size: rem(32px);
+.t-display-1 {
+  font-size: rem(36px);
 
   @media (min-width: 768px) {
     font-size: rem(48px);
   }
 }
 
-.display-2 {
+.t-display-2 {
   font-size: rem(30px);
 
   @media (min-width: 768px) {
@@ -83,7 +83,7 @@ small {
   }
 }
 
-.display-3 {
+.t-display-3 {
   font-size: rem(26px);
 
   @media (min-width: 768px) {

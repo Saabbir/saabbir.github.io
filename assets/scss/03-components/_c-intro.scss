@@ -91,25 +91,4 @@
       margin-top: rem(16px);
     }
   }
-
-  &__title {
-    margin: 0 0 rem(24px);
-    position: relative;
-
-    @media (min-width: 768px) {
-      font-size: rem(42px);
-    }
-
-    @media (min-width: 1024px) {
-      font-size: rem(48px);
-    }
-
-    // &::before {
-    //   content: "👋";
-    //   position: absolute;
-    //   left: 0;
-    //   top: 0;
-    //   transform: translateX(calc(-100% - 16px));
-    // }
-  }
 }

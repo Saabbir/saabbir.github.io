@@ -4,7 +4,7 @@
       <img src="~/assets/images/saabbir.png" alt="Saabbir Hossain's Profile Picture">
     </div> -->
     <div class="c-intro__content">
-      <h1 class="c-intro__title u-text-serif">Hi, I'm Saabbir.</h1>
+      <h1 class="t-display-1 u-mb-24">Hi, I'm Saabbir.</h1>
       <p>
         A <strong>front-end web developer</strong> based in Barisal, Bangladesh, currently working as a Solutions Engineer (A/B Test) at EchoLogyx Ltd.
       </p>

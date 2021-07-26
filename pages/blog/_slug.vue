@@ -46,7 +46,7 @@
           </div>
 
           <div class="c-article__footer u-mt-64">
-            <p class="c-article__updatedat">Last updated: {{ formatDate(article.updatedAt) }}</p>
+            <p class="c-article__updatedat u-text-right">Last updated: {{ formatDate(article.updatedAt) }}</p>
           </div>
         </article>
       </div>

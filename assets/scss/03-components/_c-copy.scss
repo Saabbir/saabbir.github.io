@@ -1,4 +1,6 @@
 .c-copy {
+  max-width: 700px;
+
   ul,
   ol {
     & > li:not(:last-child) {
@@ -17,11 +19,5 @@
 
   p:not(:last-child) {
     margin-bottom: rem(24px);
-  }
-
-  figcaption {
-    font-size: rem(16px);
-    color: $text-color-gray;
-    font-style: italic;
   }
 }

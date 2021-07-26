@@ -4,9 +4,9 @@
       <div class="l-container">
         <div class="c-portfolio">
           <div class="c-portfolio__header">
-            <h1 class="c-portfolio__header-title display-1">{{ work.title }}</h1>
+            <h1 class="t-display-1">{{ work.title }}</h1>
             <h3 v-if="work.highlight" class="u-mt-16 u-text-gray">{{ work.highlight }}</h3>
-            <div class="l-container--sm">
+            <div class="c-copy">
               <p v-if="work.description" class="u-mt-32 t-18">{{ work.description }}</p>
             </div>
           </div>

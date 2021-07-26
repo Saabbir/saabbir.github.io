@@ -37,7 +37,7 @@ tools:
 <!-- Start What I Did Section -->
 <section class="u-py-64">
 <div class="l-container l-container--sm">
-<h2 class="display-2 u-text-serif u-mt-64">What I did</h2>
+<h2 class="t-display-2 u-mt-64">What I did</h2>
 <div class="c-feature-figure-container">
 
 <work-feature src="svg/html5.svg" alt="HTML5 Logo">

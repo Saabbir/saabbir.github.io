@@ -30,9 +30,12 @@
 
 <style lang="scss" scoped>
   .l-main--home {
-    flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: flex-start;
+
+    @media (min-width: 768px) {
+      flex-grow: 1;
+    }
   }
 </style>

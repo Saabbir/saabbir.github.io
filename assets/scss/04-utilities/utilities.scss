@@ -55,3 +55,17 @@ width
 .u-w-full {
   width: 100%;
 }
+
+/*============================================
+text helpers
+============================================*/
+
+.u-text-caption {
+  font-size: rem(16px);
+  color: $text-color-gray;
+  font-style: italic;
+}
+
+.u-text-right {
+  text-align: right;
+}

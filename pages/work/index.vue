@@ -3,7 +3,7 @@
     <div class="section-portfolio u-py-32">
       <div class="l-container">
         <div class="u-mb-32">
-          <h2 class="c-page-title c-page-title--black u-text-serif">Featured works</h2>
+          <h1 class="t-display-1">Featured works</h1>
           <p class="u-mt-16 t-18">Selected projects.</p>
         </div>
         <div class="l-works">
@@ -98,6 +98,7 @@
     &__figcaption {
       padding: rem(32px);
       color: $text-color-gray;
+      font-size: rem(16px);
     }
 
     &__title {
