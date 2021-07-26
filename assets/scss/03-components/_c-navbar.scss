@@ -49,6 +49,7 @@
       transition: 0.2s;
       visibility: hidden;
       opacity: 0;
+      width: 100%;
 
       &.is-open {
         opacity: 1;
