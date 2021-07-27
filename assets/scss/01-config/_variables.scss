@@ -26,27 +26,28 @@ $body-bg-alt: #f6f5f7;
 ============================================*/
 
 $font-family-sans-serif:
-  // Safari for macOS and iOS (San Francisco)
-  -apple-system,
+  // Safari for macOS and iOS (San Francisco) -apple-system,
   // Chrome < 56 for macOS (San Francisco)
-  BlinkMacSystemFont,
+    BlinkMacSystemFont,
   // Windows
-  "Segoe UI",
+    "Segoe UI",
   // Android
-  Roboto,
+    Roboto,
   // Basic web fallback
-  "Helvetica Neue", Arial,
+    "Helvetica Neue",
+  Arial,
   // Linux
-  "Noto Sans",
+    "Noto Sans",
   "Liberation Sans",
   // Sans serif fallback
-  sans-serif,
+    sans-serif,
   // Emoji fonts
-  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";  
+    "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-$proxima-nova: 'Proxima Nova', $font-family-sans-serif;
-$nunito: 'Nunito', $font-family-sans-serif;
-$serif: 'Merriweather', $nunito;
+$proxima-nova: "Proxima Nova", $font-family-sans-serif;
+$nunito: "Nunito", $font-family-sans-serif;
+$serif: "Merriweather", $nunito;
 
 /*============================================
 | Width
@@ -56,13 +57,14 @@ $article-nav-width: 250px;
 /*============================================
 | Box Shadow
 ============================================*/
-$box-shadow-default: 0 0 rem(4px) rem(2px) rgba(0,0,0,.1);
+$box-shadow-default: 0 0 rem(4px) rem(2px) rgba(0, 0, 0, 0.1);
 
 /*============================================
 | Text Shadow
 ============================================*/
-$text-shadow-white: 0 rem(2px) rem(3px) rgba(black, .5);
+$text-shadow-white: 0 rem(2px) rem(3px) rgba(black, 0.5);
 
 /*============================================
-| Border
+| z-index
 ============================================*/
+$z-index-navbar: 8;
