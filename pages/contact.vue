@@ -76,11 +76,17 @@
 </template>
 
 <script>
-  import driftBot from '../utils/driftBot';
+  import driftBot from '@/utils/driftBot';
+  import vhHack from '@/utils/vhHack';
+  
   export default {
     name: 'Contact',
     mounted() {
+      // Load drift widget after window finished loading
       window.onload = driftBot;
+
+      // Set --vh CSS custom property
+      vhHack();
     },
   }
 </script>

@@ -30,6 +30,9 @@
 </template>
 
 <script>
+  import driftBot from '@/utils/driftBot';
+  import vhHack from '@/utils/vhHack';
+  
   export default {
     name: 'SingleTag',
     head() {
@@ -60,6 +63,13 @@
         const options = { year: 'numeric', month: 'long', day: 'numeric' }
         return new Date(date).toLocaleDateString('en', options)
       }
+    },
+    mounted() {
+      // Load drift widget after window finished loading
+      window.onload = driftBot;
+
+      // Set --vh CSS custom property
+      vhHack();
     },
   }
 </script>

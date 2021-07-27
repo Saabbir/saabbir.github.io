@@ -63,6 +63,9 @@
 </template>
 
 <script>
+  import driftBot from '@/utils/driftBot';
+  import vhHack from '@/utils/vhHack';
+  
   export default {
     name: 'BlogPost',
     head() {
@@ -105,6 +108,13 @@
         }
         return require(`~/assets/images/article-featured-images/default.png`)
       }
-    }
+    },
+    mounted() {
+      // Load drift widget after window finished loading
+      window.onload = driftBot;
+
+      // Set --vh CSS custom property
+      vhHack();
+    },
   }
 </script>

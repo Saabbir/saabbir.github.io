@@ -7,8 +7,10 @@
 </template>
 
 <script>
-  import driftBot from '../utils/driftBot';
-  import vhHack from '../utils/vhHack';
+  import driftBot from '@/utils/driftBot';
+  import vhHack from '@/utils/vhHack';
+  import _ from 'lodash';
+  
   export default {
     name: 'Home',
     head() {
@@ -29,6 +31,7 @@
 
       // Set --vh CSS custom property
       vhHack();
+      window.addEventListener("resize", _.throttle(vhHack, 200));
     },
   }
 </script>

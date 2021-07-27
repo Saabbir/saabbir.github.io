@@ -52,7 +52,9 @@
 </template>
 
 <script>
-  import driftBot from '../../utils/driftBot';
+  import driftBot from '@/utils/driftBot';
+  import vhHack from '@/utils/vhHack';
+  
   export default {
     name: 'SingleWork',
     head() {
@@ -68,7 +70,11 @@
       }
     },
     mounted() {
+      // Load drift widget after window finished loading
       window.onload = driftBot;
+
+      // Set --vh CSS custom property
+      vhHack();
     },
     async asyncData({ $content, params }) {
       const work = await $content('work', params.slug).fetch()

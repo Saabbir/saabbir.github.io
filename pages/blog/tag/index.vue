@@ -7,11 +7,21 @@
 </template>
 
 <script>
+  import driftBot from '@/utils/driftBot';
+  import vhHack from '@/utils/vhHack';
+  
   export default {
     name: 'TagIndex',
     middleware({ redirect }) {
       return redirect('/')
-    }
+    },
+    mounted() {
+      // Load drift widget after window finished loading
+      window.onload = driftBot;
+
+      // Set --vh CSS custom property
+      vhHack();
+    },
   }
 </script>
 

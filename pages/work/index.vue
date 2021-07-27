@@ -35,7 +35,9 @@
 </template>
 
 <script>
-  import driftBot from '../../utils/driftBot';
+  import driftBot from '@/utils/driftBot';
+  import vhHack from '@/utils/vhHack';
+  
   export default {
     name: 'WorkIndex',
     head() {
@@ -51,7 +53,11 @@
       }
     },
     mounted() {
+      // Load drift widget after window finished loading
       window.onload = driftBot;
+
+      // Set --vh CSS custom property
+      vhHack();
     },  
     async asyncData({ params, $content }) {
       const works = await $content('work').fetch()
