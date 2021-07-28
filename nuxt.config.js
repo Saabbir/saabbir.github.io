@@ -5,6 +5,13 @@ export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: "Saabbir Hossain",
+    htmlAttrs: {
+      lang: "en"
+    },
+    bodyAttrs: {
+      // class: ['dark-mode', 'mobile']
+    },
+    noscript: [{ innerHTML: "This website requires JavaScript." }],
     meta: [
       // Primary Meta Tags
       { charset: "utf-8" },
@@ -77,6 +84,7 @@ export default {
           "https://raw.githubusercontent.com/Saabbir/saabbir.github.io/master/assets/images/saabbir.png"
       }
     ],
+    // Favicon
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
 
