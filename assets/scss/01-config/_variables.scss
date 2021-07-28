@@ -19,6 +19,7 @@ $table-row-even-color: #fafafa;
 /*============================================
 | Background
 ============================================*/
+
 $body-bg-alt: #f6f5f7;
 
 /*============================================
@@ -27,8 +28,7 @@ $body-bg-alt: #f6f5f7;
 
 $font-family-sans-serif:
   // Safari for macOS and iOS (San Francisco) -apple-system,
-  // Chrome < 56 for macOS (San Francisco)
-    BlinkMacSystemFont,
+  // Chrome < 56 for macOS (San Francisco) BlinkMacSystemFont,
   // Windows
     "Segoe UI",
   // Android
@@ -52,19 +52,23 @@ $serif: "Merriweather", $nunito;
 /*============================================
 | Width
 ============================================*/
+
 $article-nav-width: 250px;
 
 /*============================================
 | Box Shadow
 ============================================*/
+
 $box-shadow-default: 0 0 rem(4px) rem(2px) rgba(0, 0, 0, 0.1);
 
 /*============================================
 | Text Shadow
 ============================================*/
+
 $text-shadow-white: 0 rem(2px) rem(3px) rgba(black, 0.5);
 
 /*============================================
 | z-index
 ============================================*/
+
 $z-index-navbar: 8;

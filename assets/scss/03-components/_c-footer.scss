@@ -5,7 +5,7 @@
   &__copyright {
     display: flex;
     align-items: center;
-    height: rem(70px);
+    padding: rem(24px) 0;
     justify-content: center;
     position: relative;
     overflow: hidden;
@@ -13,7 +13,12 @@
     font-size: rem(16px);
 
     @media (min-width: 768px) {
-      height: rem(100px);
+      padding: 0;
+      min-height: rem(80px);
+    }
+
+    @media (min-width: 1440px) {
+      min-height: rem(96px);
     }
 
     &::after {
