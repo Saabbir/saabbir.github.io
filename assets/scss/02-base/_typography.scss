@@ -1,5 +1,10 @@
 html {
   font: normal normal 100%/1.5 $nunito;
+  font-size: 87.5%;
+
+  @media (min-width: 1440px) {
+    font-size: 100%;
+  }
 }
 
 body {

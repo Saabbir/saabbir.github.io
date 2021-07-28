@@ -53,6 +53,7 @@ ol {
 img {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 h1,
@@ -89,10 +90,4 @@ h6 {
 
 picture {
   display: block;
-}
-
-.page-single-work {
-  .nuxt-content .icon-link {
-    display: none;
-  }
 }
