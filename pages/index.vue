@@ -16,13 +16,6 @@
     head() {
       return {
         title: 'Home - Saabbir Hossain',
-        meta: [
-          {
-            hid: 'description',
-            name: 'description',
-            content: 'Saabbir Hossain is a professional front-end developer from Bangladesh.'
-          }
-        ]
       }
     },
     mounted() {

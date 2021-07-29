@@ -12,6 +12,11 @@
   
   export default {
     name: 'TagIndex',
+    head() {
+      return {
+        title: 'Tags - Saabbir Hossain',
+      }
+    },
     middleware({ redirect }) {
       return redirect('/')
     },

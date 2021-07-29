@@ -81,6 +81,11 @@
   
   export default {
     name: 'Contact',
+    head() {
+      return {
+        title: 'Contact - Saabbir Hossain',
+      }
+    },
     mounted() {
       // Load drift widget after window finished loading
       window.onload = driftBot;

@@ -39,13 +39,6 @@
     head() {
       return {
         title: 'Blog - Saabbir Hossain',
-        meta: [
-          {
-            hid: 'description',
-            name: 'description',
-            content: 'Saabbir Hossain is a professional front-end developer based in Barisal, Bangladesh.'
-          }
-        ]
       }
     },
     async asyncData({ $content }) {

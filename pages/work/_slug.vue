@@ -60,13 +60,6 @@
     head() {
       return {
         title: this.work.title + ' - Case Study',
-        meta: [
-          {
-            hid: 'description',
-            name: 'description',
-            content: 'Saabbir Hossain is a professional front-end developer based in Barisal, Bangladesh.'
-          }
-        ]
       }
     },
     mounted() {

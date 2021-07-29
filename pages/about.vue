@@ -38,6 +38,11 @@
   
   export default {
     name: 'About',
+    head() {
+      return {
+        title: 'About - Saabbir Hossain',
+      }
+    },
     mounted() {
       // Load drift widget after window finished loading
       window.onload = driftBot;
