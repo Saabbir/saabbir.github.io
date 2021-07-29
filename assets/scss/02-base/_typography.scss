@@ -1,9 +1,16 @@
 html {
-  font: normal normal 100%/1.5 $nunito;
-  font-size: 87.5%;
+  font: normal normal 87.5%/1.5 $nunito; // 14px
+
+  @media (min-width: 360px) {
+    font-size: 100%; // 16px
+  }
+
+  @media (min-width: 768px) {
+    font-size: 87.5%; // 14px
+  }
 
   @media (min-width: 1440px) {
-    font-size: 100%;
+    font-size: 100%; // 16px
   }
 }
 
