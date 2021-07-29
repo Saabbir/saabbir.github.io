@@ -126,10 +126,9 @@ export default {
     "@nuxtjs/fontawesome"
   ],
 
-  fontawesome: {
-    icons: {
-      solid: ["faBars"]
-    }
+  // Consult https://google-analytics.nuxtjs.org/setup/#configure
+  googleAnalytics: {
+    id: "UA-104844719-1"
   },
 
   // Consult https://github.com/juliomrqz/nuxt-optimized-images
@@ -138,9 +137,11 @@ export default {
   },
   optimizeImagesInDev: true,
 
-  // Consult https://google-analytics.nuxtjs.org/setup/#configure
-  googleAnalytics: {
-    id: "UA-104844719-1"
+  // Fontawesome settings
+  fontawesome: {
+    icons: {
+      solid: ["faBars"]
+    }
   },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
