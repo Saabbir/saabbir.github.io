@@ -21,8 +21,7 @@
   &:focus {
     background-color: $accent-color-2;
     background-image: linear-gradient(45deg, $accent-color-2, $accent-color-1);
-    // box-shadow: rem(-4px) rem(-4px) 0 0 $vue-black;
-    box-shadow: 0 0 0 0 $vue-black;
+    box-shadow: rem(-4px) rem(-4px) 0 0 $vue-black;
     color: #fff;
     text-decoration: none;
   }

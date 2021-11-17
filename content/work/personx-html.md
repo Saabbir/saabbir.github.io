@@ -6,7 +6,7 @@ description: PersonX is a modern looking personal template created using Bootstr
 type: Job
 coverImg: personx-cover
 featured: true
-url: https://saabbir.gitlab.io/personx-original-live/
+url: https://saabbir.gitlab.io/personx-themeforest-live/
 category:
   - Site Templates, Landing Page
 tools:

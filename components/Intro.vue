@@ -6,7 +6,7 @@
     <div class="c-intro__content">
       <h1 class="t-display-1 u-mb-24">Hi, I'm Saabbir.</h1>
       <p>
-        A <strong>front-end web developer</strong> based in Barisal, Bangladesh, currently working as a Solutions Engineer (A/B Test) at EchoLogyx Ltd.
+        A <strong>front-end web developer</strong> based in Barisal, Bangladesh, currently working as a Solutions Engineer (A/B Testing) at EchoLogyx Ltd.
       </p>
       <!-- <p>I build static sites and apps using <strong>Vuejs</strong> and <strong>Nuxtjs</strong>.</p> -->
       <p>

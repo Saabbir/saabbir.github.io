@@ -59,7 +59,7 @@
                 <span>contact</span>
               </nuxt-link>
             </li>
-            <!-- <li class="c-navbar__menu-item">
+            <li class="c-navbar__menu-item">
               <nuxt-link 
                 to="/blog"
                 exact 
@@ -69,7 +69,7 @@
                 <strong>05</strong>
                 <span>blog</span>
               </nuxt-link>
-            </li> -->
+            </li>
           </ul>
         </nav>
       </div>
