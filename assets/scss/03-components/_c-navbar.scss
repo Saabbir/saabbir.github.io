@@ -169,7 +169,7 @@
 
     &.nuxt-link-active {
       color: $text-color-dark;
-      font-weight: bold;
+      // font-weight: bold;
 
       &::after {
         transform: scaleX(1);

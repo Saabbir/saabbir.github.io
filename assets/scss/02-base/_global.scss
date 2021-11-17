@@ -11,12 +11,19 @@ html {
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+
+  @media (min-width: 1024px) {
+    width: 100vw;
+    overflow-x: hidden;
+  }
 }
 
 body {
   color: $text-color;
   background-color: #fff;
   // background: #fafafa url(~assets/images/tile.jpg) left top repeat fixed;
+
+  @include scrollbar-styles;
 }
 
 blockquote {
