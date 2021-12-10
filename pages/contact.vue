@@ -71,9 +71,9 @@
           </a> -->
         </div><!-- /.c-social-media-grid -->
       </div>
-      <div class="c-contact-form u-mt-32">
-        <h2 class="c-contact-form__title u-text-serif u-mb-32">Get in touch</h2>
-        <form action="https://formcarry.com/s/OZHIhto2IeZ" method="POST" accept-charset="UTF-8" class="c-form ajaxForm" id="c-formcarry-form">
+      <div class="c-contact-form-container u-mt-32">
+        <h2 class="c-contact-form__title u-text-serif u-mb-32">Send a message</h2>
+        <form action="https://formcarry.com/s/OZHIhto2IeZ" method="POST" accept-charset="UTF-8" class="c-form c-contact-form" id="c-formcarry-form">
           <input type="hidden" name="_gotcha"><!-- use this to prevent spam -->
           <div class="c-form__group c-form__group--required">
             <label class="c-form__label" for="user_name">Name</label>
@@ -88,7 +88,7 @@
             <textarea id="user_msg" name="user_msg" class="c-form__control" placeholder="Your message" required></textarea>
           </div>
           <div class="c-form__group">
-            <button type="submit" class="c-button c-button--lg">Submit</button>
+            <button type="submit" class="c-button c-button--lg c-form__submit-button">Submit</button>
           </div>
         </form>
       </div>      
@@ -105,11 +105,6 @@
     head() {
       return {
         title: 'Contact - Saabbir Hossain',
-        script: [
-          {
-            src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'
-          }
-        ]
       }
     },
     mounted() {
@@ -120,26 +115,52 @@
       vhHack();
 
       // Submit contact form
-      $(function(){
-        $(".ajaxForm").submit(function(e){
-            e.preventDefault();
-            var href = $(this).attr("action");
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: href,
-                data: $(this).serialize(),
-                success: function(response){
-                    if(response.status == "success"){
-                        alert("We received your submission, thank you!");
-                    }else{
-                        alert("An error occured: " + response.message);
-                    }
-                }
-            });
+      $(function() {
+        $(".c-contact-form").submit(function(e) {
+          // Prevent default form submission
+          e.preventDefault();
+
+          // Get endpoint URL
+          var href = $(this).attr("action");
+
+          // Create AJAX request to submit the form
+          $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: href,
+            data: $(this).serialize(),
+            timeout: 6000, // sets timeout to 6 seconds
+            beforeSend: function() {
+              $('.c-form__submit-button')
+                .text('Submitting...')
+                .css('pointer-events', 'none')
+                .append('<div class="c-loader"></div>');
+            },
+            success: function(response) {
+              if(response.status == "success") {
+                // Remove loader
+                $('.c-loader').remove();
+
+                // Success text
+                $('.c-form__submit-button').text('Submitted successfully!');
+
+                // After 3 seconds, get back to normal state
+                setTimeout(function() {
+                  // Reset submit button text
+                  $('.c-form__submit-button')
+                    .text('Submit')
+                    .css('pointer-events', 'auto');
+                  
+                  // Reset form inputs
+                  document.querySelector('.c-contact-form').reset();
+                }, 3000);
+              } else {
+                alert("An error occured: " + response.message);
+              }
+            }
+          });
         });
-      });      
-      
+      });
     },
   }
 </script>
