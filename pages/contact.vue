@@ -3,8 +3,8 @@
     <div class="l-container">
       <div class="c-copy">
         <h1 class="t-display-1">Contact</h1>
-        <p>If you want to get in touch, <a href="mailto:thesaabbir@gmail.com" class="c-custom-link">send me an email</a> or call me at <a href="tel:+8801789243439" class="c-custom-link">01789243439</a>.</p>
-        <p>I'm also available on the web:</p>
+        <p>If you want to get in touch, send me an email at <a href="mailto:thesaabbir@gmail.com" class="c-custom-link">thesaabbir@gmail.com</a> or call me at <a href="tel:+8801789243439" class="c-custom-link">+8801789243439</a>.</p>
+        <p>I'm also available on the social media. Feel free to message there.</p>
         <div class="c-social-media-grid u-mt-32">
           <a href="https://www.facebook.com/thesaabbir" class="c-social-media" target="_blank">
             <div class="c-social-media__icon">
@@ -69,8 +69,29 @@
               <div class="c-social-media__handle">I'm available here for freelance work</div>
             </div>
           </a> -->
-        </div>
+        </div><!-- /.c-social-media-grid -->
       </div>
+      <div class="c-contact-form u-mt-32">
+        <h2 class="c-contact-form__title u-text-serif u-mb-32">Get in touch</h2>
+        <form action="https://formcarry.com/s/OZHIhto2IeZ" method="POST" accept-charset="UTF-8" class="c-form ajaxForm" id="c-formcarry-form">
+          <input type="hidden" name="_gotcha"><!-- use this to prevent spam -->
+          <div class="c-form__group c-form__group--required">
+            <label class="c-form__label" for="user_name">Name</label>
+            <input type="text" id="user_name" name="user_name" class="c-form__control" placeholder="Your name" required>
+          </div>
+          <div class="c-form__group c-form__group--required">
+            <label class="c-form__label" for="user_email">Email</label>
+            <input type="email" id="user_email" name="user_email" class="c-form__control" placeholder="Your email address" required>
+          </div>
+          <div class="c-form__group c-form__group--required">
+            <label class="c-form__label" for="user_msg">Message</label>
+            <textarea id="user_msg" name="user_msg" class="c-form__control" placeholder="Your message" required></textarea>
+          </div>
+          <div class="c-form__group">
+            <button type="submit" class="c-button c-button--lg">Submit</button>
+          </div>
+        </form>
+      </div>      
     </div>
   </div>
 </template>
@@ -84,6 +105,11 @@
     head() {
       return {
         title: 'Contact - Saabbir Hossain',
+        script: [
+          {
+            src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'
+          }
+        ]
       }
     },
     mounted() {
@@ -92,6 +118,28 @@
 
       // Set --vh CSS custom property
       vhHack();
+
+      // Submit contact form
+      $(function(){
+        $(".ajaxForm").submit(function(e){
+            e.preventDefault();
+            var href = $(this).attr("action");
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: href,
+                data: $(this).serialize(),
+                success: function(response){
+                    if(response.status == "success"){
+                        alert("We received your submission, thank you!");
+                    }else{
+                        alert("An error occured: " + response.message);
+                    }
+                }
+            });
+        });
+      });      
+      
     },
   }
 </script>

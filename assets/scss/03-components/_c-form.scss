@@ -1,0 +1,89 @@
+.c-contact-form {
+  background-color: rgba(0, 197, 142, 0.1);
+  padding: 32px;
+  border-radius: rem(4px);
+  overflow: hidden;
+  max-width: rem(700px);
+}
+
+.c-form {
+  &__control {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    // border-radius: rem(4px);
+    min-height: 40px;
+    display: block;
+    padding: rem(6px) rem(16px);
+    min-height: 50px;
+    transition: 0.2s;
+    width: 100%;
+
+    &:focus {
+      outline: 1px solid $accent-color-2;
+      border-color: $accent-color-1;
+      box-shadow: 0 0 8px 2px rgba($accent-color-2, 50%);
+    }
+  }
+
+  textarea.c-form__control {
+    padding: rem(16px);
+    min-height: 150px;
+    resize: vertical;
+
+    // @include scrollbar-styles;
+  }
+
+  &__label {
+    display: inline-block;
+    margin: 0 0 6px;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    span {
+      color: #abacbf;
+    }
+  }
+
+  &__group {
+    &--required {
+      position: relative;
+
+      &::after {
+        content: "[Required]";
+        color: #abacbf;
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 0.8em;
+        margin-left: 1em;
+      }
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 30px;
+    }
+  }
+
+  ::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #abacbf;
+    opacity: 1;
+  }
+  ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #abacbf;
+    opacity: 1;
+  }
+  ::-ms-input-placeholder {
+    /* IE 10+ */
+    color: #abacbf;
+    opacity: 1;
+  }
+  :-moz-placeholder {
+    /* Firefox 18- */
+    color: #abacbf;
+    opacity: 1;
+  }
+}
