@@ -1,19 +1,16 @@
 .c-article-nav {
-  position: sticky;
-  top: 0;
-
   &__title {
     border-bottom: rem(1px) solid $border-color;
     color: $text-color-dark;
-    font-size: .9em;
+    font-size: 0.9em;
     font-weight: bold;
     letter-spacing: rem(1px);
     padding: rem(16px);
     text-transform: uppercase;
-    
+
     @media (min-width: 361px) {
       padding: rem(16px) rem(24px) rem(16px);
-    }    
+    }
   }
 
   &__menu {
@@ -21,6 +18,6 @@
 
     @media (min-width: 361px) {
       padding: rem(16px) rem(24px);
-    }    
+    }
   }
 }

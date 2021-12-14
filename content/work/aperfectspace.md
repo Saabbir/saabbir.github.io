@@ -19,7 +19,7 @@ tools:
 ---
 
 <!-- Start Features Section -->
-<div class="l-container">
+<div class="l-wrap">
 <div class="u-my-48">
 
 ### Features
@@ -36,7 +36,7 @@ tools:
 
 <!-- Start What I Did Section -->
 <section class="u-py-64">
-<div class="l-container l-container--sm">
+<div class="l-wrap l-wrap--sm">
 <h2 class="t-display-2 u-mt-64">What I did</h2>
 <div class="c-feature-figure-container">
 
@@ -82,7 +82,7 @@ tools:
 
 <!-- Start Client Section -->
 <section>
-<div class="l-container l-container--sm">
+<div class="l-wrap l-wrap--sm">
 <hr>
 <div class="u-my-48">
 <div class="u-space-between">

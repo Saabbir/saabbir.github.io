@@ -1,6 +1,6 @@
 <template>
   <div class="l-main">
-    <div class="l-container">
+    <div class="l-wrap">
       <h1 class="c-page-title">Browse articles by tags:</h1>
     </div>
   </div>

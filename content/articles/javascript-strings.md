@@ -24,7 +24,7 @@ Strings created from `String` constructor function in a constructor context (i.e
 **Example**
 
 ```js [js]
-new String('Saabbir Hossain')
+new String("Saabbir Hossain");
 ```
 
 **Key takeaways**
@@ -35,8 +35,12 @@ new String('Saabbir Hossain')
 
 ### String prototype chain
 
+<div class="c-prism-container">
+
 ```js [js]
-new String('string').__proto__ === String.prototype
-String.prototype.__proto__ === Object.prototype
-Object.prototype.__proto__ === null
+new String("string").__proto__ === String.prototype;
+String.prototype.__proto__ === Object.prototype;
+Object.prototype.__proto__ === null;
 ```
+
+</div>

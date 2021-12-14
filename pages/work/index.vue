@@ -1,7 +1,7 @@
 <template>
   <div class="l-main">
     <div class="section-portfolio u-py-32">
-      <div class="l-container">
+      <div class="l-wrap">
         <div class="u-mb-32">
           <h1 class="t-display-1">Featured works</h1>
           <p class="u-mt-16 t-18">Selected projects.</p>
@@ -20,7 +20,7 @@
                 <source :srcset="require(`~/assets/images/work/${work.coverImg}-sm.jpg?webp`)" type="image/webp">
                 <img 
                   :src="require(`~/assets/images/work/${work.coverImg}-sm.jpg`)" 
-                  :alt="`${work.title}-cover`">                
+                  :alt="`${work.title}-cover`" width="414" height="311">
               </picture>
               <figcaption class="c-portfolio-card__figcaption">
                 <h5 class="c-portfolio-card__title">{{ work.title }}</h5>

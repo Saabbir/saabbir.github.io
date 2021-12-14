@@ -1,6 +1,6 @@
 <template>
   <div class="u-py-32">
-    <div class="l-container">
+    <div class="l-wrap">
       <div class="c-copy">
         <h1 class="t-display-1">Contact</h1>
         <p>If you want to get in touch, send me an email at <a href="mailto:thesaabbir@gmail.com" class="c-custom-link">thesaabbir@gmail.com</a> or call me at <a href="tel:+8801789243439" class="c-custom-link">+8801789243439</a>.</p>

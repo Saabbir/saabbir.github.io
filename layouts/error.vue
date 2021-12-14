@@ -1,7 +1,7 @@
 <template>
   <!-- Consult https://nuxtjs.org/docs/2.x/concepts/views#error-page for this page -->
   <div class="c-error-content">
-    <div class="l-container l-container--sm">
+    <div class="l-wrap l-wrap--sm">
       <div class="u-text-center">
         <h1 v-if="error.statusCode === 404" class="c-page-title c-page-title--black u-text-serif u-text-uppercase">Page not found</h1>
         <h1 v-else class="c-page-title c-page-title--black u-text-serif u-text-uppercase">An error occurred</h1>

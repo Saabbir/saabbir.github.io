@@ -1,6 +1,6 @@
 <template>
   <div class="l-main">
-    <div class="l-container l-container--sm">
+    <div class="l-wrap l-wrap--sm">
       <div class="c-banner u-mt-32 u-br-4">
         <h1 class="c-page-title u-text-uppercase u-text-center">
           <small class="c-page-title__small">Articles tagged</small>

@@ -87,8 +87,14 @@ export default {
     // Favicon
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     script: [
+      // Load external script
       {
         src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+      },
+      // Load internal script and put the script in the static directory
+      {
+        src: "/js/global-client-side.js",
+        body: true
       }
     ]
   },

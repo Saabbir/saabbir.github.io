@@ -1,6 +1,6 @@
 <template>
   <div class="u-py-32">
-    <div class="l-container">
+    <div class="l-wrap">
       <div class="c-copy">
         <h1 class="t-display-1">Hi, I'm Saabbir.</h1>
         <p>
@@ -18,11 +18,11 @@
         <!-- <p>I'm <strong>open to work</strong> for a <strong>full-time position</strong> where I can work as a creative front-end developer.</p> -->
       </div>
     </div>
-    <div class="l-container l-container--lg">
+    <div class="l-wrap l-wrap--lg">
       <figure class="u-mt-40">
         <picture>
           <source srcset="~/assets/images/remarki-fall.jpg?webp">
-          <img src="~/assets/images/remarki-fall.jpg" alt="Saabbir on Remarki Fall, Thanchi, Bandarban." class="u-mx-auto">
+          <img src="~/assets/images/remarki-fall.jpg" alt="Saabbir on Remarki Fall, Thanchi, Bandarban." class="u-mx-auto" width="1200" height="901">
         </picture>
         <figcaption class="u-text-caption u-mt-16 u-text-center">
           At Remarki Fall, Thanchi, Bandarban.

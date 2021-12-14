@@ -1,6 +1,6 @@
 <template>
   <div class="c-navbar">
-    <div class="l-container">
+    <div class="l-wrap">
       <div class="c-navbar__content">
         <nuxt-link to="/" class="c-navbar__brand">
           <div class="c-navbar__brand-img-container">

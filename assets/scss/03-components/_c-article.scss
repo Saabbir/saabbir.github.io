@@ -8,40 +8,41 @@
   }
 }
 
-.l-article {
-  display: grid;
+.c-article-container {
   margin: rem(32px) 0;
+}
+
+.l-article {
   background-color: #fff;
-  // border: rem(1px) solid $border-color;
   border-radius: rem(4px);
 
-  // @media (min-width: 768px) {
-  //   grid-template-columns: rem($article-nav-width) 1fr;
-  // }
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: $article-nav-width 1fr;
+    grid-gap: rem(32px);
+  }
 }
 
 .l-article__aside {
   border: rem(1px) solid $border-color;
   background-color: #fff;
   margin-bottom: rem(32px);
-  // position: sticky;
-  // top: 0;
-  // z-index: 1;
 
-  // @media (min-width: 768px) {
-  //   border-bottom: 0;
-  //   border-right: rem(1px) solid $border-color;
-  // }
+  @media (min-width: 768px) {
+    position: sticky;
+    top: var(--navbarHeight, 98px);
+    z-index: 1;
+    align-self: flex-start;
+  }
+
+  @media (min-width: 1440px) {
+    top: var(--navbarHeight, 124px);
+  }
 }
 
 .c-article {
   width: 100%;
-  // overflow: hidden;
-  // padding: rem(16px);
-
-  // @media (min-width: 361px) {
-  //   padding: rem(32px);
-  // }
+  overflow: auto;
 
   &__title {
     font-size: rem(48px);

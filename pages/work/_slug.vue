@@ -1,7 +1,7 @@
 <template>
   <div class="l-main page-single-work">
     <div class="u-py-32">     
-      <div class="l-container">
+      <div class="l-wrap">
         <div class="c-portfolio">
           <div class="c-portfolio__header">
             <h1 class="t-display-1">{{ work.title }}</h1>
@@ -31,11 +31,11 @@
               <source :srcset="require(`~/assets/images/work/${work.coverImg}.jpg?webp`)" type="image/webp">
               <img 
                 :src="require(`~/assets/images/work/${work.coverImg}.jpg`)" 
-                :alt="`${work.title}-cover`">
+                :alt="`${work.title}-cover`" width="1600" height="1200">
             </picture>
           </div>
         </div>
-      </div><!-- /.l-container -->
+      </div><!-- /.l-wrap -->
       <div class="nuxt-content-wrapper">
         <nuxt-content :document="work"></nuxt-content>
       </div>
@@ -43,7 +43,7 @@
         <hr>
       </div>      
       <div class="">
-        <div class="l-container">
+        <div class="l-wrap">
           <Pagination routeName="work-slug" :prev="prev" :next="next" type="Work" />
         </div>
       </div>      

@@ -29,12 +29,9 @@ $body-bg-alt: #f6f5f7;
 $font-family-sans-serif:
   // Safari for macOS and iOS (San Francisco) -apple-system,
   // Chrome < 56 for macOS (San Francisco) BlinkMacSystemFont,
-  // Windows
-    "Segoe UI",
-  // Android
-    Roboto,
-  // Basic web fallback
-    "Helvetica Neue",
+  // Windows "Segoe UI",
+  // Android Roboto,
+  // Basic web fallback "Helvetica Neue",
   Arial,
   // Linux
     "Noto Sans",
@@ -53,7 +50,7 @@ $serif: "Merriweather", $nunito;
 | Width
 ============================================*/
 
-$article-nav-width: 250px;
+$article-nav-width: rem(300px);
 
 /*============================================
 | Box Shadow
