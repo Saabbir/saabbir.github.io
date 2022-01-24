@@ -36,6 +36,10 @@ text helpers
   color: $text-color-gray;
 }
 
+.u-text-capitalize {
+  text-transform: capitalize;
+}
+
 /*============================================
 flex helpers
 ============================================*/

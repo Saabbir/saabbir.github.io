@@ -98,3 +98,12 @@ h6 {
 picture {
   display: block;
 }
+
+// Override CSS
+
+code[class*="language-"]::selection,
+pre[class*="language-"]::selection,
+code[class*="language-"] ::selection,
+pre[class*="language-"] ::selection {
+  background-color: #000 !important;
+}

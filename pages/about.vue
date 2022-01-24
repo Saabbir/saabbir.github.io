@@ -16,6 +16,9 @@
           I've passion building awesome things on the web. I love everything about design and development but my skills place me at the intersection of both.
         </p>
         <!-- <p>I'm <strong>open to work</strong> for a <strong>full-time position</strong> where I can work as a creative front-end developer.</p> -->
+        <div class="u-mt-48">
+          <nuxt-link to="/contact" class="c-button c-button--lg">Get in touch</nuxt-link>
+        </div>
       </div>
     </div>
     <div class="l-wrap l-wrap--lg">
