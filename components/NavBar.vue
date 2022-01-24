@@ -61,13 +61,13 @@
             </li>
             <li class="c-navbar__menu-item">
               <nuxt-link 
-                to="/blog"
+                to="/snippets"
                 exact 
                 class="c-navbar__menu-link"
-                :class="{ 'nuxt-link-active': $route.path.includes('/blog') }"
+                :class="{ 'nuxt-link-active': $route.path.includes('/snippets') }"
               >
                 <strong>05</strong>
-                <span>blog</span>
+                <span>snippets</span>
               </nuxt-link>
             </li>
           </ul>

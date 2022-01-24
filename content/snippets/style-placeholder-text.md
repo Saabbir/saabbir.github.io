@@ -1,5 +1,5 @@
 ---
-title: Style placeholder text
+title: Style Placeholder Text
 description: Style form placeholder text using CSS.
 #featuredImg: async.webp
 createdAt: 01/01/2021
