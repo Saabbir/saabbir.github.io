@@ -21,14 +21,14 @@
           <font-awesome-icon icon="bars"/>
         </div>
         <nav class="c-navbar__nav" ref="navbarNav" @click="hideNav">
-          <ul class="c-navbar__menu">
+          <ul class="c-navbar__menu c-navbar__menu--without-number">
             <li class="c-navbar__menu-item">
               <nuxt-link to="/" exact class="c-navbar__menu-link">
                 <strong>01</strong>
                 <span>home</span>
               </nuxt-link>
             </li>
-            <li class="c-navbar__menu-item">
+            <!-- <li class="c-navbar__menu-item">
               <nuxt-link 
                 to="/work" 
                 exact
@@ -38,7 +38,7 @@
                 <strong>02</strong>
                 <span>work</span>
               </nuxt-link>
-            </li>
+            </li> -->
             <li class="c-navbar__menu-item">
               <nuxt-link 
                 to="/about"
