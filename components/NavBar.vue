@@ -70,6 +70,16 @@
                 <span>snippets</span>
               </nuxt-link>
             </li>
+            <li class="c-navbar__menu-item">
+              <a 
+                href="https://saabbir-resume.netlify.app/"
+                target="_blank" 
+                class="c-navbar__menu-link"
+              >
+                <strong>06</strong>
+                <span>resume</span>
+              </a>
+            </li>
           </ul>
         </nav>
       </div>

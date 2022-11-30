@@ -6,7 +6,7 @@ export default {
   head: {
     title: "Saabbir Hossain",
     htmlAttrs: {
-      lang: "en"
+      lang: "en",
     },
     bodyAttrs: {
       // class: ['dark-mode', 'mobile']
@@ -19,102 +19,102 @@ export default {
       {
         hid: "title",
         name: "title",
-        content: "Saabbir Hossain"
+        content: "Saabbir Hossain",
       },
       {
         hid: "description",
         name: "description",
         content:
-          "Saabbir Hossain is a professional front-end developer from Bangladesh, currently working as a Solutions Engineer at EchoLogyx Ltd."
+          "Saabbir Hossain is a professional front-end developer from Bangladesh, currently working as a Solutions Engineer at EchoLogyx Ltd.",
       },
       // Open Graph / Facebook
       {
         hid: "og:type",
         property: "og:type",
-        content: "website"
+        content: "website",
       },
       {
         hid: "og:url",
         property: "og:url",
-        content: "https://saabbir.github.io/"
+        content: "https://saabbir.github.io/",
       },
       {
         hid: "og:title",
         property: "og:title",
-        content: "Saabbir Hossain"
+        content: "Saabbir Hossain",
       },
       {
         hid: "og:description",
         property: "og:description",
         content:
-          "Saabbir Hossain is a professional front-end developer from Bangladesh, currently working as a Solutions Engineer at EchoLogyx Ltd."
+          "Saabbir Hossain is a professional front-end developer from Bangladesh, currently working as a Solutions Engineer at EchoLogyx Ltd.",
       },
       {
         hid: "og:image",
         property: "og:image",
         content:
-          "https://raw.githubusercontent.com/Saabbir/saabbir.github.io/master/assets/images/saabbir.png"
+          "https://raw.githubusercontent.com/Saabbir/saabbir.github.io/master/assets/images/saabbir.png",
       },
       // Twitter
       {
         hid: "twitter:card",
         property: "twitter:card",
-        content: "summary_large_image"
+        content: "summary_large_image",
       },
       {
         hid: "twitter:url",
         property: "twitter:url",
-        content: "https://saabbir.github.io/"
+        content: "https://saabbir.github.io/",
       },
       {
         hid: "twitter:title",
         property: "twitter:title",
-        content: "Saabbir Hossain"
+        content: "Saabbir Hossain",
       },
       {
         hid: "twitter:description",
         property: "twitter:description",
         content:
-          "Saabbir Hossain is a professional front-end developer from Bangladesh, currently working as a Solutions Engineer at EchoLogyx Ltd."
+          "Saabbir Hossain is a professional front-end developer from Bangladesh, currently working as a Solutions Engineer at EchoLogyx Ltd.",
       },
       {
         hid: "twitter:image",
         property: "twitter:image",
         content:
-          "https://raw.githubusercontent.com/Saabbir/saabbir.github.io/master/assets/images/saabbir.png"
-      }
+          "https://raw.githubusercontent.com/Saabbir/saabbir.github.io/master/assets/images/saabbir.png",
+      },
     ],
     // Favicon
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     script: [
       // Load external script
       {
-        src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+        src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js",
       },
       // Load internal script and put the script in the static directory
       {
         src: "/js/global-client-side.js",
-        body: true
-      }
-    ]
+        body: true,
+      },
+    ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
     // 'tailwindcss/dist/tailwind.min.css',
     "normalize.css/normalize.css",
-    "~assets/scss/index.scss"
+    "~assets/scss/index.scss",
   ],
 
   /*
    ** Global style resources - https://www.npmjs.com/package/@nuxtjs/style-resources
    */
   styleResources: {
-    scss: ["~/assets/scss/01-config/config.scss"]
+    scss: ["~/assets/scss/01-config/config.scss"],
   },
 
   loading: {
-    color: "#108775"
+    color: "#108775",
     // height: '5px'
   },
 
@@ -134,25 +134,25 @@ export default {
     "@nuxtjs/google-analytics",
     // Consult https://github.com/juliomrqz/nuxt-optimized-images
     "@aceforth/nuxt-optimized-images",
-    "@nuxtjs/fontawesome"
+    "@nuxtjs/fontawesome",
   ],
 
   // Consult https://google-analytics.nuxtjs.org/setup/#configure
   googleAnalytics: {
-    id: "UA-104844719-1"
+    id: "UA-104844719-1",
   },
 
   // Consult https://github.com/juliomrqz/nuxt-optimized-images
   optimizedImages: {
-    optimizeImages: true
+    optimizeImages: true,
   },
   optimizeImagesInDev: true,
 
   // Fontawesome settings
   fontawesome: {
     icons: {
-      solid: ["faBars"]
-    }
+      solid: ["faBars"],
+    },
   },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -162,7 +162,7 @@ export default {
     // https://go.nuxtjs.dev/content
     "@nuxt/content",
     "@nuxtjs/style-resources",
-    "@nuxtjs/google-fonts"
+    "@nuxtjs/google-fonts",
   ],
 
   googleFonts: {
@@ -172,8 +172,8 @@ export default {
     display: "swap",
     families: {
       Merriweather: [700],
-      Nunito: [400, 700, 900]
-    }
+      Nunito: [400, 700, 900],
+    },
     // download: true,
     // base64: true
   },
@@ -185,11 +185,11 @@ export default {
   content: {
     markdown: {
       prism: {
-        theme: "prism-themes/themes/prism-material-oceanic.css"
-      }
-    }
+        theme: "prism-themes/themes/prism-material-oceanic.css",
+      },
+    },
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {}
+  build: {},
 };

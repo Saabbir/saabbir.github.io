@@ -4,5 +4,5 @@ https://gist.github.com/garystorey/5920051
 */
 
 @function rem($sizeInPx) {
-  @return $sizeInPx / 16px * 1rem;
+  @return calc($sizeInPx / 16px) * 1rem;
 }
