@@ -165,7 +165,7 @@
     &::after {
       content: "";
       position: absolute;
-      height: rem(4px);
+      height: rem(3px);
       background-color: $text-color-gray;
       left: rem(16px);
       right: rem(16px);
@@ -178,15 +178,20 @@
 
     &:hover,
     &:focus {
+      color: $text-color-gray;
       text-decoration: none;
-
-      &::after {
-        transform: scaleX(1);
-      }
     }
 
+    &:hover::after {
+      transform: scaleX(1);
+    }
+
+    // &:focus {
+    //   outline: 1px dashed;
+    // }
+
     &.nuxt-link-active {
-      color: $text-color-dark;
+      color: $accent-color-2;
       // font-weight: bold;
 
       &::after {

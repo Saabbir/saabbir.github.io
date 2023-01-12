@@ -78,6 +78,7 @@
               >
                 <strong>06</strong>
                 <span>resume</span>
+                <font-awesome-icon icon="external-link-alt" class="c-external-icon" />
               </a>
             </li>
           </ul>
@@ -102,5 +103,9 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .c-external-icon {
+    display: block;
+    font-size: .9em;
+    margin-left: rem(8px);
+  }
 </style>
