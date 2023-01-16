@@ -103,9 +103,5 @@
 </script>
 
 <style lang="scss" scoped>
-  .c-external-icon {
-    display: block;
-    font-size: .9em;
-    margin-left: rem(8px);
-  }
+
 </style>

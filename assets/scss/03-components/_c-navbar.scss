@@ -31,6 +31,11 @@
     @media (min-width: 768px) {
       display: none;
     }
+
+    svg {
+      display: block;
+      width: rem(20px);
+    }
   }
 
   &__nav {
@@ -133,7 +138,7 @@
 
     @media (max-width: 767px) {
       flex-direction: column;
-      margin: 0 auto;
+      margin: rem(10px) auto;
     }
   }
 
@@ -153,6 +158,7 @@
     justify-content: center;
     position: relative;
     font-size: rem(16px);
+    white-space: nowrap;
 
     strong {
       margin-right: rem(8px);
@@ -200,5 +206,12 @@
           linear-gradient(45deg, $accent-color-1, $accent-color-2);
       }
     }
+  }
+
+  svg.c-external-icon {
+    display: block;
+    font-size: 0.9em;
+    margin-left: rem(8px);
+    width: rem(16px);
   }
 }
