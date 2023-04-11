@@ -1,7 +1,7 @@
-console.log("Saabbir:", "Client side js running!");
+// console.log("Saabbir:", "Client side js running!");
 
 function setNavbarHeightCustomProperty() {
-  setTimeout(function() {
+  setTimeout(function () {
     document.documentElement.style.setProperty(
       "--navbarHeight",
       document.querySelector(".c-navbar").clientHeight + 16 + "px"
@@ -21,17 +21,18 @@ function setNavbarHeightCustomProperty() {
   }
 })();
 
-$(".c-article-nav a").on("click", function(event) {
-  event.preventDefault();
+// Smooth scrolling
+// $(".c-article-nav a").on("click", function(event) {
+//   event.preventDefault();
 
-  // Animate to target section
-  $("html, body").animate(
-    {
-      scrollTop:
-        $(this.hash).offset().top -
-        (document.querySelector(".c-navbar").clientHeight + 16)
-    },
-    450,
-    "swing"
-  );
-});
+//   // Animate to target section
+//   $("html, body").animate(
+//     {
+//       scrollTop:
+//         $(this.hash).offset().top -
+//         (document.querySelector(".c-navbar").clientHeight + 16)
+//     },
+//     450,
+//     "swing"
+//   );
+// });
