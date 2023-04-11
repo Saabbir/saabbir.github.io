@@ -6,7 +6,7 @@
           <nuxt-link to="/" class="c-breadcrumb__link">&#127968; home</nuxt-link>
           <nuxt-link to="/blog" class="c-breadcrumb__link">blog</nuxt-link>
           <nuxt-link 
-            :to="{ name: 'blog-slug', params: { slug: article.slug } }" class="c-breadcrumb__link c-breadcrumb__link--disabled">{{ article.slug }}</nuxt-link>
+            :to="{ name: 'blog-slug', params: { slug: article.slug } }" class="c-breadcrumb__link c-breadcrumb__link--disabled">{{ article.slug.replace(/-/gi, ' ') }}</nuxt-link>
         </nav>
       </div>      
     </div>
@@ -29,36 +29,36 @@
       </div>      
     </div>
     <div class="c-article-container">
-      <div class="l-wrap l-wrap--lg">
-        <div class="l-article">
-          <aside class="l-article__aside">
-            <nav class="c-article-nav">
-              <div class="c-article-nav__title">Table of contents</div>
-              <ul class="c-article-nav__menu c-custom-ul">
-                <li v-for="link of article.toc" :key="link.id">
-                  <NuxtLink :to="`#${link.id}`" :class="{ 'py-2': link.depth === 2, 'ml-2 pb-2': link.depth === 3 }">{{ link.text }}</NuxtLink>
-                </li>
-              </ul>
-            </nav>
-          </aside>
-          <article class="c-article">
-            <div class="c-article__body">
-              <nuxt-content :document="article"></nuxt-content>
-            </div>
+      <div class="l-article">
+        <!-- <aside class="l-article__aside">
+          <nav class="c-article-nav">
+            <div class="c-article-nav__title">Table of contents</div>
+            <ul class="c-article-nav__menu c-custom-ul">
+              <li v-for="link of article.toc" :key="link.id">
+                <NuxtLink :to="`#${link.id}`" :class="{ 'py-2': link.depth === 2, 'ml-2 pb-2': link.depth === 3 }">{{ link.text }}</NuxtLink>
+              </li>
+            </ul>
+          </nav>
+        </aside> -->
+        <article class="c-article">
+          <div class="c-article__body">
+            <nuxt-content :document="article"></nuxt-content>
+          </div>
 
-            <div class="c-article__footer u-mt-64">
-              <p class="c-article__updatedat u-text-right">Last updated: {{ formatDate(article.updatedAt) }}</p>
-            </div>
-          </article>
-        </div>
+          <!-- <div class="c-article__footer u-mt-64">
+            <p class="c-article__updatedat u-text-right">Last updated: {{ formatDate(article.updatedAt) }}</p>
+          </div> -->
+        </article>
+      </div>
 
-        <div class="u-my-48">
-          <hr>
-        </div>
+      <div class="u-my-48">
+        <hr>
+      </div>
 
+      <div class="l-wrap l-wrap--sm">
         <div class="u-my-48">
           <Pagination :prev="prev" :next="next" />
-        </div>      
+        </div>
       </div>
     </div>
   </div>

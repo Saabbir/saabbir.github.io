@@ -1,6 +1,10 @@
 .c-banner {
-  padding: rem(60px) rem(15px);
-  background-image: radial-gradient(circle, rgba($accent-color-1, .9), rgba($accent-color-2, .9));
+  padding: rem(60px) 0;
+  background-image: radial-gradient(
+    circle,
+    rgba($accent-color-1, 0.9),
+    rgba($accent-color-2, 0.9)
+  );
 
   @media (min-width: 500px) {
     padding: rem(60px) rem(30px);

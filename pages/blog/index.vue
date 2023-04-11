@@ -4,6 +4,15 @@
       <div class="l-wrap l-wrap--sm">
         <h1 class="c-page-title u-text-center u-text-uppercase">My writings</h1>
         <input type="text" placeholder="Search articles" v-model="searchQuery" class="c-search-input">
+        <div v-if="uniqueArticleTags.length" class="c-tags u-mt-32">
+          <nuxt-link 
+            v-for="(tag, index) in uniqueArticleTags" 
+            :key="index"
+            class="c-tag"
+            :to="`/blog/tag/${tag}`">
+            {{ tag }}
+          </nuxt-link>
+        </div>
       </div>
     </div>
     <div class="l-wrap l-wrap--sm">
@@ -46,8 +55,17 @@
         .sortBy('createdAt', 'desc')
         .fetch()
 
+
+      // Get unique article tags
+      const allArticleTags = [];
+      articles.forEach(article => {
+        allArticleTags.push(...article.tags)
+      })
+      const uniqueArticleTags = [...new Set(allArticleTags)]
+
       return {
-        articles
+        articles,
+        uniqueArticleTags
       }
     },
     data() {
@@ -67,6 +85,8 @@
 
       // Set --vh CSS custom property
       vhHack();
+
+      
     },
     watch: {
       async searchQuery(searchQuery) {

@@ -23,7 +23,7 @@ https://stackoverflow.com/questions/57879150/how-can-i-solve-error-gypgyp-errerr
 2. Make sure you're on version 5 of font-awesome and selected solid icons only.
 3. Choose an icon from here and copy it's name with `fa-` (i.e fa-external-link-alt). No need to copy `fas` part at the beginning.
 4. Go to `nuxt.config.js` and register that icon to use in the vue component.
-5. In the `fontawesome` settings, register the icon name as uppercase and remove any hyphen (i.e faExternalLinkAlt)
+5. In the `fontawesome` settings, register the icon name as camelcase and remove any hyphen (i.e faExternalLinkAlt)
 6. After that, you're ready to use that icon in your component using following syntax.
 
 ```html

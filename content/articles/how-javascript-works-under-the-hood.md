@@ -8,6 +8,8 @@ tags:
   - theory
 ---
 
+<div class="l-wrap l-wrap--sm">
+
 ### What is global?
 
 Code that aren't inside a function is global.
@@ -67,3 +69,5 @@ Functions are stored in the memory entirely in the creation phase. But variables
 - [Ultimate Guide on Execution Context by Tyler McGinnis](https://tylermcginnis.com/ultimate-guide-to-execution-contexts-hoisting-scopes-and-closures-in-javascript/)
 - [Article of Dmitry Soshnikov](http://dmitrysoshnikov.com/ecmascript/chapter-1-execution-contexts/)
 - [Medium Search on Execution Context](https://medium.com/search?q=Execution%20Context)
+
+</div><!-- /.l-wrap--sm -->

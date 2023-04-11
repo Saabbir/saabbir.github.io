@@ -16,10 +16,12 @@
   background-color: #fff;
   border-radius: rem(4px);
 
-  @media (min-width: 768px) {
-    display: grid;
-    grid-template-columns: $article-nav-width 1fr;
-    grid-gap: rem(32px);
+  &--with-aside {
+    @media (min-width: 768px) {
+      display: grid;
+      grid-template-columns: $article-nav-width 1fr;
+      grid-gap: rem(32px);
+    }
   }
 }
 
@@ -66,4 +68,8 @@
     color: #abacbf;
     font-style: italic;
   }
+}
+
+.c-article-img-container {
+  box-shadow: 0 4px 44px rgba(0, 0, 0, 0.1);
 }

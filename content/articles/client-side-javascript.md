@@ -7,6 +7,8 @@ tags:
   - dom
 ---
 
+<div class="l-wrap l-wrap--sm">
+
 ### Client-Side JavaScript, Browser environment
 
 The JavaScript language was initially created for web browsers. Since then it has evolved and become a language with many uses and platforms.
@@ -17,11 +19,11 @@ A host environment provides own objects and functions additional to the language
 
 Here’s a bird’s-eye view of what we have when JavaScript runs in a web browser:
 
-* __Root Object__ ( Global Object )
+- **Root Object** ( Global Object )
   - window
-* __DOM__ ( Document Object Model )
+- **DOM** ( Document Object Model )
   - document
-* __BOM__ ( Browser Object Model )
+- **BOM** ( Browser Object Model )
   - navigator
   - screen
   - location
@@ -70,3 +72,5 @@ The one at the bottom inherit properties and methods from the top.
 - [Browser: Document, Events, Interfaces on JavaScript Info](https://javascript.info/ui)
 - [Web APIs on MDN](https://developer.mozilla.org/en-US/docs/Web/API)
 - [DOM on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
+
+</div><!-- /.l-wrap--sm -->

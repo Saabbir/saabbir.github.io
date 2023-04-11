@@ -4,8 +4,10 @@ description: Learn enough command-line commands to work with unix and windows en
 # featuredImg: async.webp
 createdAt: 03/01/2021
 tags:
-- command-line
+  - command-line
 ---
+
+<div class="l-wrap l-wrap--md">
 
 ### Most used UNIX commands
 
@@ -771,3 +773,5 @@ tags:
     </tbody>
   </table>
 </div>
+
+</div><!-- /.l-wrap--md -->

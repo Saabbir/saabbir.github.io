@@ -18,7 +18,7 @@
           </div>
         </nuxt-link>
         <div class="c-navbar__trigger" @click="toggleNav">
-          <font-awesome-icon icon="bars"/>
+          <font-awesome-icon :icon="isMenuOpen ? 'stream' : 'bars'" />
         </div>
         <nav class="c-navbar__nav" ref="navbarNav" @click="hideNav">
           <ul class="c-navbar__menu c-navbar__menu--without-number">
@@ -91,12 +91,21 @@
 <script>
   export default {
     name: 'NavBar',
+    data() {
+      return {
+        isMenuOpen: false
+      }
+    },
     methods: {
       toggleNav() {
         this.$refs.navbarNav.classList.toggle('is-open');
+        this.isMenuOpen = !this.isMenuOpen;
+        
       },
       hideNav() {
         this.$refs.navbarNav.classList.remove('is-open');
+        this.isMenuOpen = false;
+        
       }
     }
   }

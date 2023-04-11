@@ -6,13 +6,16 @@ tags:
   - javascript
 ---
 
+<div class="l-wrap l-wrap--sm">
+
 **Inspired by**
 
 - [javascript-in-one-pic](https://github.com/coodict/javascript-in-one-pic)
 - [Learn X in Y minutes](https://learnxinyminutes.com/docs/javascript/)
 
 ## Table of contents
---------------------
+
+---
 
 <br>
 
@@ -262,3 +265,5 @@ tags:
     </li>
   </ol>
 </div>
+
+</div><!-- /.l-wrap--sm -->

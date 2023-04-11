@@ -151,7 +151,7 @@ export default {
   // Fontawesome settings
   fontawesome: {
     icons: {
-      solid: ["faBars", "faExternalLinkAlt"],
+      solid: ["faBars", "faExternalLinkAlt", "faTimes", "faStream"],
     },
   },
 

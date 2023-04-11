@@ -6,6 +6,8 @@ tags:
   - javascript
 ---
 
+<div class="l-wrap l-wrap--sm">
+
 ### Curated list of JavaScript learning resources
 
 **Blogs to follow**
@@ -47,3 +49,5 @@ tags:
 - [How Computers Work: The CPU and Memory](https://homepage.cs.uri.edu/faculty/wolfe/book/Readings/Reading04.htm)
 - [The History of the Web](https://thehistoryoftheweb.com/timeline/)
 - [A Complete Web Development Learning Path](https://academind.com/learn/web-dev/web-development-overview/)
+
+</div><!-- /.l-wrap--sm -->
