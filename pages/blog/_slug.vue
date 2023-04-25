@@ -6,7 +6,7 @@
           <nuxt-link to="/" class="c-breadcrumb__link">&#127968; home</nuxt-link>
           <nuxt-link to="/blog" class="c-breadcrumb__link">blog</nuxt-link>
           <nuxt-link 
-            :to="{ name: 'blog-slug', params: { slug: article.slug } }" class="c-breadcrumb__link c-breadcrumb__link--disabled">{{ article.slug.replace(/-/gi, ' ') }}</nuxt-link>
+            :to="{ name: 'blog-slug', params: { slug: article.slug } }" class="c-breadcrumb__link c-breadcrumb__link--disabled u-text-capitalize">{{ article.slug.replace(/-/gi, ' ') }}</nuxt-link>
         </nav>
       </div>      
     </div>
