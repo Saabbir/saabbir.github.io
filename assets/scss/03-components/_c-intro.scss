@@ -37,8 +37,10 @@
     display: none;
 
     @media (min-width: 768px) {
+      // width: rem(300px);
+      // height: rem(345px);
       width: rem(300px);
-      height: rem(345px);
+      height: rem(300px);
       display: block;
     }
 

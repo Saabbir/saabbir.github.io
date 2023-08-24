@@ -5,11 +5,11 @@
         <nuxt-link to="/" class="c-navbar__brand">
           <div class="c-navbar__brand-img-container">
             <picture>
-              <source srcset="~/assets/images/saabbir.png?webp" type="image/webp">
+              <source srcset="~/assets/images/profile-pic.jpeg?webp" type="image/webp">
               <img 
-                src="~/assets/images/saabbir.png" 
+                src="~/assets/images/profile-pic.jpeg" 
                 alt="Saabbir's Profile Picture"
-                class="c-navbar__brand-img" width="60" height="69">              
+                class="c-navbar__brand-img" width="60" height="60">              
             </picture>
           </div>
           <div class="c-navbar__brand-text">

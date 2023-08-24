@@ -43,5 +43,9 @@
     "sharp": "^0.27.0",
     "sqip-loader": "^1.0.0",
     "webp-loader": "^0.6.0"
+  },
+  "engines": {
+    "npm": "6.14.17",
+    "node": "14.21.1"
   }
 }
