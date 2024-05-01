@@ -49,16 +49,16 @@ The final winning design resulted in:
 
 <!-- Start Control | Variation Section -->
 <div class="l-wrap l-wrap--fluid">
-  <div class="u-d-grid u-grid-2-columns u-gap-16">
+  <div class="u-d-grid u-grid-2-columns-from-500 u-gap-48-16">
   <div class="c-control">
-    <h2>Control<h2>
+    <h2>Control</h2>
 
 <MarkdownImg src="work/bat-uk-homepage-product-carousel/Control.png" alt="BAT UK Homepage Product Carousel Control"></MarkdownImg>
 
   </div>
 
   <div class="c-variation">
-    <h2>Variation<h2>
+    <h2>Variation</h2>
 
 <MarkdownImg src="work/bat-uk-homepage-product-carousel/Variation.png" alt="BAT UK Homepage Product Carousel Variation"></MarkdownImg>
 
