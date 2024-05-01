@@ -24,11 +24,11 @@ tools:
 
 # Background
 
-### Evidence
+## Evidence
 
 BAT would like to experiment with introducing a product carousel onto the homepage below the hero banner, which enables users to add products to basket without the need to navigate to PLP/PDP. The main use case for this functionality is the Mix & Match offer on flavours.
 
-### Hypothesis
+## Hypothesis
 
 By introducing a product carousel on the homepage, we expect to see an uplift in sales for the featured products, and therefore an overall uplift in total transactions.
 
