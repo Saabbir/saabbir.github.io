@@ -20,6 +20,12 @@
     }
   }
 
+  &--700 {
+    @media (min-width: 732px) {
+      width: rem(700px);
+    }
+  }
+
   &--1200 {
     @media (min-width: 1232px) {
       width: rem(1200px);

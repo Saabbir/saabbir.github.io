@@ -4,7 +4,7 @@ title: CESPPA Prototype
 highlight: First version of CESPPA homepage
 description: CESPPA prototype was the initial version of the cesppa.com website, designed and built by me.
 type: Contract
-coverImg: cesppa-prototype-cover
+imgFolderName: cesppa-prototype
 featured: true
 url: https://cesppa-prototype.netlify.app/
 category:

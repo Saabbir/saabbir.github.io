@@ -2,8 +2,20 @@
 margin
 ============================================*/
 
+.u-m-0 {
+  margin: 0;
+}
+
 .u-mx-auto {
   margin-left: auto;
+  margin-right: auto;
+}
+
+.u-ml-auto {
+  margin-left: auto;
+}
+
+.u-mr-auto {
   margin-right: auto;
 }
 
@@ -93,6 +105,10 @@ margin-right
 /*============================================
 margin-bottom
 ============================================*/
+
+.u-mb-8 {
+  margin-bottom: rem(8px);
+}
 
 .u-mb-16 {
   margin-bottom: rem(16px);

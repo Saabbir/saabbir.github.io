@@ -1,6 +1,6 @@
 <template>
-  <div class="l-main">
-    <div class="section-portfolio u-py-32">
+  <div class="l-main u-d-flex u-fg-1 u-fd-column">
+    <div class="section-portfolio u-py-32 u-fg-1">
       <div class="l-wrap">
         <div class="u-mb-32">
           <h1 class="t-display-1">Featured works</h1>
@@ -16,13 +16,15 @@
               <picture>
                 <source
                   :srcset="
-                    require(`~/assets/images/work/${work.coverImg}-sm.jpg?webp`)
+                    require(`~/assets/images/work/${work.imgFolderName}/thumbnail.jpg?webp`)
                   "
                   type="image/webp"
                 />
                 <img
-                  :src="require(`~/assets/images/work/${work.coverImg}-sm.jpg`)"
-                  :alt="`${work.title}-cover`"
+                  :src="
+                    require(`~/assets/images/work/${work.imgFolderName}/thumbnail.jpg`)
+                  "
+                  :alt="`${work.title} Thumbnail`"
                   width="414"
                   height="311"
                 />
@@ -59,12 +61,12 @@ export default {
   },
   async asyncData({ params, $content }) {
     const works = await $content("work")
-      .where({ category: { $contains: "ab-testing" } })
-      .limit(6)
+      // .where({ category: { $contains: "ab-testing" } })
+      // .limit(6)
       .sortBy("createdAt", "desc")
       .fetch();
 
-    console.log("Saabbir:", "works", works);
+    // console.log("Saabbir:", "works", works);
 
     return { works };
   },

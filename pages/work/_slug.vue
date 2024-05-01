@@ -1,6 +1,7 @@
 <template>
-  <div class="l-main page-single-work">
+  <div class="l-main l-main--work-slug">
     <div class="u-py-32">
+      <!-- Portfolio header and stats -->
       <div class="l-wrap">
         <div class="c-portfolio">
           <div class="c-portfolio__header">
@@ -35,7 +36,9 @@
         </div>
       </div>
       <!-- /.l-wrap -->
-      <div class="l-wrap l-wrap--1200 l-wrap--1600">
+
+      <!-- Portfolio cover image -->
+      <div v-if="work.coverImg" class="l-wrap l-wrap--1200 l-wrap--1600">
         <div class="c-portfolio__cover-image">
           <picture>
             <source
@@ -54,13 +57,19 @@
         </div>
       </div>
       <!-- /.l-wrap--1600 -->
+
+      <!-- Nuxt content -->
       <div class="nuxt-content-wrapper">
         <nuxt-content :document="work"></nuxt-content>
       </div>
-      <div class="u-my-32">
+
+      <!-- Horizontal line -->
+      <div v-if="work.pagination" class="u-my-32">
         <hr />
       </div>
-      <div class="">
+
+      <!-- Pagination -->
+      <div v-if="work.pagination" class="">
         <div class="l-wrap">
           <Pagination
             routeName="work-slug"
