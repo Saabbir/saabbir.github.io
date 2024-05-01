@@ -1,7 +1,11 @@
 ## Last working environment
 
-Node.js = v14.21.1
-Npm = 6.14.17
+```json
+"engines": {
+  "npm": "^6.14.17",
+  "node": "^14.21.1"
+}
+```
 
 ## Operating system configuration
 
