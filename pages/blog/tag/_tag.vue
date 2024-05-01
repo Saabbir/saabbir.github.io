@@ -9,12 +9,21 @@
       </div>
       <div class="u-my-32">
         <ul class="c-articles-list">
-          <li v-for="article of articles" :key="article.slug" class="c-blog-post">
+          <li
+            v-for="article of articles"
+            :key="article.slug"
+            class="c-blog-post"
+          >
             <div>
-              <NuxtLink 
-                :to="{ name: 'blog-slug', params: { slug: article.slug } }" class="c-blog-post__link">
+              <NuxtLink
+                :to="{ name: 'blog-slug', params: { slug: article.slug } }"
+                class="c-blog-post__link"
+              >
               </NuxtLink>
-              <NuxtLink :to="{ name: 'blog-slug', params: { slug: article.slug } }" class="c-blog-post__title-link">
+              <NuxtLink
+                :to="{ name: 'blog-slug', params: { slug: article.slug } }"
+                class="c-blog-post__title-link"
+              >
                 <h2 class="c-blog-post__title">{{ article.title }}</h2>
               </NuxtLink>
               <p class="c-blog-post__text">{{ article.description }}</p>
@@ -30,50 +39,48 @@
 </template>
 
 <script>
-  import driftBot from '@/utils/driftBot';
-  import vhHack from '@/utils/vhHack';
-  
-  export default {
-    name: 'SingleTag',
-    head() {
-      return {
-        title: 'Articles tagged: ' + this.tag,
-        meta: [
-          {
-            hid: 'description',
-            name: 'description',
-            content: 'All blog posts tagged in: ' + this.tag
-          }
-        ]
-      }
-    },        
-    async asyncData({ params, $content }) {
-      const articles = await $content('articles')
-        .where({ 'tags': { $contains: params.tag } })
-        .sortBy('createdAt', 'desc')
-        .fetch()
+import driftBot from "@/utils/driftBot";
+import vhHack from "@/utils/vhHack";
 
-      return { 
-        articles, 
-        tag: params.tag 
-      }
-    },
-    methods: {
-      formatDate(date) {
-        const options = { year: 'numeric', month: 'long', day: 'numeric' }
-        return new Date(date).toLocaleDateString('en', options)
-      }
-    },
-    mounted() {
-      // Load drift widget after window finished loading
-      window.onload = driftBot;
+export default {
+  name: "SingleTag",
+  head() {
+    return {
+      title: "Articles tagged: " + this.tag,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: "All blog posts tagged in: " + this.tag,
+        },
+      ],
+    };
+  },
+  async asyncData({ params, $content }) {
+    const articles = await $content("articles")
+      .where({ tags: { $contains: params.tag } })
+      .sortBy("createdAt", "desc")
+      .fetch();
 
-      // Set --vh CSS custom property
-      vhHack();
+    return {
+      articles,
+      tag: params.tag,
+    };
+  },
+  methods: {
+    formatDate(date) {
+      const options = { year: "numeric", month: "long", day: "numeric" };
+      return new Date(date).toLocaleDateString("en", options);
     },
-  }
+  },
+  mounted() {
+    // Load drift widget after window finished loading
+    window.onload = driftBot;
+
+    // Set --vh CSS custom property
+    vhHack();
+  },
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -8,7 +8,8 @@ coverImg: jump-work-cover
 featured: true
 url: https://jump-work-html.netlify.app/
 category:
-  - Site Templates, Landing Page
+  - Site Templates
+  - Landing Page
 tools:
   - HTML
   - CSS

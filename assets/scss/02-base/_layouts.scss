@@ -20,6 +20,18 @@
     }
   }
 
+  &--1200 {
+    @media (min-width: 1232px) {
+      width: rem(1200px);
+    }
+  }
+
+  &--1600 {
+    @media (min-width: 1632px) {
+      width: rem(1600px);
+    }
+  }
+
   &--fluid {
     width: 100%;
   }
@@ -33,6 +45,12 @@
 
   @media (min-width: 1280px) {
     min-height: 100vh;
+  }
+
+  .l-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
   }
 }
 

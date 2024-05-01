@@ -3,7 +3,7 @@
 Node.js = v14.21.1
 Npm = 6.14.17
 
-## Operating sytem configuration
+## Operating system configuration
 
 Edition Windows 11 Home Single Language
 Version 22H2

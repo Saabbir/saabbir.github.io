@@ -8,7 +8,8 @@ coverImg: cesppa-prototype-cover
 featured: true
 url: https://cesppa-prototype.netlify.app/
 category:
-  - Site Templates, Landing Page
+  - Site Templates
+  - Landing Page
 tools:
   - HTML
   - CSS

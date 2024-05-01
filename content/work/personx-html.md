@@ -8,7 +8,8 @@ coverImg: personx-cover
 featured: true
 url: https://saabbir.gitlab.io/personx-themeforest-live/
 category:
-  - Site Templates, Landing Page
+  - Site Templates
+  - Landing Page
 tools:
   - HTML
   - CSS

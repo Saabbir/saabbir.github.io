@@ -8,7 +8,8 @@ coverImg: cesppa-redesign-v2-cover
 featured: true
 url: https://cesppa-redesign-v2.netlify.app/
 category:
-  - Site Templates, Landing Page
+  - Site Templates
+  - Landing Page
 tools:
   - HTML
   - CSS

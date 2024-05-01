@@ -22,6 +22,10 @@ npm install
 
 - Run `npm run dev` from root folder to serve with hot reload at _localhost:3000_
 
+```sh
+npm run dev
+```
+
 ### Build setup
 
 ```bash
