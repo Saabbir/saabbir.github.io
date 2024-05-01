@@ -1,0 +1,1 @@
+window.__NUXT__=(function(a){return {staticAssetsBase:"\u002F_nuxt\u002Fstatic\u002F1714601999",layout:"default",error:a,serverRendered:true,routePath:"\u002Fwork\u002Fcesppa-redesign-v2",config:{_app:{basePath:"\u002F",assetsPath:"\u002F_nuxt\u002F",cdnURL:a},content:{dbHash:"0069010a"}}}}(null));
