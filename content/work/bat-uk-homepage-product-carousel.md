@@ -28,7 +28,7 @@ tools:
 
 The current website structure presents a discoverability challenge for users seeking best-selling products. While most traffic lands on the homepage, finding these products requires an additional step of navigating to a dedicated "collection" page. This extra step can lead to user frustration and abandonment, as some visitors may not be willing to invest the additional effort.
 
-## The Solutions
+## The Solution
 
 To address the discoverability challenge and improve user experience, we implemented a strategic product carousel on the homepage. This carousel showcases a curated selection of best-selling products, allowing users to browse and interact with these high-performing items directly from the landing page.
 
@@ -49,7 +49,7 @@ The final winning design resulted in:
 
 <!-- Start Control | Variation Section -->
 <div class="l-wrap l-wrap--fluid">
-  <div class="u-d-grid u-grid-2-columns u-gap-32">
+  <div class="u-d-grid u-grid-2-columns u-gap-16">
   <div class="c-control">
     <h2>Control<h2>
 
