@@ -51,8 +51,10 @@
     }
 
     > dl:last-child {
-      grid-column-start: 1;
-      grid-column-end: -1;
+      @media (max-width: 599px) {
+        grid-column-start: 1;
+        grid-column-end: -1;
+      }
     }
   }
 }
