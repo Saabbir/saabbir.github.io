@@ -10,6 +10,10 @@
 
 .c-article-container {
   margin: rem(32px) 0;
+
+  @media (min-width: 1280px) {
+    margin: rem(64px) 0;
+  }
 }
 
 .l-article {

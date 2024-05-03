@@ -3,10 +3,19 @@
   display: none;
   // line-height: 1;
   // background-color: #fafafa;
-  // border-bottom: rem(1px) solid $border-color;
+  // border-top: rem(1px) solid $border-color;
 
   @media (min-width: 768px) {
     display: block;
+    padding: rem(24px) 0;
+  }
+
+  &__nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: rem(8px) 0;
   }
 
   &__link {

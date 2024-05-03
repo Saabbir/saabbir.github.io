@@ -1,6 +1,6 @@
 ---
 createdAt: 22/09/2023
-title: BAT UK Homepage Product Carousel
+title: Homepage Product Carousel
 highlight: An A/B test hypothesis to perform on BAT UK site
 description:
 type: A/B Testing
@@ -21,8 +21,8 @@ tools:
 
 <!-- Start Problem Section -->
 <div class="l-wrap">
-  <div class="u-my-48">
-  <div class="u-maxw-700">
+  <div class="u-my-64">
+  <div class="u-maxw-700 u-mx-auto">
 
 ## The Problem
 

@@ -1,6 +1,6 @@
 .c-contact-form-container {
   background-color: rgba(0, 197, 142, 0.1);
-  padding: rem(32px);
+  padding: rem(48px) rem(32px);
   border-radius: rem(4px);
   overflow: hidden;
   max-width: 700px;
@@ -63,6 +63,12 @@
     &:not(:last-child) {
       margin-bottom: rem(30px);
     }
+  }
+
+  &__submit-button {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: rem(16px);
   }
 
   ::-webkit-input-placeholder {

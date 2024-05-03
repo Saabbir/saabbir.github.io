@@ -1,21 +1,21 @@
 <template>
   <div class="l-main l-main--work-slug">
-    <div class="u-py-32">
+    <div class="u-py-64">
       <!-- Portfolio header and stats -->
       <div class="l-wrap">
         <div class="c-portfolio">
-          <div class="c-portfolio__header">
+          <div class="c-portfolio__header u-text-center">
             <h1 class="t-display-1">{{ work.title }}</h1>
-            <h3 v-if="work.highlight" class="u-mt-16 u-text-gray">
+            <h3 v-if="work.highlight" class="u-mt-16 u-text-gray u-fw-500">
               {{ work.highlight }}
             </h3>
-            <div class="c-copy">
+            <div class="c-copy u-mx-auto">
               <p v-if="work.description" class="u-mt-32 t-18">
                 {{ work.description }}
               </p>
             </div>
           </div>
-          <div class="c-portfolio__stats">
+          <div class="c-portfolio__stats u-text-center">
             <dl v-if="work.type">
               <dt>Type</dt>
               <dd>{{ work.type }}</dd>
@@ -25,7 +25,7 @@
               <dd v-for="tool in work.tools" :key="tool">{{ tool }}</dd>
             </dl>
             <dl v-if="work.url">
-              <dt>Live</dt>
+              <dt class="u-d-none">Live</dt>
               <dd>
                 <a :href="work.url" class="c-button" target="_blank"
                   >View Live</a
@@ -38,7 +38,7 @@
       <!-- /.l-wrap -->
 
       <!-- Portfolio cover image -->
-      <div v-if="work.imgFolderName" class="l-wrap l-wrap--1200 l-wrap--1600">
+      <div v-if="work.imgFolderName" class="l-wrap l-wrap--1200">
         <div class="c-portfolio__cover-image">
           <picture>
             <source

@@ -1,32 +1,44 @@
 <template>
   <div class="l-main">
-    <div class="c-breadcrumb">
-      <div class="l-wrap">
-        <nav class="c-breadcrumb__nav">
-          <nuxt-link to="/" class="c-breadcrumb__link">&#127968; home</nuxt-link>
-          <nuxt-link to="/blog" class="c-breadcrumb__link">blog</nuxt-link>
-          <nuxt-link 
-            :to="{ name: 'blog-slug', params: { slug: article.slug } }" class="c-breadcrumb__link c-breadcrumb__link--disabled u-text-capitalize">{{ article.slug.replace(/-/gi, ' ') }}</nuxt-link>
-        </nav>
-      </div>      
-    </div>
-    <div class="c-blog-post-banner" 
+    <div
+      class="c-blog-post-banner"
       :style="{
-        backgroundImage: `url(${articleImg})`
-      }">     
+        backgroundImage: `url(${articleImg})`,
+      }"
+    >
       <div class="l-wrap">
-        <p class="c-blog-post-banner__date">{{ formatDate(article.createdAt) }}</p>
-        <h1 class="c-page-title u-text-center u-text-uppercase u-mt-20 u-mb-40">{{ article.title }}</h1>
+        <p class="c-blog-post-banner__date">
+          {{ formatDate(article.createdAt) }}
+        </p>
+        <h1 class="c-page-title u-text-center u-text-uppercase u-mt-20 u-mb-40">
+          {{ article.title }}
+        </h1>
         <div v-if="article.tags" class="c-tags">
-          <nuxt-link 
-            v-for="(tag, index) in article.tags" 
+          <nuxt-link
+            v-for="(tag, index) in article.tags"
             :key="index"
             class="c-tag"
-            :to="`/blog/tag/${tag}`">
+            :to="`/blog/tag/${tag}`"
+          >
             {{ tag }}
           </nuxt-link>
         </div>
-      </div>      
+      </div>
+    </div>
+    <div class="c-breadcrumb">
+      <div class="l-wrap">
+        <nav class="c-breadcrumb__nav">
+          <nuxt-link to="/" class="c-breadcrumb__link"
+            >&#127968; home</nuxt-link
+          >
+          <nuxt-link to="/blog" class="c-breadcrumb__link">blog</nuxt-link>
+          <nuxt-link
+            :to="{ name: 'blog-slug', params: { slug: article.slug } }"
+            class="c-breadcrumb__link c-breadcrumb__link--disabled u-text-capitalize"
+            >{{ article.slug.replace(/-/gi, " ") }}</nuxt-link
+          >
+        </nav>
+      </div>
     </div>
     <div class="c-article-container">
       <div class="l-article">
@@ -52,7 +64,7 @@
       </div>
 
       <div class="u-my-48">
-        <hr>
+        <hr />
       </div>
 
       <div class="l-wrap l-wrap--sm">
@@ -65,58 +77,58 @@
 </template>
 
 <script>
-  import driftBot from '@/utils/driftBot';
-  import vhHack from '@/utils/vhHack';
-  
-  export default {
-    name: 'BlogPost',
-    head() {
-      return {
-        title: this.article.title,
-        meta: [
-          {
-            hid: 'description',
-            name: 'description',
-            content: this.article.description
-          }
-        ]
-      }
-    },        
-    async asyncData({ $content, params }) {
-      const article = await $content('articles', params.slug).fetch()
+import driftBot from "@/utils/driftBot";
+import vhHack from "@/utils/vhHack";
 
-      const [prev, next] = await $content('articles')
-        .only(['title', 'slug'])
-        .sortBy('createdAt', 'desc')
-        .surround(params.slug)
-        .fetch()
+export default {
+  name: "BlogPost",
+  head() {
+    return {
+      title: this.article.title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.article.description,
+        },
+      ],
+    };
+  },
+  async asyncData({ $content, params }) {
+    const article = await $content("articles", params.slug).fetch();
 
-      return {
-        article,
-        prev,
-        next
-      }
-    },
-    methods: {
-      formatDate(date) {
-        const options = { year: 'numeric', month: 'long', day: 'numeric' }
-        return new Date(date).toLocaleDateString('en', options)
-      }
-    },
-    computed: {
-      articleImg() {
-        if (this.article.featuredImg) {
-          return require(`~/assets/images/article-featured-images/${this.article.featuredImg}`)
-        }
-        return require(`~/assets/images/article-featured-images/default.png`)
-      }
-    },
-    mounted() {
-      // Load drift widget after window finished loading
-      window.onload = driftBot;
+    const [prev, next] = await $content("articles")
+      .only(["title", "slug"])
+      .sortBy("createdAt", "desc")
+      .surround(params.slug)
+      .fetch();
 
-      // Set --vh CSS custom property
-      vhHack();
+    return {
+      article,
+      prev,
+      next,
+    };
+  },
+  methods: {
+    formatDate(date) {
+      const options = { year: "numeric", month: "long", day: "numeric" };
+      return new Date(date).toLocaleDateString("en", options);
     },
-  }
+  },
+  computed: {
+    articleImg() {
+      if (this.article.featuredImg) {
+        return require(`~/assets/images/article-featured-images/${this.article.featuredImg}`);
+      }
+      return require(`~/assets/images/article-featured-images/default.png`);
+    },
+  },
+  mounted() {
+    // Load drift widget after window finished loading
+    window.onload = driftBot;
+
+    // Set --vh CSS custom property
+    vhHack();
+  },
+};
 </script>

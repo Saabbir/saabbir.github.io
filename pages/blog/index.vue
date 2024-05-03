@@ -1,7 +1,7 @@
 <template>
   <div class="l-main">
     <div class="c-banner">
-      <div class="l-wrap">
+      <div class="l-wrap l-wrap--sm">
         <h1 class="c-page-title u-text-center u-text-uppercase">My writings</h1>
         <input
           type="text"
@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <div class="l-wrap">
+    <div class="l-wrap l-wrap--sm">
       <div class="u-py-32">
         <ul class="c-articles-list" v-if="articles.length">
           <li

@@ -1,22 +1,5 @@
 <template>
   <div class="l-main">
-    <div class="c-breadcrumb">
-      <div class="l-wrap">
-        <nav class="c-breadcrumb__nav">
-          <nuxt-link to="/" class="c-breadcrumb__link"
-            >&#127968; home</nuxt-link
-          >
-          <nuxt-link to="/snippets" class="c-breadcrumb__link"
-            >snippets</nuxt-link
-          >
-          <nuxt-link
-            :to="{ name: 'snippets-slug', params: { slug: snippet.slug } }"
-            class="c-breadcrumb__link c-breadcrumb__link--disabled u-text-capitalize"
-            >{{ snippet.slug.split("-").join(" ") }}</nuxt-link
-          >
-        </nav>
-      </div>
-    </div>
     <div
       class="c-blog-post-banner"
       :style="{
@@ -40,6 +23,23 @@
             {{ tag }}
           </nuxt-link>
         </div>
+      </div>
+    </div>
+    <div class="c-breadcrumb">
+      <div class="l-wrap">
+        <nav class="c-breadcrumb__nav">
+          <nuxt-link to="/" class="c-breadcrumb__link"
+            >&#127968; home</nuxt-link
+          >
+          <nuxt-link to="/snippets" class="c-breadcrumb__link"
+            >snippets</nuxt-link
+          >
+          <nuxt-link
+            :to="{ name: 'snippets-slug', params: { slug: snippet.slug } }"
+            class="c-breadcrumb__link c-breadcrumb__link--disabled u-text-capitalize"
+            >{{ snippet.slug.split("-").join(" ") }}</nuxt-link
+          >
+        </nav>
       </div>
     </div>
     <div class="c-article-container">

@@ -1,6 +1,6 @@
 <template>
   <div class="l-main u-d-flex u-fg-1 u-fd-column">
-    <div class="section-portfolio u-py-32 u-fg-1">
+    <div class="section-portfolio u-py-48 u-fg-1">
       <div class="l-wrap">
         <div class="u-mb-32">
           <h1 class="t-display-1">Featured works</h1>
