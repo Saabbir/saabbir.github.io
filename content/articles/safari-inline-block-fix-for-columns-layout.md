@@ -12,7 +12,7 @@ tags:
 
 <div class="l-wrap l-wrap--sm">
 
-### The problem
+## The problem
 
 Using css columns property gives us different results for Chrome and Safari. Check below gif file.
 
@@ -31,7 +31,7 @@ Using css columns property gives us different results for Chrome and Safari. Che
 
 Look closely to the above gif file and you'll see the border positions differently if we toggle <code>display: inline-block</code> rule. In this case, border-bottom for last child of the left column goes above the first child of the right column. This issue only occurs in Safari browser.
 
-### The finding
+## The finding
 
 Border bottom works incorrectly in Safari while using CSS columns for layout.
 

@@ -78,6 +78,10 @@ $max-card-width: 414px;
 
 .section-portfolio {
   background-color: $body-bg-alt;
+
+  @media (prefers-color-scheme: dark) {
+    background: inherit;
+  }
 }
 
 .l-works {
@@ -103,6 +107,11 @@ $max-card-width: 414px;
   box-shadow: 0 0 0 rem(1px) $border-color;
   transition: 0.3s;
   max-width: $max-card-width;
+
+  @media (prefers-color-scheme: dark) {
+    background: #393e46;
+    box-shadow: none;
+  }
 
   &:hover {
     transform: scale(1.05);

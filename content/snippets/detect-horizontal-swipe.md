@@ -7,6 +7,12 @@ tags:
   - javascript
 ---
 
+<div class="c-code-wrapper">
+  <div class="c-code-wrapper__header">
+    <div class="c-code-wrapper__title">Detect horizontal swipe</div>
+    <div class="c-code-wrapper__copy">Copy</div>
+  </div>
+
 ```js [js]
 // Detect horizontal swipe
 !(function detectHorizontalSwipe() {
@@ -20,16 +26,18 @@ tags:
     if (touchendX > touchstartX) alert("swiped right!");
   }
 
-  body.addEventListener("touchstart", e => {
+  body.addEventListener("touchstart", (e) => {
     touchstartX = e.changedTouches[0].screenX;
   });
 
-  body.addEventListener("touchend", e => {
+  body.addEventListener("touchend", (e) => {
     touchendX = e.changedTouches[0].screenX;
     handleGesture();
   });
 })();
 ```
+
+</div>
 
 ## Further reading
 

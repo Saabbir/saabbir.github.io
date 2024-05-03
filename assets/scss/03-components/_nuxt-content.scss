@@ -157,3 +157,19 @@
     line-height: 1;
   }
 }
+
+pre[class*="language-"] {
+  margin-top: 0 !important;
+}
+
+.c-code-wrapper__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: rem(8px) rem(16px);
+  background: #393e46;
+}
+
+.c-code-wrapper__copy {
+  cursor: pointer;
+}

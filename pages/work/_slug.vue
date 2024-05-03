@@ -38,17 +38,19 @@
       <!-- /.l-wrap -->
 
       <!-- Portfolio cover image -->
-      <div v-if="work.coverImg" class="l-wrap l-wrap--1200 l-wrap--1600">
+      <div v-if="work.imgFolderName" class="l-wrap l-wrap--1200 l-wrap--1600">
         <div class="c-portfolio__cover-image">
           <picture>
             <source
               :srcset="
-                require(`~/assets/images/work/${work.coverImg}.jpg?webp`)
+                require(`~/assets/images/work/${work.imgFolderName}/cover.jpg?webp`)
               "
               type="image/webp"
             />
             <img
-              :src="require(`~/assets/images/work/${work.coverImg}.jpg`)"
+              :src="
+                require(`~/assets/images/work/${work.imgFolderName}/cover.jpg`)
+              "
               :alt="`${work.title}-cover`"
               width="1600"
               height="1200"

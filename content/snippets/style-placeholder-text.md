@@ -8,7 +8,15 @@ tags:
   - scss
 ---
 
+<div class="c-code-wrapper">
+  <div class="c-code-wrapper__header">
+    <div class="c-code-wrapper__title">Style placeholder text</div>
+    <div class="c-code-wrapper__copy">Copy</div>
+  </div>
+
 ```css [css]
+/* Style placeholder text */
+
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: red;
@@ -26,6 +34,8 @@ tags:
   color: red;
 }
 ```
+
+</div>
 
 ## Further reading
 
