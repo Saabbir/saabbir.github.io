@@ -158,18 +158,21 @@
   }
 }
 
-pre[class*="language-"] {
-  margin-top: 0 !important;
-}
+.c-code-wrapper {
+  pre[class*="language-"] {
+    margin-top: 0 !important;
+  }
 
-.c-code-wrapper__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: rem(8px) rem(16px);
-  background: #393e46;
-}
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: rem(8px) rem(16px);
+    background: #393e46;
+    color: #e0e0e0;
+  }
 
-.c-code-wrapper__copy {
-  cursor: pointer;
+  &__copy {
+    cursor: pointer;
+  }
 }
