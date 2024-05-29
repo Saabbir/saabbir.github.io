@@ -1,7 +1,7 @@
 <template>
-  <div class="l-main">
-    <div class="c-banner">
-      <div class="l-wrap l-wrap--sm">
+  <div class="sections">
+    <section class="section section--banner c-banner">
+      <div class="l-wrap l-wrap--700">
         <h1 class="c-page-title u-text-center u-text-uppercase">My writings</h1>
         <input
           type="text"
@@ -20,38 +20,40 @@
           </nuxt-link>
         </div>
       </div>
-    </div>
-    <div class="l-wrap l-wrap--sm">
-      <div class="u-py-32">
-        <ul class="c-articles-list" v-if="articles.length">
-          <li
-            v-for="article of articles"
-            :key="article.slug"
-            class="c-blog-post"
-          >
-            <div>
-              <NuxtLink
-                :to="{ name: 'blog-slug', params: { slug: article.slug } }"
-                class="c-blog-post__link"
-              >
-              </NuxtLink>
-              <NuxtLink
-                :to="{ name: 'blog-slug', params: { slug: article.slug } }"
-              >
-                <h2 class="c-blog-post__title">{{ article.title }}</h2>
-              </NuxtLink>
-              <p class="c-blog-post__text">{{ article.description }}</p>
-            </div>
-            <div class="c-blog-post__date">
-              {{ formatDate(article.createdAt) }}
-            </div>
-          </li>
-        </ul>
-        <p v-else class="no-article-matched">
-          No articles matched to your search query!
-        </p>
+    </section>
+    <section class="section section--blog u-py-0">
+      <div class="l-wrap l-wrap--700">
+        <div class="u-py-32">
+          <ul class="c-articles-list" v-if="articles.length">
+            <li
+              v-for="article of articles"
+              :key="article.slug"
+              class="c-blog-post"
+            >
+              <div>
+                <NuxtLink
+                  :to="{ name: 'blog-slug', params: { slug: article.slug } }"
+                  class="c-blog-post__link"
+                >
+                </NuxtLink>
+                <NuxtLink
+                  :to="{ name: 'blog-slug', params: { slug: article.slug } }"
+                >
+                  <h2 class="c-blog-post__title">{{ article.title }}</h2>
+                </NuxtLink>
+                <p class="c-blog-post__text">{{ article.description }}</p>
+              </div>
+              <div class="c-blog-post__date">
+                {{ formatDate(article.createdAt) }}
+              </div>
+            </li>
+          </ul>
+          <p v-else class="no-article-matched">
+            No articles matched to your search query!
+          </p>
+        </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -69,6 +71,7 @@ export default {
   async asyncData({ $content }) {
     const articles = await $content("articles")
       .sortBy("createdAt", "desc")
+      .where({ publish: true })
       .fetch();
 
     // Get unique article tags
@@ -105,6 +108,7 @@ export default {
     async searchQuery(searchQuery) {
       if (!searchQuery) {
         this.articles = await this.$content("articles")
+          .where({ publish: true })
           .sortBy("createdAt", "desc")
           .fetch();
         return;
@@ -112,6 +116,7 @@ export default {
       this.articles = await this.$content("articles")
         .limit(6)
         .search(searchQuery)
+        .where({ publish: true })
         .sortBy("createdAt", "desc")
         .fetch();
     },

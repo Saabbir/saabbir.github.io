@@ -1,6 +1,6 @@
 <template>
   <div class="c-navbar">
-    <div class="l-wrap l-wrap--fluid">
+    <div class="l-wrap">
       <div class="c-navbar__content">
         <nuxt-link to="/" class="c-navbar__brand">
           <div class="c-navbar__brand-img-container">
@@ -34,9 +34,9 @@
                 <span>home</span>
               </nuxt-link>
             </li>
-            <!-- <li class="c-navbar__menu-item">
-              <nuxt-link 
-                to="/work" 
+            <li class="c-navbar__menu-item">
+              <nuxt-link
+                to="/work"
                 exact
                 class="c-navbar__menu-link"
                 :class="{ 'nuxt-link-active': $route.path.includes('/work') }"
@@ -44,13 +44,9 @@
                 <strong>02</strong>
                 <span>work</span>
               </nuxt-link>
-            </li> -->
+            </li>
             <!-- <li class="c-navbar__menu-item">
-              <nuxt-link 
-                to="/about"
-                exact 
-                class="c-navbar__menu-link"
-              >
+              <nuxt-link to="/about" exact class="c-navbar__menu-link">
                 <strong>03</strong>
                 <span>about</span>
               </nuxt-link>
@@ -59,6 +55,19 @@
               <nuxt-link to="/contact" exact class="c-navbar__menu-link">
                 <strong>04</strong>
                 <span>contact</span>
+              </nuxt-link>
+            </li>
+            <li class="c-navbar__menu-item">
+              <nuxt-link
+                to="/blog"
+                exact
+                class="c-navbar__menu-link"
+                :class="{
+                  'nuxt-link-active': $route.path.includes('/blog'),
+                }"
+              >
+                <strong>05</strong>
+                <span>blog</span>
               </nuxt-link>
             </li>
             <li class="c-navbar__menu-item">

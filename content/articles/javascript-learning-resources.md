@@ -2,11 +2,12 @@
 title: Curated list of JavaScript learning resources
 description: The best resources to learn JavaScript.
 createdAt: 01/01/2021
+publish: false
 tags:
   - javascript
 ---
 
-<div class="l-wrap l-wrap--sm">
+<div class="l-wrap l-wrap--700">
 
 ### Curated list of JavaScript learning resources
 
@@ -50,4 +51,4 @@ tags:
 - [The History of the Web](https://thehistoryoftheweb.com/timeline/)
 - [A Complete Web Development Learning Path](https://academind.com/learn/web-dev/web-development-overview/)
 
-</div><!-- /.l-wrap--sm -->
+</div><!-- /.l-wrap--700 -->

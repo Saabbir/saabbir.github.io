@@ -6,6 +6,7 @@ description: PersonX is a modern looking personal template created using Bootstr
 type: Job
 imgFolderName: personx
 featured: true
+publish: false
 url: https://saabbir.gitlab.io/personx-themeforest-live/
 category:
   - Site Templates

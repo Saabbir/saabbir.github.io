@@ -1,20 +1,20 @@
 .c-navbar {
-  padding: rem(16px) 0;
   background-color: #fff;
+  padding: rem(16px);
   // border-bottom: rem(1px) solid $border-color;
   position: sticky;
   top: 0;
   z-index: $z-index-navbar;
 
-  @media (min-width: 1440px) {
-    padding: rem(24px) 0;
+  @media (min-width: 768px) {
+    padding: rem(24px) rem(32px);
   }
 
   &__content {
-    display: flex;
     align-items: center;
-    justify-content: space-between;
+    display: flex;
     gap: rem(16px);
+    justify-content: space-between;
 
     @media (min-width: 768px) {
       display: grid;
@@ -24,8 +24,8 @@
 
   &__trigger {
     cursor: pointer;
-    font-size: 1.3em;
     display: block;
+    font-size: 1.3em;
     line-height: 1;
 
     @media (min-width: 768px) {
@@ -39,32 +39,32 @@
   }
 
   &__nav {
-    display: flex;
     align-items: center;
-    justify-content: flex-end;
+    display: flex;
     flex-wrap: wrap;
+    justify-content: flex-end;
 
     @media (max-width: 767px) {
-      position: absolute;
-      left: 0;
-      top: calc(100% + 1px);
-      max-height: calc(100vh - 81px);
       background-color: #fff;
-      z-index: 1;
       border-bottom: rem(1px) solid #eee;
       justify-content: flex-start;
+      left: 0;
+      max-height: calc(100vh - 81px);
+      opacity: 0;
+      overflow-y: auto;
+      position: absolute;
+      top: calc(100% + 1px);
       transform: scaleY(0);
       transform-origin: top;
       transition: 0.2s;
       visibility: hidden;
-      opacity: 0;
       width: 100%;
-      overflow-y: auto;
+      z-index: 1;
 
       &.is-open {
         opacity: 1;
-        visibility: visible;
         transform: scaleY(1);
+        visibility: visible;
       }
     }
 
@@ -74,11 +74,11 @@
   }
 
   &__brand {
-    display: grid;
-    grid-template-columns: rem(48px) 1fr;
-    gap: rem(12px);
     align-items: center;
     color: $text-color-dark;
+    display: grid;
+    gap: rem(12px);
+    grid-template-columns: rem(48px) 1fr;
 
     &:hover,
     &:focus {
@@ -86,38 +86,39 @@
     }
 
     @media (min-width: 768px) {
-      grid-template-columns: rem(60px) 1fr;
       gap: rem(16px);
+      grid-template-columns: rem(60px) 1fr;
     }
   }
 
   &__brand-img-container {
-    width: rem(48px);
-    height: rem(48px);
-    overflow: hidden;
-    border-radius: 50%;
+    align-items: center;
     background-color: #fff;
+    border-radius: 50%;
     box-shadow: 0 rem(2px) rem(4px) rgba(0, 0, 0, 0.4);
     display: flex;
-    align-items: center;
+    height: rem(48px);
     justify-content: center;
+    overflow: hidden;
+    width: rem(48px);
 
     @media (min-width: 768px) {
-      width: rem(60px);
       height: rem(60px);
+      width: rem(60px);
     }
   }
 
   &__brand-img {
     display: block;
-    width: 100%;
     height: 100%;
     object-fit: contain;
+    width: 100%;
   }
 
   &__brand-text {
     display: grid;
     font-size: rem(18px);
+    white-space: nowrap;
   }
 
   &__brand-text-name {
@@ -125,16 +126,16 @@
   }
 
   &__brand-text-role {
-    font-size: 0.8em;
     color: $text-color-gray;
+    font-size: 0.8em;
   }
 
   &__menu {
     display: flex;
     flex-wrap: wrap;
+    list-style: none;
     margin: 0;
     padding: 0;
-    list-style: none;
 
     @media (max-width: 767px) {
       flex-direction: column;
@@ -151,13 +152,14 @@
   }
 
   &__menu-link {
-    padding: rem(16px);
+    align-items: center;
     color: $text-color-gray;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
     font-size: rem(16px);
+    font-weight: 700;
+    justify-content: center;
+    padding: rem(16px);
+    position: relative;
     white-space: nowrap;
 
     strong {
@@ -169,14 +171,14 @@
     }
 
     &::after {
-      content: "";
-      position: absolute;
-      height: rem(3px);
       background-color: $text-color-gray;
-      left: rem(16px);
-      right: rem(16px);
-      display: block;
       bottom: 0;
+      content: "";
+      display: block;
+      height: rem(3px);
+      left: rem(16px);
+      position: absolute;
+      right: rem(16px);
       transform: scaleX(0);
       transform-origin: left;
       transition: 0.3s;
@@ -198,12 +200,12 @@
 
     &.nuxt-link-active {
       color: $accent-color-2;
-      // font-weight: bold;
+      // font-weight: 700;
 
       &::after {
-        transform: scaleX(1);
         background: $accent-color-1
           linear-gradient(45deg, $accent-color-1, $accent-color-2);
+        transform: scaleX(1);
       }
     }
   }

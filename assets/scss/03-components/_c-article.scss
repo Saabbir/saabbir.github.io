@@ -9,10 +9,10 @@
 }
 
 .c-article-container {
-  margin: rem(32px) 0;
+  padding: rem(32px) rem(16px);
 
-  @media (min-width: 1280px) {
-    margin: rem(64px) 0;
+  @media (min-width: 768px) {
+    padding: rem(64px) rem(32px);
   }
 }
 
@@ -22,22 +22,22 @@
   &--with-aside {
     @media (min-width: 768px) {
       display: grid;
-      grid-template-columns: $article-nav-width 1fr;
       grid-gap: rem(32px);
+      grid-template-columns: $article-nav-width 1fr;
     }
   }
 }
 
 .l-article__aside {
-  border: rem(1px) solid $border-color;
   background-color: #fff;
+  border: rem(1px) solid $border-color;
   margin-bottom: rem(32px);
 
   @media (min-width: 768px) {
+    align-self: flex-start;
     position: sticky;
     top: var(--navbarHeight, 98px);
     z-index: 1;
-    align-self: flex-start;
   }
 
   @media (min-width: 1440px) {
@@ -46,8 +46,8 @@
 }
 
 .c-article {
-  width: 100%;
   overflow: auto;
+  width: 100%;
 
   &__title {
     font-size: rem(48px);

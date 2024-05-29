@@ -166,20 +166,38 @@ margin-left
 padding
 ============================================*/
 
+.u-p-0 {
+  padding: 0;
+}
+
+.u-px-0 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.u-py-0 {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
 .u-py-64 {
-  padding: rem(64px) 0;
+  padding-bottom: rem(64px);
+  padding-top: rem(64px);
 }
 
 .u-py-40 {
-  padding: rem(40px) 0;
+  padding-bottom: rem(40px);
+  padding-top: rem(40px);
 }
 
 .u-py-32 {
-  padding: rem(32px) 0;
+  padding-bottom: rem(32px);
+  padding-top: rem(32px);
 }
 
 .u-py-48 {
-  padding: rem(48px) 0;
+  padding-bottom: rem(48px);
+  padding-top: rem(48px);
 }
 
 /*============================================

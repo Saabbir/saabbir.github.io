@@ -1,44 +1,42 @@
 <template>
-  <div class="l-main u-d-flex u-fg-1 u-fd-column">
-    <div class="section-portfolio u-py-48 u-fg-1">
-      <div class="l-wrap">
-        <div class="u-mb-32">
-          <h1 class="t-display-1">Featured works</h1>
-          <p class="u-mt-16 t-18">Selected projects.</p>
-        </div>
-        <div :class="{ 'l-works': true, 'l-works--1': works.length === 1 }">
-          <div v-for="work of works" :key="work.slug" class="c-portfolio-card">
-            <nuxt-link
-              :to="{ name: 'work-slug', params: { slug: work.slug } }"
-              class="c-portfolio-card__link"
-            ></nuxt-link>
-            <figure class="c-portfolio-card__figure">
-              <picture>
-                <source
-                  :srcset="
-                    require(`~/assets/images/work/${work.imgFolderName}/thumbnail.jpg?webp`)
-                  "
-                  type="image/webp"
-                />
-                <img
-                  :src="
-                    require(`~/assets/images/work/${work.imgFolderName}/thumbnail.jpg`)
-                  "
-                  :alt="`${work.title} Thumbnail`"
-                  width="414"
-                  height="311"
-                />
-              </picture>
-              <figcaption class="c-portfolio-card__figcaption">
-                <h5 class="c-portfolio-card__title">{{ work.title }}</h5>
-                <p>{{ work.highlight }}</p>
-              </figcaption>
-            </figure>
-          </div>
+  <section class="section section--portfolio u-bg-gray-dark">
+    <div class="l-wrap">
+      <header class="section__header u-text-center">
+        <h1 class="t-display-1">Featured works</h1>
+        <p class="u-mt-16 t-18">Selected projects.</p>
+      </header>
+      <div :class="{ 'l-works': true, 'l-works--1': works.length === 1 }">
+        <div v-for="work of works" :key="work.slug" class="c-portfolio-card">
+          <nuxt-link
+            :to="{ name: 'work-slug', params: { slug: work.slug } }"
+            class="c-portfolio-card__link"
+          ></nuxt-link>
+          <figure class="c-portfolio-card__figure">
+            <picture>
+              <source
+                :srcset="
+                  require(`~/assets/images/work/${work.imgFolderName}/thumbnail.jpg?webp`)
+                "
+                type="image/webp"
+              />
+              <img
+                :src="
+                  require(`~/assets/images/work/${work.imgFolderName}/thumbnail.jpg`)
+                "
+                :alt="`${work.title} Thumbnail`"
+                width="414"
+                height="311"
+              />
+            </picture>
+            <figcaption class="c-portfolio-card__figcaption">
+              <h5 class="c-portfolio-card__title">{{ work.title }}</h5>
+              <p>{{ work.highlight }}</p>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -63,6 +61,7 @@ export default {
     const works = await $content("work")
       // .where({ category: { $contains: "ab-testing" } })
       // .limit(6)
+      .where({ publish: true })
       .sortBy("createdAt", "desc")
       .fetch();
 
@@ -73,67 +72,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-$max-card-width: 414px;
-
-.section-portfolio {
-  background-color: $body-bg-alt;
-
-  @media (prefers-color-scheme: dark) {
-    background: inherit;
-  }
-}
-
-.l-works {
-  display: grid;
-  gap: rem(32px);
-  grid-template-columns: repeat(auto-fit, minmax(rem(250px), 1fr));
-
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(calc(100% / 3 - #{32px}), 1fr)
-    );
-  }
-
-  // &--1 .c-portfolio-card {
-  //   width: max-content;
-  // }
-}
-
-.c-portfolio-card {
-  background-color: #fff;
-  position: relative;
-  box-shadow: 0 0 0 rem(1px) $border-color;
-  transition: 0.3s;
-  max-width: $max-card-width;
-
-  @media (prefers-color-scheme: dark) {
-    background: #393e46;
-    box-shadow: none;
-  }
-
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 rem(32px) rem(1px) rgba(black, 0.1);
-  }
-
-  &__link {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
-
-  &__figcaption {
-    padding: rem(32px);
-    color: $text-color-gray;
-    font-size: rem(16px);
-  }
-
-  &__title {
-    margin-bottom: rem(10px);
-  }
-}
-</style>
+<style lang="scss" scoped></style>

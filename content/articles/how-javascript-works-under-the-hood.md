@@ -3,12 +3,13 @@ title: How JavaScript Works Under The Hood?
 description: Learn how JavaScript works under the hood.
 featuredImg: how-js-works.gif
 createdAt: 01/01/2021
+publish: false
 tags:
   - javascript
   - theory
 ---
 
-<div class="l-wrap l-wrap--sm">
+<div class="l-wrap l-wrap--700">
 
 ### What is global?
 
@@ -70,4 +71,4 @@ Functions are stored in the memory entirely in the creation phase. But variables
 - [Article of Dmitry Soshnikov](http://dmitrysoshnikov.com/ecmascript/chapter-1-execution-contexts/)
 - [Medium Search on Execution Context](https://medium.com/search?q=Execution%20Context)
 
-</div><!-- /.l-wrap--sm -->
+</div><!-- /.l-wrap--700 -->

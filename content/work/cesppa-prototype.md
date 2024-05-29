@@ -6,6 +6,7 @@ description: CESPPA prototype was the initial version of the cesppa.com website,
 type: Contract
 imgFolderName: cesppa-prototype
 featured: true
+publish: false
 url: https://cesppa-prototype.netlify.app/
 category:
   - Site Templates

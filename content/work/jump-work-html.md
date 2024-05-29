@@ -6,6 +6,7 @@ description: I had the opportunity to create the first version of jump.work webs
 type: Contract
 imgFolderName: jump-work
 featured: true
+publish: false
 url: https://jump-work-html.netlify.app/
 category:
   - Site Templates

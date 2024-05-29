@@ -7,6 +7,7 @@ type: A/B Testing
 imgFolderName: bat-uk-homepage-product-carousel
 featured: true
 pagination: false
+publish: true
 url: https://www.vuse.com/gb/en/
 category:
   - Site Templates

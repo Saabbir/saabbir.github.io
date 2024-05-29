@@ -12,8 +12,12 @@ border-radius
 background
 ============================================*/
 
-.u-bg-fafafa {
-  background-color: #fafafa;
+.u-bg-gray-light {
+  background-color: $section-bg-gray-light;
+}
+
+.u-bg-gray-dark {
+  background-color: $section-bg-gray-dark;
 }
 
 /*============================================
@@ -84,9 +88,9 @@ flex components
 ============================================*/
 
 .u-space-between {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-between;
   margin: rem(-16px);
 
@@ -174,8 +178,8 @@ text helpers
 ============================================*/
 
 .u-text-caption {
-  font-size: rem(16px);
   color: $text-color-gray;
+  font-size: rem(16px);
   font-style: italic;
 }
 

@@ -6,6 +6,7 @@ description:
 type: Contract
 imgFolderName: cesppa-redesign-v2
 featured: true
+publish: false
 url: https://cesppa-redesign-v2.netlify.app/
 category:
   - Site Templates

@@ -1,32 +1,38 @@
 .c-contact-form-container {
   background-color: rgba(0, 197, 142, 0.1);
-  padding: rem(48px) rem(32px);
   border-radius: rem(4px);
-  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
   max-width: 700px;
+  overflow: hidden;
+  padding: rem(48px) rem(32px);
+
+  @media (min-width: 992px) {
+    min-width: 700px;
+  }
 }
 
 .c-form {
   &__control {
     background-color: #fff;
     border: rem(1px) solid #ccc;
-    min-height: rem(40px);
     display: block;
-    padding: rem(6px) rem(16px);
+    min-height: rem(40px);
     min-height: rem(50px);
+    padding: rem(6px) rem(16px);
     transition: 0.2s;
     width: 100%;
 
     &:focus {
-      outline: rem(1px) solid $accent-color-2;
       border-color: $accent-color-1;
       box-shadow: 0 0 rem(8px) rem(2px) rgba($accent-color-2, 50%);
+      outline: rem(1px) solid $accent-color-2;
     }
   }
 
   textarea.c-form__control {
-    padding: rem(16px);
     min-height: rem(150px);
+    padding: rem(16px);
     resize: vertical;
 
     // @include scrollbar-styles;
@@ -34,11 +40,11 @@
 
   &__label {
     display: inline-block;
-    margin: 0 0 rem(6px);
-    font-weight: bold;
     font-size: rem(14px);
-    text-transform: uppercase;
+    font-weight: bold;
     letter-spacing: rem(1px);
+    margin: 0 0 rem(6px);
+    text-transform: uppercase;
 
     span {
       color: #abacbf;
@@ -50,13 +56,13 @@
       position: relative;
 
       &::after {
-        content: "[Required]";
         color: #abacbf;
+        content: "[Required]";
+        font-size: 0.8em;
+        margin-left: 1em;
         position: absolute;
         right: 0;
         top: 0;
-        font-size: 0.8em;
-        margin-left: 1em;
       }
     }
 
@@ -66,9 +72,9 @@
   }
 
   &__submit-button {
-    text-transform: uppercase;
-    letter-spacing: 1px;
     font-size: rem(16px);
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
 
   ::-webkit-input-placeholder {
@@ -94,11 +100,11 @@
 }
 
 .c-loader {
+  animation: spin 2s linear infinite;
   border: rem(4px) solid #fff;
-  border-top: rem(4px) solid $accent-color-2;
   border-radius: 50%;
-  width: rem(20px);
+  border-top: rem(4px) solid $accent-color-2;
   height: rem(20px);
   margin-left: rem(10px);
-  animation: spin 2s linear infinite;
+  width: rem(20px);
 }

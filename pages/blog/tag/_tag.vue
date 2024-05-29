@@ -1,13 +1,13 @@
 <template>
-  <div class="l-main">
-    <div class="l-wrap l-wrap--sm">
-      <div class="c-banner u-mt-32 u-br-4">
+  <section class="section u-py-32 u-bg-gray-dark">
+    <div class="l-wrap l-wrap--700">
+      <div class="c-banner u-br-4">
         <h1 class="c-page-title u-text-uppercase u-text-center">
           <small class="c-page-title__small">Articles tagged</small>
           <span class="c-page-title__text">{{ tag }}</span>
         </h1>
       </div>
-      <div class="u-my-32">
+      <div class="u-mt-32">
         <ul class="c-articles-list">
           <li
             v-for="article of articles"
@@ -35,7 +35,7 @@
         </ul>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -59,6 +59,7 @@ export default {
   async asyncData({ params, $content }) {
     const articles = await $content("articles")
       .where({ tags: { $contains: params.tag } })
+      .where({ publish: true })
       .sortBy("createdAt", "desc")
       .fetch();
 

@@ -5,6 +5,7 @@ highlight: A complete redesign of pragmaticworks.com
 type: Contract
 imgFolderName: pragmaticworks-redesign
 featured: true
+publish: false
 url: https://pragmaticworks-redesign.netlify.app/
 category:
   - Site Templates

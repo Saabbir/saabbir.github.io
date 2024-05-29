@@ -1,7 +1,7 @@
 <template>
-  <div class="l-main">
-    <div
-      class="c-blog-post-banner"
+  <div>
+    <section
+      class="section c-blog-post-banner"
       :style="{
         backgroundImage: `url(${articleImg})`,
       }"
@@ -24,8 +24,8 @@
           </nuxt-link>
         </div>
       </div>
-    </div>
-    <div class="c-breadcrumb">
+    </section>
+    <section class="section section--breadcrumb c-breadcrumb">
       <div class="l-wrap">
         <nav class="c-breadcrumb__nav">
           <nuxt-link to="/" class="c-breadcrumb__link"
@@ -39,8 +39,8 @@
           >
         </nav>
       </div>
-    </div>
-    <div class="c-article-container">
+    </section>
+    <section class="section c-article-container">
       <div class="l-article">
         <!-- <aside class="l-article__aside">
           <nav class="c-article-nav">
@@ -67,12 +67,12 @@
         <hr />
       </div>
 
-      <div class="l-wrap l-wrap--sm">
+      <div class="l-wrap l-wrap--700">
         <div class="u-my-48">
           <Pagination :prev="prev" :next="next" />
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -100,6 +100,7 @@ export default {
     const [prev, next] = await $content("articles")
       .only(["title", "slug"])
       .sortBy("createdAt", "desc")
+      .where({ publish: true })
       .surround(params.slug)
       .fetch();
 

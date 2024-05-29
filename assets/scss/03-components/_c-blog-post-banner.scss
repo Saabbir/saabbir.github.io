@@ -1,27 +1,27 @@
 .c-blog-post-banner {
-  padding: rem(32px) 0;
   background-position: 50% 50%;
   background-size: cover;
+  padding: rem(32px) rem(16px);
   position: relative;
-  z-index: 1;
   text-align: center;
+  z-index: 1;
 
   @media (min-width: 768px) {
-    padding: rem(64px) 0;
+    padding: rem(64px) rem(32px);
   }
 
   &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
     background-image: radial-gradient(
       circle,
       rgba($accent-color-1, 0.9),
       rgba($accent-color-2, 0.9)
     );
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
     z-index: -1;
   }
 

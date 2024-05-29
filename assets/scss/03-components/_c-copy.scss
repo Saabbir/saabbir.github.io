@@ -9,8 +9,12 @@
   }
 
   p {
-    font-size: rem(18px);
+    font-size: rem(16px);
     margin: rem(24px) 0;
+
+    @media (min-width: 768px) {
+      font-size: rem(18px);
+    }
   }
 
   p:not(:first-child) {

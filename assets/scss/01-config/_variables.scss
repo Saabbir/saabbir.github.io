@@ -13,7 +13,7 @@ $text-color-gray: #abacbf;
 $vue-green: #42b883;
 $vue-black: #35495e;
 
-$border-color: #eee;
+$border-color: #ddd;
 $table-row-even-color: #fafafa;
 
 /*============================================
@@ -21,6 +21,8 @@ $table-row-even-color: #fafafa;
 ============================================*/
 
 $body-bg-alt: #f6f5f7;
+$section-bg-gray-light: #fafafa;
+$section-bg-gray-dark: #f6f5f7;
 
 /*============================================
 | Typography
@@ -34,12 +36,12 @@ $font-family-sans-serif:
   // Basic web fallback "Helvetica Neue",
   Arial,
   // Linux
-    "Noto Sans",
+  "Noto Sans",
   "Liberation Sans",
   // Sans serif fallback
-    sans-serif,
+  sans-serif,
   // Emoji fonts
-    "Apple Color Emoji",
+  "Apple Color Emoji",
   "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
 $proxima-nova: "Proxima Nova", $font-family-sans-serif;

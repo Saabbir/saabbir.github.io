@@ -2,12 +2,13 @@
 title: Client-Side JavaScript
 description: Learn about DOM, BOM, and variety of scriptable web APIs.
 createdAt: 01/01/2021
+publish: false
 tags:
   - javascript
   - dom
 ---
 
-<div class="l-wrap l-wrap--sm">
+<div class="l-wrap l-wrap--700">
 
 ### Client-Side JavaScript, Browser environment
 
@@ -73,4 +74,4 @@ The one at the bottom inherit properties and methods from the top.
 - [Web APIs on MDN](https://developer.mozilla.org/en-US/docs/Web/API)
 - [DOM on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
 
-</div><!-- /.l-wrap--sm -->
+</div><!-- /.l-wrap--700 -->

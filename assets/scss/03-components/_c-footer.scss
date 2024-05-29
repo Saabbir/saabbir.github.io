@@ -3,37 +3,38 @@
   // border-top: rem(1px) solid $border-color;
 
   &__copyright {
-    display: flex;
     align-items: center;
-    padding: rem(24px) 0;
+    display: flex;
+    font-size: rem(14px);
     justify-content: center;
-    position: relative;
     overflow: hidden;
+    padding: rem(24px) 0;
+    position: relative;
     text-align: center;
-    font-size: rem(16px);
 
     @media (min-width: 768px) {
-      padding: 0;
+      font-size: rem(16px);
       min-height: rem(80px);
+      padding: 0;
     }
 
-    @media (min-width: 1440px) {
+    @media (min-width: 1280px) {
       min-height: rem(96px);
     }
 
     &::after {
-      content: "Saabbir Hossain";
-      position: absolute;
       bottom: rem(-13px);
-      font-size: rem(73px);
-      line-height: 1;
       color: #f7f7f7;
+      content: "Saabbir Hossain";
+      display: none;
+      font-size: rem(73px);
       font-weight: 900;
+      line-height: 1;
       overflow: hidden;
-      z-index: -1;
+      position: absolute;
       text-transform: uppercase;
       white-space: nowrap;
-      display: none;
+      z-index: -1;
 
       @media (min-width: 768px) {
         display: block;

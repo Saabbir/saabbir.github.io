@@ -6,6 +6,7 @@ description: A Perfect Space, a digital locations platform based in Melbourne, A
 type: Contract
 imgFolderName: aperfectspace
 featured: true
+publish: true
 url: https://aperfectspace-html.netlify.app/
 category:
   - Site Templates
@@ -36,7 +37,7 @@ tools:
 
 <!-- Start What I Did Section -->
 <section class="u-py-64">
-<div class="l-wrap l-wrap--sm">
+<div class="l-wrap l-wrap--700">
 <h2 class="t-display-2 u-mt-64">What I did</h2>
 <div class="c-feature-figure-container">
 
@@ -82,7 +83,7 @@ tools:
 
 <!-- Start Client Section -->
 <section>
-<div class="l-wrap l-wrap--sm">
+<div class="l-wrap l-wrap--700">
 <hr>
 <div class="u-my-48">
 <div class="u-space-between">

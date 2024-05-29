@@ -3,11 +3,12 @@ title: JavaScript Strings
 description: Learn how to work with text in JavaScript.
 featuredImg: js-strings.jpg
 createdAt: 01/01/2021
+publish: true
 tags:
   - javascript
 ---
 
-<div class="l-wrap l-wrap--sm">
+<div class="l-wrap l-wrap--700">
 
 ### What is the difference between string literals and string objects in JavaScript?
 
@@ -47,4 +48,4 @@ Object.prototype.__proto__ === null;
 
 </div>
 
-</div><!-- /.l-wrap--sm -->
+</div><!-- /.l-wrap--700 -->

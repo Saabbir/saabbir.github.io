@@ -5,12 +5,12 @@
 }
 
 html {
-  // word-spacing: 1px;
-  word-break: break-word;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  // word-spacing: 1px;
+  word-break: break-word;
 
   // @media (min-width: 1024px) {
   //   width: 100vw;
@@ -19,8 +19,8 @@ html {
 }
 
 body {
-  color: $text-color;
   background-color: #fff;
+  color: $text-color;
   // background: #fafafa url(~assets/images/tile.jpg) left top repeat fixed;
 
   @include scrollbar-styles;
@@ -59,8 +59,8 @@ ol {
 
 img {
   display: block;
-  max-width: 100%;
   height: auto;
+  max-width: 100%;
 }
 
 h1,
@@ -76,14 +76,10 @@ figure {
 }
 
 hr {
-  margin: 0;
+  background-color: $border-color;
   border: 0;
   height: rem(1px);
-  background-color: $border-color;
-}
-
-strong {
-  color: $text-color-dark;
+  margin: 0;
 }
 
 h1,

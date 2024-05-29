@@ -1,29 +1,29 @@
 .c-breadcrumb {
-  padding: rem(10px) 0;
   display: none;
+  padding: rem(10px) rem(16px);
   // line-height: 1;
   // background-color: #fafafa;
   // border-top: rem(1px) solid $border-color;
 
   @media (min-width: 768px) {
     display: block;
-    padding: rem(24px) 0;
+    padding: rem(24px) rem(32px);
   }
 
   &__nav {
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
     gap: rem(8px) 0;
+    justify-content: center;
   }
 
   &__link {
     color: $accent-color-2;
     display: inline-block;
-    position: relative;
-    line-height: 1;
     font-size: rem(16px);
+    line-height: 1;
+    position: relative;
     // text-decoration: underline;
 
     &::after {
@@ -31,8 +31,8 @@
       // width: rem(1px);
       // height: 100%;
       position: absolute;
-      top: 0;
       right: 0;
+      top: 0;
       // background-color: $text-color-gray;
       // transform: rotate(20deg);
       transform: translateX(50%);
@@ -46,8 +46,8 @@
     }
 
     &:not(:last-child) {
-      padding-right: rem(16px);
       margin-right: rem(16px);
+      padding-right: rem(16px);
     }
 
     &:last-child::after {

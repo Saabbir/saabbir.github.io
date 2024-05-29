@@ -4,19 +4,19 @@
 
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
-    gap: rem(32px);
   }
 }
 
 .c-social-media {
-  border: rem(1px) solid $border-color;
-  display: grid;
   align-items: center;
+  background-color: #fff;
+  border: rem(1px) solid $border-color;
+  border-radius: rem(4px);
+  color: $text-color-dark;
+  display: grid;
   gap: rem(16px);
   grid-template-columns: rem(48px) 1fr;
   padding: rem(16px);
-  border-radius: rem(4px);
-  color: $text-color-dark;
 
   &:hover,
   &:focus {
@@ -27,14 +27,14 @@
 
   &__icon {
     display: block;
-    line-height: 0;
-    width: 48px;
     height: 48px;
+    line-height: 0;
     overflow: hidden;
+    width: 48px;
 
     svg {
-      width: 48px;
       height: 48px;
+      width: 48px;
     }
   }
 
@@ -66,8 +66,8 @@
   }
 
   &__handle {
+    color: $text-color-gray;
     font-size: 0.8em;
     font-style: italic;
-    color: $text-color-gray;
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="l-main">
-    <div class="l-wrap l-wrap--sm">
+    <div class="l-wrap l-wrap--700">
       <h1 class="c-page-title">Browse articles by tags:</h1>
     </div>
   </div>

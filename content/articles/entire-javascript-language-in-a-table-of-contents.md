@@ -2,11 +2,12 @@
 title: Entire JavaScript language in a table of contents
 description: Get a bird’s-eye view of whole JavaScript in a table of contents.
 createdAt: 01/01/2021
+publish: false
 tags:
   - javascript
 ---
 
-<div class="l-wrap l-wrap--sm">
+<div class="l-wrap l-wrap--700">
 
 **Inspired by**
 
@@ -266,4 +267,4 @@ tags:
   </ol>
 </div>
 
-</div><!-- /.l-wrap--sm -->
+</div><!-- /.l-wrap--700 -->

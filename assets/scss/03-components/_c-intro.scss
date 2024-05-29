@@ -1,25 +1,24 @@
 .c-intro {
-  display: grid;
   align-items: center;
+  display: grid;
   gap: rem(32px);
+  overflow: hidden;
+  padding: 0 0 rem(8px);
   width: 100%;
-  padding: rem(32px) 0 rem(48px);
-
-  @media (max-width: 1023px) {
-    overflow: hidden;
-  }
 
   @media (min-width: 768px) {
-    padding: rem(48px) 0;
+    gap: rem(32px) rem(56px);
     grid-template-columns: 1fr rem(300px);
+    padding: rem(48px) 0;
   }
 
   @media (min-width: 1600px) {
-    padding: rem(64px) 0;
+    padding: rem(96px) 0;
   }
 
   &__content {
     max-width: rem(500px);
+    width: 100%;
 
     @media (max-width: 767px) {
       order: 2;
@@ -27,46 +26,46 @@
   }
 
   &__img-container {
+    align-items: center;
     background-color: #fff;
     box-shadow: 0 rem(2px) rem(4px) rgba(0, 0, 0, 0.4);
     display: flex;
-    align-items: center;
+    display: none;
     justify-content: center;
     position: relative;
     z-index: 1;
-    display: none;
 
     @media (min-width: 768px) {
+      display: block;
+      height: rem(300px);
       // width: rem(300px);
       // height: rem(345px);
       width: rem(300px);
-      height: rem(300px);
-      display: block;
     }
 
     &::before {
-      content: "";
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      left: rem(-32px);
-      top: rem(-32px);
       background-image: url("~assets/images/svg/two-circles.svg");
       background-size: 12px;
+      content: "";
+      height: 100%;
+      left: rem(-32px);
+      position: absolute;
+      top: rem(-32px);
+      width: 100%;
       z-index: -1;
     }
 
     &::after {
-      content: "";
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      left: rem(32px);
-      top: rem(32px);
       background-image: url("~assets/images/svg/two-circles.svg");
       background-size: 12px;
-      z-index: -1;
+      content: "";
       display: none;
+      height: 100%;
+      left: rem(32px);
+      position: absolute;
+      top: rem(32px);
+      width: 100%;
+      z-index: -1;
 
       @media (min-width: 768px) {
         display: block;
@@ -84,9 +83,11 @@
 
   &__content {
     line-height: 1.75;
+    text-align: center;
 
     @media (min-width: 768px) {
       font-size: rem(18px);
+      text-align: left;
     }
 
     p + p {
