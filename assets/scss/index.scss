@@ -1,14 +1,10 @@
-/*
-
-This project follows Sass architecture inspired by following articles:
-
-- https://css-irl.info/a-modern-front-end-workflow-part-3/
-
-- https://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/
-
-- https://zellwk.com/blog/css-architecture-3/
-
-*/
+/**
+ * This project follows Sass architecture inspired by following articles:
+ *
+ * https://css-irl.info/a-modern-front-end-workflow-part-3/
+ * https://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/
+ * https://zellwk.com/blog/css-architecture-3/
+ */
 
 // 01. CONFIG
 @import "./01-config/config.scss";
@@ -22,70 +18,4 @@ This project follows Sass architecture inspired by following articles:
 // 04. UTILITIES
 @import "./04-utilities/utilities.scss";
 
-@media (prefers-color-scheme: dark) {
-  /**
-   * Read more:
-   * https://dev.to/akhilarjun/one-line-dark-mode-using-css-24li
-   */
-  // html {
-  //   filter: invert(1) hue-rotate(180deg);
-
-  //   img {
-  //     filter: invert(1) hue-rotate(180deg);
-  //   }
-  // }
-
-  /**
-   * https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/
-   */
-  body {
-    color: #eee;
-    background: #222831;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  strong,
-  .c-navbar__brand,
-  .c-social-media__name,
-  .c-portfolio__stats dt,
-  .c-pagination__link-label,
-  .c-table th {
-    color: #e0e0e0;
-  }
-
-  .c-footer__copyright::after {
-    color: #1e242c;
-  }
-
-  .c-navbar {
-    background: #121212;
-  }
-
-  .c-navbar__menu-link::after {
-    background-color: #36373d;
-  }
-
-  .c-blog-post {
-    background-color: #393e46;
-    border: 0.0625rem solid #222831;
-  }
-
-  hr {
-    background-color: #393e46;
-  }
-
-  .c-table tr:nth-child(even),
-  .c-table thead tr {
-    background-color: #393e46;
-  }
-
-  .c-table th,
-  .c-table td {
-    border-color: #393e46;
-  }
-}
+@import "./dark-mode.scss";

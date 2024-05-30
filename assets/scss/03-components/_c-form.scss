@@ -5,7 +5,11 @@
   margin-right: auto;
   max-width: 700px;
   overflow: hidden;
-  padding: rem(48px) rem(32px);
+  padding: rem(32px) rem(16px);
+
+  @media (min-width: 768px) {
+    padding: rem(48px) rem(32px);
+  }
 
   @media (min-width: 992px) {
     min-width: 700px;
