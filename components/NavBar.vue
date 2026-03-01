@@ -29,7 +29,12 @@
         <nav class="c-navbar__nav" ref="navbarNav" @click="hideNav" aria-label="Main">
           <ul class="c-navbar__menu c-navbar__menu--without-number">
             <li class="c-navbar__menu-item">
-              <NuxtLink to="/" exact class="c-navbar__menu-link">
+              <NuxtLink
+                to="/"
+                exact
+                class="c-navbar__menu-link"
+                :class="{ 'nuxt-link-active': $route.path === '/' }"
+              >
                 <strong>01</strong>
                 <span>home</span>
               </NuxtLink>
