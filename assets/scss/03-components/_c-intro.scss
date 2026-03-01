@@ -46,7 +46,7 @@
     }
 
     &::before {
-      background-image: url("~assets/images/svg/two-circles.svg");
+      background-image: url("/images/svg/two-circles.svg");
       background-size: 12px;
       content: "";
       height: 100%;
@@ -58,7 +58,7 @@
     }
 
     &::after {
-      background-image: url("~assets/images/svg/two-circles.svg");
+      background-image: url("/images/svg/two-circles.svg");
       background-size: 12px;
       content: "";
       display: none;
