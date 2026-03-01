@@ -15,8 +15,8 @@
         </p>
         <!-- <p>I'm <strong>open to work</strong> for a <strong>full-time position</strong> where I can work as a creative front-end developer.</p> -->
         <div class="c-intro__buttons c-buttons u-mt-32 u-mt-sm-48">
-          <NuxtLink to="/work" class="c-button">
-            View my work
+          <NuxtLink to="/contact" class="c-button">
+            Get in touch
           </NuxtLink>
           <a
             :href="resumeUrl"

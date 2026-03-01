@@ -57,7 +57,12 @@
               </NuxtLink>
             </li> -->
             <li class="c-navbar__menu-item">
-              <NuxtLink to="/contact" exact class="c-navbar__menu-link">
+              <NuxtLink
+                to="/contact"
+                exact
+                class="c-navbar__menu-link"
+                :class="{ 'nuxt-link-active': $route.path === '/contact' }"
+              >
                 <strong>04</strong>
                 <span>contact</span>
               </NuxtLink>

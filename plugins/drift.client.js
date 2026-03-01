@@ -1,3 +1,9 @@
+/**
+ * Drift chat widget.
+ * Note: The widget only appears on domains whitelisted in your Drift dashboard.
+ * localhost is usually not whitelisted, so it will not show in dev—only on production (e.g. saabbir.github.io).
+ * To test locally, add http://localhost:3000 (or your dev URL) to the allowed domains in Drift settings.
+ */
 export default defineNuxtPlugin(() => {
   if (import.meta.server) return;
 
