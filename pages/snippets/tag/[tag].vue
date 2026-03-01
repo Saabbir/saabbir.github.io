@@ -30,7 +30,7 @@ import driftBot from "@/utils/driftBot";
 import vhHack from "@/utils/vhHack";
 
 const route = useRoute();
-const tag = route.params.tag as string;
+const tag = decodeURIComponent(route.params.tag as string);
 
 const { data: snippetsData } = await useAsyncData(`snippets-tag-${tag}`, () =>
   queryContent("snippets")

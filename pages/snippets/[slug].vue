@@ -14,7 +14,7 @@
             v-for="(tag, index) in snippet.tags"
             :key="index"
             class="c-tag"
-            :to="`/snippets/tag/${tag}`"
+            :to="`/snippets/tag/${encodeURIComponent(tag)}`"
           >
             {{ tag }}
           </NuxtLink>
