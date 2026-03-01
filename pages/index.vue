@@ -33,7 +33,16 @@ import driftBot from "@/utils/driftBot";
 import vhHack from "@/utils/vhHack";
 import _ from "lodash";
 
-useHead({ title: "Home - Saabbir Hossain" });
+useHead({
+  title: "Home",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Saabbir Hossain — CRO-driven Shopify Plus developer and Optimizely Certified A/B Testing expert. Sr. Software Engineer at EchoLogyx Ltd. View my work and get in touch.",
+    },
+  ],
+});
 
 onMounted(() => {
   window.onload = driftBot;

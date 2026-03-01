@@ -35,7 +35,16 @@
 import driftBot from "@/utils/driftBot";
 import vhHack from "@/utils/vhHack";
 
-useHead({ title: "Snippets - Saabbir Hossain" });
+useHead({
+  title: "Snippets",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Code snippets and short tips by Saabbir Hossain — CSS, JavaScript, and front-end development.",
+    },
+  ],
+});
 
 const { data: snippetsData } = await useAsyncData("snippets-list", () =>
   queryContent("snippets").sort({ createdAt: -1 }).find()

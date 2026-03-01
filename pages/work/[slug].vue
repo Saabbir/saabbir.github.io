@@ -95,8 +95,36 @@ const next = computed(() => {
   return n ? withSlugOne(n, "") : null;
 });
 
+const workImg = computed(() => {
+  const w = work.value;
+  if (w?.imgFolderName)
+    return `/images/work/${w.imgFolderName}/cover.jpg`;
+  return "/images/cv-headshot.png";
+});
+
+const { canonicalUrl, absoluteImage } = useSiteUrl();
+
 useHead({
   title: work.value ? `${work.value.title} - Case Study` : "Work",
+  meta: work.value?.description
+    ? [{ name: "description", content: work.value.description }]
+    : [],
+});
+
+useSeoMeta({
+  ogUrl: canonicalUrl,
+  ogType: "article",
+  ogTitle: computed(() => work.value?.title),
+  ogDescription: computed(
+    () => work.value?.description ?? work.value?.highlight ?? undefined
+  ),
+  ogImage: computed(() => absoluteImage(workImg.value)),
+  twitterCard: "summary_large_image",
+  twitterTitle: computed(() => work.value?.title),
+  twitterDescription: computed(
+    () => work.value?.description ?? work.value?.highlight ?? undefined
+  ),
+  twitterImage: computed(() => absoluteImage(workImg.value)),
 });
 
 onMounted(() => {

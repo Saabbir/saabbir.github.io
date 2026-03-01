@@ -23,7 +23,15 @@
 import driftBot from "@/utils/driftBot";
 import vhHack from "@/utils/vhHack";
 
-useHead({ title: "Contact - Saabbir Hossain" });
+useHead({
+  title: "Contact",
+  meta: [
+    {
+      name: "description",
+      content: "Get in touch with Saabbir Hossain — contact form and social links.",
+    },
+  ],
+});
 
 onMounted(() => {
   window.onload = driftBot;

@@ -55,7 +55,16 @@
 import driftBot from "@/utils/driftBot";
 import vhHack from "@/utils/vhHack";
 
-useHead({ title: "About - Saabbir Hossain" });
+useHead({
+  title: "About",
+  meta: [
+    {
+      name: "description",
+      content:
+        "About Saabbir Hossain — Sr. Software Engineer, Shopify Plus and A/B testing expert based in Bangladesh.",
+    },
+  ],
+});
 
 onMounted(() => {
   window.onload = driftBot;

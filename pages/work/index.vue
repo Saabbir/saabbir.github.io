@@ -33,7 +33,16 @@
 import driftBot from "@/utils/driftBot";
 import vhHack from "@/utils/vhHack";
 
-useHead({ title: "Work - Saabbir Hossain" });
+useHead({
+  title: "Work",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Selected portfolio and case studies by Saabbir Hossain — Shopify Plus, A/B testing, and front-end development projects.",
+    },
+  ],
+});
 
 const { data: worksData } = await useAsyncData("work-list", () =>
   queryContent("work")

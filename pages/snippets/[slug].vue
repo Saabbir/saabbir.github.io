@@ -99,6 +99,14 @@ const next = computed(() => {
   return n ? withSlugOne(n, "") : null;
 });
 
+const articleImg = computed(() => {
+  const sn = snippet.value;
+  const f = sn?.featuredImg;
+  return `/images/article-featured-images/${f || "default.png"}`;
+});
+
+const { canonicalUrl, absoluteImage } = useSiteUrl();
+
 useHead({
   title: snippet.value?.title,
   meta: snippet.value?.description
@@ -106,10 +114,16 @@ useHead({
     : [],
 });
 
-const articleImg = computed(() => {
-  const sn = snippet.value;
-  const f = sn?.featuredImg;
-  return `/images/article-featured-images/${f || "default.png"}`;
+useSeoMeta({
+  ogUrl: canonicalUrl,
+  ogType: "article",
+  ogTitle: computed(() => snippet.value?.title),
+  ogDescription: computed(() => snippet.value?.description ?? undefined),
+  ogImage: computed(() => absoluteImage(articleImg.value)),
+  twitterCard: "summary_large_image",
+  twitterTitle: computed(() => snippet.value?.title),
+  twitterDescription: computed(() => snippet.value?.description ?? undefined),
+  twitterImage: computed(() => absoluteImage(articleImg.value)),
 });
 
 const snippetUpdatedAt = computed(() => {

@@ -89,6 +89,14 @@ const next = computed(() => {
   return n ? withSlugOne(n, "") : null;
 });
 
+const articleImg = computed(() => {
+  const a = article.value;
+  const f = a?.featuredImg;
+  return `/images/article-featured-images/${f || "default.png"}`;
+});
+
+const { canonicalUrl, absoluteImage } = useSiteUrl();
+
 useHead({
   title: article.value?.title,
   meta: article.value?.description
@@ -96,10 +104,16 @@ useHead({
     : [],
 });
 
-const articleImg = computed(() => {
-  const a = article.value;
-  const f = a?.featuredImg;
-  return `/images/article-featured-images/${f || "default.png"}`;
+useSeoMeta({
+  ogUrl: canonicalUrl,
+  ogType: "article",
+  ogTitle: computed(() => article.value?.title),
+  ogDescription: computed(() => article.value?.description ?? undefined),
+  ogImage: computed(() => absoluteImage(articleImg.value)),
+  twitterCard: "summary_large_image",
+  twitterTitle: computed(() => article.value?.title),
+  twitterDescription: computed(() => article.value?.description ?? undefined),
+  twitterImage: computed(() => absoluteImage(articleImg.value)),
 });
 
 function formatDate(date: string | Date) {

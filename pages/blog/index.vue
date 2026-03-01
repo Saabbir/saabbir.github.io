@@ -47,7 +47,16 @@
 import driftBot from "@/utils/driftBot";
 import vhHack from "@/utils/vhHack";
 
-useHead({ title: "Blog - Saabbir Hossain" });
+useHead({
+  title: "Blog",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Blog posts and articles by Saabbir Hossain on front-end development, A/B testing, JavaScript, and web performance.",
+    },
+  ],
+});
 
 const { data: articlesData } = await useAsyncData("blog-list", () =>
   queryContent("articles")

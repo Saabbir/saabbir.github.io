@@ -11,6 +11,10 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: "Saabbir Hossain",
+      titleTemplate: (title) =>
+        title && title !== "Saabbir Hossain"
+          ? `${title} | Saabbir Hossain`
+          : "Saabbir Hossain",
       htmlAttrs: { lang: "en" },
       noscript: [{ children: "This website requires JavaScript." }],
       meta: [
@@ -20,7 +24,7 @@ export default defineNuxtConfig({
         {
           name: "description",
           content:
-            "Saabbir Hossain is a professional front-end developer from Bangladesh, currently working as a Solutions Engineer at EchoLogyx Ltd.",
+            "Saabbir Hossain — CRO-driven Shopify Plus developer and Optimizely Certified A/B Testing expert. Sr. Software Engineer at EchoLogyx Ltd. Portfolio, blog, and code snippets.",
         },
         { property: "og:type", content: "website" },
         { property: "og:url", content: "https://saabbir.github.io/" },
@@ -28,26 +32,27 @@ export default defineNuxtConfig({
         {
           property: "og:description",
           content:
-            "Saabbir Hossain is a professional front-end developer from Bangladesh, currently working as a Solutions Engineer at EchoLogyx Ltd.",
+            "Saabbir Hossain — CRO-driven Shopify Plus developer and Optimizely Certified A/B Testing expert. Sr. Software Engineer at EchoLogyx Ltd.",
         },
         {
           property: "og:image",
-          content:
-            "https://raw.githubusercontent.com/Saabbir/saabbir.github.io/master/assets/images/saabbir.png",
+          content: "https://saabbir.github.io/images/cv-headshot.png",
         },
+        { property: "og:image:alt", content: "Saabbir Hossain" },
+        { property: "og:site_name", content: "Saabbir Hossain" },
         { property: "twitter:card", content: "summary_large_image" },
         { property: "twitter:url", content: "https://saabbir.github.io/" },
         { property: "twitter:title", content: "Saabbir Hossain" },
         {
           property: "twitter:description",
           content:
-            "Saabbir Hossain is a professional front-end developer from Bangladesh, currently working as a Solutions Engineer at EchoLogyx Ltd.",
+            "CRO-driven Shopify Plus developer and A/B Testing expert. Sr. Software Engineer at EchoLogyx Ltd.",
         },
         {
           property: "twitter:image",
-          content:
-            "https://raw.githubusercontent.com/Saabbir/saabbir.github.io/master/assets/images/saabbir.png",
+          content: "https://saabbir.github.io/images/cv-headshot.png",
         },
+        { property: "twitter:image:alt", content: "Saabbir Hossain" },
       ],
       link: [{ rel: "icon", type: "image/png", href: "/images/cv-headshot.png" }],
       script: [
