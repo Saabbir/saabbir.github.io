@@ -1,35 +1,37 @@
-# Consult https://nuxtjs.org/faq/github-pages#github-actions
+# Build and deploy to GitHub Pages (Nuxt 3 static)
+# See https://nuxt.com/docs/getting-started/deployment#static-hosting
 
 name: cd
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
 
 jobs:
   cd:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: [14]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v4
 
-      - name: Setup node env
-        uses: actions/setup-node@v2.1.2
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
-        run: yarn
+        run: npm ci
 
-      - name: Generate
-        run: yarn run generate
+      - name: Generate static site
+        run: npm run generate
 
-      - name: Deploy
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: .output/public
