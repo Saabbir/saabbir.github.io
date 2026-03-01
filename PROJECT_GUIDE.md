@@ -1,8 +1,7 @@
-
 <!-- =============================== -->
 <div align="center">
-	<h1>📖 Project Guide: Nuxt.js v2 Portfolio & Blog</h1>
-	<p><em>Comprehensive structure & maintenance guide for your personal website</em></p>
+	<h1>📖 Project Guide: Nuxt 3 Portfolio & Blog</h1>
+	<p><em>Structure and maintenance guide for this personal website</em></p>
 </div>
 <!-- =============================== -->
 
@@ -12,114 +11,112 @@
 
 1. [Project Overview](#project-overview)
 2. [Directory Breakdown](#directory-breakdown)
-	 - [Root Files](#root-files)
-	 - [assets/](#assets)
-	 - [components/](#components)
-	 - [content/](#content)
-	 - [layouts/](#layouts)
-	 - [pages/](#pages)
-	 - [plugins/](#plugins)
-	 - [static/](#static)
-	 - [utils/](#utils)
 3. [How It Works](#how-it-works)
-4. [Creating Blog Posts](#creating-blog-posts)
-5. [Tips for Maintenance](#tips-for-maintenance)
-6. [Incremental Development](#incremental-development)
-7. [Future Migration](#future-migration)
+4. [Creating Content](#creating-content)
+5. [Code Highlighting & Custom Components](#code-highlighting--custom-components)
+6. [Tips for Maintenance](#tips-for-maintenance)
 
 ---
 
 ## Project Overview
 
-This project is a static portfolio/blog built with Nuxt.js 2, using file-based routing and content management. It’s designed for easy, incremental updates and content creation—especially for blog posts and portfolio entries.
+This project is a static portfolio and blog built with **Nuxt 3** and **@nuxt/content v2**. Content (articles, snippets, work) lives as Markdown in the `content/` directory. The site is generated as static files for GitHub Pages.
 
 ---
 
 ## Directory Breakdown
 
-### Root Files
-- `nuxt.config.js`: Main configuration for Nuxt (modules, plugins, routes, etc).
-- `package.json`: Project dependencies, scripts, and engine requirements.
-- `README.md`: Project overview and setup instructions.
-- `app.html`: Custom HTML template for Nuxt.
+### Root files
+
+- **`nuxt.config.ts`** – Nuxt config: app head, static preset, Content module, Google Fonts, SCSS, Prism theme CSS.
+- **`package.json`** – Dependencies (Nuxt 3, Vue 3, @nuxt/content, prismjs, prism-themes, etc.) and scripts.
+- **`app.vue`** – Root component with `<NuxtLayout>` and `<NuxtPage>`.
+- **`app.html`** – Custom HTML template (meta, GA, Statcounter).
+- **`error.vue`** – Root error page (Nuxt 3 convention).
 
 ### assets/
-- **css/**: Global CSS files (e.g., fonts.css).
-- **fonts/**: Custom font files used throughout the site.
-- **images/**: All images (profile, articles, clients, SVGs, etc).
-- **scss/**: SCSS source files, organized by config, base, components, and utilities.
-- **videos/**: Video assets for posts or pages.
+
+- **images/** – Source images; copied to `public/images` by `npm run copy:assets` (or during `generate`).
+- **scss/** – SCSS source: `01-config` (variables, functions, mixins), `02-base`, `03-components`, `04-utilities`. Content typography lives in `_nuxt-content.scss` and targets the `.nuxt-content` class.
 
 ### components/
-- Vue components for UI (e.g., `NavBar.vue`, `Footer.vue`, `Intro.vue`).
-- `global/`: Shared components (e.g., `InfoBox.vue`, `MarkdownImage.vue`).
+
+- **content/** – Components used inside markdown rendered by Content:
+  - **MarkdownImage.vue** – Renders images with `src` under `/images/`. In content use `<MarkdownImg>` or `<MarkdownImage>` (both mapped in `useContentComponents()`).
+  - **ProseCode.vue** – Custom code blocks using **Prism.js** (replaces default Shiki). Wraps in `.nuxt-content-highlight`.
+- **Pagination.vue** – Prev/next links; receives `basePath`, `prev`, `next`, `type`.
+- Other UI components (e.g. NavBar, Intro, ContactCopy) are auto-imported.
 
 ### content/
-- **articles/**: Markdown files for blog posts.
-- **snippets/**: Markdown for code snippets or short tips.
-- **work/**: Markdown for portfolio/case study entries.
+
+- **articles/** – Blog posts (Markdown + frontmatter).
+- **snippets/** – Code snippets / short tips.
+- **work/** – Portfolio / case studies.
+
+Slugs are derived from the **filename** (Nuxt Content v2 uses `_path`; the app normalizes with `utils/contentSlug.ts`). Tags with special characters (e.g. `A/B Testing`) are **encoded** in URLs and **decoded** on the tag pages.
 
 ### layouts/
-- Page layout templates (e.g., `default.vue`, `error.vue`).
+
+- **default.vue** – Main layout with `<slot />`.
 
 ### pages/
-- Nuxt file-based routing. Each `.vue` file or folder becomes a route.
-- `blog/`, `snippets/`, `work/`: Dynamic and index pages for each content type.
+
+- File-based routing. Dynamic routes use **bracket** syntax: `[slug].vue`, `[tag].vue`.
+- **blog/** – Index, `[slug]`, `tag/[tag]`.
+- **snippets/** – Index, `[slug]`, `tag/[tag]`.
+- **work/** – Index, `[slug]`.
+- Other pages: index, about, contact.
 
 ### plugins/
-- Custom JS plugins (e.g., analytics, chat widgets).
 
-### static/
-- Files served as-is (e.g., favicon, static JS, verification files).
+- **drift.client.js** – Client-only (e.g. chat widget). Registered with `defineNuxtPlugin`.
+
+### public/
+
+- Static assets served as-is: `favicon.ico`, `js/`, **images/** (populated from `assets/images` via `copy:assets`).
 
 ### utils/
-- Utility JS functions (e.g., clipboard, device detection).
+
+- **contentSlug.ts** – `getContentSlug()`, `withSlug()`, `withSlugOne()` to derive `slug` from Content’s `_path`.
+- **composables/useContentComponents.ts** – Maps `MarkdownImg` / `MarkdownImage` for `<ContentRenderer :components="...">`.
+- Other helpers (e.g. driftBot, vhHack, copyToClipboard).
 
 ---
 
 ## How It Works
 
-- **Content-Driven:** Blog posts, snippets, and portfolio items are written in Markdown and placed in the `content/` directory. The Nuxt Content module loads and renders them automatically.
-- **File-Based Routing:** Add a `.vue` file to `pages/` and it becomes a route. Dynamic routes (e.g., `[slug].vue`) display individual articles/snippets.
-- **Components:** Reusable Vue components keep the UI consistent and DRY.
-- **Assets:** Images, fonts, and styles are organized for easy reference in content and components.
-- **Build & Deploy:** Run `npm run generate` to build a static site, or `npm run deploy` to push to GitHub Pages.
+- **Content:** Markdown in `content/` is queried with **`queryContent()`** inside **`useAsyncData`**. List pages use `.find()`; detail pages use `.findOne(slug)` and `.findSurround(path)` for prev/next.
+- **Rendering:** **`<ContentRenderer :value="document" :components="contentComponents" />`** renders the body. The wrapper div must have class **`nuxt-content`** so `_nuxt-content.scss` applies (blog, snippets, and work pages add this class).
+- **Slug:** Coming from the file path, slug is normalized via `withSlug` / `withSlugOne` so links and routes use a single slug value.
+- **Tags:** Tag links use **`encodeURIComponent(tag)`**; tag pages use **`decodeURIComponent(route.params.tag)`** so tags like `A/B Testing` work.
 
 ---
 
-## Creating Blog Posts
+## Creating Content
 
-1. Add a new Markdown file to `content/articles/` (e.g., `my-new-post.md`).
-2. Use frontmatter (YAML at the top) for metadata (title, date, tags, etc).
-3. Write your content in Markdown. You can embed images from `assets/images/`.
-4. The post will automatically appear in the blog listing and be accessible via its slug.
+1. Add a Markdown file under **`content/articles/`**, **`content/snippets/`**, or **`content/work/`** (e.g. `my-post.md`).
+2. Add **frontmatter** (YAML at the top): `title`, `description`, `createdAt`, `publish`, `tags`, etc. See existing files for examples.
+3. Write the body in Markdown. Use **`<MarkdownImg src="path/under/images" alt="..." />`** for images (resolved as `/images/...`).
+4. The **URL slug** is the filename without extension. The post appears in the listing and at `/blog/my-post` (or `/snippets/...`, `/work/...`).
+
+---
+
+## Code Highlighting & Custom Components
+
+- **Prism:** Built-in Content highlighting is **disabled** (`content.highlight: false`). A custom **`ProseCode`** component in `components/content/ProseCode.vue` uses **Prism.js** and the **prism-material-oceanic** theme (in `nuxt.config.ts` `css`).
+- **Custom components in markdown:** Pass **`contentComponents`** from **`useContentComponents()`** to **`ContentRenderer`** so tags like **`<MarkdownImg>`** resolve. See `composables/useContentComponents.ts`.
 
 ---
 
 ## Tips for Maintenance
 
-- Keep content organized by type (articles, snippets, work).
-- Use components for repeated UI patterns.
-- Use `nvm` to manage Node.js versions for compatibility.
-- Refer to this guide and the updated README for setup and troubleshooting.
-
----
-
-## Incremental Development
-
-- Add new pages by creating `.vue` files in `pages/`.
-- Add new sections/components as needed in `components/`.
-- Update styles in `assets/scss/`.
-- No need to update dependencies unless you want new features or security fixes.
-
----
-
-## Future Migration
-
-When ready, you can migrate to Nuxt 3 and bring your content and design with you. For now, this structure will serve you well for incremental updates and easy content management.
+- Keep content in the correct folder (articles, snippets, work) and use consistent frontmatter.
+- Add new Prism languages in **`components/content/ProseCode.vue`** if you need more than the default set (js, ts, css, html, bash, json, yaml).
+- After adding images under **`assets/images`**, run **`npm run copy:assets`** (or **`npm run generate`**) so they appear in **`public/images`**.
+- Use **Node 18+** (see README). For migration history, see **MIGRATION.md**.
 
 ---
 
 <div align="center">
-	<strong>Happy tinkering &mdash; and welcome back anytime! 🚀</strong>
+	<strong>Happy tinkering! 🚀</strong>
 </div>

@@ -1,6 +1,8 @@
-# PAGES
+# Pages
 
-This directory contains your Application Views and Routes.
-The framework reads all the `*.vue` files inside this directory and creates the router of your application.
+This directory defines the app’s routes using **file-based routing**.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/guide/routing).
+- Each `.vue` file (or folder with `index.vue`) becomes a route.
+- **Dynamic routes** use **bracket** syntax: `[slug].vue`, `[tag].vue` (e.g. `pages/blog/[slug].vue` → `/blog/:slug`).
+
+See [Nuxt 3 Routing](https://nuxt.com/docs/guide/directory-structure/pages).

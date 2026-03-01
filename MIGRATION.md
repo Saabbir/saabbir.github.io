@@ -151,3 +151,46 @@ Nuxt 3 uses **bracket** dynamic params instead of underscore.
 - Add **Tailwind** again via `@nuxtjs/tailwindcss` if you want it.
 - Replace **Universal Analytics (UA-…)** in `app.html` with **GA4** and gtag when ready.
 - Gradually replace remaining **`@import`** in SCSS with **`@use`** / **`@forward`** to clear deprecation warnings (see SCSS section above).
+
+---
+
+## 12. Post-migration fixes (slug, tags, Prism, content styling)
+
+These were applied after the initial migration so the site behaves correctly with Nuxt Content v2.
+
+### Slug from `_path`
+
+- Nuxt Content v2 exposes **`_path`** (e.g. `/articles/my-post`), not necessarily a **`slug`** field.
+- **`utils/contentSlug.ts`** provides:
+  - **`getContentSlug(item)`** – returns `item.slug` or the last segment of `item._path`.
+  - **`withSlug(items)`** – adds a `slug` property to each item in a list.
+  - **`withSlugOne(item, fallback)`** – returns one item with `slug` set.
+- List pages (blog, snippets, work index and tag pages) use **`withSlug(data)`** so links use a valid slug.
+- Detail pages use **`withSlugOne(articleData, route.params.slug)`** for the main document and for **prev/next** from **`findSurround`** (with **`_path`** in **`.only()`** so slug can be derived).
+
+### Tag encoding (e.g. "A/B Testing")
+
+- Tags that contain **`/`** or other reserved characters would break the route (e.g. `/blog/tag/A/B%20Testing` matched as two segments).
+- **Links:** Use **`encodeURIComponent(tag)`** in all `:to` for tag routes (blog index, blog [slug], snippets [slug]).
+- **Tag pages:** Use **`decodeURIComponent(route.params.tag)`** when reading the tag (blog/tag/[tag].vue, snippets/tag/[tag].vue).
+
+### Code highlighting (Prism)
+
+- Content v2 uses **Shiki** by default; this project uses **Prism.js**.
+- **`nuxt.config.ts`:** **`content.highlight: false`**; add **`prism-themes/themes/prism-material-oceanic.css`** to **`css`**.
+- **`components/content/ProseCode.vue`** – overrides the default code block: uses Prism in **`onMounted`**, supports common languages (js, ts, css, html, bash, json, yaml), wraps in **`.nuxt-content-highlight`**.
+- **`prismjs`** is a dependency; **prism-themes** was already present.
+
+### Custom components in markdown (MarkdownImg)
+
+- Content needs a **components map** so custom tags in markdown (e.g. **`<MarkdownImg>`**) are resolved.
+- **`composables/useContentComponents.ts`** returns **`{ MarkdownImg, MarkdownImage }`** (both point to **`components/content/MarkdownImage.vue`**).
+- Every page that renders content passes **`:components="contentComponents"`** to **`<ContentRenderer>`** (blog, snippets, work [slug] pages).
+
+### Content styling (`.nuxt-content`)
+
+- **`assets/scss/03-components/_nuxt-content.scss`** targets **`.nuxt-content`** for typography (headings, lists, blockquote, code, spacing).
+- Content v2 does **not** add this class automatically. The wrapper around **`<ContentRenderer>`** must have it:
+  - **Blog:** **`class="c-article__body nuxt-content"`**
+  - **Snippets:** **`class="c-article__body nuxt-content"`**
+  - **Work:** **`class="nuxt-content-wrapper nuxt-content"`**

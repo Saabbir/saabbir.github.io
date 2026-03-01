@@ -1,7 +1,8 @@
-# PLUGINS
+# Plugins
 
-**This directory is not required, you can delete it if you don't want to use it.**
+This directory contains Nuxt plugins that run when the app is created.
 
-This directory contains Javascript plugins that you want to run before mounting the root Vue.js application.
+- Use **`defineNuxtPlugin`** to register a plugin.
+- For client-only code (e.g. that uses `window`), use the **`.client`** suffix (e.g. `drift.client.js`) so the plugin runs only in the browser.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/guide/plugins).
+See [Nuxt 3 Plugins](https://nuxt.com/docs/guide/directory-structure/plugins).

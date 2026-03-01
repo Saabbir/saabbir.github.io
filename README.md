@@ -6,6 +6,15 @@ Live demo: [https://saabbir.github.io/](https://saabbir.github.io/)
 
 ---
 
+## Tech stack
+
+- **Nuxt 3** (Vue 3) with static preset for GitHub Pages
+- **@nuxt/content v2** – file-based content (articles, snippets, work) from `content/`
+- **Prism.js** – code highlighting in markdown (custom `ProseCode` component, theme: prism-material-oceanic)
+- **SCSS** – global styles; content typography scoped under `.nuxt-content`
+
+---
+
 ## Prerequisites
 
 - **Node.js:** v18 or later (v20 LTS recommended)
@@ -73,5 +82,6 @@ npm -v
 ## References
 
 - [Nuxt 3 Documentation](https://nuxt.com/docs)
-- [Nuxt Content v2](https://content.nuxt.com/)
+- [Nuxt Content v2](https://v2.content.nuxt.com/)
 - [PROJECT_GUIDE.md](PROJECT_GUIDE.md) – project structure and content workflow
+- [MIGRATION.md](MIGRATION.md) – Nuxt 2 → 3 migration notes
