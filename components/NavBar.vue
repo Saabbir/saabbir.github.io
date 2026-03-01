@@ -26,7 +26,7 @@
             <path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0-6h4V4h-4v4z"/>
           </svg>
         </div>
-        <nav class="c-navbar__nav" ref="navbarNav" @click="hideNav">
+        <nav class="c-navbar__nav" ref="navbarNav" @click="hideNav" aria-label="Main">
           <ul class="c-navbar__menu c-navbar__menu--without-number">
             <li class="c-navbar__menu-item">
               <NuxtLink to="/" exact class="c-navbar__menu-link">
@@ -96,6 +96,29 @@
                 </svg>
               </a>
             </li>
+            <li class="c-navbar__menu-item c-navbar__menu-item--theme-toggle">
+              <button
+                type="button"
+                class="c-navbar__theme-toggle"
+                :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+                @click="toggle"
+              >
+                <svg v-if="isDark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="5"/>
+                  <line x1="12" y1="1" x2="12" y2="3"/>
+                  <line x1="12" y1="21" x2="12" y2="23"/>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                  <line x1="1" y1="12" x2="3" y2="12"/>
+                  <line x1="21" y1="12" x2="23" y2="12"/>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+              </button>
+            </li>
           </ul>
         </nav>
       </div>
@@ -103,25 +126,20 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "NavBar",
-  data() {
-    return {
-      isMenuOpen: false,
-    };
-  },
-  methods: {
-    toggleNav() {
-      this.$refs.navbarNav.classList.toggle("is-open");
-      this.isMenuOpen = !this.isMenuOpen;
-    },
-    hideNav() {
-      this.$refs.navbarNav.classList.remove("is-open");
-      this.isMenuOpen = false;
-    },
-  },
-};
+<script setup lang="ts">
+const navbarNav = ref<HTMLElement | null>(null);
+const isMenuOpen = ref(false);
+const { isDark, toggle } = useTheme();
+
+function toggleNav() {
+  navbarNav.value?.classList.toggle("is-open");
+  isMenuOpen.value = !isMenuOpen.value;
+}
+
+function hideNav() {
+  navbarNav.value?.classList.remove("is-open");
+  isMenuOpen.value = false;
+}
 </script>
 
 <style lang="scss" scoped></style>

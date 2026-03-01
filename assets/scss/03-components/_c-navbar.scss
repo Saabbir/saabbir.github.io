@@ -24,6 +24,40 @@
     }
   }
 
+  &__menu-item--theme-toggle {
+    display: grid;
+    place-items: center;
+  }
+
+  &__theme-toggle {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: rem(8px);
+    border-radius: rem(4px);
+    line-height: 1;
+
+    &:hover,
+    &:focus {
+      opacity: 0.8;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $accent-color-2;
+      outline-offset: 2px;
+    }
+
+    svg {
+      display: block;
+      width: rem(20px);
+      height: rem(20px);
+    }
+  }
+
   &__trigger {
     cursor: pointer;
     display: block;

@@ -30,7 +30,7 @@ $max-card-width: 414px;
   transition: 0.3s;
   // max-width: $max-card-width;
 
-  @media (prefers-color-scheme: dark) {
+  html.dark & {
     background: #393e46;
     box-shadow: none;
   }

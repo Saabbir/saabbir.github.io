@@ -1,9 +1,9 @@
-@media (prefers-color-scheme: dark) {
-  /**
-   * Dark mode
-   *
-   * https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/
-   */
+/**
+ * Dark mode – applied when user has chosen dark or (if no choice) system prefers dark.
+ * Toggle in header; state persisted in localStorage and set on html via useTheme().
+ * https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/
+ */
+html.dark {
   body {
     background: #222831;
     color: #eee;

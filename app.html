@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html {{ HTML_ATTRS }}>
   <head {{ HEAD_ATTRS }}>
+    <script>
+      (function() {
+        var stored = localStorage.getItem('color-mode');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var dark = stored === 'dark' || (!stored && prefersDark);
+        document.documentElement.classList.toggle('dark', dark);
+      })();
+    </script>
     {{ HEAD }}
     <meta name="google-site-verification" content="V4pGb0yYT8y3toGspViQ2KGw6DnNOsFd540PSLpHaaU" />
   </head>
