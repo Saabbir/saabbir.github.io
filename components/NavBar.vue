@@ -5,7 +5,7 @@
         <NuxtLink to="/" class="c-navbar__brand">
           <div class="c-navbar__brand-img-container">
             <img
-              src="/images/profile-pic.jpeg"
+              :src="profileImgSrc"
               alt="Saabbir's Profile Picture"
               class="c-navbar__brand-img"
               width="60"
@@ -14,7 +14,7 @@
           </div>
           <div class="c-navbar__brand-text">
             <span class="c-navbar__brand-text-name">Saabbir Hossain</span>
-            <span class="c-navbar__brand-text-role">Front-End Developer</span>
+            <span class="c-navbar__brand-text-role">Shopify Plus Developer</span>
           </div>
         </NuxtLink>
         <div class="c-navbar__trigger" @click="toggleNav" aria-label="Toggle menu">
@@ -127,6 +127,7 @@
 </template>
 
 <script setup lang="ts">
+const profileImgSrc = "/images/cv-headshot.png";
 const navbarNav = ref<HTMLElement | null>(null);
 const isMenuOpen = ref(false);
 const { isDark, toggle } = useTheme();

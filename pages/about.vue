@@ -5,14 +5,10 @@
         <div class="c-copy">
           <h1 class="t-display-1">Hi, I'm Saabbir.</h1>
           <p>
-            A front-end developer and
-            <strong>A/B testing expert</strong> based in Bangladesh, currently
-            working as a <strong>Sr. Software Engineer</strong> at EchoLogyx
-            Ltd.
+            A <strong>CRO-driven Shopify Plus developer</strong> and <strong>Optimizely Certified A/B Testing expert</strong>, working globally from Bangladesh as a <strong>Sr. Software Engineer</strong> at EchoLogyx Ltd.
           </p>
           <p>
-            Digital marketing and development are my interests, but I often find
-            myself doing design work as well!
+            Over the past <strong>8 years</strong>, I’ve helped ecommerce brands grow through <strong>experimentation</strong>, <strong>performance engineering</strong>, and <strong>scalable Shopify architecture</strong>.
           </p>
           <div class="u-mt-48">
             <NuxtLink to="/contact" class="c-button c-button--lg">Get in touch</NuxtLink>

@@ -2,19 +2,16 @@
   <div>
     <div class="c-intro c-intro--v1 u-d-grid">
       <!-- <div class="c-intro__img-container">
-        <img src="~/assets/images/profile-pic.jpeg" alt="Saabbir Hossain's Profile Picture">
+        <img src="~/assets/images/cv-headshot.png" alt="Saabbir Hossain's Profile Picture">
       </div> -->
       <div class="c-intro__content">
         <h1 class="t-display-1 u-mb-24">Hi, I'm Saabbir.</h1>
         <p>
-          A front-end developer and
-          <strong>A/B testing expert</strong> based in Bangladesh, currently
-          working as a <strong>Sr. Software Engineer</strong> at EchoLogyx Ltd.
+          A <strong>CRO-driven Shopify Plus developer</strong> and <strong>Optimizely Certified A/B Testing expert</strong>, working globally from Bangladesh as a <strong>Sr. Software Engineer</strong> at EchoLogyx Ltd.
         </p>
         <!-- <p>I build static sites and apps using <strong>Vuejs</strong> and <strong>Nuxtjs</strong>.</p> -->
         <p>
-          Digital marketing and development are my interests, but I often find
-          myself doing design work as well!
+          Over the past <strong>8 years</strong>, I’ve helped ecommerce brands grow through <strong>experimentation</strong>, <strong>performance engineering</strong>, and <strong>scalable Shopify architecture</strong>.
         </p>
         <!-- <p>I'm <strong>open to work</strong> for a <strong>full-time position</strong> where I can work as a creative front-end developer.</p> -->
         <div class="c-buttons u-mt-32 u-mt-sm-48">
@@ -31,7 +28,7 @@
       <div class="c-intro__img-container">
         <picture>
           <img
-            src="/images/profile-pic.jpeg"
+            :src="headshotSrc"
             width="300"
             height="300"
             alt="Saabbir Hossain's Portrait"
@@ -68,10 +65,9 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "Intro",
-};
+<script setup lang="ts">
+// Runtime path so Vite doesn't try to resolve it as a static import
+const headshotSrc = "/images/cv-headshot.png";
 </script>
 
 <style></style>
