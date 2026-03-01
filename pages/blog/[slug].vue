@@ -39,7 +39,7 @@
       <div class="l-article">
         <article class="c-article">
           <div class="c-article__body">
-            <ContentRenderer v-if="article" :value="article" />
+            <ContentRenderer v-if="article" :value="article" :components="contentComponents" />
           </div>
         </article>
       </div>
@@ -61,6 +61,7 @@ import vhHack from "@/utils/vhHack";
 
 const route = useRoute();
 const slug = route.params.slug as string;
+const contentComponents = useContentComponents();
 
 const { data: articleData } = await useAsyncData(`blog-${slug}`, () =>
   queryContent("articles", slug).findOne()

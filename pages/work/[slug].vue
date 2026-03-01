@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="nuxt-content-wrapper">
-      <ContentRenderer v-if="work" :value="work" />
+      <ContentRenderer v-if="work" :value="work" :components="contentComponents" />
     </div>
     <div v-if="work.pagination" class="u-my-32">
       <hr />
@@ -68,6 +68,7 @@ import vhHack from "@/utils/vhHack";
 
 const route = useRoute();
 const slug = route.params.slug as string;
+const contentComponents = useContentComponents();
 
 const { data: workData } = await useAsyncData(`work-${slug}`, () =>
   queryContent("work", slug).findOne()

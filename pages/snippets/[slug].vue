@@ -40,7 +40,7 @@
         <div class="l-snippet">
           <article class="c-article">
             <div class="c-article__body" @click="handleArticleBodyClick">
-              <ContentRenderer v-if="snippet" :value="snippet" />
+              <ContentRenderer v-if="snippet" :value="snippet" :components="contentComponents" />
             </div>
             <div class="c-article__footer u-mt-64">
               <p class="c-article__updatedat u-text-right">
@@ -72,6 +72,7 @@ import copyToClipboard from "@/utils/copyToClipboard";
 
 const route = useRoute();
 const slug = route.params.slug as string;
+const contentComponents = useContentComponents();
 
 const { data: snippetData } = await useAsyncData(`snippet-${slug}`, () =>
   queryContent("snippets", slug).findOne()
