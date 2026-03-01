@@ -1,0 +1,1 @@
+import{d as a,a as t,c as o,b as r,h as n,s as i}from"./IoAf3XJp.js";const l={class:"c-article-img-container"},m=["src","alt"],g=a({__name:"MarkdownImage",props:{src:{},alt:{}},setup(s){const c=s,e=i(()=>`/images/${c.src}`);return(_,d)=>(t(),o("div",l,[r("img",{class:"c-article-img",src:n(e),alt:s.alt},null,8,m)]))}});export{g as _};

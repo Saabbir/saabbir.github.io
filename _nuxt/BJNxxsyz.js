@@ -1,0 +1,1 @@
+function l(n){if(!n)return"";if(n.slug)return n.slug;const u=(n._path??"").replace(/^\/+|\/+$/g,"").split("/");return u.length?u[u.length-1]:""}function r(n){return n.map(t=>({...t,slug:l(t)}))}function g(n,t=""){return n==null?null:{...n,slug:l(n)||t}}export{g as a,r as w};

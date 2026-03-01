@@ -1,0 +1,6 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap (used by search engines to discover URLs)
+Sitemap: https://saabbir.github.io/sitemap.xml
