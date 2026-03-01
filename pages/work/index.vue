@@ -41,7 +41,7 @@ const { data: worksData } = await useAsyncData("work-list", () =>
     .sort({ createdAt: -1 })
     .find()
 );
-const works = computed(() => worksData.value ?? []);
+const works = computed(() => withSlug(worksData.value ?? []));
 
 onMounted(() => {
   window.onload = driftBot;

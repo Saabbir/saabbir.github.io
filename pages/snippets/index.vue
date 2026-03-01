@@ -40,7 +40,7 @@ useHead({ title: "Snippets - Saabbir Hossain" });
 const { data: snippetsData } = await useAsyncData("snippets-list", () =>
   queryContent("snippets").sort({ createdAt: -1 }).find()
 );
-const snippets = computed(() => snippetsData.value ?? []);
+const snippets = computed(() => withSlug(snippetsData.value ?? []));
 
 const searchQuery = ref("");
 const filteredSnippets = computed(() => {

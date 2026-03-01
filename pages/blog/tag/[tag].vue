@@ -39,7 +39,7 @@ const { data: articlesData } = await useAsyncData(`blog-tag-${tag}`, () =>
     .sort({ createdAt: -1 })
     .find()
 );
-const articles = computed(() => articlesData.value ?? []);
+const articles = computed(() => withSlug(articlesData.value ?? []));
 
 useHead({
   title: `Articles tagged: ${tag}`,

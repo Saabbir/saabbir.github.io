@@ -72,18 +72,27 @@ const slug = route.params.slug as string;
 const { data: workData } = await useAsyncData(`work-${slug}`, () =>
   queryContent("work", slug).findOne()
 );
-const work = workData;
-if (!work.value) {
+if (!workData.value) {
   throw createError({ statusCode: 404, statusMessage: "Work not found" });
 }
+const work = computed(() => withSlugOne(workData.value, slug));
 
 const { data: surroundData } = await useAsyncData(`work-surround-${slug}`, () =>
   queryContent("work")
-    .only(["title", "slug"])
+    .only(["title", "slug", "_path"])
     .sort({ createdAt: 1 })
     .findSurround(`/work/${slug}`)
 );
-const [prev, next] = surroundData.value ?? [null, null];
+const prev = computed(() => {
+  const s = surroundData.value;
+  const p = s?.[0];
+  return p ? withSlugOne(p, "") : null;
+});
+const next = computed(() => {
+  const s = surroundData.value;
+  const n = s?.[1];
+  return n ? withSlugOne(n, "") : null;
+});
 
 useHead({
   title: work.value ? `${work.value.title} - Case Study` : "Work",

@@ -30,7 +30,7 @@
             :to="`/blog/${article.slug}`"
             class="c-breadcrumb__link c-breadcrumb__link--disabled u-text-capitalize"
           >
-            {{ article.slug.replace(/-/gi, " ") }}
+            {{ (article.slug || "").replace(/-/g, " ") }}
           </NuxtLink>
         </nav>
       </div>
@@ -65,19 +65,28 @@ const slug = route.params.slug as string;
 const { data: articleData } = await useAsyncData(`blog-${slug}`, () =>
   queryContent("articles", slug).findOne()
 );
-const article = articleData;
-if (!article.value) {
+if (!articleData.value) {
   throw createError({ statusCode: 404, statusMessage: "Article not found" });
 }
+const article = computed(() => withSlugOne(articleData.value, slug));
 
 const { data: surroundData } = await useAsyncData(`blog-surround-${slug}`, () =>
   queryContent("articles")
-    .only(["title", "slug"])
+    .only(["title", "slug", "_path"])
     .sort({ createdAt: -1 })
     .where({ publish: true })
     .findSurround(`/articles/${slug}`)
 );
-const [prev, next] = surroundData.value ?? [null, null];
+const prev = computed(() => {
+  const s = surroundData.value;
+  const p = s?.[0];
+  return p ? withSlugOne(p, "") : null;
+});
+const next = computed(() => {
+  const s = surroundData.value;
+  const n = s?.[1];
+  return n ? withSlugOne(n, "") : null;
+});
 
 useHead({
   title: article.value?.title,
@@ -87,7 +96,8 @@ useHead({
 });
 
 const articleImg = computed(() => {
-  const f = article.value?.featuredImg;
+  const a = article.value;
+  const f = a?.featuredImg;
   return `/images/article-featured-images/${f || "default.png"}`;
 });
 

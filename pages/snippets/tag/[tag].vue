@@ -38,7 +38,7 @@ const { data: snippetsData } = await useAsyncData(`snippets-tag-${tag}`, () =>
     .sort({ createdAt: -1 })
     .find()
 );
-const snippets = computed(() => snippetsData.value ?? []);
+const snippets = computed(() => withSlug(snippetsData.value ?? []));
 
 useHead({
   title: `Snippets tagged: ${tag}`,

@@ -56,7 +56,7 @@ const { data: articlesData } = await useAsyncData("blog-list", () =>
     .find()
 );
 
-const articles = computed(() => articlesData.value ?? []);
+const articles = computed(() => withSlug(articlesData.value ?? []));
 const uniqueArticleTags = computed(() => {
   const all: string[] = [];
   articles.value.forEach((a: { tags?: string[] }) => a.tags && all.push(...a.tags));
