@@ -25,6 +25,7 @@
     "normalize.css": "^8.0.1",
     "nuxt": "^3.14.1593",
     "prism-themes": "^1.9.0",
+    "prismjs": "^1.30.0",
     "vue": "^3.5.13"
   },
   "devDependencies": {

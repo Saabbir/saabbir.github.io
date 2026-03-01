@@ -59,6 +59,7 @@ export default defineNuxtConfig({
 
   css: [
     "normalize.css/normalize.css",
+    "prism-themes/themes/prism-material-oceanic.css",
     "~/assets/scss/index.scss",
   ],
 
@@ -78,11 +79,8 @@ export default defineNuxtConfig({
   modules: ["@nuxt/content", "@nuxtjs/google-fonts"],
 
   content: {
-    markdown: {
-      prism: {
-        theme: "prism-themes/themes/prism-material-oceanic.css",
-      },
-    },
+    // Use Prism for code highlighting (via custom ProseCode component)
+    highlight: false,
   },
 
   googleFonts: {
