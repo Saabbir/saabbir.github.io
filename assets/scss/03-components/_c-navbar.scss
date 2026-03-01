@@ -70,7 +70,7 @@
 
     svg {
       display: block;
-      width: rem(20px);
+      width: rem(30px);
     }
   }
 
@@ -248,10 +248,12 @@
     }
   }
 
-  svg.c-external-icon {
+  svg.c-external-icon,
+  svg.c-navbar__menu-link-icon {
     display: block;
     font-size: 0.9em;
     margin-left: rem(8px);
     width: rem(16px);
+    height: rem(16px);
   }
 }

@@ -45,4 +45,20 @@
   &--block {
     width: 100%;
   }
+
+  &--secondary {
+    background-color: $vue-black;
+    background-image: none;
+    border: rem(2px) solid $vue-black;
+    box-shadow: rem(4px) rem(4px) 0 0 $accent-color-2;
+    color: #fff;
+
+    &:hover,
+    &:focus {
+      background-color: $vue-black;
+      color: #fff;
+      background-image: none;
+      box-shadow: rem(-4px) rem(-4px) 0 0 $accent-color-2;
+    }
+  }
 }

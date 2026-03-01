@@ -4,7 +4,7 @@
   align-items: center;
   display: grid;
   gap: rem(32px);
-  overflow: hidden;
+  // overflow: hidden;
   padding: 0 0 rem(8px);
   width: 100%;
 
@@ -18,6 +18,17 @@
     padding: rem(96px) 0;
   }
 
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(16px);
+    justify-content: center;
+
+    @media (min-width: 768px) {
+      justify-content: flex-start;
+    }
+  }
+
   &__content {
     max-width: rem(500px);
     width: 100%;
@@ -25,6 +36,12 @@
     @media (max-width: 767px) {
       order: 2;
     }
+  }
+
+  .c-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(16px);
   }
 
   &__img-container {

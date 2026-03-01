@@ -19,10 +19,10 @@
         </NuxtLink>
         <div class="c-navbar__trigger" @click="toggleNav" aria-label="Toggle menu">
           <!-- Hamburger (bars) or grid (stream) icon -->
-          <svg v-if="!isMenuOpen" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <svg v-if="!isMenuOpen" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
           </svg>
-          <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <svg v-else xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0-6h4V4h-4v4z"/>
           </svg>
         </div>
@@ -85,14 +85,17 @@
             </li>
             <li class="c-navbar__menu-item">
               <a
-                href="https://saabbir-resume.netlify.app/"
-                target="_blank"
+                :href="resumeUrl"
+                download="Saabbir_Hossain_Resume.pdf"
                 class="c-navbar__menu-link"
+                aria-label="Download resume (PDF)"
               >
                 <strong>06</strong>
                 <span>resume</span>
-                <svg class="c-external-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+                <svg class="c-navbar__menu-link-icon c-navbar__menu-link-icon--download" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
                 </svg>
               </a>
             </li>
@@ -128,6 +131,7 @@
 
 <script setup lang="ts">
 const profileImgSrc = "/images/cv-headshot.png";
+const resumeUrl = "/Saabbir_Hossain_Senior_Frontend_Engineer_8_Years_Resume_1_v7.pdf";
 const navbarNav = ref<HTMLElement | null>(null);
 const isMenuOpen = ref(false);
 const { isDark, toggle } = useTheme();

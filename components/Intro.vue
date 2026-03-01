@@ -14,15 +14,18 @@
           Over the past <strong>8 years</strong>, I’ve helped ecommerce brands grow through <strong>experimentation</strong>, <strong>performance engineering</strong>, and <strong>scalable Shopify architecture</strong>.
         </p>
         <!-- <p>I'm <strong>open to work</strong> for a <strong>full-time position</strong> where I can work as a creative front-end developer.</p> -->
-        <div class="c-buttons u-mt-32 u-mt-sm-48">
-          <!-- <a href="mailto:thesaabbir@gmail.com" class="c-button">Get in touch</a> -->
-          <NuxtLink to="/work" class="c-button c-button--lg"
-            >View my work</NuxtLink
+        <div class="c-intro__buttons c-buttons u-mt-32 u-mt-sm-48">
+          <NuxtLink to="/work" class="c-button">
+            View my work
+          </NuxtLink>
+          <a
+            :href="resumeUrl"
+            download="Saabbir_Hossain_Resume.pdf"
+            class="c-button c-button--secondary"
+            aria-label="Download resume (PDF)"
           >
-          <!-- <a 
-          href="https://www.upwork.com/o/profiles/users/~0125f9d541d9412fba/" 
-          class="c-button c-button--lg" 
-          target="_blank">Checkout my Upwork profile</a> -->
+            Download CV
+          </a>
         </div>
       </div>
       <div class="c-intro__img-container">
@@ -51,14 +54,17 @@
         </p>
         <!-- <p>I'm <strong>open to work</strong> for a <strong>full-time position</strong> where I can work as a creative front-end developer.</p> -->
         <div class="c-buttons u-mt-32 u-mt-sm-48">
-          <!-- <a href="mailto:thesaabbir@gmail.com" class="c-button">Get in touch</a> -->
-          <NuxtLink to="/work" class="c-button c-button--lg"
-            >View my work</NuxtLink
+          <NuxtLink to="/work" class="c-button">
+            View my work
+          </NuxtLink>
+          <a
+            :href="resumeUrl"
+            download="Saabbir_Hossain_Resume.pdf"
+            class="c-button c-button--secondary"
+            aria-label="Download resume (PDF)"
           >
-          <!-- <a 
-          href="https://www.upwork.com/o/profiles/users/~0125f9d541d9412fba/" 
-          class="c-button c-button--lg" 
-          target="_blank">Checkout my Upwork profile</a> -->
+            Download CV
+          </a>
         </div>
       </div>
     </div>
@@ -66,8 +72,8 @@
 </template>
 
 <script setup lang="ts">
-// Runtime path so Vite doesn't try to resolve it as a static import
 const headshotSrc = "/images/cv-headshot.png";
+const resumeUrl = "/Saabbir_Hossain_Senior_Frontend_Engineer_8_Years_Resume_1_v7.pdf";
 </script>
 
 <style></style>
