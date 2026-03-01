@@ -39,7 +39,7 @@ tags:
 
 *NOTE:* You can paste the following code to the console to open the Force Experiment Widget.
 
-```javascript
+```js [js]
 javascript:function FXP(){var a="https://c.webtrends-optimize.com/acs/fxp",b="_wto.fxp";window[b+":cfg"]={debug:!1,insTS:"1627290085077",baseURL:a,instRef:"PROD"};var c=document.getElementById(b);if(c)window.WTOExp&&WTOExp.Run("bookmarklet");else{c=document.createElement("script"),c.id=b,c.src="https://c.webtrends-optimize.com/acs/fxp/wto_fxp.min.js";var d=document.body;c.onerror=function(){d.removeChild(c),alert("Error while loading WTO ForceExp. Try again.")},d&&d.appendChild(c)}}FXP();
 ```
 

@@ -39,7 +39,7 @@
       <div class="l-wrap">
         <div class="l-snippet">
           <article class="c-article">
-            <div class="c-article__body" @click="handleArticleBodyClick">
+            <div class="c-article__body nuxt-content" @click="handleArticleBodyClick">
               <ContentRenderer v-if="snippet" :value="snippet" :components="contentComponents" />
             </div>
             <div class="c-article__footer u-mt-64">

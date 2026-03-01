@@ -38,7 +38,7 @@
     <section class="section c-article-container">
       <div class="l-article">
         <article class="c-article">
-          <div class="c-article__body">
+          <div class="c-article__body nuxt-content">
             <ContentRenderer v-if="article" :value="article" :components="contentComponents" />
           </div>
         </article>

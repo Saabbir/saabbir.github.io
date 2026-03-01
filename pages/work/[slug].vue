@@ -43,7 +43,7 @@
         </picture>
       </div>
     </div>
-    <div class="nuxt-content-wrapper">
+    <div class="nuxt-content-wrapper nuxt-content">
       <ContentRenderer v-if="work" :value="work" :components="contentComponents" />
     </div>
     <div v-if="work.pagination" class="u-my-32">
