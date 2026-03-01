@@ -43,8 +43,8 @@
               <ContentRenderer v-if="snippet" :value="snippet" :components="contentComponents" />
             </div>
             <div class="c-article__footer u-mt-64">
-              <p class="c-article__updatedat u-text-right">
-                Last updated: {{ formatDate(snippet.updatedAt) }}
+              <p v-if="snippetUpdatedAt" class="c-article__updatedat u-text-right">
+                Last updated: {{ formatDate(snippetUpdatedAt) }}
               </p>
             </div>
           </article>
@@ -110,6 +110,14 @@ const articleImg = computed(() => {
   const sn = snippet.value;
   const f = sn?.featuredImg;
   return `/images/article-featured-images/${f || "default.png"}`;
+});
+
+const snippetUpdatedAt = computed(() => {
+  const sn = snippet.value;
+  const raw = sn?.updatedAt ?? sn?.createdAt;
+  if (raw == null) return null;
+  const d = new Date(raw);
+  return Number.isNaN(d.getTime()) ? null : raw;
 });
 
 function formatDate(date: string | Date) {
