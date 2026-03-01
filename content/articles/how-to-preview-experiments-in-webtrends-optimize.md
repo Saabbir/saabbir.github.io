@@ -3,16 +3,21 @@ title: How to preview experiments in Webtrends Optimize
 createdAt: 02/03/2026
 publish: true
 tags:
-  - CRO, A/B Testing, Webtrends Optimize
+  - CRO
+  - A/B Testing
+  - Experimentation
+  - Webtrends Optimize
 ---
 
-### 3 ways we can preview experiments in Webtrends Optimize
+<div class="l-wrap l-wrap--700">
+
+## 3 ways we can preview experiments in Webtrends Optimize
 
 - Using **Experiment Preview** section
 - Using **Force Experiment Widget**
 - Using query parameter **?_wt.mode=staging**
 
-### Preview experiments using Experiment Preview section
+## Preview experiments using Experiment Preview section
 
 1. Log in to Webtrends Optimize.
 2. Go to Dashboard.
@@ -24,7 +29,7 @@ tags:
 
 ![image](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ijpwkbh23l63ahlo62vc.png)
 
-### Preview experiments using Force Experiment Widget
+## Preview experiments using Force Experiment Widget
 
 1. Go to https://c.webtrends-optimize.com/acs/fxp/install.html
 2. Drag and drop the **WTO Force Experiment** button to your bookmarks bar.
@@ -38,7 +43,7 @@ tags:
 javascript:function FXP(){var a="https://c.webtrends-optimize.com/acs/fxp",b="_wto.fxp";window[b+":cfg"]={debug:!1,insTS:"1627290085077",baseURL:a,instRef:"PROD"};var c=document.getElementById(b);if(c)window.WTOExp&&WTOExp.Run("bookmarklet");else{c=document.createElement("script"),c.id=b,c.src="https://c.webtrends-optimize.com/acs/fxp/wto_fxp.min.js";var d=document.body;c.onerror=function(){d.removeChild(c),alert("Error while loading WTO ForceExp. Try again.")},d&&d.appendChild(c)}}FXP();
 ```
 
-### Preview experiments using the query parameter
+## Preview experiments using the query parameter
 
 - Add **?_wt.mode=staging** query parameter at the end of target URL to view the variation.
 
@@ -56,10 +61,13 @@ Here you will see all the available variations you have for preview including co
 
 By default, variations are showing randomly but you can force it to display a specific variation by selecting the desired variation from here.
 
-### Notes
+## Notes
 
 If your test depends on other live/published tests, then ensure those tests are available in the staging mode otherwise the preview links won't work as expected.
 
-### Further reading
+## Further reading
 
 - https://help.webtrends-optimize.com/optimize/qa/preview-experiments/
+
+
+</div><!-- /.l-wrap--700 -->
