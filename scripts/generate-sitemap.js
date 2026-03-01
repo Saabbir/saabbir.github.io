@@ -1,7 +1,7 @@
 /**
  * Generates sitemap.xml from the static output after `nuxt generate`.
  * Run: node scripts/generate-sitemap.js (from project root).
- * Reads .output/public/**/*.html and writes .output/public/sitemap.xml.
+ * Reads all .html files under .output/public and writes sitemap.xml there.
  */
 import fs from "node:fs";
 import path from "node:path";

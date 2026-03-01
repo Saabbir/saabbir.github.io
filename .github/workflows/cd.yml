@@ -12,6 +12,8 @@ on:
 jobs:
   cd:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # required for peaceiris/actions-gh-pages to push to gh-pages
 
     steps:
       - name: Checkout
@@ -28,6 +30,8 @@ jobs:
 
       - name: Generate static site
         run: npm run generate
+        env:
+          NODE_ENV: production
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
