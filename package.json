@@ -11,7 +11,7 @@
     "dev": "nuxt dev",
     "build": "nuxt build",
     "copy:assets": "mkdir -p public && cp -r assets/images public/ 2>/dev/null || true",
-    "generate": "npm run copy:assets && nuxt generate",
+    "generate": "npm run copy:assets && nuxt generate && node scripts/generate-sitemap.js",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "deploy": "nuxt generate && push-dir --dir=.output/public --branch=gh-pages --cleanup"
