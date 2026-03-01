@@ -1,3 +1,5 @@
+@use "../01-config/config" as *;
+
 html {
   font: normal normal 87.5%/1.5 $nunito; // 14px
 

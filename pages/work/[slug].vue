@@ -1,6 +1,5 @@
 <template>
   <section class="section section--portfolio-item">
-    <!-- Portfolio header and stats -->
     <div class="l-wrap">
       <div class="c-portfolio">
         <div class="c-portfolio__header u-text-center">
@@ -32,22 +31,11 @@
         </div>
       </div>
     </div>
-    <!-- /.l-wrap -->
-
-    <!-- Portfolio cover image -->
     <div v-if="work.imgFolderName" class="l-wrap l-wrap--1200">
       <div class="c-portfolio__cover-image">
         <picture>
-          <source
-            :srcset="
-              require(`~/assets/images/work/${work.imgFolderName}/cover.jpg?webp`)
-            "
-            type="image/webp"
-          />
           <img
-            :src="
-              require(`~/assets/images/work/${work.imgFolderName}/cover.jpg`)
-            "
+            :src="`/images/work/${work.imgFolderName}/cover.jpg`"
             :alt="`${work.title}-cover`"
             width="1600"
             height="1200"
@@ -55,66 +43,56 @@
         </picture>
       </div>
     </div>
-    <!-- /.l-wrap--1600 -->
-
-    <!-- Nuxt content -->
     <div class="nuxt-content-wrapper">
-      <nuxt-content :document="work"></nuxt-content>
+      <ContentRenderer v-if="work" :value="work" />
     </div>
-
-    <!-- Horizontal line -->
     <div v-if="work.pagination" class="u-my-32">
       <hr />
     </div>
-
-    <!-- Pagination -->
     <div v-if="work.pagination" class="">
       <div class="l-wrap">
         <Pagination
-          routeName="work-slug"
+          base-path="/work"
+          type="Work"
           :prev="prev"
           :next="next"
-          type="Work"
         />
       </div>
     </div>
   </section>
 </template>
 
-<script>
+<script setup lang="ts">
 import driftBot from "@/utils/driftBot";
 import vhHack from "@/utils/vhHack";
 
-export default {
-  name: "SingleWork",
-  head() {
-    return {
-      title: this.work.title + " - Case Study",
-    };
-  },
-  mounted() {
-    // Load drift widget after window finished loading
-    window.onload = driftBot;
+const route = useRoute();
+const slug = route.params.slug as string;
 
-    // Set --vh CSS custom property
-    vhHack();
-  },
-  async asyncData({ $content, params }) {
-    const work = await $content("work", params.slug).fetch();
+const { data: workData } = await useAsyncData(`work-${slug}`, () =>
+  queryContent("work", slug).findOne()
+);
+const work = workData;
+if (!work.value) {
+  throw createError({ statusCode: 404, statusMessage: "Work not found" });
+}
 
-    const [prev, next] = await $content("work")
-      .only(["title", "slug"])
-      .sortBy("createdAt", "asc")
-      .surround(params.slug)
-      .fetch();
+const { data: surroundData } = await useAsyncData(`work-surround-${slug}`, () =>
+  queryContent("work")
+    .only(["title", "slug"])
+    .sort({ createdAt: 1 })
+    .findSurround(`/work/${slug}`)
+);
+const [prev, next] = surroundData.value ?? [null, null];
 
-    return {
-      work,
-      prev,
-      next,
-    };
-  },
-};
+useHead({
+  title: work.value ? `${work.value.title} - Case Study` : "Work",
+});
+
+onMounted(() => {
+  window.onload = driftBot;
+  vhHack();
+});
 </script>
 
 <style lang="scss" scoped></style>

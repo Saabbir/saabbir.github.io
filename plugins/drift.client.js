@@ -1,5 +1,7 @@
-export default () => {
-  !(function() {
+export default defineNuxtPlugin(() => {
+  if (import.meta.server) return;
+
+  !(function () {
     var t = (window.driftt = window.drift = window.driftt || []);
     if (!t.init) {
       if (t.invoked)
@@ -20,30 +22,30 @@ export default () => {
           "page",
           "hide",
           "off",
-          "on"
+          "on",
         ]),
-        (t.factory = function(e) {
-          return function() {
+        (t.factory = function (e) {
+          return function () {
             var n = Array.prototype.slice.call(arguments);
             return n.unshift(e), t.push(n), t;
           };
         }),
-        t.methods.forEach(function(e) {
+        t.methods.forEach(function (e) {
           t[e] = t.factory(e);
         }),
-        (t.load = function(t) {
+        (t.load = function (t) {
           var e = 3e5,
             n = Math.ceil(new Date() / e) * e,
             o = document.createElement("script");
           (o.type = "text/javascript"),
             (o.async = !0),
-            (o.crossorigin = "anonymous"),
+            (o.crossOrigin = "anonymous"),
             (o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js");
           var i = document.getElementsByTagName("script")[0];
           i.parentNode.insertBefore(o, i);
         });
     }
   })();
-  drift.SNIPPET_VERSION = "0.3.1";
-  drift.load("am3ztba424by");
-};
+  window.drift.SNIPPET_VERSION = "0.3.1";
+  window.drift.load("am3ztba424by");
+});

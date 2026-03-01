@@ -1,5 +1,5 @@
-// @import './fonts';
-@import "./global";
-@import "./typography";
-@import "./layouts";
-@import "./keyframes";
+@use "../01-config/config" as *;
+@use "./global";
+@use "./typography";
+@use "./layouts";
+@use "./keyframes";

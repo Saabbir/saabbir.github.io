@@ -1,3 +1,5 @@
+@use "../01-config/config" as *;
+
 .c-custom-link {
   border-radius: rem(1px);
   background: $accent-color-1 linear-gradient(45deg, $accent-color-1, $accent-color-2);

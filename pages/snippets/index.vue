@@ -4,107 +4,66 @@
       <div class="l-wrap l-wrap--700">
         <h1 class="c-page-title u-text-center u-text-uppercase">My snippets</h1>
         <input
+          v-model="searchQuery"
           type="text"
           placeholder="Search snippets"
-          v-model="searchQuery"
           class="c-search-input"
         />
       </div>
     </section>
     <section class="section u-py-32">
       <div class="l-wrap l-wrap--700">
-        <ul class="c-articles-list" v-if="snippets.length">
-          <li
-            v-for="snippet of snippets"
-            :key="snippet.slug"
-            class="c-blog-post"
-          >
+        <ul v-if="filteredSnippets.length" class="c-articles-list">
+          <li v-for="snippet of filteredSnippets" :key="snippet.slug" class="c-blog-post">
             <div>
-              <NuxtLink
-                :to="{
-                  name: 'snippets-slug',
-                  params: { slug: snippet.slug },
-                }"
-                class="c-blog-post__link"
-              >
-              </NuxtLink>
-              <NuxtLink
-                :to="{
-                  name: 'snippets-slug',
-                  params: { slug: snippet.slug },
-                }"
-              >
+              <NuxtLink :to="`/snippets/${snippet.slug}`" class="c-blog-post__link"> </NuxtLink>
+              <NuxtLink :to="`/snippets/${snippet.slug}`">
                 <h2 class="c-blog-post__title">{{ snippet.title }}</h2>
               </NuxtLink>
               <p class="c-blog-post__text">{{ snippet.description }}</p>
             </div>
-            <div class="c-blog-post__date">
-              {{ formatDate(snippet.createdAt) }}
-            </div>
+            <div class="c-blog-post__date">{{ formatDate(snippet.createdAt) }}</div>
           </li>
         </ul>
-        <p v-else class="no-article-matched">
-          No snippets matched to your search query!
-        </p>
+        <p v-else class="no-article-matched">No snippets matched to your search query!</p>
       </div>
     </section>
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import driftBot from "@/utils/driftBot";
 import vhHack from "@/utils/vhHack";
 
-export default {
-  name: "SnippetsIndex",
-  head() {
-    return {
-      title: "Snippets - Saabbir Hossain",
-    };
-  },
-  async asyncData({ $content }) {
-    const snippets = await $content("snippets")
-      .sortBy("createdAt", "desc")
-      .fetch();
+useHead({ title: "Snippets - Saabbir Hossain" });
 
-    return {
-      snippets,
-    };
-  },
-  data() {
-    return {
-      searchQuery: "",
-    };
-  },
-  methods: {
-    formatDate(date) {
-      const options = { year: "numeric", month: "long", day: "numeric" };
-      return new Date(date).toLocaleDateString("en", options);
-    },
-  },
-  mounted() {
-    // Load drift widget after window finished loading
-    window.onload = driftBot;
+const { data: snippetsData } = await useAsyncData("snippets-list", () =>
+  queryContent("snippets").sort({ createdAt: -1 }).find()
+);
+const snippets = computed(() => snippetsData.value ?? []);
 
-    // Set --vh CSS custom property
-    vhHack();
-  },
-  watch: {
-    async searchQuery(searchQuery) {
-      if (!searchQuery) {
-        this.snippets = await this.$content("snippets")
-          .sortBy("createdAt", "desc")
-          .fetch();
-        return;
-      }
-      this.snippets = await this.$content("snippets")
-        .limit(6)
-        .search(searchQuery)
-        .sortBy("createdAt", "desc")
-        .fetch();
-    },
-  },
-};
+const searchQuery = ref("");
+const filteredSnippets = computed(() => {
+  const q = searchQuery.value.trim().toLowerCase();
+  if (!q) return snippets.value;
+  return snippets.value.filter(
+    (s: { title?: string; description?: string }) =>
+      (s.title ?? "").toLowerCase().includes(q) || (s.description ?? "").toLowerCase().includes(q)
+  );
+});
+
+function formatDate(date: string | Date) {
+  return new Date(date).toLocaleDateString("en", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+onMounted(() => {
+  window.onload = driftBot;
+  vhHack();
+});
 </script>
 
 <style lang="scss" scoped>

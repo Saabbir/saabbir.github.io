@@ -28,31 +28,18 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import driftBot from "@/utils/driftBot";
 import vhHack from "@/utils/vhHack";
 import _ from "lodash";
-import ContactForm from "../components/ContactForm.vue";
-import ContactCopy from "../components/ContactCopy.vue";
-import Intro from "../components/Intro.vue";
 
-export default {
-  components: { ContactForm, ContactCopy, Intro },
-  name: "Home",
-  head() {
-    return {
-      title: "Home - Saabbir Hossain",
-    };
-  },
-  mounted() {
-    // Load drift widget after window finished loading
-    window.onload = driftBot;
+useHead({ title: "Home - Saabbir Hossain" });
 
-    // Set --vh CSS custom property
-    vhHack();
-    window.addEventListener("resize", _.throttle(vhHack, 200));
-  },
-};
+onMounted(() => {
+  window.onload = driftBot;
+  vhHack();
+  window.addEventListener("resize", _.throttle(vhHack, 200));
+});
 </script>
 
 <style lang="scss" scoped></style>

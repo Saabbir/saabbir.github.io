@@ -2,40 +2,40 @@
   <div class="c-navbar">
     <div class="l-wrap">
       <div class="c-navbar__content">
-        <nuxt-link to="/" class="c-navbar__brand">
+        <NuxtLink to="/" class="c-navbar__brand">
           <div class="c-navbar__brand-img-container">
-            <picture>
-              <source
-                srcset="~/assets/images/profile-pic.jpeg?webp"
-                type="image/webp"
-              />
-              <img
-                src="~/assets/images/profile-pic.jpeg"
-                alt="Saabbir's Profile Picture"
-                class="c-navbar__brand-img"
-                width="60"
-                height="60"
-              />
-            </picture>
+            <img
+              src="/images/profile-pic.jpeg"
+              alt="Saabbir's Profile Picture"
+              class="c-navbar__brand-img"
+              width="60"
+              height="60"
+            />
           </div>
           <div class="c-navbar__brand-text">
             <span class="c-navbar__brand-text-name">Saabbir Hossain</span>
             <span class="c-navbar__brand-text-role">Front-End Developer</span>
           </div>
-        </nuxt-link>
-        <div class="c-navbar__trigger" @click="toggleNav">
-          <font-awesome-icon :icon="isMenuOpen ? 'stream' : 'bars'" />
+        </NuxtLink>
+        <div class="c-navbar__trigger" @click="toggleNav" aria-label="Toggle menu">
+          <!-- Hamburger (bars) or grid (stream) icon -->
+          <svg v-if="!isMenuOpen" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+          <svg v-else xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0-6h4V4h-4v4z"/>
+          </svg>
         </div>
         <nav class="c-navbar__nav" ref="navbarNav" @click="hideNav">
           <ul class="c-navbar__menu c-navbar__menu--without-number">
             <li class="c-navbar__menu-item">
-              <nuxt-link to="/" exact class="c-navbar__menu-link">
+              <NuxtLink to="/" exact class="c-navbar__menu-link">
                 <strong>01</strong>
                 <span>home</span>
-              </nuxt-link>
+              </NuxtLink>
             </li>
             <li class="c-navbar__menu-item">
-              <nuxt-link
+              <NuxtLink
                 to="/work"
                 exact
                 class="c-navbar__menu-link"
@@ -43,22 +43,22 @@
               >
                 <strong>02</strong>
                 <span>work</span>
-              </nuxt-link>
+              </NuxtLink>
             </li>
             <!-- <li class="c-navbar__menu-item">
-              <nuxt-link to="/about" exact class="c-navbar__menu-link">
+              <NuxtLink to="/about" exact class="c-navbar__menu-link">
                 <strong>03</strong>
                 <span>about</span>
-              </nuxt-link>
+              </NuxtLink>
             </li> -->
             <li class="c-navbar__menu-item">
-              <nuxt-link to="/contact" exact class="c-navbar__menu-link">
+              <NuxtLink to="/contact" exact class="c-navbar__menu-link">
                 <strong>04</strong>
                 <span>contact</span>
-              </nuxt-link>
+              </NuxtLink>
             </li>
             <li class="c-navbar__menu-item">
-              <nuxt-link
+              <NuxtLink
                 to="/blog"
                 exact
                 class="c-navbar__menu-link"
@@ -68,10 +68,10 @@
               >
                 <strong>05</strong>
                 <span>blog</span>
-              </nuxt-link>
+              </NuxtLink>
             </li>
             <li class="c-navbar__menu-item">
-              <nuxt-link
+              <NuxtLink
                 to="/snippets"
                 exact
                 class="c-navbar__menu-link"
@@ -81,7 +81,7 @@
               >
                 <strong>05</strong>
                 <span>snippets</span>
-              </nuxt-link>
+              </NuxtLink>
             </li>
             <li class="c-navbar__menu-item">
               <a
@@ -91,10 +91,9 @@
               >
                 <strong>06</strong>
                 <span>resume</span>
-                <font-awesome-icon
-                  icon="external-link-alt"
-                  class="c-external-icon"
-                />
+                <svg class="c-external-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+                </svg>
               </a>
             </li>
           </ul>

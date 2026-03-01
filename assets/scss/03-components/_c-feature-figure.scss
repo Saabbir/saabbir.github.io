@@ -1,3 +1,5 @@
+@use "../01-config/config" as *;
+
 .c-feature-figure-container {
   margin-top: rem(64px);
   display: grid;

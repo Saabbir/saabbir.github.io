@@ -1,3 +1,5 @@
+@use "../01-config/config" as *;
+
 .c-blog-post {
   background-color: #fff;
   border: rem(1px) solid $border-color;

@@ -16,11 +16,12 @@
         href="https://www.facebook.com/thesaabbir"
         class="c-social-media"
         target="_blank"
+        rel="noopener noreferrer"
       >
         <div class="c-social-media__icon">
           <div
             class="c-social-media__icon-facebook"
-            v-html="require('~/assets/images/svg/facebook.svg?include')"
+            v-html="facebookSvg"
           ></div>
         </div>
         <div class="c-social-media__info">
@@ -32,11 +33,12 @@
         href="https://twitter.com/thesaabbir"
         class="c-social-media"
         target="_blank"
+        rel="noopener noreferrer"
       >
         <div class="c-social-media__icon">
           <div
             class="c-social-media__icon-twitter"
-            v-html="require('~/assets/images/svg/twitter.svg?include')"
+            v-html="twitterSvg"
           ></div>
         </div>
         <div class="c-social-media__info">
@@ -48,11 +50,12 @@
         href="https://www.linkedin.com/in/thesaabbir"
         class="c-social-media"
         target="_blank"
+        rel="noopener noreferrer"
       >
         <div class="c-social-media__icon">
           <div
             class="c-social-media__icon-linkedin"
-            v-html="require('~/assets/images/svg/linkedin.svg?include')"
+            v-html="linkedinSvg"
           ></div>
         </div>
         <div class="c-social-media__info">
@@ -64,11 +67,12 @@
         href="https://github.com/Saabbir"
         class="c-social-media"
         target="_blank"
+        rel="noopener noreferrer"
       >
         <div class="c-social-media__icon">
           <div
             class="c-social-media__icon-github"
-            v-html="require('~/assets/images/svg/github.svg?include')"
+            v-html="githubSvg"
           ></div>
         </div>
         <div class="c-social-media__info">
@@ -80,11 +84,12 @@
         href="https://codepen.io/Saabbir"
         class="c-social-media"
         target="_blank"
+        rel="noopener noreferrer"
       >
         <div class="c-social-media__icon">
           <div
             class="c-social-media__icon-codepen"
-            v-html="require('~/assets/images/svg/codepen.svg?include')"
+            v-html="codepenSvg"
           ></div>
         </div>
         <div class="c-social-media__info">
@@ -96,11 +101,12 @@
         href="https://stackoverflow.com/users/5527156/saabbir"
         class="c-social-media"
         target="_blank"
+        rel="noopener noreferrer"
       >
         <div class="c-social-media__icon">
           <div
             class="c-social-media__icon-stackoverflow"
-            v-html="require('~/assets/images/svg/stackoverflow.svg?include')"
+            v-html="stackoverflowSvg"
           ></div>
         </div>
         <div class="c-social-media__info">
@@ -108,24 +114,17 @@
           <div class="c-social-media__handle">@saabbir</div>
         </div>
       </a>
-      <!-- <a href="https://www.upwork.com/o/profiles/users/~0125f9d541d9412fba/" class="c-social-media" target="_blank">
-            <div class="c-social-media__icon">
-              <div class="c-social-media__icon-upwork" v-html="require('~/assets/images/svg/upwork.svg?include')"></div>
-            </div>
-            <div class="c-social-media__info">
-              <div class="c-social-media__name">Upwork</div>
-              <div class="c-social-media__handle">I'm available here for freelance work</div>
-            </div>
-          </a> -->
     </div>
-    <!-- /.c-social-media-grid -->
   </div>
 </template>
 
-<script>
-export default {
-  name: "contact-copy",
-};
+<script setup>
+import facebookSvg from "~/assets/images/svg/facebook.svg?raw";
+import twitterSvg from "~/assets/images/svg/twitter.svg?raw";
+import linkedinSvg from "~/assets/images/svg/linkedin.svg?raw";
+import githubSvg from "~/assets/images/svg/github.svg?raw";
+import codepenSvg from "~/assets/images/svg/codepen.svg?raw";
+import stackoverflowSvg from "~/assets/images/svg/stackoverflow.svg?raw";
 </script>
 
 <style></style>

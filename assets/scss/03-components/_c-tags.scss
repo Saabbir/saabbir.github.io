@@ -1,3 +1,5 @@
+@use "../01-config/config" as *;
+
 .c-tags {
   display: flex;
   flex-wrap: wrap;

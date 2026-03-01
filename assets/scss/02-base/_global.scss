@@ -1,3 +1,5 @@
+@use "~/assets/scss/01-config/config.scss" as *;
+
 *,
 *::after,
 *::before {
@@ -9,19 +11,12 @@ html {
   -webkit-font-smoothing: antialiased;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  // word-spacing: 1px;
   word-break: break-word;
-
-  // @media (min-width: 1024px) {
-  //   width: 100vw;
-  //   overflow-x: hidden;
-  // }
 }
 
 body {
   background-color: #fff;
   color: $text-color;
-  // background: #fafafa url(~assets/images/tile.jpg) left top repeat fixed;
 
   @include scrollbar-styles;
 }
@@ -94,8 +89,6 @@ h6 {
 picture {
   display: block;
 }
-
-// Override CSS
 
 code[class*="language-"]::selection,
 pre[class*="language-"]::selection,

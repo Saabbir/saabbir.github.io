@@ -2,42 +2,30 @@
 <html {{ HTML_ATTRS }}>
   <head {{ HEAD_ATTRS }}>
     {{ HEAD }}
-
-    <!-- Verify your site ownership in Google Search Console -->
-    <meta
-      name="google-site-verification"
-      content="V4pGb0yYT8y3toGspViQ2KGw6DnNOsFd540PSLpHaaU"
-    />
+    <meta name="google-site-verification" content="V4pGb0yYT8y3toGspViQ2KGw6DnNOsFd540PSLpHaaU" />
   </head>
   <body {{ BODY_ATTRS }}>
     {{ APP }}
-
-    <!-- Default Statcounter code for My Personal Website https://saabbir.github.io/ -->
+    <!-- Google Analytics (Universal) - replace with GA4 when ready -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-104844719-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'UA-104844719-1');
+    </script>
     <script type="text/javascript">
       var sc_project = 12572368;
       var sc_invisible = 1;
       var sc_security = "da9f020d";
     </script>
-    <script
-      type="text/javascript"
-      src="https://www.statcounter.com/counter/counter.js"
-      async
-    ></script>
+    <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
     <noscript>
       <div class="statcounter">
-        <a
-          title="Web Analytics"
-          href="https://statcounter.com/"
-          target="_blank"
-        >
-          <img
-            class="statcounter"
-            src="https://c.statcounter.com/12572368/0/da9f020d/1/"
-            alt="Web Analytics"
-          />
+        <a title="Web Analytics" href="https://statcounter.com/" target="_blank">
+          <img class="statcounter" src="https://c.statcounter.com/12572368/0/da9f020d/1/" alt="Web Analytics" />
         </a>
       </div>
     </noscript>
-    <!-- End of Statcounter Code -->
   </body>
 </html>

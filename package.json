@@ -1,51 +1,38 @@
 {
   "name": "saabbir.github.io",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Saabbir/saabbir.github.io.git"
   },
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt dev",
     "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+    "copy:assets": "mkdir -p public && cp -r assets/images public/ 2>/dev/null || true",
+    "generate": "npm run copy:assets && nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "deploy": "nuxt generate && push-dir --dir=.output/public --branch=gh-pages --cleanup"
   },
   "dependencies": {
-    "@fortawesome/free-solid-svg-icons": "^5.15.3",
-    "@nuxt/content": "^1.9.0",
-    "@nuxtjs/axios": "^5.12.2",
-    "@nuxtjs/fontawesome": "^1.1.2",
-    "core-js": "^3.6.5",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@nuxt/content": "^2.13.2",
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "core-js": "^3.36.0",
     "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
-    "nuxt": "^2.14.6",
-    "prism-themes": "^1.5.0",
-    "tailwindcss": "^2.0.2"
+    "nuxt": "^3.14.1593",
+    "prism-themes": "^1.9.0",
+    "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@aceforth/nuxt-optimized-images": "^1.4.0",
-    "@nuxtjs/google-analytics": "^2.4.0",
-    "@nuxtjs/google-fonts": "^1.2.0",
-    "@nuxtjs/style-resources": "^1.0.0",
-    "fibers": "^5.0.0",
-    "imagemin-gifsicle": "^7.0.0",
-    "imagemin-mozjpeg": "^9.0.0",
-    "imagemin-pngquant": "^9.0.1",
-    "imagemin-svgo": "^8.0.0",
-    "lqip-loader": "^2.2.1",
     "push-dir": "^0.4.1",
-    "responsive-loader": "^2.3.0",
-    "sass": "^1.32.0",
-    "sass-loader": "^10.1.0",
-    "sharp": "^0.27.0",
-    "sqip-loader": "^1.0.0",
-    "webp-loader": "^0.6.0"
+    "sass": "^1.80.0",
+    "sass-loader": "^16.0.0"
   },
   "engines": {
-    "npm": "^6.14.17",
-    "node": "^14.21.1"
+    "node": ">=18.0.0"
   }
 }

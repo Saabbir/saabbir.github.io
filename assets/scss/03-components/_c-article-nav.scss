@@ -1,3 +1,5 @@
+@use "../01-config/config" as *;
+
 .c-article-nav {
   &__title {
     border-bottom: rem(1px) solid $border-color;

@@ -19,26 +19,14 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import driftBot from "@/utils/driftBot";
 import vhHack from "@/utils/vhHack";
-import ContactForm from "../components/ContactForm.vue";
-import ContactCopy from "../components/ContactCopy.vue";
 
-export default {
-  components: { ContactForm, ContactCopy },
-  name: "Contact",
-  head() {
-    return {
-      title: "Contact - Saabbir Hossain",
-    };
-  },
-  mounted() {
-    // Load drift widget after window finished loading
-    window.onload = driftBot;
+useHead({ title: "Contact - Saabbir Hossain" });
 
-    // Set --vh CSS custom property
-    vhHack();
-  },
-};
+onMounted(() => {
+  window.onload = driftBot;
+  vhHack();
+});
 </script>

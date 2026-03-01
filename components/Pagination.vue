@@ -1,45 +1,28 @@
 <template>
   <div class="c-pagination">
-    <div class="c-pagination__prev" v-if="prev">
-      <div class="c-pagination__link-label">Previous {{type}}</div>
-      <NuxtLink
-        :to="{ name: routeName, params: { slug: prev.slug } }"
-        class="c-button c-button--lg"
-      >
+    <div v-if="prev" class="c-pagination__prev">
+      <div class="c-pagination__link-label">Previous {{ type }}</div>
+      <NuxtLink :to="`${basePath}/${prev.slug}`" class="c-button c-button--lg">
         &laquo; {{ prev.title }}
-      </NuxtLink>      
+      </NuxtLink>
     </div>
-    <div class="c-pagination__next" v-if="next">
-      <div class="c-pagination__link-label">Next {{type}}</div>
-      <NuxtLink
-        :to="{ name: routeName, params: { slug: next.slug } }"
-        class="c-button c-button--lg"
-      >
+    <div v-if="next" class="c-pagination__next">
+      <div class="c-pagination__link-label">Next {{ type }}</div>
+      <NuxtLink :to="`${basePath}/${next.slug}`" class="c-button c-button--lg">
         {{ next.title }} &raquo;
       </NuxtLink>
     </div>
   </div>
 </template>
 
-<script>
-  export default {
-    props: {
-      prev: {
-        type: Object,
-        default: () => null
-      },
-      next: {
-        type: Object,
-        default: () => null
-      },
-      routeName: {
-        type: String,
-        default: () => 'blog-slug'
-      },
-      type: {
-        type: String,
-        default: () => 'Post'
-      }
-    }
-  }
+<script setup lang="ts">
+withDefaults(
+  defineProps<{
+    prev: { slug: string; title: string } | null;
+    next: { slug: string; title: string } | null;
+    basePath?: string;
+    type?: string;
+  }>(),
+  { basePath: "/blog", type: "Post" }
+);
 </script>

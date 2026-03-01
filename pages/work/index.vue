@@ -5,24 +5,14 @@
         <h1 class="t-display-1">Featured works</h1>
         <p class="u-mt-16 t-18">Selected projects.</p>
       </header>
-      <div :class="{ 'l-works': true, 'l-works--1': works.length === 1 }">
+      <div :class="['l-works', works.length === 1 ? 'l-works--1' : '']">
         <div v-for="work of works" :key="work.slug" class="c-portfolio-card">
-          <nuxt-link
-            :to="{ name: 'work-slug', params: { slug: work.slug } }"
-            class="c-portfolio-card__link"
-          ></nuxt-link>
+          <NuxtLink :to="`/work/${work.slug}`" class="c-portfolio-card__link"></NuxtLink>
           <figure class="c-portfolio-card__figure">
             <picture>
-              <source
-                :srcset="
-                  require(`~/assets/images/work/${work.imgFolderName}/thumbnail.jpg?webp`)
-                "
-                type="image/webp"
-              />
               <img
-                :src="
-                  require(`~/assets/images/work/${work.imgFolderName}/thumbnail.jpg`)
-                "
+                v-if="work.imgFolderName"
+                :src="`/images/work/${work.imgFolderName}/thumbnail.jpg`"
                 :alt="`${work.title} Thumbnail`"
                 width="414"
                 height="311"
@@ -39,37 +29,24 @@
   </section>
 </template>
 
-<script>
+<script setup lang="ts">
 import driftBot from "@/utils/driftBot";
 import vhHack from "@/utils/vhHack";
 
-export default {
-  name: "WorkIndex",
-  head() {
-    return {
-      title: "Work - Saabbir Hossain",
-    };
-  },
-  mounted() {
-    // Load drift widget after window finished loading
-    window.onload = driftBot;
+useHead({ title: "Work - Saabbir Hossain" });
 
-    // Set --vh CSS custom property
-    vhHack();
-  },
-  async asyncData({ params, $content }) {
-    const works = await $content("work")
-      // .where({ category: { $contains: "ab-testing" } })
-      // .limit(6)
-      .where({ publish: true })
-      .sortBy("createdAt", "desc")
-      .fetch();
+const { data: worksData } = await useAsyncData("work-list", () =>
+  queryContent("work")
+    .where({ publish: true })
+    .sort({ createdAt: -1 })
+    .find()
+);
+const works = computed(() => worksData.value ?? []);
 
-    // console.log("Saabbir:", "works", works);
-
-    return { works };
-  },
-};
+onMounted(() => {
+  window.onload = driftBot;
+  vhHack();
+});
 </script>
 
 <style lang="scss" scoped></style>
