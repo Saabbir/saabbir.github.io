@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23c9622c%22/><text x=%2250%22 y=%2266%22 font-size=%2258%22 text-anchor=%22middle%22 font-family=%22Georgia%22 fill=%22%23161310%22>s</text></svg>" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23c9622c'/%3E%3Cg transform='translate(18 18) scale(4)'%3E%3Cpath fill='%23fff8f0' d='M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z'/%3E%3C/g%3E%3C/svg%3E" />
 <style>
   :root {
     --bg: #f4efe7;
@@ -77,6 +77,7 @@
     position: fixed;
     inset: 0;
     z-index: 0;
+    pointer-events: none;
     background:
       radial-gradient(680px 460px at 88% -8%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 62%),
       radial-gradient(520px 420px at -6% 18%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 60%);
@@ -108,13 +109,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    gap: 12px;
+    flex-wrap: nowrap;
   }
 
   .header-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 8px;
   }
 
   .lede a {
@@ -131,6 +135,7 @@
     gap: 10px;
     text-decoration: none;
     color: var(--ink);
+    min-width: 0;
   }
 
   .brand-mark {
@@ -141,40 +146,52 @@
     color: var(--accent-ink);
     display: grid;
     place-items: center;
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    font-size: 17px;
     flex-shrink: 0;
     box-shadow: var(--shadow);
+  }
+
+  .brand-mark svg {
+    width: 16px;
+    height: 16px;
+    display: block;
   }
 
   .brand-name {
     font-size: 14px;
     letter-spacing: 0.02em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .brand-name .dim { color: var(--ink-soft); }
 
-  .theme-toggle {
+  .icon-btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
     border: 1px solid var(--line);
     background: var(--bg-elevated);
     color: var(--ink);
-    border-radius: 100px;
-    padding: 7px 14px 7px 10px;
-    font-family: inherit;
-    font-size: 12px;
-    letter-spacing: 0.03em;
+    border-radius: 50%;
+    text-decoration: none;
+    font: inherit;
     cursor: pointer;
-    transition: border-color 0.2s ease, transform 0.15s ease;
+    flex-shrink: 0;
+    transition: border-color 0.2s ease, transform 0.15s ease, color 0.15s ease;
   }
 
-  .theme-toggle:hover { border-color: color-mix(in srgb, var(--accent) 60%, var(--line)); }
-  .theme-toggle:active { transform: scale(0.96); }
+  .icon-btn:hover {
+    border-color: color-mix(in srgb, var(--accent) 60%, var(--line));
+    color: var(--accent);
+  }
 
-  .theme-toggle svg { width: 15px; height: 15px; display: block; }
+  .icon-btn:active { transform: scale(0.96); }
+
+  .icon-btn svg { width: 16px; height: 16px; display: block; }
 
   /* Hero */
   .hero {
@@ -282,26 +299,30 @@
     gap: 10px;
     margin-bottom: 22px;
     flex-wrap: wrap;
+    align-items: stretch;
   }
 
   .search-field {
-    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
     flex: 1 1 220px;
     min-width: 0;
   }
 
   .search-field svg {
-    position: absolute;
-    left: 13px;
-    top: 50%;
-    transform: translateY(-50%);
+    grid-area: 1 / 1;
+    justify-self: start;
+    margin-left: 13px;
     width: 15px;
     height: 15px;
     color: var(--ink-soft);
     pointer-events: none;
+    z-index: 1;
   }
 
   .search-field input {
+    grid-area: 1 / 1;
     width: 100%;
     background: var(--bg-elevated);
     border: 1px solid var(--line);
@@ -316,9 +337,14 @@
 
   .search-field input::placeholder { color: var(--ink-soft); }
   .search-field input:focus { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
+  .search-field input[type="search"] {
+    -webkit-appearance: none;
+    appearance: none;
+  }
 
   .sort-field {
     position: relative;
+    display: block;
     flex: 0 0 auto;
   }
 
@@ -363,7 +389,6 @@
     background: var(--bg-elevated);
     border: 1px solid var(--line);
     border-radius: 16px;
-    text-decoration: none;
     color: var(--ink);
     box-shadow: var(--shadow);
     opacity: 0;
@@ -371,6 +396,15 @@
     animation: rise 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
     transition: border-color 0.2s ease, transform 0.2s ease;
     overflow: hidden;
+  }
+
+  .project-main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    text-decoration: none;
+    color: inherit;
+    min-width: 0;
   }
 
   .project.instant {
@@ -429,7 +463,7 @@
     display: flex;
     flex-direction: column;
     gap: 3px;
-    padding: 14px 16px 16px;
+    padding: 14px 16px 4px;
     flex: 1;
   }
 
@@ -455,18 +489,25 @@
     margin-top: 2px;
   }
 
+  .project .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 16px 16px;
+    margin-top: auto;
+  }
+
   .project .cta {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    margin-top: 12px;
-    align-self: flex-start;
     border: 1px solid var(--line);
     border-radius: 100px;
     padding: 6px 12px;
     font-size: 11.5px;
     letter-spacing: 0.03em;
     color: var(--ink);
+    text-decoration: none;
     transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   }
 
@@ -476,12 +517,12 @@
     transition: transform 0.2s ease;
   }
 
-  .project:hover .cta {
+  .project .cta:hover {
     border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
     color: var(--accent);
   }
 
-  .project:hover .cta svg {
+  .project .cta-live:hover svg {
     transform: translate(2px, -2px);
   }
 
@@ -522,6 +563,8 @@
 
   /* Footer */
   footer.site {
+    position: relative;
+    z-index: 2;
     border-top: 1px solid var(--line);
     padding: 26px 0 40px;
   }
@@ -542,7 +585,7 @@
   .footer-inner a {
     color: var(--ink-soft);
     text-decoration: none;
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px solid currentColor;
     transition: border-color 0.2s ease, color 0.2s ease;
   }
 
@@ -555,10 +598,12 @@
 
   @media (max-width: 540px) {
     .header-inner { padding: 14px 18px; }
-    .brand-name .dim { display: none; }
+    .brand-mark { display: none; }
     .hero { padding: 44px 0 30px; }
     .stat-row { gap: 20px; }
     .toolbar { flex-direction: column; }
+    .search-field,
+    .sort-field { flex: none; width: 100%; }
     .sort-field select { width: 100%; }
     .projects { grid-template-columns: 1fr; }
     .footer-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -571,14 +616,23 @@
   <header class="site">
     <div class="header-inner">
       <a class="brand" href="/">
-        <span class="brand-mark">s</span>
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        </span>
         <span class="brand-name">saabbir<span class="dim">.github.io</span></span>
       </a>
       <div class="header-actions">
-        <a class="theme-toggle" href="https://saabbir.com">portfolio</a>
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">
-          <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></svg>
-          <span id="themeLabel">dark</span>
+        <a class="icon-btn" href="https://github.com/Saabbir" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" title="GitHub">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        </a>
+        <a class="icon-btn" href="https://saabbir.com" target="_blank" rel="noopener noreferrer" aria-label="Portfolio website" title="Portfolio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M3 12h18M12 3c2.5 3 3.8 6 3.8 9s-1.3 6-3.8 9M12 3c-2.5 3-3.8 6-3.8 9s1.3 6 3.8 9"></path>
+          </svg>
+        </a>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch to light theme" title="Theme">
+          <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg>
         </button>
       </div>
     </div>
@@ -588,7 +642,7 @@
     <section class="hero">
       <span class="kicker">GitHub Pages registry</span>
       <h1>Project sites under <em>saabbir.github.io</em></h1>
-      <p class="lede">A running index of every public GitHub Pages project on this account — pulled from the GitHub API, so this list stays current. The personal site lives at <a href="https://saabbir.com">saabbir.com</a>.</p>
+      <p class="lede">A running index of every public GitHub Pages project on this account — pulled from the GitHub API, so this list stays current. The personal site lives at <a href="https://saabbir.com" target="_blank" rel="noopener noreferrer">saabbir.com</a>.</p>
       <div class="stat-row">
         <div class="stat">
           <span class="n" id="statCount">—</span>
@@ -607,10 +661,10 @@
     </div>
 
     <div class="toolbar">
-      <label class="search-field">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
-        <input type="text" id="searchInput" placeholder="Search projects…" autocomplete="off" />
-      </label>
+      <div class="search-field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+        <input type="search" id="searchInput" placeholder="Search projects…" autocomplete="off" aria-label="Search projects" />
+      </div>
       <label class="sort-field">
         <select id="sortSelect">
           <option value="newest">Newest first</option>
@@ -631,10 +685,9 @@
 
   <footer class="site">
     <div class="footer-inner">
-      <span>© <span id="year"></span> — hosted on GitHub Pages. Portfolio: <a href="https://saabbir.com">saabbir.com</a></span>
+      <span>© <span id="year"></span> — hosted on GitHub Pages. Portfolio: <a href="https://saabbir.com" target="_blank" rel="noopener noreferrer">saabbir.com</a></span>
       <span class="footer-links">
-        <a href="https://github.com/Saabbir?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://saabbir.netlify.app/" target="_blank" rel="noopener noreferrer">Netlify registry</a>
+        <a href="https://github.com/Saabbir" target="_blank" rel="noopener noreferrer">GitHub</a>
       </span>
     </div>
   </footer>
@@ -644,7 +697,6 @@
       var root = document.documentElement;
       var toggle = document.getElementById('themeToggle');
       var icon = document.getElementById('themeIcon');
-      var label = document.getElementById('themeLabel');
 
       var SUN = '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
       var MOON = '<path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/>';
@@ -652,7 +704,8 @@
       function applyTheme(mode) {
         root.classList.toggle('dark', mode === 'dark');
         icon.innerHTML = mode === 'dark' ? SUN : MOON;
-        label.textContent = mode === 'dark' ? 'light' : 'dark';
+        toggle.setAttribute('aria-label', mode === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+        toggle.setAttribute('title', mode === 'dark' ? 'Light theme' : 'Dark theme');
       }
 
       var stored = localStorage.getItem('theme');
@@ -700,7 +753,9 @@
         });
       }
 
-      var CACHE_KEY = 'gh-pages-projects';
+      var CACHE_KEY = 'gh-pages-projects-v2';
+      var GH_MARK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>';
+      var LIVE_MARK = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>';
       var OWNER = 'Saabbir';
       var SKIP = {
         'saabbir.github.io': true,
@@ -768,27 +823,37 @@
         }
 
         projects.forEach(function (p, i) {
-          var a = document.createElement('a');
-          a.className = instant ? 'project instant' : 'project';
-          a.href = p.url;
-          a.target = '_blank';
-          a.rel = 'noopener noreferrer';
-          if (!instant) a.style.animationDelay = Math.min(i * 45, 400) + 'ms';
+          var card = document.createElement('article');
+          card.className = instant ? 'project instant' : 'project';
+          if (!instant) card.style.animationDelay = Math.min(i * 45, 400) + 'ms';
 
           var thumbInner = p.image
             ? '<img src="' + escapeHtml(p.image) + '" alt="" loading="lazy" />'
             : '<span class="placeholder">' + escapeHtml(p.name) + '</span>';
 
-          a.innerHTML =
+          var liveUrl = p.url;
+          var repoUrl = p.githubUrl || ('https://github.com/' + OWNER + '/' + p.name);
+
+          var main = document.createElement('a');
+          main.className = 'project-main';
+          main.href = liveUrl;
+          main.target = '_blank';
+          main.rel = 'noopener noreferrer';
+          main.innerHTML =
             '<div class="thumb">' + thumbInner + '</div>' +
             '<div class="body">' +
             '<span class="name">' + escapeHtml(p.name) + '</span>' +
-            '<span class="url">' + escapeHtml(p.path || hostname(p.url)) + '</span>' +
+            '<span class="url">' + escapeHtml(p.path || hostname(liveUrl)) + '</span>' +
             '<span class="created">Created ' + formatDate(p.createdAt) + '</span>' +
-            '<span class="cta">View live <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span>' +
             '</div>';
 
-          var img = a.querySelector('.thumb img');
+          var actions = document.createElement('div');
+          actions.className = 'actions';
+          actions.innerHTML =
+            '<a class="cta cta-live" href="' + escapeHtml(liveUrl) + '" target="_blank" rel="noopener noreferrer">View live ' + LIVE_MARK + '</a>' +
+            '<a class="cta cta-github" href="' + escapeHtml(repoUrl) + '" target="_blank" rel="noopener noreferrer">' + GH_MARK + ' GitHub</a>';
+
+          var img = main.querySelector('.thumb img');
           if (img) {
             img.addEventListener('error', function () {
               var span = document.createElement('span');
@@ -798,7 +863,9 @@
             });
           }
 
-          el.appendChild(a);
+          card.appendChild(main);
+          card.appendChild(actions);
+          el.appendChild(card);
         });
       }
 
@@ -830,6 +897,7 @@
         return {
           name: repo.name,
           url: pagesUrl(repo),
+          githubUrl: repo.html_url,
           path: '/' + repo.name + '/',
           createdAt: repo.created_at,
           description: repo.description || ''
