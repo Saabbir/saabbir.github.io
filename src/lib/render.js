@@ -23,7 +23,70 @@ export function formatJoin(iso) {
   if (!iso) return '';
   const d = new Date(iso);
   if (isNaN(d.getTime())) return '';
-  return 'Joined ' + d.toLocaleDateString(undefined, { year: 'numeric', month: 'long' });
+  return 'Joined ' + d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+export function websiteHref(url) {
+  if (!url) return '';
+  if (/^https?:\/\//i.test(url)) return url;
+  return 'https://' + url.replace(/^\/+/, '');
+}
+
+const CHART_COLORS = ['#c9622c', '#e8a87c', '#4a7c59', '#3d5a80', '#6d597a', '#b56576', '#355070', '#c9ada7'];
+
+export function donutHTML(items) {
+  const total = items.reduce((sum, item) => sum + item.count, 0) || 1;
+  let cursor = 0;
+  const stops = items.map((item, i) => {
+    const start = cursor;
+    cursor += (item.count / total) * 100;
+    return CHART_COLORS[i % CHART_COLORS.length] + ' ' + start.toFixed(1) + '% ' + cursor.toFixed(1) + '%';
+  });
+  const legend = items
+    .map((item, i) => {
+      const pct = Math.round((item.count / total) * 100);
+      return (
+        '<li><span class="swatch" style="background:' +
+        CHART_COLORS[i % CHART_COLORS.length] +
+        '"></span>' +
+        escapeHtml(item.name) +
+        ' <em>' +
+        pct +
+        '%</em></li>'
+      );
+    })
+    .join('');
+  return (
+    '<div class="donut-wrap">' +
+    '<div class="donut" style="background: conic-gradient(' +
+    (stops.join(', ') || 'var(--line) 0 100%') +
+    ')"></div>' +
+    '<ul class="chart-legend">' +
+    legend +
+    '</ul></div>'
+  );
+}
+
+export function barsHTML(items) {
+  const max = Math.max.apply(null, items.map((item) => item.count).concat([1]));
+  return (
+    '<div class="bar-chart">' +
+    items
+      .map((item) => {
+        const pct = Math.max(6, Math.round((item.count / max) * 100));
+        return (
+          '<div class="bar-row"><span class="bar-label">' +
+          escapeHtml(item.name) +
+          '</span><span class="bar-track"><span class="bar-fill" style="width:' +
+          pct +
+          '%"></span></span><span class="bar-n">' +
+          item.count +
+          '</span></div>'
+        );
+      })
+      .join('') +
+    '</div>'
+  );
 }
 
 export function stateCard(title, body) {

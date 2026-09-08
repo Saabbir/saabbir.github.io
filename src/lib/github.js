@@ -228,3 +228,23 @@ export function languageCounts(repos) {
 export function totalStars(repos) {
   return repos.reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
 }
+
+export function starsByLanguage(repos) {
+  const counts = {};
+  repos.forEach((repo) => {
+    if (!repo.language) return;
+    counts[repo.language] = (counts[repo.language] || 0) + (repo.stargazers_count || 0);
+  });
+  return Object.keys(counts)
+    .map((name) => ({ name, count: counts[name] }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 6);
+}
+
+export function topStarredRepos(repos, limit) {
+  return repos
+    .slice()
+    .sort((a, b) => (b.stargazers_count || 0) - (a.stargazers_count || 0))
+    .slice(0, limit || 6)
+    .map((repo) => ({ name: repo.name, count: repo.stargazers_count || 0 }));
+}

@@ -6,29 +6,41 @@ const featuredTools = tools.slice(0, 2);
 ---
 <BaseLayout
   current="home"
-  title="saabbir — GitHub hub"
-  description="GitHub profile, published Pages, and developer tools from Saabbir."
+  title="Saabbir Hossain — GitHub"
+  description="Saabbir Hossain on GitHub: profile, published Pages, and developer tools."
 >
   <section class="hero">
-    <span class="kicker">GitHub hub</span>
+    <span class="kicker">GitHub</span>
     <div class="profile" id="profile">
+      <img class="profile-avatar" id="profileAvatar" alt="Saabbir Hossain" width="96" height="96" src="https://github.com/Saabbir.png" />
       <div>
-        <h1>What’s on <em>saabbir.github.io</em></h1>
-        <p class="lede" id="profileBio">
-          Profile, published Pages, and a few tools that talk to the public GitHub API. The personal site lives at
-          <a href="https://saabbir.com" target="_blank" rel="noopener noreferrer">saabbir.com</a>.
+        <h1 id="profileName">Saabbir Hossain</h1>
+        <p class="handle">
+          <a id="profileHandle" href="https://github.com/Saabbir" target="_blank" rel="noopener noreferrer">@Saabbir</a>
         </p>
+        <p class="lede" id="profileBio">Loading profile…</p>
         <div class="profile-meta" id="profileMeta"></div>
-        <div class="lang-pills" id="langPills"></div>
+        <div class="socials" id="profileSocials"></div>
       </div>
     </div>
     <div class="stat-row">
-      <div class="stat"><span class="n" id="statRepos">—</span><span class="l">public repos</span></div>
+      <div class="stat"><span class="n" id="statRepos">—</span><span class="l">repositories</span></div>
       <div class="stat"><span class="n" id="statFollowers">—</span><span class="l">followers</span></div>
-      <div class="stat"><span class="n" id="statStars">—</span><span class="l">repo stars</span></div>
-      <div class="stat"><span class="n" id="statPages">—</span><span class="l">pages live</span></div>
+      <div class="stat"><span class="n" id="statFollowing">—</span><span class="l">following</span></div>
+      <div class="stat"><span class="n" id="statStars">—</span><span class="l">stars</span></div>
     </div>
   </section>
+
+  <div class="charts" id="charts">
+    <div class="chart-card">
+      <h2>Top languages</h2>
+      <div id="langChart"><div class="skeleton" style="height: 160px"></div></div>
+    </div>
+    <div class="chart-card">
+      <h2>Most starred</h2>
+      <div id="starChart"><div class="skeleton" style="height: 160px"></div></div>
+    </div>
+  </div>
 
   <div class="section-head">
     <h2>Tools</h2>
@@ -61,59 +73,67 @@ const featuredTools = tools.slice(0, 2);
 </BaseLayout>
 
 <script>
-  import { loadProfileAndRepos, isPagesProject, toProject, languageCounts, totalStars, quotaMessage } from '../lib/github.js';
-  import { escapeHtml, formatJoin, renderProjectGrid, stateCard, quotaCard } from '../lib/render.js';
+  import { loadProfileAndRepos, isPagesProject, toProject, languageCounts, totalStars, topStarredRepos } from '../lib/github.js';
+  import { escapeHtml, formatJoin, renderProjectGrid, stateCard, quotaCard, donutHTML, barsHTML, websiteHref } from '../lib/render.js';
 
   const projectsEl = document.getElementById('projects');
 
   function paintProfile(profile, repos) {
     if (!profile) return;
-    const host = document.getElementById('profile');
-    const existing = host.querySelector('.profile-avatar');
-    if (!existing) {
-      const img = document.createElement('img');
-      img.className = 'profile-avatar';
-      img.alt = '';
-      img.width = 88;
-      img.height = 88;
-      img.src = profile.avatar_url;
-      host.insertBefore(img, host.firstElementChild);
-    } else {
-      existing.src = profile.avatar_url;
-    }
+    const avatar = document.getElementById('profileAvatar');
+    avatar.src = profile.avatar_url;
+    avatar.alt = profile.name || profile.login;
 
-    const lede = document.getElementById('profileBio');
-    if (profile.bio) {
-      lede.innerHTML =
-        escapeHtml(profile.bio) +
-        ' The personal site lives at <a href="https://saabbir.com" target="_blank" rel="noopener noreferrer">saabbir.com</a>.';
-    }
+    document.getElementById('profileName').textContent = profile.name || profile.login;
+    const handle = document.getElementById('profileHandle');
+    handle.href = profile.html_url;
+    handle.textContent = '@' + profile.login;
+
+    document.getElementById('profileBio').textContent = profile.bio || '';
 
     const bits = [];
-    if (profile.company) bits.push(escapeHtml(profile.company));
-    if (profile.location) bits.push(escapeHtml(profile.location));
-    bits.push(escapeHtml(formatJoin(profile.created_at)));
-    bits.push(
-      '<a href="' + escapeHtml(profile.html_url) + '" target="_blank" rel="noopener noreferrer">@' +
-        escapeHtml(profile.login) +
-        '</a>'
-    );
-    document.getElementById('profileMeta').innerHTML = bits.filter(Boolean).join('<span>·</span>');
+    if (profile.company) bits.push('<span>' + escapeHtml(profile.company) + '</span>');
+    if (profile.location) bits.push('<span>' + escapeHtml(profile.location) + '</span>');
+    bits.push('<span>' + escapeHtml(formatJoin(profile.created_at)) + '</span>');
+    document.getElementById('profileMeta').innerHTML = bits.join('');
 
-    const langs = languageCounts(repos || []);
-    document.getElementById('langPills').innerHTML = langs
-      .map((l) => '<span class="pill">' + escapeHtml(l.name) + ' ' + l.count + '</span>')
-      .join('');
+    const socials = [];
+    socials.push(
+      '<a href="' + escapeHtml(profile.html_url) + '" target="_blank" rel="noopener noreferrer">GitHub</a>'
+    );
+    const site = websiteHref(profile.blog);
+    if (site) {
+      socials.push('<a href="' + escapeHtml(site) + '" target="_blank" rel="noopener noreferrer">Website</a>');
+    }
+    if (profile.twitter_username) {
+      socials.push(
+        '<a href="https://x.com/' +
+          encodeURIComponent(profile.twitter_username) +
+          '" target="_blank" rel="noopener noreferrer">@' +
+          escapeHtml(profile.twitter_username) +
+          '</a>'
+      );
+    }
+    document.getElementById('profileSocials').innerHTML = socials.join('');
 
     document.getElementById('statRepos').textContent = String(profile.public_repos ?? '—');
     document.getElementById('statFollowers').textContent = String(profile.followers ?? '—');
+    document.getElementById('statFollowing').textContent = String(profile.following ?? '—');
     document.getElementById('statStars').textContent = String(totalStars(repos || []));
+
+    const langs = languageCounts(repos || []);
+    document.getElementById('langChart').innerHTML = langs.length
+      ? donutHTML(langs)
+      : '<p class="note">No language data yet.</p>';
+    const starred = topStarredRepos(repos || [], 6);
+    document.getElementById('starChart').innerHTML = starred.length
+      ? barsHTML(starred)
+      : '<p class="note">No starred repos yet.</p>';
   }
 
   function paintPages(repos, instant) {
     const projects = (repos || []).filter(isPagesProject).map(toProject);
     projects.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
-    document.getElementById('statPages').textContent = String(projects.length);
     renderProjectGrid(projectsEl, projects.slice(0, 6), instant);
   }
 
@@ -130,7 +150,7 @@ const featuredTools = tools.slice(0, 2);
       } else if (err.rateLimited) {
         projectsEl.innerHTML = quotaCard(err);
       } else {
-        projectsEl.innerHTML = stateCard("Couldn't load", quotaMessage(err));
+        projectsEl.innerHTML = stateCard("Couldn't load", 'Try again after the GitHub API reset.');
       }
     });
 </script>

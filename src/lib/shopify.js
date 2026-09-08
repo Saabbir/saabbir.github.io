@@ -1,20 +1,19 @@
 import { githubFetch, getLimits, isRateLimited, readCache, writeCache, cacheFresh } from './github.js';
 
-export const PEOPLE_CAP = 25;
+export const PEOPLE_CAP = 20;
 export const REPOS_CAP = 40;
-export const FEED_CAP = 15;
-export const HIGHLIGHT_CAP = 5;
-export const ALSO_CAP = 10;
-export const SHOPIFY_CACHE_KEY = 'hub-shopify-radar-v1';
+export const FEED_MIN = 10;
+export const FEED_MAX = 20;
+export const SHOPIFY_CACHE_KEY = 'hub-shopify-radar-v2';
 export const SHOPIFY_TTL_MS = 6 * 60 * 60 * 1000;
-export const EVENTS_CACHE_KEY = 'hub-shopify-events-v1';
+export const EVENTS_CACHE_KEY = 'hub-shopify-events-v2';
 export const EVENTS_TTL_MS = 15 * 60 * 1000;
 
 const SEARCH_QUERIES = [
   'topic:shopify-theme',
   'topic:shopify-app',
   'topic:shopify-hydrogen',
-  'topic:shopify',
+  'topic:shopify-cli',
 ];
 
 const DROP_ORGS = {
@@ -24,7 +23,18 @@ const DROP_ORGS = {
 };
 
 const THEME_TOPICS = { 'shopify-theme': true, 'shopify-themes': true };
-const APP_TOPICS = { 'shopify-app': true, 'shopify-apps': true };
+const APP_TOPICS = { 'shopify-app': true, 'shopify-apps': true, 'shopify-app-template': true };
+const TOOLKIT_TOPICS = {
+  'shopify-cli': true,
+  'shopify-api': true,
+  'shopify-hydrogen': true,
+  hydrogen: true,
+  polaris: true,
+  'shopify-scripts': true,
+  'shopify-functions': true,
+  'checkout-ui-extensions': true,
+  'shopify-theme-app-extension': true,
+};
 
 function topicsOf(repo) {
   return (repo.topics || []).map((t) => String(t).toLowerCase());
@@ -34,24 +44,45 @@ function blob(repo) {
   return ((repo.name || '') + ' ' + (repo.description || '')).toLowerCase();
 }
 
-export function classifyRepo(repo) {
-  if (!repo || repo.fork) return null;
+function hasShopifySignal(repo) {
   const topics = topicsOf(repo);
   const text = blob(repo);
-  const hasShopify = topics.includes('shopify') || text.includes('shopify');
+  const name = (repo.name || '').toLowerCase();
+  if (topics.some((t) => t.startsWith('shopify-'))) return true;
+  if (name.includes('shopify')) return true;
+  if (text.includes('shopify') && /(theme|app|hydrogen|polaris|liquid|cli|extension|checkout)/.test(text)) {
+    return true;
+  }
+  return false;
+}
 
-  if (topics.some((t) => THEME_TOPICS[t]) || (text.includes('shopify') && text.includes('theme'))) {
+export function classifyRepo(repo) {
+  if (!repo || repo.fork) return null;
+  if (!hasShopifySignal(repo)) return null;
+
+  const topics = topicsOf(repo);
+  const text = blob(repo);
+  const topicBlob = topics.join(' ');
+
+  if (topics.some((t) => THEME_TOPICS[t]) || (text.includes('shopify') && /\bthemes?\b/.test(text) && !/\bapp\b/.test(text))) {
     return 'theme';
   }
-  if (topics.some((t) => APP_TOPICS[t]) || (text.includes('shopify') && /\bapp\b/.test(text))) {
+  if (topics.some((t) => APP_TOPICS[t]) || (text.includes('shopify') && /\b(app|apps)\b/.test(text))) {
     return 'app';
   }
-  if (hasShopify && /(docs?|handbook|guide)/.test(text)) return 'docs';
-  if (hasShopify && /(ai|gpt|llm|copilot)/.test(text + ' ' + topics.join(' '))) return 'ai';
-  if (topics.includes('shopify-hydrogen') || topics.includes('hydrogen')) return 'other';
-  if ((topics.includes('polaris') || topics.includes('liquid')) && hasShopify) return 'other';
-  if (topics.includes('shopify')) return 'other';
+  if (text.includes('shopify') && /(ai|gpt|llm|copilot)/.test(text + ' ' + topicBlob)) {
+    return 'ai';
+  }
+  if (topics.some((t) => TOOLKIT_TOPICS[t]) || (text.includes('shopify') && /(cli|polaris|hydrogen|liquid|toolkit|sdk|api)/.test(text))) {
+    return 'toolkit';
+  }
   return null;
+}
+
+export function countryFromLocation(location) {
+  if (!location) return '';
+  const parts = String(location).split(',').map((s) => s.trim()).filter(Boolean);
+  return parts[parts.length - 1] || '';
 }
 
 function searchUrl(query) {
@@ -76,7 +107,7 @@ export async function searchShopifyRepos() {
         byId.set(repo.id, Object.assign({}, repo, { kind }));
         return;
       }
-      const rank = { theme: 0, app: 1, docs: 2, ai: 3, other: 4 };
+      const rank = { theme: 0, app: 1, toolkit: 2, ai: 3 };
       if (rank[kind] < rank[prev.kind]) prev.kind = kind;
     });
   }
@@ -96,6 +127,8 @@ export function buildPeople(repos) {
         avatar: owner.avatar_url,
         htmlUrl: owner.html_url,
         followers: null,
+        name: '',
+        country: '',
         stars: 0,
         themes: 0,
         apps: 0,
@@ -109,33 +142,53 @@ export function buildPeople(repos) {
   return Array.from(byLogin.values()).sort((a, b) => b.stars - a.stars || a.login.localeCompare(b.login));
 }
 
-export async function attachFollowers(people) {
-  const cap = PEOPLE_CAP;
-  const slice = people.slice(0, cap);
-  if (isRateLimited('core')) return slice;
-  const remaining = getLimits().core.remaining;
-  if (remaining == null || remaining < cap + 8) return slice;
-
-  const out = [];
-  for (const person of slice) {
-    if (isRateLimited('core')) {
-      out.push(person);
-      continue;
-    }
-    try {
-      const user = await githubFetch('https://api.github.com/users/' + person.login, 'core');
-      out.push(Object.assign({}, person, { followers: user.followers || 0 }));
-    } catch (e) {
-      out.push(person);
-    }
-  }
-  return out.sort((a, b) => {
+export function splitPeople(people) {
+  const byFollowers = (a, b) => {
     const fa = a.followers == null ? -1 : a.followers;
     const fb = b.followers == null ? -1 : b.followers;
     if (fb !== fa) return fb - fa;
     if (b.stars !== a.stars) return b.stars - a.stars;
     return a.login.localeCompare(b.login);
+  };
+  return {
+    theme: people.filter((p) => p.themes > 0).sort(byFollowers).slice(0, PEOPLE_CAP),
+    app: people.filter((p) => p.apps > 0).sort(byFollowers).slice(0, PEOPLE_CAP),
+  };
+}
+
+export async function attachFollowers(people) {
+  const unique = [];
+  const seen = {};
+  people.forEach((p) => {
+    if (seen[p.login]) return;
+    seen[p.login] = true;
+    unique.push(p);
   });
+  const slice = unique.slice(0, PEOPLE_CAP * 2);
+  if (isRateLimited('core')) return slice;
+  const remaining = getLimits().core.remaining;
+  if (remaining == null || remaining < 12) return slice;
+
+  const budget = Math.min(slice.length, Math.max(0, remaining - 8));
+  const out = [];
+  for (let i = 0; i < slice.length; i++) {
+    const person = slice[i];
+    if (i >= budget || isRateLimited('core')) {
+      out.push(person);
+      continue;
+    }
+    try {
+      const user = await githubFetch('https://api.github.com/users/' + person.login, 'core');
+      out.push(Object.assign({}, person, {
+        followers: user.followers || 0,
+        name: user.name || '',
+        country: countryFromLocation(user.location),
+      }));
+    } catch (e) {
+      out.push(person);
+    }
+  }
+  return out;
 }
 
 export function sortRepos(repos) {
@@ -249,62 +302,49 @@ export function scoreEvent(event) {
 }
 
 export function buildFeed(events) {
-  const cutoff = Date.now() - 24 * 60 * 60 * 1000;
-  const scored = [];
-  const pushes = new Map();
-
-  (events || []).forEach((event) => {
-    if (new Date(event.created_at).getTime() < cutoff) return;
-    const item = scoreEvent(event);
-    if (!item) return;
-    if (item.score === 10) {
-      const prev = pushes.get(item.key);
-      if (prev) {
-        prev.pushes += item.pushes || 1;
-        if (new Date(item.at) > new Date(prev.at)) prev.at = item.at;
-      } else {
-        pushes.set(item.key, item);
+  function collect(minTime) {
+    const scored = [];
+    const pushes = new Map();
+    (events || []).forEach((event) => {
+      if (minTime && new Date(event.created_at).getTime() < minTime) return;
+      const item = scoreEvent(event);
+      if (!item) return;
+      if (item.score === 10) {
+        const prev = pushes.get(item.key);
+        if (prev) {
+          prev.pushes += item.pushes || 1;
+          if (new Date(item.at) > new Date(prev.at)) prev.at = item.at;
+        } else {
+          pushes.set(item.key, item);
+        }
+        return;
       }
-      return;
-    }
-    scored.push(item);
-  });
-
-  const collapsedPushes = Array.from(pushes.values()).map((item) => {
-    const n = item.pushes || 1;
-    return Object.assign({}, item, {
-      text: n > 1 ? item.text + ' (' + n + ' times)' : item.text,
+      scored.push(item);
     });
-  });
+    const collapsedPushes = Array.from(pushes.values()).map((item) => {
+      const n = item.pushes || 1;
+      return Object.assign({}, item, {
+        text: n > 1 ? item.text + ' (' + n + ' times)' : item.text,
+      });
+    });
+    const unique = [];
+    const seen = {};
+    scored.concat(collapsedPushes).forEach((item) => {
+      if (seen[item.key]) return;
+      seen[item.key] = true;
+      unique.push(item);
+    });
+    unique.sort((a, b) => b.score - a.score || new Date(b.at) - new Date(a.at));
+    return unique;
+  }
 
-  const unique = [];
-  const seen = {};
-  scored.concat(collapsedPushes).forEach((item) => {
-    if (seen[item.key]) return;
-    seen[item.key] = true;
-    unique.push(item);
-  });
-
-  unique.sort((a, b) => b.score - a.score || new Date(b.at) - new Date(a.at));
-
-  const highlights = unique.filter((i) => i.score >= 50).slice(0, HIGHLIGHT_CAP);
-  const highlightKeys = {};
-  highlights.forEach((i) => { highlightKeys[i.key] = true; });
-
-  const also = [];
-  unique.forEach((item) => {
-    if (highlightKeys[item.key]) return;
-    if (item.score >= 40) also.push(item);
-  });
-  unique.forEach((item) => {
-    if (highlightKeys[item.key]) return;
-    if (item.score === 10 && also.length < ALSO_CAP) also.push(item);
-  });
-
-  return {
-    highlights,
-    also: also.slice(0, ALSO_CAP).slice(0, Math.max(0, FEED_CAP - highlights.length)),
-  };
+  const day = Date.now() - 24 * 60 * 60 * 1000;
+  let unique = collect(day);
+  if (unique.length < FEED_MIN) unique = collect(0);
+  const items = unique.slice(0, FEED_MAX);
+  const highlights = items.filter((i) => i.score >= 50);
+  const rest = items.filter((i) => i.score < 50);
+  return { highlights, also: rest, items };
 }
 
 export async function loadShopifyRadar() {
@@ -313,11 +353,18 @@ export async function loadShopifyRadar() {
 
   try {
     const repos = await searchShopifyRepos();
-    let people = buildPeople(repos);
-    people = await attachFollowers(people);
+    const all = buildPeople(repos);
+    const merged = [];
+    const seen = {};
+    all.filter((p) => p.themes > 0).slice(0, PEOPLE_CAP).concat(all.filter((p) => p.apps > 0).slice(0, PEOPLE_CAP)).forEach((p) => {
+      if (seen[p.login]) return;
+      seen[p.login] = true;
+      merged.push(p);
+    });
+    const people = await attachFollowers(merged);
     const payload = {
       repos: sortRepos(repos).slice(0, 80),
-      people: people.slice(0, PEOPLE_CAP),
+      people: splitPeople(people),
       followersLoaded: people.some((p) => p.followers != null),
     };
     writeCache(SHOPIFY_CACHE_KEY, payload);
@@ -336,7 +383,7 @@ export async function loadShopifyFeed() {
   }
 
   try {
-    const events = await githubFetch('https://api.github.com/orgs/Shopify/events?per_page=30', 'core');
+    const events = await githubFetch('https://api.github.com/orgs/Shopify/events?per_page=100', 'core');
     const feed = buildFeed(events);
     writeCache(EVENTS_CACHE_KEY, feed);
     return feed;

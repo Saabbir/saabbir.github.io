@@ -4,32 +4,40 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 <BaseLayout
   current="tools"
   title="Shopify on GitHub — saabbir.github.io"
-  description="Top Shopify theme and app developers, repos, and notable official GitHub activity."
+  description="Shopify theme developers, app developers, and notable GitHub activity."
 >
   <section class="hero">
     <span class="kicker">Shopify radar</span>
-    <h1>What’s going on for <em>Shopify</em></h1>
+    <h1>Shopify on <em>GitHub</em></h1>
     <p class="lede">
-      A cached snapshot from GitHub topic search — not a complete index. People must own a theme or app repo. Lists are a top slice by followers and stars.
+      Theme developers, app developers, and the repos they ship. Official Shopify activity is listed below as one-line highlights.
     </p>
   </section>
 
   <div class="section-head">
-    <h2>Today at Shopify</h2>
-    <span class="count">last 24 hours</span>
+    <h2>Today’s highlights</h2>
+    <span class="count" id="feedCount">10–20</span>
   </div>
-  <p class="note">Highlights are releases, new or public repos, and pull requests. Pushes are collapsed and demoted.</p>
+  <p class="note">Releases, new repos, and pull requests first. Quiet days fill in with other public activity.</p>
   <div class="feed" id="feed">
     <div class="skeleton" style="height: 48px"></div>
   </div>
 
   <div class="section-head">
-    <h2>People</h2>
-    <span class="count" id="peopleCount"></span>
+    <h2>Theme developers</h2>
+    <span class="count" id="themeCount"></span>
   </div>
-  <p class="note" id="peopleNote">Users with at least one Shopify theme or app repository.</p>
-  <div class="person-grid" id="people">
+  <p class="note">People with at least one Shopify theme repository.</p>
+  <div class="person-grid" id="themePeople">
     <div class="skeleton"></div>
+  </div>
+
+  <div class="section-head">
+    <h2>App developers</h2>
+    <span class="count" id="appCount"></span>
+  </div>
+  <p class="note">People with at least one Shopify app repository.</p>
+  <div class="person-grid" id="appPeople">
     <div class="skeleton"></div>
   </div>
 
@@ -41,9 +49,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     <button type="button" data-kind="all" class="active">All</button>
     <button type="button" data-kind="theme">Theme</button>
     <button type="button" data-kind="app">App</button>
-    <button type="button" data-kind="docs">Docs</button>
+    <button type="button" data-kind="toolkit">Toolkit</button>
     <button type="button" data-kind="ai">AI</button>
-    <button type="button" data-kind="other">Other</button>
   </div>
   <div class="repo-list" id="repos">
     <div class="skeleton" style="height: 72px"></div>
@@ -51,39 +58,53 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <script>
-  import { loadShopifyRadar, loadShopifyFeed, REPOS_CAP, PEOPLE_CAP } from '../../../lib/shopify.js';
+  import { loadShopifyRadar, loadShopifyFeed, REPOS_CAP } from '../../../lib/shopify.js';
   import { escapeHtml, quotaCard, stateCard } from '../../../lib/render.js';
 
   const feedEl = document.getElementById('feed');
-  const peopleEl = document.getElementById('people');
   const reposEl = document.getElementById('repos');
   let allRepos = [];
   let kind = 'all';
 
   function feedHTML(feed) {
+    const items = (feed && feed.items) || [];
     const highlights = (feed && feed.highlights) || [];
-    const also = (feed && feed.also) || [];
-    if (!highlights.length && !also.length) {
-      return stateCard('Quiet day', 'No notable public Shopify org activity in the last 24 hours.');
+    const highlightKeys = {};
+    highlights.forEach((item) => { highlightKeys[item.key] = true; });
+    if (!items.length) {
+      return stateCard('Quiet stretch', 'No public Shopify org activity to show right now.');
     }
-    return highlights
-      .map((item) => '<a class="highlight" href="' + escapeHtml(item.url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(item.text) + '</a>')
-      .concat(
-        also.map((item) => '<a class="quiet" href="' + escapeHtml(item.url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(item.text) + '</a>')
-      )
+    document.getElementById('feedCount').textContent = String(items.length);
+    return items
+      .map((item) => {
+        const cls = highlightKeys[item.key] ? 'highlight' : 'quiet';
+        return (
+          '<a class="' +
+          cls +
+          '" href="' +
+          escapeHtml(item.url) +
+          '" target="_blank" rel="noopener noreferrer">' +
+          escapeHtml(item.text) +
+          '</a>'
+        );
+      })
       .join('');
   }
 
-  function peopleHTML(people) {
-    if (!people.length) return stateCard('No people yet', 'Topic search did not return qualifying theme or app owners.');
+  function peopleHTML(people, empty) {
+    if (!people.length) return stateCard('None yet', empty);
     return people
       .map((p) => {
         const followers = p.followers == null ? 'followers n/a' : p.followers + ' followers';
+        const country = p.country
+          ? '<span class="badge">' + escapeHtml(p.country) + '</span>'
+          : '';
+        const display = p.name ? escapeHtml(p.name) : escapeHtml(p.login);
         return (
           '<a class="person-card" href="' + escapeHtml(p.htmlUrl) + '" target="_blank" rel="noopener noreferrer">' +
           '<img src="' + escapeHtml(p.avatar) + '" alt="" width="44" height="44" />' +
-          '<div><strong>' + escapeHtml(p.login) + '</strong>' +
-          '<span>' + followers + ' · ' + p.stars + '★ · ' + p.themes + ' themes · ' + p.apps + ' apps</span></div></a>'
+          '<div><strong>' + display + ' ' + country + '</strong>' +
+          '<span>@' + escapeHtml(p.login) + ' · ' + followers + ' · ' + p.stars + '★</span></div></a>'
         );
       })
       .join('');
@@ -91,7 +112,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 
   function paintRepos() {
     const filtered = allRepos.filter((r) => (kind === 'all' ? true : r.kind === kind)).slice(0, REPOS_CAP);
-    document.getElementById('repoCount').textContent = filtered.length + (kind === 'all' ? '' : ' ' + kind);
+    document.getElementById('repoCount').textContent = String(filtered.length);
     if (!filtered.length) {
       reposEl.innerHTML = stateCard('No repos', 'Nothing in this filter for the current snapshot.');
       return;
@@ -121,23 +142,31 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       feedEl.innerHTML = feedHTML(feed);
     })
     .catch((err) => {
-      feedEl.innerHTML = err.rateLimited ? quotaCard(err) : stateCard("Couldn't load the feed", 'Try again after the API reset.');
+      feedEl.innerHTML = err.rateLimited ? quotaCard(err) : stateCard("Couldn't load highlights", 'Try again after the API reset.');
     });
 
   loadShopifyRadar()
     .then((data) => {
-      const people = (data.people || []).slice(0, PEOPLE_CAP);
-      document.getElementById('peopleCount').textContent = 'top ' + people.length;
-      if (!data.followersLoaded) {
-        document.getElementById('peopleNote').textContent =
-          'Sorted by Shopify-repo stars for now — follower counts need extra API room.';
-      }
-      peopleEl.innerHTML = peopleHTML(people);
+      const theme = (data.people && data.people.theme) || [];
+      const app = (data.people && data.people.app) || [];
+      document.getElementById('themeCount').textContent = String(theme.length);
+      document.getElementById('appCount').textContent = String(app.length);
+      document.getElementById('themePeople').innerHTML = peopleHTML(
+        theme,
+        'No theme developers in this snapshot.'
+      );
+      document.getElementById('appPeople').innerHTML = peopleHTML(
+        app,
+        'No app developers in this snapshot.'
+      );
       allRepos = data.repos || [];
       paintRepos();
     })
     .catch((err) => {
-      peopleEl.innerHTML = err.rateLimited ? quotaCard(err) : stateCard("Couldn't load the snapshot", 'GitHub search quota may be empty.');
+      document.getElementById('themePeople').innerHTML = err.rateLimited
+        ? quotaCard(err)
+        : stateCard("Couldn't load people", 'GitHub search quota may be empty.');
+      document.getElementById('appPeople').innerHTML = '';
       reposEl.innerHTML = '';
     });
 </script>

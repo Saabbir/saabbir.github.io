@@ -204,8 +204,8 @@
     font-size: clamp(34px, 6vw, 56px);
     line-height: 1.04;
     letter-spacing: -0.01em;
-    margin: 0 0 18px;
-    max-width: 14ch;
+    margin: 0 0 10px;
+    max-width: 16ch;
   }
 
   h1 em {
@@ -648,14 +648,155 @@
   }
 
   .profile-avatar {
-    width: 88px;
-    height: 88px;
+    width: 96px;
+    height: 96px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--accent);
+    border: 3px solid var(--accent);
     flex-shrink: 0;
     background: var(--bg-elevated);
   }
+
+  .handle {
+    margin: 0 0 12px;
+    font-size: 16px;
+  }
+
+  .handle a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .handle a:hover { border-bottom: 1px solid currentColor; }
+
+  .socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 14px;
+    font-size: 12px;
+  }
+
+  .socials a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+
+  .badge {
+    display: inline-block;
+    margin-left: 6px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 1px 8px;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    vertical-align: middle;
+  }
+
+  .charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 8px 0 28px;
+  }
+
+  .chart-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px 18px 14px;
+    box-shadow: var(--shadow);
+  }
+
+  .chart-card h2 {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 0 0 16px;
+  }
+
+  .donut-wrap {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .donut {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--line);
+    -webkit-mask: radial-gradient(circle, transparent 46%, #000 47%);
+    mask: radial-gradient(circle, transparent 46%, #000 47%);
+  }
+
+  .chart-legend {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    color: var(--ink-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .chart-legend em {
+    font-style: normal;
+    color: var(--ink);
+  }
+
+  .swatch {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .bar-row {
+    display: grid;
+    grid-template-columns: minmax(72px, 0.9fr) 1fr 40px;
+    gap: 8px;
+    align-items: center;
+    font-size: 11px;
+  }
+
+  .bar-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--ink-soft);
+  }
+
+  .bar-track {
+    height: 8px;
+    background: color-mix(in srgb, var(--accent) 12%, var(--bg));
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 100px;
+  }
+
+  .bar-n { text-align: right; color: var(--ink-soft); }
 
   .profile-meta {
     display: flex;

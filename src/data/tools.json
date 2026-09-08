@@ -2,7 +2,7 @@
   {
     "slug": "shopify",
     "title": "Shopify on GitHub",
-    "blurb": "A snapshot of Shopify theme and app developers, top repos, and notable official activity from the last day.",
+    "blurb": "Who’s building Shopify themes and apps on GitHub — plus what Shopify shipped today.",
     "url": "/tools/shopify/",
     "external": false,
     "tags": ["shopify", "search"]
@@ -10,7 +10,7 @@
   {
     "slug": "github-bd-toppers",
     "title": "GitHub BD Toppers",
-    "blurb": "Most-followed GitHub users in Bangladesh. Uses the public API from its own project site.",
+    "blurb": "The most followed GitHub developers in Bangladesh.",
     "url": "https://saabbir.github.io/github-bd-toppers/",
     "external": true,
     "tags": ["bangladesh", "external"]
