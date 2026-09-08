@@ -64,7 +64,9 @@ export function paintChip() {
   const search = limits.search;
   const coreLeft = core.remaining == null ? '—' : String(core.remaining);
   const searchLeft = search.remaining == null ? '—' : String(search.remaining);
-  el.textContent = `Core ${coreLeft} / ${core.limit} · Search ${searchLeft} / ${search.limit}`;
+  el.innerHTML =
+    '<span class="rate-k">Core </span>' + coreLeft + ' / ' + core.limit +
+    ' · <span class="rate-k">Search </span>' + searchLeft + ' / ' + search.limit;
   const tips = [];
   if (core.reset) tips.push('Core resets ' + formatReset(core.reset));
   if (search.reset) tips.push('Search resets ' + formatReset(search.reset));

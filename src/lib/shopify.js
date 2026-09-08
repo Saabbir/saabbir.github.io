@@ -79,10 +79,62 @@ export function classifyRepo(repo) {
   return null;
 }
 
+const COUNTRY_ISO = {
+  afghanistan: 'AF', albania: 'AL', algeria: 'DZ', argentina: 'AR', armenia: 'AM',
+  australia: 'AU', austria: 'AT', azerbaijan: 'AZ', bahrain: 'BH', bangladesh: 'BD',
+  belarus: 'BY', belgium: 'BE', bolivia: 'BO', bosnia: 'BA', brazil: 'BR',
+  bulgaria: 'BG', cambodia: 'KH', cameroon: 'CM', canada: 'CA', chile: 'CL',
+  china: 'CN', colombia: 'CO', costa: 'CR', croatia: 'HR', cuba: 'CU',
+  cyprus: 'CY', czech: 'CZ', denmark: 'DK', ecuador: 'EC', egypt: 'EG',
+  estonia: 'EE', ethiopia: 'ET', finland: 'FI', france: 'FR', georgia: 'GE',
+  germany: 'DE', ghana: 'GH', greece: 'GR', guatemala: 'GT', honduras: 'HN',
+  'hong kong': 'HK', hungary: 'HU', iceland: 'IS', india: 'IN', indonesia: 'ID',
+  iran: 'IR', iraq: 'IQ', ireland: 'IE', israel: 'IL', italy: 'IT',
+  jamaica: 'JM', japan: 'JP', jordan: 'JO', kazakhstan: 'KZ', kenya: 'KE',
+  kuwait: 'KW', latvia: 'LV', lebanon: 'LB', lithuania: 'LT', luxembourg: 'LU',
+  malaysia: 'MY', mexico: 'MX', moldova: 'MD', morocco: 'MA', myanmar: 'MM',
+  nepal: 'NP', netherlands: 'NL', 'new zealand': 'NZ', nicaragua: 'NI', nigeria: 'NG',
+  norway: 'NO', oman: 'OM', pakistan: 'PK', palestine: 'PS', panama: 'PA',
+  paraguay: 'PY', peru: 'PE', philippines: 'PH', poland: 'PL', portugal: 'PT',
+  qatar: 'QA', romania: 'RO', russia: 'RU', 'saudi arabia': 'SA', scotland: 'GB',
+  senegal: 'SN', serbia: 'RS', singapore: 'SG', slovakia: 'SK', slovenia: 'SI',
+  'south africa': 'ZA', 'south korea': 'KR', korea: 'KR', spain: 'ES',
+  'sri lanka': 'LK', sudan: 'SD', sweden: 'SE', switzerland: 'CH', syria: 'SY',
+  taiwan: 'TW', tanzania: 'TZ', thailand: 'TH', tunisia: 'TN', turkey: 'TR',
+  uganda: 'UG', ukraine: 'UA', 'united arab emirates': 'AE', uae: 'AE',
+  'united kingdom': 'GB', uk: 'GB', england: 'GB', britain: 'GB',
+  'united states': 'US', usa: 'US', 'u.s.': 'US', 'u.s.a.': 'US', america: 'US',
+  uruguay: 'UY', uzbekistan: 'UZ', venezuela: 'VE', vietnam: 'VN', wales: 'GB',
+  yemen: 'YE', zambia: 'ZM', zimbabwe: 'ZW',
+};
+
+function isoToFlag(iso) {
+  return [...iso.toUpperCase()].map((ch) => String.fromCodePoint(127397 + ch.charCodeAt(0))).join('');
+}
+
+export function flagFromLocation(location) {
+  if (!location) return { flag: '', label: '' };
+  const raw = String(location).trim();
+  const lower = raw.toLowerCase();
+  const last = raw.split(',').pop().trim().toLowerCase();
+  let iso = COUNTRY_ISO[last];
+  if (!iso) {
+    const names = Object.keys(COUNTRY_ISO).sort((a, b) => b.length - a.length);
+    for (let i = 0; i < names.length; i++) {
+      const name = names[i];
+      if (name.length < 4 && name !== 'usa' && name !== 'uae') continue;
+      if (lower.includes(name)) {
+        iso = COUNTRY_ISO[name];
+        break;
+      }
+    }
+  }
+  if (!iso) return { flag: '', label: '' };
+  return { flag: isoToFlag(iso), label: last || raw };
+}
+
 export function countryFromLocation(location) {
-  if (!location) return '';
-  const parts = String(location).split(',').map((s) => s.trim()).filter(Boolean);
-  return parts[parts.length - 1] || '';
+  return flagFromLocation(location).label;
 }
 
 function searchUrl(query) {
@@ -182,7 +234,9 @@ export async function attachFollowers(people) {
       out.push(Object.assign({}, person, {
         followers: user.followers || 0,
         name: user.name || '',
-        country: countryFromLocation(user.location),
+        country: flagFromLocation(user.location).label,
+        flag: flagFromLocation(user.location).flag,
+        location: user.location || '',
       }));
     } catch (e) {
       out.push(person);

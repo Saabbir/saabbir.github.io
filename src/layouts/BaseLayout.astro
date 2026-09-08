@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.css';
 
 const {
@@ -8,19 +9,40 @@ const {
 } = Astro.props;
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:animate="none">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script is:inline>
       (function () {
-        try {
-          var stored = localStorage.getItem('theme');
-          var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (dark) document.documentElement.classList.add('dark');
-        } catch (e) {}
+        function isDark() {
+          try {
+            var stored = localStorage.getItem('theme');
+            if (stored) return stored === 'dark';
+            return window.matchMedia('(prefers-color-scheme: dark)').matches;
+          } catch (e) {
+            return false;
+          }
+        }
+        function apply(root) {
+          var dark = isDark();
+          root.classList.toggle('dark', dark);
+          root.style.colorScheme = dark ? 'dark' : 'light';
+        }
+        apply(document.documentElement);
+        document.addEventListener('astro:before-swap', function (event) {
+          apply(event.newDocument.documentElement);
+        });
+        document.addEventListener('astro:after-swap', function () {
+          apply(document.documentElement);
+        });
       })();
     </script>
+    <style is:inline>
+      html { background-color: #f4efe7; }
+      html.dark { background-color: #14120f; color-scheme: dark; }
+    </style>
+    <ViewTransitions fallback="swap" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.svg" />
@@ -30,21 +52,15 @@ const {
   </head>
   <body>
     <div class="backdrop"></div>
-    <header class="site">
-      <div class="header-inner">
-        <a class="brand" href="/">
-          <span class="brand-mark" aria-hidden="true">
-            <svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-          </span>
-          <span class="brand-name">saabbir<span class="dim">.github.io</span></span>
-        </a>
-        <nav class="site-nav" aria-label="Hub">
-          <a href="/" class={current === 'home' ? 'active' : undefined}>Home</a>
-          <a href="/pages/" class={current === 'pages' ? 'active' : undefined}>Pages</a>
-          <a href="/tools/" class={current === 'tools' ? 'active' : undefined}>Tools</a>
-        </nav>
-        <div class="header-cluster">
-          <span class="rate-chip" id="rateChip" title="GitHub API remaining requests for this IP">Core — / 60 · Search — / 10</span>
+    <div class="page">
+      <header class="site" transition:persist="hub-header">
+        <div class="header-inner">
+          <a class="brand" href="/">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+            </span>
+            <span class="brand-name">saabbir<span class="dim">.github.io</span></span>
+          </a>
           <div class="header-actions">
             <a class="icon-btn" href="https://github.com/Saabbir" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" title="GitHub">
               <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
@@ -59,27 +75,37 @@ const {
               <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg>
             </button>
           </div>
+          <span class="rate-chip" id="rateChip" title="GitHub API remaining requests for this IP">Core — / 60 · Search — / 10</span>
+          <nav class="site-nav" aria-label="Hub">
+            <a href="/" class={current === 'home' ? 'active' : undefined}>Home</a>
+            <a href="/pages/" class={current === 'pages' ? 'active' : undefined}>Pages</a>
+            <a href="/tools/" class={current === 'tools' ? 'active' : undefined}>Tools</a>
+          </nav>
         </div>
-      </div>
-    </header>
-    <main class="wrap">
-      <slot />
-    </main>
-    <footer class="site">
-      <div class="footer-inner">
-        <span>© <span id="year"></span> — hosted on GitHub Pages. Portfolio: <a href="https://saabbir.com" target="_blank" rel="noopener noreferrer">saabbir.com</a></span>
-        <span class="footer-links">
-          <a href="https://github.com/Saabbir" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </span>
-      </div>
-    </footer>
+      </header>
+      <main class="wrap">
+        <slot />
+      </main>
+      <footer class="site" transition:persist="hub-footer">
+        <div class="footer-inner">
+          <span>© <span id="year"></span> — hosted on GitHub Pages. Portfolio: <a href="https://saabbir.com" target="_blank" rel="noopener noreferrer">saabbir.com</a>. Inspired by <a href="https://github.com/bchiang7/octoprofile" target="_blank" rel="noopener noreferrer">OctoProfile</a>.</span>
+          <span class="footer-links">
+            <a href="https://github.com/Saabbir" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </span>
+        </div>
+      </footer>
+    </div>
     <script>
-      import { initTheme, initYear } from '../lib/render.js';
+      import { initTheme, initYear, syncNav } from '../lib/render.js';
       import { refreshRateLimit, paintChip } from '../lib/github.js';
-      initTheme();
-      initYear();
-      paintChip();
-      refreshRateLimit();
+
+      document.addEventListener('astro:page-load', () => {
+        initTheme();
+        initYear();
+        syncNav();
+        paintChip();
+        refreshRateLimit();
+      });
     </script>
   </body>
 </html>

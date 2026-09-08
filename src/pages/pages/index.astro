@@ -52,9 +52,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   import { loadProfileAndRepos, isPagesProject, toProject, readCache, REPOS_CACHE_KEY } from '../../lib/github.js';
   import { renderProjectGrid, quotaCard, stateCard } from '../../lib/render.js';
 
-  let allProjects = [];
-  const list = document.getElementById('projects');
-
   function timeAgo(ms) {
     if (!ms) return 'unknown';
     const mins = Math.round((Date.now() - ms) / 60000);
@@ -65,49 +62,60 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     return Math.round(hrs / 24) + 'd ago';
   }
 
-  function applyFilters() {
-    const query = document.getElementById('searchInput').value.trim().toLowerCase();
-    const sort = document.getElementById('sortSelect').value;
-    let filtered = allProjects.filter((p) => {
-      if (!query) return true;
-      return (
-        (p.name || '').toLowerCase().includes(query) ||
-        (p.path || '').toLowerCase().includes(query) ||
-        (p.description || '').toLowerCase().includes(query) ||
-        (p.language || '').toLowerCase().includes(query)
-      );
-    });
-    filtered.sort((a, b) => {
-      if (sort === 'name-asc') return (a.name || '').localeCompare(b.name || '');
-      if (sort === 'name-desc') return (b.name || '').localeCompare(a.name || '');
-      if (sort === 'stars') return (b.stars || 0) - (a.stars || 0);
-      const aTime = new Date(a.createdAt || 0).getTime();
-      const bTime = new Date(b.createdAt || 0).getTime();
-      return sort === 'oldest' ? aTime - bTime : bTime - aTime;
-    });
-    document.getElementById('listCount').textContent = filtered.length + ' of ' + allProjects.length;
-    renderProjectGrid(list, filtered, true);
+  function initPages() {
+    const list = document.getElementById('projects');
+    const search = document.getElementById('searchInput');
+    const sort = document.getElementById('sortSelect');
+    if (!list || !search || !sort) return;
+
+    let allProjects = [];
+
+    function applyFilters() {
+      const query = search.value.trim().toLowerCase();
+      const sortValue = sort.value;
+      let filtered = allProjects.filter((p) => {
+        if (!query) return true;
+        return (
+          (p.name || '').toLowerCase().includes(query) ||
+          (p.path || '').toLowerCase().includes(query) ||
+          (p.description || '').toLowerCase().includes(query) ||
+          (p.language || '').toLowerCase().includes(query)
+        );
+      });
+      filtered.sort((a, b) => {
+        if (sortValue === 'name-asc') return (a.name || '').localeCompare(b.name || '');
+        if (sortValue === 'name-desc') return (b.name || '').localeCompare(a.name || '');
+        if (sortValue === 'stars') return (b.stars || 0) - (a.stars || 0);
+        const aTime = new Date(a.createdAt || 0).getTime();
+        const bTime = new Date(b.createdAt || 0).getTime();
+        return sortValue === 'oldest' ? aTime - bTime : bTime - aTime;
+      });
+      document.getElementById('listCount').textContent = filtered.length + ' of ' + allProjects.length;
+      renderProjectGrid(list, filtered, true);
+    }
+
+    function setProjects(repos, cachedAt) {
+      allProjects = (repos || []).filter(isPagesProject).map(toProject);
+      document.getElementById('statCount').textContent = String(allProjects.length);
+      document.getElementById('statUpdated').textContent = cachedAt ? timeAgo(cachedAt) : 'now';
+      applyFilters();
+    }
+
+    search.addEventListener('input', applyFilters);
+    sort.addEventListener('change', applyFilters);
+
+    const cached = readCache(REPOS_CACHE_KEY);
+    if (cached) setProjects(cached.data, cached.cachedAt);
+
+    loadProfileAndRepos()
+      .then(({ repos }) => setProjects(repos, Date.now()))
+      .catch((err) => {
+        if (cached) return;
+        list.innerHTML = err.rateLimited ? quotaCard(err) : stateCard("Couldn't load the registry", 'Try again after the API reset.');
+        document.getElementById('statCount').textContent = '0';
+        document.getElementById('statUpdated').textContent = 'n/a';
+      });
   }
 
-  function setProjects(repos, cachedAt) {
-    allProjects = (repos || []).filter(isPagesProject).map(toProject);
-    document.getElementById('statCount').textContent = String(allProjects.length);
-    document.getElementById('statUpdated').textContent = cachedAt ? timeAgo(cachedAt) : 'now';
-    applyFilters();
-  }
-
-  document.getElementById('searchInput').addEventListener('input', applyFilters);
-  document.getElementById('sortSelect').addEventListener('change', applyFilters);
-
-  const cached = readCache(REPOS_CACHE_KEY);
-  if (cached) setProjects(cached.data, cached.cachedAt);
-
-  loadProfileAndRepos()
-    .then(({ repos }) => setProjects(repos, Date.now()))
-    .catch((err) => {
-      if (cached) return;
-      list.innerHTML = err.rateLimited ? quotaCard(err) : stateCard("Couldn't load the registry", 'Try again after the API reset.');
-      document.getElementById('statCount').textContent = '0';
-      document.getElementById('statUpdated').textContent = 'n/a';
-    });
+  document.addEventListener('astro:page-load', initPages);
 </script>

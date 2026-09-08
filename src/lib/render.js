@@ -154,6 +154,7 @@ export function initTheme() {
 
   function apply(mode) {
     root.classList.toggle('dark', mode === 'dark');
+    root.style.colorScheme = mode === 'dark' ? 'dark' : 'light';
     icon.innerHTML = mode === 'dark' ? SUN : MOON;
     toggle.setAttribute('aria-label', mode === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
     toggle.setAttribute('title', mode === 'dark' ? 'Light theme' : 'Dark theme');
@@ -163,7 +164,10 @@ export function initTheme() {
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   apply(stored || (prefersDark ? 'dark' : 'light'));
 
+  if (toggle.dataset.bound === '1') return;
+  toggle.dataset.bound = '1';
   toggle.addEventListener('click', () => {
+    root.classList.add('theme-animated');
     const next = root.classList.contains('dark') ? 'light' : 'dark';
     apply(next);
     localStorage.setItem('theme', next);
@@ -173,4 +177,13 @@ export function initTheme() {
 export function initYear() {
   const el = document.getElementById('year');
   if (el) el.textContent = String(new Date().getFullYear());
+}
+
+export function syncNav() {
+  const path = window.location.pathname;
+  document.querySelectorAll('.site-nav a').forEach((a) => {
+    const href = new URL(a.getAttribute('href') || '/', window.location.origin).pathname;
+    const active = href === '/' ? path === '/' : path === href || path.startsWith(href);
+    a.classList.toggle('active', active);
+  });
 }

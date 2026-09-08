@@ -58,13 +58,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <script>
-  import { loadShopifyRadar, loadShopifyFeed, REPOS_CAP } from '../../../lib/shopify.js';
+  import { loadShopifyRadar, loadShopifyFeed, REPOS_CAP, flagFromLocation } from '../../../lib/shopify.js';
   import { escapeHtml, quotaCard, stateCard } from '../../../lib/render.js';
-
-  const feedEl = document.getElementById('feed');
-  const reposEl = document.getElementById('repos');
-  let allRepos = [];
-  let kind = 'all';
 
   function feedHTML(feed) {
     const items = (feed && feed.items) || [];
@@ -74,7 +69,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     if (!items.length) {
       return stateCard('Quiet stretch', 'No public Shopify org activity to show right now.');
     }
-    document.getElementById('feedCount').textContent = String(items.length);
+    const count = document.getElementById('feedCount');
+    if (count) count.textContent = String(items.length);
     return items
       .map((item) => {
         const cls = highlightKeys[item.key] ? 'highlight' : 'quiet';
@@ -96,77 +92,113 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     return people
       .map((p) => {
         const followers = p.followers == null ? 'followers n/a' : p.followers + ' followers';
-        const country = p.country
-          ? '<span class="badge">' + escapeHtml(p.country) + '</span>'
-          : '';
+        const derived = flagFromLocation(p.location || p.country);
+        const flag = p.flag || derived.flag;
+        const tooltip = (p.location || p.country || derived.label || '').trim();
+        let badge = '';
+        if (flag && tooltip) {
+          badge =
+            '<span class="flag-badge" data-tooltip="' +
+            escapeHtml(tooltip) +
+            '" aria-label="' +
+            escapeHtml(tooltip) +
+            '">' +
+            flag +
+            '</span>';
+        } else if (flag) {
+          badge = '<span class="flag-badge">' + flag + '</span>';
+        } else if (tooltip) {
+          badge =
+            '<span class="location-badge" data-tooltip="' +
+            escapeHtml(tooltip) +
+            '" title="' +
+            escapeHtml(tooltip) +
+            '">' +
+            escapeHtml(tooltip) +
+            '</span>';
+        }
         const display = p.name ? escapeHtml(p.name) : escapeHtml(p.login);
         return (
           '<a class="person-card" href="' + escapeHtml(p.htmlUrl) + '" target="_blank" rel="noopener noreferrer">' +
+          badge +
           '<img src="' + escapeHtml(p.avatar) + '" alt="" width="44" height="44" />' +
-          '<div><strong>' + display + ' ' + country + '</strong>' +
+          '<div><strong>' + display + '</strong>' +
           '<span>@' + escapeHtml(p.login) + ' · ' + followers + ' · ' + p.stars + '★</span></div></a>'
         );
       })
       .join('');
   }
 
-  function paintRepos() {
-    const filtered = allRepos.filter((r) => (kind === 'all' ? true : r.kind === kind)).slice(0, REPOS_CAP);
-    document.getElementById('repoCount').textContent = String(filtered.length);
-    if (!filtered.length) {
-      reposEl.innerHTML = stateCard('No repos', 'Nothing in this filter for the current snapshot.');
-      return;
+  function initShopify() {
+    const feedEl = document.getElementById('feed');
+    const reposEl = document.getElementById('repos');
+    const filters = document.getElementById('filters');
+    if (!feedEl || !reposEl || !filters) return;
+
+    let allRepos = [];
+    let kind = 'all';
+
+    function paintRepos() {
+      const filtered = allRepos.filter((r) => (kind === 'all' ? true : r.kind === kind)).slice(0, REPOS_CAP);
+      document.getElementById('repoCount').textContent = String(filtered.length);
+      if (!filtered.length) {
+        reposEl.innerHTML = stateCard('No repos', 'Nothing in this filter for the current snapshot.');
+        return;
+      }
+      reposEl.innerHTML = filtered
+        .map((r) => {
+          const desc = r.description ? escapeHtml(r.description) : '';
+          return (
+            '<a class="repo-row" href="' + escapeHtml(r.html_url) + '" target="_blank" rel="noopener noreferrer">' +
+            '<div><strong>' + escapeHtml(r.full_name) + '</strong>' +
+            '<span>' + (r.stargazers_count || 0) + '★ · ' + escapeHtml(r.kind) + (desc ? ' · ' + desc : '') + '</span></div></a>'
+          );
+        })
+        .join('');
     }
-    reposEl.innerHTML = filtered
-      .map((r) => {
-        const desc = r.description ? escapeHtml(r.description) : '';
-        return (
-          '<a class="repo-row" href="' + escapeHtml(r.html_url) + '" target="_blank" rel="noopener noreferrer">' +
-          '<div><strong>' + escapeHtml(r.full_name) + '</strong>' +
-          '<span>' + (r.stargazers_count || 0) + '★ · ' + escapeHtml(r.kind) + (desc ? ' · ' + desc : '') + '</span></div></a>'
-        );
+
+    filters.addEventListener('click', (event) => {
+      const btn = event.target.closest('button[data-kind]');
+      if (!btn) return;
+      kind = btn.getAttribute('data-kind');
+      filters.querySelectorAll('button').forEach((el) => el.classList.toggle('active', el === btn));
+      paintRepos();
+    });
+
+    loadShopifyFeed()
+      .then((feed) => {
+        feedEl.innerHTML = feedHTML(feed);
       })
-      .join('');
+      .catch((err) => {
+        feedEl.innerHTML = err.rateLimited ? quotaCard(err) : stateCard("Couldn't load highlights", 'Try again after the API reset.');
+      });
+
+    loadShopifyRadar()
+      .then((data) => {
+        const theme = (data.people && data.people.theme) || [];
+        const app = (data.people && data.people.app) || [];
+        document.getElementById('themeCount').textContent = String(theme.length);
+        document.getElementById('appCount').textContent = String(app.length);
+        document.getElementById('themePeople').innerHTML = peopleHTML(
+          theme,
+          'No theme developers in this snapshot.'
+        );
+        document.getElementById('appPeople').innerHTML = peopleHTML(
+          app,
+          'No app developers in this snapshot.'
+        );
+        allRepos = data.repos || [];
+        paintRepos();
+      })
+      .catch((err) => {
+        document.getElementById('themePeople').innerHTML = err.rateLimited
+          ? quotaCard(err)
+          : stateCard("Couldn't load people", 'GitHub search quota may be empty.');
+        document.getElementById('appPeople').innerHTML = '';
+        reposEl.innerHTML = '';
+      });
   }
 
-  document.getElementById('filters').addEventListener('click', (event) => {
-    const btn = event.target.closest('button[data-kind]');
-    if (!btn) return;
-    kind = btn.getAttribute('data-kind');
-    document.querySelectorAll('#filters button').forEach((el) => el.classList.toggle('active', el === btn));
-    paintRepos();
-  });
-
-  loadShopifyFeed()
-    .then((feed) => {
-      feedEl.innerHTML = feedHTML(feed);
-    })
-    .catch((err) => {
-      feedEl.innerHTML = err.rateLimited ? quotaCard(err) : stateCard("Couldn't load highlights", 'Try again after the API reset.');
-    });
-
-  loadShopifyRadar()
-    .then((data) => {
-      const theme = (data.people && data.people.theme) || [];
-      const app = (data.people && data.people.app) || [];
-      document.getElementById('themeCount').textContent = String(theme.length);
-      document.getElementById('appCount').textContent = String(app.length);
-      document.getElementById('themePeople').innerHTML = peopleHTML(
-        theme,
-        'No theme developers in this snapshot.'
-      );
-      document.getElementById('appPeople').innerHTML = peopleHTML(
-        app,
-        'No app developers in this snapshot.'
-      );
-      allRepos = data.repos || [];
-      paintRepos();
-    })
-    .catch((err) => {
-      document.getElementById('themePeople').innerHTML = err.rateLimited
-        ? quotaCard(err)
-        : stateCard("Couldn't load people", 'GitHub search quota may be empty.');
-      document.getElementById('appPeople').innerHTML = '';
-      reposEl.innerHTML = '';
-    });
+  document.addEventListener('astro:page-load', initShopify);
 </script>
+
