@@ -203,6 +203,7 @@
   .icon-btn svg { width: 16px; height: 16px; display: block; }
 
   .site-nav {
+    position: relative;
     grid-area: nav;
     display: flex;
     align-items: center;
@@ -214,16 +215,85 @@
     white-space: nowrap;
   }
 
-  .site-nav a {
+  .site-nav > a,
+  .nav-drop > summary {
     color: var(--ink-soft);
     text-decoration: none;
     border-bottom: 1px solid transparent;
+    cursor: pointer;
   }
 
-  .site-nav a:hover,
-  .site-nav a.active {
+  .nav-drop > summary {
+    list-style: none;
+  }
+
+  .nav-drop > summary::-webkit-details-marker { display: none; }
+
+  .nav-drop > summary::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 6px;
+    border-left: 3.5px solid transparent;
+    border-right: 3.5px solid transparent;
+    border-top: 4px solid currentColor;
+    opacity: 0.7;
+    vertical-align: middle;
+  }
+
+  .site-nav > a:hover,
+  .site-nav > a.active,
+  .nav-drop > summary:hover,
+  .nav-drop > summary.active {
     color: var(--accent);
     border-color: currentColor;
+  }
+
+  .nav-drop {
+    position: relative;
+  }
+
+  .nav-drop-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: auto;
+    z-index: 30;
+    min-width: 220px;
+    max-width: min(280px, calc(100vw - 36px));
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    white-space: normal;
+  }
+
+  .nav-drop-menu a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: none;
+    padding: 8px 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nav-drop-menu a:hover {
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+  }
+
+  .nav-drop-menu .nav-drop-all {
+    margin-top: 4px;
+    color: var(--accent);
+    border-top: 1px solid var(--line);
+    border-radius: 0 0 8px 8px;
+    font-weight: 600;
   }
 
   .rate-chip {
@@ -689,10 +759,9 @@
     margin: 0 auto;
     padding: 0 24px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
     font-size: 11.5px;
     color: var(--ink-soft);
   }
@@ -704,12 +773,26 @@
     transition: border-color 0.2s ease, color 0.2s ease;
   }
 
-  .footer-inner a:hover {
+  .footer-inner a:hover,
+  .footer-inner a.is-feature {
     color: var(--accent);
     border-color: currentColor;
   }
 
-  .footer-links { display: flex; gap: 18px; }
+  .footer-inner a.is-feature {
+    font-weight: 600;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+  }
+
+  .footer-note {
+    margin: 0;
+    line-height: 1.6;
+  }
 
   @media (max-width: 720px) {
     .header-inner {
@@ -722,6 +805,15 @@
 
     .site-nav {
       margin-left: 0;
+    }
+
+    .nav-drop {
+      position: static;
+    }
+
+    .nav-drop-menu {
+      min-width: 0;
+      width: max-content;
     }
   }
 
@@ -739,7 +831,6 @@
     .sort-field { flex: none; width: 100%; }
     .sort-field select { width: 100%; }
     .projects { grid-template-columns: 1fr; }
-    .footer-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
     .hero-profile { padding: 36px 0 24px; }
     .hero-profile .profile-avatar { width: 96px; height: 96px; border-width: 4px; }
     .hero-profile .stat { min-width: 0; flex: 1 1 120px; padding: 12px 14px; }
@@ -995,12 +1086,16 @@
   .person-grid,
   .repo-list {
     display: grid;
+    grid-template-columns: 1fr;
     gap: 12px;
     padding-bottom: 36px;
   }
 
-  .person-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  @media (min-width: 640px) {
+    .person-grid,
+    .repo-list {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   .person-card,
@@ -1008,6 +1103,7 @@
     display: flex;
     gap: 12px;
     align-items: flex-start;
+    min-width: 0;
     padding: 14px;
     background: var(--bg-elevated);
     border: 1px solid var(--line);
@@ -1044,6 +1140,12 @@
     font-size: 11px;
     color: var(--ink-soft);
     margin-top: 3px;
+    overflow-wrap: anywhere;
+  }
+
+  .repo-row .repo-desc {
+    margin-top: 8px;
+    line-height: 1.5;
   }
 
   .person-card .flag-badge,

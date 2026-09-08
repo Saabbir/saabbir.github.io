@@ -58,8 +58,9 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <script>
-  import { loadShopifyRadar, loadShopifyFeed, REPOS_CAP, flagFromLocation } from '../../../lib/shopify.js';
+  import { loadShopifyRadar, loadShopifyFeed, REPOS_CAP, personPlace } from '../../../lib/shopify.js';
   import { escapeHtml, quotaCard, stateCard } from '../../../lib/render.js';
+  import { refreshRateLimit } from '../../../lib/github.js';
 
   function feedHTML(feed) {
     const items = (feed && feed.items) || [];
@@ -91,30 +92,27 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     if (!people.length) return stateCard('None yet', empty);
     return people
       .map((p) => {
-        const followers = p.followers == null ? 'followers n/a' : p.followers + ' followers';
-        const derived = flagFromLocation(p.location || p.country);
-        const flag = p.flag || derived.flag;
-        const tooltip = (p.location || p.country || derived.label || '').trim();
+        const place = personPlace(p);
+        const meta = ['@' + p.login];
+        if (p.followers != null) meta.push(p.followers + ' followers');
+        meta.push((p.stars || 0) + '★');
         let badge = '';
-        if (flag && tooltip) {
+        if (place.flag) {
+          const tip = place.label || 'Location';
           badge =
             '<span class="flag-badge" data-tooltip="' +
-            escapeHtml(tooltip) +
+            escapeHtml(tip) +
             '" aria-label="' +
-            escapeHtml(tooltip) +
+            escapeHtml(tip) +
             '">' +
-            flag +
+            place.flag +
             '</span>';
-        } else if (flag) {
-          badge = '<span class="flag-badge">' + flag + '</span>';
-        } else if (tooltip) {
+        } else if (place.label) {
           badge =
-            '<span class="location-badge" data-tooltip="' +
-            escapeHtml(tooltip) +
-            '" title="' +
-            escapeHtml(tooltip) +
+            '<span class="location-badge" title="' +
+            escapeHtml(place.label) +
             '">' +
-            escapeHtml(tooltip) +
+            escapeHtml(place.label) +
             '</span>';
         }
         const display = p.name ? escapeHtml(p.name) : escapeHtml(p.login);
@@ -123,7 +121,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
           badge +
           '<img src="' + escapeHtml(p.avatar) + '" alt="" width="44" height="44" />' +
           '<div><strong>' + display + '</strong>' +
-          '<span>@' + escapeHtml(p.login) + ' · ' + followers + ' · ' + p.stars + '★</span></div></a>'
+          '<span>' + escapeHtml(meta.join(' · ')) + '</span></div></a>'
         );
       })
       .join('');
@@ -151,7 +149,9 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
           return (
             '<a class="repo-row" href="' + escapeHtml(r.html_url) + '" target="_blank" rel="noopener noreferrer">' +
             '<div><strong>' + escapeHtml(r.full_name) + '</strong>' +
-            '<span>' + (r.stargazers_count || 0) + '★ · ' + escapeHtml(r.kind) + (desc ? ' · ' + desc : '') + '</span></div></a>'
+            '<span class="repo-meta">' + (r.stargazers_count || 0) + '★ · ' + escapeHtml(r.kind) + '</span>' +
+            (desc ? '<span class="repo-desc">' + desc + '</span>' : '') +
+            '</div></a>'
           );
         })
         .join('');
@@ -165,38 +165,40 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
       paintRepos();
     });
 
-    loadShopifyFeed()
-      .then((feed) => {
-        feedEl.innerHTML = feedHTML(feed);
-      })
-      .catch((err) => {
-        feedEl.innerHTML = err.rateLimited ? quotaCard(err) : stateCard("Couldn't load highlights", 'Try again after the API reset.');
-      });
+    refreshRateLimit().finally(() => {
+      loadShopifyFeed()
+        .then((feed) => {
+          feedEl.innerHTML = feedHTML(feed);
+        })
+        .catch((err) => {
+          feedEl.innerHTML = err.rateLimited ? quotaCard(err) : stateCard("Couldn't load highlights", 'Try again after the API reset.');
+        });
 
-    loadShopifyRadar()
-      .then((data) => {
-        const theme = (data.people && data.people.theme) || [];
-        const app = (data.people && data.people.app) || [];
-        document.getElementById('themeCount').textContent = String(theme.length);
-        document.getElementById('appCount').textContent = String(app.length);
-        document.getElementById('themePeople').innerHTML = peopleHTML(
-          theme,
-          'No theme developers in this snapshot.'
-        );
-        document.getElementById('appPeople').innerHTML = peopleHTML(
-          app,
-          'No app developers in this snapshot.'
-        );
-        allRepos = data.repos || [];
-        paintRepos();
-      })
-      .catch((err) => {
-        document.getElementById('themePeople').innerHTML = err.rateLimited
-          ? quotaCard(err)
-          : stateCard("Couldn't load people", 'GitHub search quota may be empty.');
-        document.getElementById('appPeople').innerHTML = '';
-        reposEl.innerHTML = '';
-      });
+      loadShopifyRadar()
+        .then((data) => {
+          const theme = (data.people && data.people.theme) || [];
+          const app = (data.people && data.people.app) || [];
+          document.getElementById('themeCount').textContent = String(theme.length);
+          document.getElementById('appCount').textContent = String(app.length);
+          document.getElementById('themePeople').innerHTML = peopleHTML(
+            theme,
+            'No theme developers in this snapshot.'
+          );
+          document.getElementById('appPeople').innerHTML = peopleHTML(
+            app,
+            'No app developers in this snapshot.'
+          );
+          allRepos = data.repos || [];
+          paintRepos();
+        })
+        .catch((err) => {
+          document.getElementById('themePeople').innerHTML = err.rateLimited
+            ? quotaCard(err)
+            : stateCard("Couldn't load people", 'GitHub search quota may be empty.');
+          document.getElementById('appPeople').innerHTML = '';
+          reposEl.innerHTML = '';
+        });
+    });
   }
 
   document.addEventListener('astro:page-load', initShopify);

@@ -1,10 +1,12 @@
-import { githubFetch, getLimits, isRateLimited, readCache, writeCache, cacheFresh } from './github.js';
+import { githubFetch, getLimits, isRateLimited, readCache, writeCache, cacheFresh, refreshRateLimit } from './github.js';
 
 export const PEOPLE_CAP = 20;
 export const REPOS_CAP = 40;
 export const FEED_MIN = 10;
 export const FEED_MAX = 20;
-export const SHOPIFY_CACHE_KEY = 'hub-shopify-radar-v2';
+export const SHOPIFY_CACHE_KEY = 'hub-shopify-radar-v3';
+export const USER_CACHE_PREFIX = 'hub-gh-user-v1:';
+export const USER_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 export const SHOPIFY_TTL_MS = 6 * 60 * 60 * 1000;
 export const EVENTS_CACHE_KEY = 'hub-shopify-events-v2';
 export const EVENTS_TTL_MS = 15 * 60 * 1000;
@@ -104,17 +106,24 @@ const COUNTRY_ISO = {
   uganda: 'UG', ukraine: 'UA', 'united arab emirates': 'AE', uae: 'AE',
   'united kingdom': 'GB', uk: 'GB', england: 'GB', britain: 'GB',
   'united states': 'US', usa: 'US', 'u.s.': 'US', 'u.s.a.': 'US', america: 'US',
-  uruguay: 'UY', uzbekistan: 'UZ', venezuela: 'VE', vietnam: 'VN', wales: 'GB',
-  yemen: 'YE', zambia: 'ZM', zimbabwe: 'ZW',
+  uruguay: 'UY', uzbekistan: 'UZ', venezuela: 'VE', vietnam: 'VN', 'viet nam': 'VN',
+  wales: 'GB', yemen: 'YE', zambia: 'ZM', zimbabwe: 'ZW', brasil: 'BR', turkiye: 'TR',
 };
 
 function isoToFlag(iso) {
-  return [...iso.toUpperCase()].map((ch) => String.fromCodePoint(127397 + ch.charCodeAt(0))).join('');
+  if (!iso || String(iso).length !== 2) return '';
+  return [...String(iso).toUpperCase()].map((ch) => String.fromCodePoint(127397 + ch.charCodeAt(0))).join('');
+}
+
+function cleanPlace(value) {
+  const s = String(value == null ? '' : value).trim();
+  if (!s || /^(undefined|null|n\/a|none|nan)$/i.test(s)) return '';
+  return s;
 }
 
 export function flagFromLocation(location) {
-  if (!location) return { flag: '', label: '' };
-  const raw = String(location).trim();
+  const raw = cleanPlace(location);
+  if (!raw) return { flag: '', label: '' };
   const lower = raw.toLowerCase();
   const last = raw.split(',').pop().trim().toLowerCase();
   let iso = COUNTRY_ISO[last];
@@ -129,8 +138,16 @@ export function flagFromLocation(location) {
       }
     }
   }
-  if (!iso) return { flag: '', label: '' };
+  if (!iso) return { flag: '', label: raw };
   return { flag: isoToFlag(iso), label: last || raw };
+}
+
+export function personPlace(p) {
+  const location = cleanPlace(p && p.location);
+  const derived = flagFromLocation(location || cleanPlace(p && p.country));
+  const flag = cleanPlace(p && p.flag) || derived.flag;
+  const label = derived.label || location;
+  return { flag, label };
 }
 
 export function countryFromLocation(location) {
@@ -208,38 +225,62 @@ export function splitPeople(people) {
   };
 }
 
-export async function attachFollowers(people) {
-  const unique = [];
+function interleavePeople(theme, app) {
   const seen = {};
-  people.forEach((p) => {
-    if (seen[p.login]) return;
-    seen[p.login] = true;
-    unique.push(p);
-  });
-  const slice = unique.slice(0, PEOPLE_CAP * 2);
-  if (isRateLimited('core')) return slice;
-  const remaining = getLimits().core.remaining;
-  if (remaining == null || remaining < 12) return slice;
-
-  const budget = Math.min(slice.length, Math.max(0, remaining - 8));
   const out = [];
-  for (let i = 0; i < slice.length; i++) {
-    const person = slice[i];
-    if (i >= budget || isRateLimited('core')) {
-      out.push(person);
+  const max = Math.max(theme.length, app.length);
+  for (let i = 0; i < max; i++) {
+    [theme[i], app[i]].forEach((p) => {
+      if (!p || seen[p.login]) return;
+      seen[p.login] = true;
+      out.push(p);
+    });
+  }
+  return out;
+}
+
+function userCacheKey(login) {
+  return USER_CACHE_PREFIX + String(login || '').toLowerCase();
+}
+
+function extrasFromUser(user) {
+  const place = flagFromLocation(user && user.location);
+  return {
+    followers: Number(user && user.followers) || 0,
+    name: (user && user.name) || '',
+    location: cleanPlace(user && user.location),
+    flag: place.flag,
+    country: place.label,
+  };
+}
+
+export async function attachFollowers(people) {
+  if (getLimits().core.remaining == null) {
+    await refreshRateLimit();
+  }
+
+  const out = [];
+  for (let i = 0; i < people.length; i++) {
+    const person = people[i];
+    const cached = readCache(userCacheKey(person.login));
+    const cachedExtras = cached && cached.data;
+    const fresh = cacheFresh(cached, USER_TTL_MS);
+
+    if (fresh && cachedExtras && cachedExtras.followers != null) {
+      out.push(Object.assign({}, person, cachedExtras));
+      continue;
+    }
+    if (isRateLimited('core')) {
+      out.push(cachedExtras ? Object.assign({}, person, cachedExtras) : person);
       continue;
     }
     try {
       const user = await githubFetch('https://api.github.com/users/' + person.login, 'core');
-      out.push(Object.assign({}, person, {
-        followers: user.followers || 0,
-        name: user.name || '',
-        country: flagFromLocation(user.location).label,
-        flag: flagFromLocation(user.location).flag,
-        location: user.location || '',
-      }));
+      const extras = extrasFromUser(user);
+      writeCache(userCacheKey(person.login), extras);
+      out.push(Object.assign({}, person, extras));
     } catch (e) {
-      out.push(person);
+      out.push(cachedExtras ? Object.assign({}, person, cachedExtras) : person);
     }
   }
   return out;
@@ -403,19 +444,16 @@ export function buildFeed(events) {
 
 export async function loadShopifyRadar() {
   const cached = readCache(SHOPIFY_CACHE_KEY);
-  if (cacheFresh(cached, SHOPIFY_TTL_MS)) return cached.data;
+  if (cacheFresh(cached, SHOPIFY_TTL_MS) && cached.data) {
+    return enrichRadarPeople(cached.data);
+  }
 
   try {
     const repos = await searchShopifyRepos();
     const all = buildPeople(repos);
-    const merged = [];
-    const seen = {};
-    all.filter((p) => p.themes > 0).slice(0, PEOPLE_CAP).concat(all.filter((p) => p.apps > 0).slice(0, PEOPLE_CAP)).forEach((p) => {
-      if (seen[p.login]) return;
-      seen[p.login] = true;
-      merged.push(p);
-    });
-    const people = await attachFollowers(merged);
+    const theme = all.filter((p) => p.themes > 0).slice(0, PEOPLE_CAP);
+    const app = all.filter((p) => p.apps > 0).slice(0, PEOPLE_CAP);
+    const people = await attachFollowers(interleavePeople(theme, app));
     const payload = {
       repos: sortRepos(repos).slice(0, 80),
       people: splitPeople(people),
@@ -424,9 +462,22 @@ export async function loadShopifyRadar() {
     writeCache(SHOPIFY_CACHE_KEY, payload);
     return payload;
   } catch (err) {
-    if (cached) return cached.data;
+    if (cached && cached.data) return enrichRadarPeople(cached.data);
     throw err;
   }
+}
+
+async function enrichRadarPeople(payload) {
+  const theme = (payload.people && payload.people.theme) || [];
+  const app = (payload.people && payload.people.app) || [];
+  const merged = interleavePeople(theme, app);
+  if (!merged.length) return payload;
+  const people = await attachFollowers(merged);
+  return {
+    repos: payload.repos || [],
+    people: splitPeople(people),
+    followersLoaded: people.some((p) => p.followers != null),
+  };
 }
 
 export async function loadShopifyFeed() {

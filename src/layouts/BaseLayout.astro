@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.css';
+import tools from '../data/tools.json';
 
 const {
   title = 'saabbir.github.io',
@@ -77,9 +78,28 @@ const {
           </div>
           <span class="rate-chip" id="rateChip" title="GitHub API remaining requests for this IP">Core — / 60 · Search — / 10</span>
           <nav class="site-nav" aria-label="Hub">
-            <a href="/" class={current === 'home' ? 'active' : undefined}>Home</a>
-            <a href="/pages/" class={current === 'pages' ? 'active' : undefined}>Pages</a>
-            <a href="/tools/" class={current === 'tools' ? 'active' : undefined}>Tools</a>
+            <a href="/" data-nav="/" class={current === 'home' ? 'active' : undefined}>Home</a>
+            <details class="nav-drop" data-nav="/pages/">
+              <summary class={current === 'pages' ? 'active' : undefined}>Pages</summary>
+              <div class="nav-drop-menu" id="navPagesMenu">
+                <a href="/pages/">All pages</a>
+              </div>
+            </details>
+            <details class="nav-drop" data-nav="/tools/">
+              <summary class={current === 'tools' ? 'active' : undefined}>Tools</summary>
+              <div class="nav-drop-menu">
+                {tools.slice(0, 8).map((tool) => (
+                  <a
+                    href={tool.url}
+                    target={tool.external ? '_blank' : undefined}
+                    rel={tool.external ? 'noopener noreferrer' : undefined}
+                  >
+                    {tool.slug === 'shopify' ? 'Shopify radar' : tool.title}
+                  </a>
+                ))}
+                <a href="/tools/" class="nav-drop-all">All tools</a>
+              </div>
+            </details>
           </nav>
         </div>
       </header>
@@ -88,21 +108,39 @@ const {
       </main>
       <footer class="site" transition:persist="hub-footer">
         <div class="footer-inner">
-          <span>© <span id="year"></span> — hosted on GitHub Pages. Portfolio: <a href="https://saabbir.com" target="_blank" rel="noopener noreferrer">saabbir.com</a>. Inspired by <a href="https://github.com/bchiang7/octoprofile" target="_blank" rel="noopener noreferrer">OctoProfile</a>.</span>
-          <span class="footer-links">
+          <nav class="footer-links" aria-label="Hub links">
+            <a href="/" class={current === 'home' ? 'is-feature' : undefined}>Home</a>
+            <a href="/pages/" class={current === 'pages' ? 'is-feature' : undefined}>Pages</a>
+            <a href="/tools/" class={current === 'tools' ? 'is-feature' : undefined}>Tools</a>
+            {tools.map((tool) => (
+              <a
+                href={tool.url}
+                class={tool.slug === 'shopify' ? 'is-feature' : undefined}
+                target={tool.external ? '_blank' : undefined}
+                rel={tool.external ? 'noopener noreferrer' : undefined}
+              >
+                {tool.slug === 'shopify' ? 'Shopify radar' : tool.title}
+              </a>
+            ))}
+            <a href="https://saabbir.com" target="_blank" rel="noopener noreferrer">Portfolio</a>
             <a href="https://github.com/Saabbir" target="_blank" rel="noopener noreferrer">GitHub</a>
-          </span>
+          </nav>
+          <p class="footer-note">
+            © <span id="year"></span> — hosted on GitHub Pages. Inspired by
+            <a href="https://github.com/bchiang7/octoprofile" target="_blank" rel="noopener noreferrer">OctoProfile</a>.
+          </p>
         </div>
       </footer>
     </div>
     <script>
-      import { initTheme, initYear, syncNav } from '../lib/render.js';
+      import { initTheme, initYear, syncNav, initNavDrops } from '../lib/render.js';
       import { refreshRateLimit, paintChip } from '../lib/github.js';
 
       document.addEventListener('astro:page-load', () => {
         initTheme();
         initYear();
         syncNav();
+        initNavDrops();
         paintChip();
         refreshRateLimit();
       });

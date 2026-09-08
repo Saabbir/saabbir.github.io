@@ -1,4 +1,4 @@
-import { formatReset } from './github.js';
+import { formatReset, readCache, REPOS_CACHE_KEY, isPagesProject, toProject } from './github.js';
 
 const GH_MARK =
   '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>';
@@ -181,9 +181,74 @@ export function initYear() {
 
 export function syncNav() {
   const path = window.location.pathname;
-  document.querySelectorAll('.site-nav a').forEach((a) => {
-    const href = new URL(a.getAttribute('href') || '/', window.location.origin).pathname;
+  document.querySelectorAll('.site-nav [data-nav]').forEach((el) => {
+    const href = el.getAttribute('data-nav') || '/';
     const active = href === '/' ? path === '/' : path === href || path.startsWith(href);
-    a.classList.toggle('active', active);
+    if (el.matches('a')) el.classList.toggle('active', active);
+    const summary = el.querySelector('summary');
+    if (summary) summary.classList.toggle('active', active);
   });
+}
+
+const NAV_PAGES = 8;
+
+export function initNavDrops() {
+  fillPagesNav();
+  const nav = document.querySelector('.site-nav');
+  if (!nav) return;
+
+  function closeOthers(opened) {
+    nav.querySelectorAll('details.nav-drop[open]').forEach((el) => {
+      if (el !== opened) el.removeAttribute('open');
+    });
+  }
+
+  nav.querySelectorAll('details.nav-drop').forEach((drop) => {
+    if (drop.dataset.toggleBound === '1') return;
+    drop.dataset.toggleBound = '1';
+    drop.addEventListener('toggle', () => {
+      if (drop.open) closeOthers(drop);
+    });
+  });
+
+  if (nav.dataset.dropsBound === '1') return;
+  nav.dataset.dropsBound = '1';
+
+  document.addEventListener('click', (event) => {
+    if (nav.contains(event.target)) return;
+    nav.querySelectorAll('details.nav-drop[open]').forEach((el) => el.removeAttribute('open'));
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    nav.querySelectorAll('details.nav-drop[open]').forEach((el) => el.removeAttribute('open'));
+  });
+
+  document.addEventListener('astro:page-load', () => {
+    nav.querySelectorAll('details.nav-drop[open]').forEach((el) => el.removeAttribute('open'));
+  });
+}
+
+function fillPagesNav() {
+  const menu = document.getElementById('navPagesMenu');
+  if (!menu) return;
+  const cached = readCache(REPOS_CACHE_KEY);
+  const repos = cached && cached.data ? cached.data : [];
+  const projects = repos
+    .filter(isPagesProject)
+    .map(toProject)
+    .sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0))
+    .slice(0, NAV_PAGES);
+  const links = projects
+    .map((p) => {
+      return (
+        '<a href="' +
+        escapeHtml(p.url) +
+        '" target="_blank" rel="noopener noreferrer">' +
+        escapeHtml(p.name) +
+        '</a>'
+      );
+    })
+    .join('');
+  menu.innerHTML = links + '<a href="/pages/" class="nav-drop-all">All pages</a>';
 }
