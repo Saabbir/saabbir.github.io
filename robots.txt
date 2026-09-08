@@ -1,4 +1,3 @@
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
-
-Sitemap: https://saabbir.com/sitemap-index.xml

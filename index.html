@@ -1,18 +1,874 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Redirecting to saabbir.com</title>
-    <meta http-equiv="refresh" content="0; url=https://saabbir.com/" />
-    <link rel="canonical" href="https://saabbir.com/" />
-    <script>
-      (function () {
-        var dest = "https://saabbir.com" + location.pathname + location.search + location.hash;
-        location.replace(dest);
-      })();
-    </script>
-  </head>
-  <body>
-    <p>This site has moved to <a href="https://saabbir.com/">saabbir.com</a>.</p>
-  </body>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem('theme');
+      var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (dark) document.documentElement.classList.add('dark');
+    } catch (e) {}
+  })();
+</script>
+<title>saabbir — GitHub Pages</title>
+<meta name="description" content="A directory of GitHub Pages project sites under saabbir.github.io." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23c9622c%22/><text x=%2250%22 y=%2266%22 font-size=%2258%22 text-anchor=%22middle%22 font-family=%22Georgia%22 fill=%22%23161310%22>s</text></svg>" />
+<style>
+  :root {
+    --bg: #f4efe7;
+    --bg-elevated: #ffffff;
+    --ink: #1d1912;
+    --ink-soft: #5b5346;
+    --line: rgba(29, 25, 18, 0.12);
+    --accent: #c9622c;
+    --accent-ink: #fff8f0;
+    --grain-opacity: 0.045;
+    --shadow: 0 1px 2px rgba(29,25,18,0.06), 0 12px 32px -16px rgba(29,25,18,0.18);
+    color-scheme: light;
+  }
+
+  html.dark {
+    --bg: #14120f;
+    --bg-elevated: #1c1a15;
+    --ink: #f2ece1;
+    --ink-soft: #b3a993;
+    --line: rgba(242, 236, 225, 0.1);
+    --accent: #e8875a;
+    --accent-ink: #1c1a15;
+    --grain-opacity: 0.07;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 20px 44px -20px rgba(0,0,0,0.6);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    min-height: 100vh;
+    position: relative;
+    transition: background 0.35s ease, color 0.35s ease;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+
+  .backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(680px 460px at 88% -8%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 62%),
+      radial-gradient(520px 420px at -6% 18%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 60%);
+    transition: background 0.35s ease;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 2;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Header */
+  header.site {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .header-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .lede a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+
+  .lede a:hover { opacity: 0.85; }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .brand-mark {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    display: grid;
+    place-items: center;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 17px;
+    flex-shrink: 0;
+    box-shadow: var(--shadow);
+  }
+
+  .brand-name {
+    font-size: 14px;
+    letter-spacing: 0.02em;
+  }
+
+  .brand-name .dim { color: var(--ink-soft); }
+
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--line);
+    background: var(--bg-elevated);
+    color: var(--ink);
+    border-radius: 100px;
+    padding: 7px 14px 7px 10px;
+    font-family: inherit;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.15s ease;
+  }
+
+  .theme-toggle:hover { border-color: color-mix(in srgb, var(--accent) 60%, var(--line)); }
+  .theme-toggle:active { transform: scale(0.96); }
+
+  .theme-toggle svg { width: 15px; height: 15px; display: block; }
+
+  /* Hero */
+  .hero {
+    padding: 68px 0 40px;
+  }
+
+  .hero .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+
+  .hero .kicker::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: clamp(34px, 6vw, 56px);
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    margin: 0 0 18px;
+    max-width: 14ch;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero p.lede {
+    max-width: 46ch;
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 28px;
+    margin-top: 34px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .stat .n {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 500;
+  }
+
+  .stat .l {
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* Section heading */
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 8px 0 20px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+
+  .section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .section-head .count {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+
+  /* Toolbar */
+  .toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+  }
+
+  .search-field {
+    position: relative;
+    flex: 1 1 220px;
+    min-width: 0;
+  }
+
+  .search-field svg {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    color: var(--ink-soft);
+    pointer-events: none;
+  }
+
+  .search-field input {
+    width: 100%;
+    background: var(--bg-elevated);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 14px 10px 36px;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .search-field input::placeholder { color: var(--ink-soft); }
+  .search-field input:focus { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
+
+  .sort-field {
+    position: relative;
+    flex: 0 0 auto;
+  }
+
+  .sort-field select {
+    appearance: none;
+    background: var(--bg-elevated);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 32px 10px 14px;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--ink);
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+  }
+
+  .sort-field select:focus { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
+
+  .sort-field svg {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 13px;
+    height: 13px;
+    color: var(--ink-soft);
+    pointer-events: none;
+  }
+
+  /* Project grid */
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+    padding-bottom: 64px;
+  }
+
+  .project {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-elevated);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--ink);
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transform: translateY(10px);
+    animation: rise 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+    overflow: hidden;
+  }
+
+  .project.instant {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .project:hover {
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+    transform: translateY(-3px);
+  }
+
+  .project:active { transform: translateY(0); }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .project .thumb {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    width: 100%;
+    background:
+      radial-gradient(220px 140px at 30% 20%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 65%),
+      color-mix(in srgb, var(--accent) 6%, var(--bg));
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+
+  .project .thumb img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .project .thumb .placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    text-align: center;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--ink-soft);
+  }
+
+  .project .body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 14px 16px 16px;
+    flex: 1;
+  }
+
+  .project .name {
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .project .url {
+    font-size: 12px;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .project .created {
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+
+  .project .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    align-self: flex-start;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 6px 12px;
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .project .cta svg {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.2s ease;
+  }
+
+  .project:hover .cta {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+    color: var(--accent);
+  }
+
+  .project:hover .cta svg {
+    transform: translate(2px, -2px);
+  }
+
+  /* Skeleton */
+  .skeleton {
+    height: 220px;
+    border-radius: 16px;
+    background: linear-gradient(100deg, var(--bg-elevated) 40%, color-mix(in srgb, var(--accent) 8%, var(--bg-elevated)) 50%, var(--bg-elevated) 60%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s ease-in-out infinite;
+    border: 1px solid var(--line);
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Empty & error */
+  .state-card {
+    padding: 40px 28px;
+    border: 1px dashed var(--line);
+    border-radius: 14px;
+    text-align: center;
+    color: var(--ink-soft);
+  }
+
+  .state-card .glyph {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 30px;
+    color: var(--ink);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .state-card p { font-size: 12.5px; line-height: 1.7; margin: 6px auto 0; max-width: 42ch; }
+
+  /* Footer */
+  footer.site {
+    border-top: 1px solid var(--line);
+    padding: 26px 0 40px;
+  }
+
+  .footer-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+  }
+
+  .footer-inner a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .footer-inner a:hover {
+    color: var(--accent);
+    border-color: currentColor;
+  }
+
+  .footer-links { display: flex; gap: 18px; }
+
+  @media (max-width: 540px) {
+    .header-inner { padding: 14px 18px; }
+    .brand-name .dim { display: none; }
+    .hero { padding: 44px 0 30px; }
+    .stat-row { gap: 20px; }
+    .toolbar { flex-direction: column; }
+    .sort-field select { width: 100%; }
+    .projects { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+  <div class="backdrop"></div>
+
+  <header class="site">
+    <div class="header-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark">s</span>
+        <span class="brand-name">saabbir<span class="dim">.github.io</span></span>
+      </a>
+      <div class="header-actions">
+        <a class="theme-toggle" href="https://saabbir.com">portfolio</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">
+          <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></svg>
+          <span id="themeLabel">dark</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <span class="kicker">GitHub Pages registry</span>
+      <h1>Project sites under <em>saabbir.github.io</em></h1>
+      <p class="lede">A running index of every public GitHub Pages project on this account — pulled from the GitHub API, so this list stays current. The personal site lives at <a href="https://saabbir.com">saabbir.com</a>.</p>
+      <div class="stat-row">
+        <div class="stat">
+          <span class="n" id="statCount">—</span>
+          <span class="l">projects live</span>
+        </div>
+        <div class="stat">
+          <span class="n" id="statUpdated">—</span>
+          <span class="l">last checked</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-head">
+      <h2>Deployed projects</h2>
+      <span class="count" id="listCount"></span>
+    </div>
+
+    <div class="toolbar">
+      <label class="search-field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+        <input type="text" id="searchInput" placeholder="Search projects…" autocomplete="off" />
+      </label>
+      <label class="sort-field">
+        <select id="sortSelect">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="name-asc">Name A–Z</option>
+          <option value="name-desc">Name Z–A</option>
+        </select>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+      </label>
+    </div>
+
+    <div class="projects" id="projects">
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+    </div>
+  </main>
+
+  <footer class="site">
+    <div class="footer-inner">
+      <span>© <span id="year"></span> — hosted on GitHub Pages. Portfolio: <a href="https://saabbir.com">saabbir.com</a></span>
+      <span class="footer-links">
+        <a href="https://github.com/Saabbir?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://saabbir.netlify.app/" target="_blank" rel="noopener noreferrer">Netlify registry</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var toggle = document.getElementById('themeToggle');
+      var icon = document.getElementById('themeIcon');
+      var label = document.getElementById('themeLabel');
+
+      var SUN = '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+      var MOON = '<path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/>';
+
+      function applyTheme(mode) {
+        root.classList.toggle('dark', mode === 'dark');
+        icon.innerHTML = mode === 'dark' ? SUN : MOON;
+        label.textContent = mode === 'dark' ? 'light' : 'dark';
+      }
+
+      var stored = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var initial = stored || (prefersDark ? 'dark' : 'light');
+      applyTheme(initial);
+
+      toggle.addEventListener('click', function () {
+        var next = root.classList.contains('dark') ? 'light' : 'dark';
+        applyTheme(next);
+        localStorage.setItem('theme', next);
+      });
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      function timeAgo(iso) {
+        if (!iso) return 'unknown';
+        var diff = Date.now() - new Date(iso).getTime();
+        var mins = Math.round(diff / 60000);
+        if (mins < 1) return 'just now';
+        if (mins < 60) return mins + 'm ago';
+        var hrs = Math.round(mins / 60);
+        if (hrs < 24) return hrs + 'h ago';
+        var days = Math.round(hrs / 24);
+        if (days < 30) return days + 'd ago';
+        var months = Math.round(days / 30);
+        if (months < 12) return months + 'mo ago';
+        return Math.round(months / 12) + 'y ago';
+      }
+
+      function formatDate(iso) {
+        if (!iso) return 'unknown date';
+        var d = new Date(iso);
+        if (isNaN(d.getTime())) return 'unknown date';
+        return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+      }
+
+      function hostname(url) {
+        try { return new URL(url).hostname; } catch (e) { return url; }
+      }
+
+      function escapeHtml(str) {
+        return String(str == null ? '' : str).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+
+      var CACHE_KEY = 'gh-pages-projects';
+      var OWNER = 'Saabbir';
+      var SKIP = {
+        'saabbir.github.io': true,
+        'personal-website': true,
+        'personal-website-v1': true
+      };
+      var allProjects = [];
+      var hasPainted = false;
+
+      function readCache() {
+        try {
+          var parsed = JSON.parse(localStorage.getItem(CACHE_KEY));
+          if (!parsed || !Array.isArray(parsed.projects)) return null;
+          return parsed;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function writeCache(projects) {
+        try {
+          localStorage.setItem(CACHE_KEY, JSON.stringify({
+            projects: projects,
+            cachedAt: new Date().toISOString(),
+          }));
+        } catch (e) {}
+      }
+
+      function applyFilters(instant) {
+        var query = document.getElementById('searchInput').value.trim().toLowerCase();
+        var sort = document.getElementById('sortSelect').value;
+
+        var filtered = allProjects.filter(function (p) {
+          if (!query) return true;
+          return (p.name || '').toLowerCase().indexOf(query) !== -1 ||
+            (p.url || '').toLowerCase().indexOf(query) !== -1 ||
+            (p.path || '').toLowerCase().indexOf(query) !== -1 ||
+            (p.description || '').toLowerCase().indexOf(query) !== -1;
+        });
+
+        filtered.sort(function (a, b) {
+          if (sort === 'name-asc') return (a.name || '').localeCompare(b.name || '');
+          if (sort === 'name-desc') return (b.name || '').localeCompare(a.name || '');
+          var aTime = new Date(a.createdAt || 0).getTime();
+          var bTime = new Date(b.createdAt || 0).getTime();
+          return sort === 'oldest' ? aTime - bTime : bTime - aTime;
+        });
+
+        document.getElementById('listCount').textContent = filtered.length + ' of ' + allProjects.length;
+        renderProjects(filtered, instant || hasPainted);
+        hasPainted = true;
+      }
+
+      function renderProjects(projects, instant) {
+        var el = document.getElementById('projects');
+        el.innerHTML = '';
+
+        if (!projects.length) {
+          el.innerHTML =
+            '<div class="state-card">' +
+            '<span class="glyph">Nothing here yet</span>' +
+            '<p>No projects matched. Try a different search, or enable GitHub Pages on a repo and it will show up here automatically.</p>' +
+            '</div>';
+          return;
+        }
+
+        projects.forEach(function (p, i) {
+          var a = document.createElement('a');
+          a.className = instant ? 'project instant' : 'project';
+          a.href = p.url;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          if (!instant) a.style.animationDelay = Math.min(i * 45, 400) + 'ms';
+
+          var thumbInner = p.image
+            ? '<img src="' + escapeHtml(p.image) + '" alt="" loading="lazy" />'
+            : '<span class="placeholder">' + escapeHtml(p.name) + '</span>';
+
+          a.innerHTML =
+            '<div class="thumb">' + thumbInner + '</div>' +
+            '<div class="body">' +
+            '<span class="name">' + escapeHtml(p.name) + '</span>' +
+            '<span class="url">' + escapeHtml(p.path || hostname(p.url)) + '</span>' +
+            '<span class="created">Created ' + formatDate(p.createdAt) + '</span>' +
+            '<span class="cta">View live <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span>' +
+            '</div>';
+
+          var img = a.querySelector('.thumb img');
+          if (img) {
+            img.addEventListener('error', function () {
+              var span = document.createElement('span');
+              span.className = 'placeholder';
+              span.textContent = p.name;
+              img.replaceWith(span);
+            });
+          }
+
+          el.appendChild(a);
+        });
+      }
+
+      function renderError() {
+        var el = document.getElementById('projects');
+        el.innerHTML =
+          '<div class="state-card">' +
+          '<span class="glyph">Couldn\'t load the registry</span>' +
+          '<p>The project list couldn\'t be loaded right now. Try again in a moment.</p>' +
+          '</div>';
+      }
+
+      document.getElementById('searchInput').addEventListener('input', applyFilters);
+      document.getElementById('sortSelect').addEventListener('change', applyFilters);
+
+      var cached = readCache();
+      if (cached) {
+        allProjects = cached.projects;
+        document.getElementById('statCount').textContent = String(allProjects.length);
+        document.getElementById('statUpdated').textContent = timeAgo(cached.cachedAt);
+        applyFilters(true);
+      }
+
+      function pagesUrl(repo) {
+        return 'https://' + OWNER.toLowerCase() + '.github.io/' + repo.name + '/';
+      }
+
+      function toProject(repo) {
+        return {
+          name: repo.name,
+          url: pagesUrl(repo),
+          path: '/' + repo.name + '/',
+          createdAt: repo.created_at,
+          description: repo.description || ''
+        };
+      }
+
+      function fetchRepos(page, acc) {
+        var url = 'https://api.github.com/users/' + OWNER + '/repos?per_page=100&page=' + page + '&sort=updated&type=public';
+        return fetch(url, { headers: { Accept: 'application/vnd.github+json' } })
+          .then(function (res) {
+            if (!res.ok) throw new Error('GitHub API ' + res.status);
+            return res.json();
+          })
+          .then(function (batch) {
+            var next = acc.concat(batch);
+            if (batch.length === 100) return fetchRepos(page + 1, next);
+            return next;
+          });
+      }
+
+      fetchRepos(1, [])
+        .then(function (repos) {
+          var next = repos
+            .filter(function (r) { return r.has_pages && !SKIP[r.name] && !r.fork; })
+            .map(toProject);
+          var changed = JSON.stringify(next) !== JSON.stringify(allProjects);
+          allProjects = next;
+          writeCache(allProjects);
+          document.getElementById('statCount').textContent = String(allProjects.length);
+          document.getElementById('statUpdated').textContent = 'now';
+          if (changed || !cached) applyFilters(!!cached);
+        })
+        .catch(function () {
+          if (cached) return;
+          renderError();
+          document.getElementById('statCount').textContent = '0';
+          document.getElementById('statUpdated').textContent = 'n/a';
+        });
+    })();
+  </script>
+</body>
 </html>
