@@ -1,0 +1,18 @@
+[
+  {
+    "slug": "shopify",
+    "title": "Shopify on GitHub",
+    "blurb": "A snapshot of Shopify theme and app developers, top repos, and notable official activity from the last day.",
+    "url": "/tools/shopify/",
+    "external": false,
+    "tags": ["shopify", "search"]
+  },
+  {
+    "slug": "github-bd-toppers",
+    "title": "GitHub BD Toppers",
+    "blurb": "Most-followed GitHub users in Bangladesh. Uses the public API from its own project site.",
+    "url": "https://saabbir.github.io/github-bd-toppers/",
+    "external": true,
+    "tags": ["bangladesh", "external"]
+  }
+]

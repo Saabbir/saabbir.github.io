@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import tools from '../../data/tools.json';
+---
+<BaseLayout
+  current="tools"
+  title="Tools — saabbir.github.io"
+  description="Public GitHub tools: Shopify radar and Bangladesh toppers."
+>
+  <section class="hero">
+    <span class="kicker">Playground</span>
+    <h1>Tools for <em>devs</em></h1>
+    <p class="lede">
+      Small utilities that read the public GitHub API. Watch the request chip in the header — unauthenticated traffic is 60 core calls an hour and 10 searches a minute.
+    </p>
+  </section>
+
+  <div class="section-head">
+    <h2>Available now</h2>
+    <span class="count">{tools.length}</span>
+  </div>
+  <div class="tool-grid">
+    {tools.map((tool) => (
+      <a
+        class="tool-card"
+        href={tool.url}
+        target={tool.external ? '_blank' : undefined}
+        rel={tool.external ? 'noopener noreferrer' : undefined}
+      >
+        <h3>{tool.title}</h3>
+        <p>{tool.blurb}</p>
+        <span class="tags">{tool.external ? 'Opens in a new tab · ' : ''}{tool.tags.join(' · ')}</span>
+      </a>
+    ))}
+  </div>
+</BaseLayout>

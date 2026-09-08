@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  current="tools"
+  title="Shopify on GitHub — saabbir.github.io"
+  description="Top Shopify theme and app developers, repos, and notable official GitHub activity."
+>
+  <section class="hero">
+    <span class="kicker">Shopify radar</span>
+    <h1>What’s going on for <em>Shopify</em></h1>
+    <p class="lede">
+      A cached snapshot from GitHub topic search — not a complete index. People must own a theme or app repo. Lists are a top slice by followers and stars.
+    </p>
+  </section>
+
+  <div class="section-head">
+    <h2>Today at Shopify</h2>
+    <span class="count">last 24 hours</span>
+  </div>
+  <p class="note">Highlights are releases, new or public repos, and pull requests. Pushes are collapsed and demoted.</p>
+  <div class="feed" id="feed">
+    <div class="skeleton" style="height: 48px"></div>
+  </div>
+
+  <div class="section-head">
+    <h2>People</h2>
+    <span class="count" id="peopleCount"></span>
+  </div>
+  <p class="note" id="peopleNote">Users with at least one Shopify theme or app repository.</p>
+  <div class="person-grid" id="people">
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+  </div>
+
+  <div class="section-head">
+    <h2>Repos</h2>
+    <span class="count" id="repoCount"></span>
+  </div>
+  <div class="filter-chips" id="filters">
+    <button type="button" data-kind="all" class="active">All</button>
+    <button type="button" data-kind="theme">Theme</button>
+    <button type="button" data-kind="app">App</button>
+    <button type="button" data-kind="docs">Docs</button>
+    <button type="button" data-kind="ai">AI</button>
+    <button type="button" data-kind="other">Other</button>
+  </div>
+  <div class="repo-list" id="repos">
+    <div class="skeleton" style="height: 72px"></div>
+  </div>
+</BaseLayout>
+
+<script>
+  import { loadShopifyRadar, loadShopifyFeed, REPOS_CAP, PEOPLE_CAP } from '../../../lib/shopify.js';
+  import { escapeHtml, quotaCard, stateCard } from '../../../lib/render.js';
+
+  const feedEl = document.getElementById('feed');
+  const peopleEl = document.getElementById('people');
+  const reposEl = document.getElementById('repos');
+  let allRepos = [];
+  let kind = 'all';
+
+  function feedHTML(feed) {
+    const highlights = (feed && feed.highlights) || [];
+    const also = (feed && feed.also) || [];
+    if (!highlights.length && !also.length) {
+      return stateCard('Quiet day', 'No notable public Shopify org activity in the last 24 hours.');
+    }
+    return highlights
+      .map((item) => '<a class="highlight" href="' + escapeHtml(item.url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(item.text) + '</a>')
+      .concat(
+        also.map((item) => '<a class="quiet" href="' + escapeHtml(item.url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(item.text) + '</a>')
+      )
+      .join('');
+  }
+
+  function peopleHTML(people) {
+    if (!people.length) return stateCard('No people yet', 'Topic search did not return qualifying theme or app owners.');
+    return people
+      .map((p) => {
+        const followers = p.followers == null ? 'followers n/a' : p.followers + ' followers';
+        return (
+          '<a class="person-card" href="' + escapeHtml(p.htmlUrl) + '" target="_blank" rel="noopener noreferrer">' +
+          '<img src="' + escapeHtml(p.avatar) + '" alt="" width="44" height="44" />' +
+          '<div><strong>' + escapeHtml(p.login) + '</strong>' +
+          '<span>' + followers + ' · ' + p.stars + '★ · ' + p.themes + ' themes · ' + p.apps + ' apps</span></div></a>'
+        );
+      })
+      .join('');
+  }
+
+  function paintRepos() {
+    const filtered = allRepos.filter((r) => (kind === 'all' ? true : r.kind === kind)).slice(0, REPOS_CAP);
+    document.getElementById('repoCount').textContent = filtered.length + (kind === 'all' ? '' : ' ' + kind);
+    if (!filtered.length) {
+      reposEl.innerHTML = stateCard('No repos', 'Nothing in this filter for the current snapshot.');
+      return;
+    }
+    reposEl.innerHTML = filtered
+      .map((r) => {
+        const desc = r.description ? escapeHtml(r.description) : '';
+        return (
+          '<a class="repo-row" href="' + escapeHtml(r.html_url) + '" target="_blank" rel="noopener noreferrer">' +
+          '<div><strong>' + escapeHtml(r.full_name) + '</strong>' +
+          '<span>' + (r.stargazers_count || 0) + '★ · ' + escapeHtml(r.kind) + (desc ? ' · ' + desc : '') + '</span></div></a>'
+        );
+      })
+      .join('');
+  }
+
+  document.getElementById('filters').addEventListener('click', (event) => {
+    const btn = event.target.closest('button[data-kind]');
+    if (!btn) return;
+    kind = btn.getAttribute('data-kind');
+    document.querySelectorAll('#filters button').forEach((el) => el.classList.toggle('active', el === btn));
+    paintRepos();
+  });
+
+  loadShopifyFeed()
+    .then((feed) => {
+      feedEl.innerHTML = feedHTML(feed);
+    })
+    .catch((err) => {
+      feedEl.innerHTML = err.rateLimited ? quotaCard(err) : stateCard("Couldn't load the feed", 'Try again after the API reset.');
+    });
+
+  loadShopifyRadar()
+    .then((data) => {
+      const people = (data.people || []).slice(0, PEOPLE_CAP);
+      document.getElementById('peopleCount').textContent = 'top ' + people.length;
+      if (!data.followersLoaded) {
+        document.getElementById('peopleNote').textContent =
+          'Sorted by Shopify-repo stars for now — follower counts need extra API room.';
+      }
+      peopleEl.innerHTML = peopleHTML(people);
+      allRepos = data.repos || [];
+      paintRepos();
+    })
+    .catch((err) => {
+      peopleEl.innerHTML = err.rateLimited ? quotaCard(err) : stateCard("Couldn't load the snapshot", 'GitHub search quota may be empty.');
+      reposEl.innerHTML = '';
+    });
+</script>

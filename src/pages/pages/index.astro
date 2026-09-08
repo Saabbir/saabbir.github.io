@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  current="pages"
+  title="Pages — saabbir.github.io"
+  description="Every public GitHub Pages project under saabbir.github.io."
+>
+  <section class="hero">
+    <span class="kicker">GitHub Pages registry</span>
+    <h1>Project sites under <em>saabbir.github.io</em></h1>
+    <p class="lede">
+      A running index of public Pages projects on this account. The personal site lives at
+      <a href="https://saabbir.com" target="_blank" rel="noopener noreferrer">saabbir.com</a>.
+    </p>
+    <div class="stat-row">
+      <div class="stat"><span class="n" id="statCount">—</span><span class="l">projects live</span></div>
+      <div class="stat"><span class="n" id="statUpdated">—</span><span class="l">last checked</span></div>
+    </div>
+  </section>
+
+  <div class="section-head">
+    <h2>Deployed projects</h2>
+    <span class="count" id="listCount"></span>
+  </div>
+
+  <div class="toolbar">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+      <input type="search" id="searchInput" placeholder="Search projects…" autocomplete="off" aria-label="Search projects" />
+    </div>
+    <label class="sort-field">
+      <select id="sortSelect">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="name-asc">Name A–Z</option>
+        <option value="name-desc">Name Z–A</option>
+        <option value="stars">Most stars</option>
+      </select>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+    </label>
+  </div>
+
+  <div class="projects" id="projects">
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+  </div>
+</BaseLayout>
+
+<script>
+  import { loadProfileAndRepos, isPagesProject, toProject, readCache, REPOS_CACHE_KEY } from '../../lib/github.js';
+  import { renderProjectGrid, quotaCard, stateCard } from '../../lib/render.js';
+
+  let allProjects = [];
+  const list = document.getElementById('projects');
+
+  function timeAgo(ms) {
+    if (!ms) return 'unknown';
+    const mins = Math.round((Date.now() - ms) / 60000);
+    if (mins < 1) return 'just now';
+    if (mins < 60) return mins + 'm ago';
+    const hrs = Math.round(mins / 60);
+    if (hrs < 24) return hrs + 'h ago';
+    return Math.round(hrs / 24) + 'd ago';
+  }
+
+  function applyFilters() {
+    const query = document.getElementById('searchInput').value.trim().toLowerCase();
+    const sort = document.getElementById('sortSelect').value;
+    let filtered = allProjects.filter((p) => {
+      if (!query) return true;
+      return (
+        (p.name || '').toLowerCase().includes(query) ||
+        (p.path || '').toLowerCase().includes(query) ||
+        (p.description || '').toLowerCase().includes(query) ||
+        (p.language || '').toLowerCase().includes(query)
+      );
+    });
+    filtered.sort((a, b) => {
+      if (sort === 'name-asc') return (a.name || '').localeCompare(b.name || '');
+      if (sort === 'name-desc') return (b.name || '').localeCompare(a.name || '');
+      if (sort === 'stars') return (b.stars || 0) - (a.stars || 0);
+      const aTime = new Date(a.createdAt || 0).getTime();
+      const bTime = new Date(b.createdAt || 0).getTime();
+      return sort === 'oldest' ? aTime - bTime : bTime - aTime;
+    });
+    document.getElementById('listCount').textContent = filtered.length + ' of ' + allProjects.length;
+    renderProjectGrid(list, filtered, true);
+  }
+
+  function setProjects(repos, cachedAt) {
+    allProjects = (repos || []).filter(isPagesProject).map(toProject);
+    document.getElementById('statCount').textContent = String(allProjects.length);
+    document.getElementById('statUpdated').textContent = cachedAt ? timeAgo(cachedAt) : 'now';
+    applyFilters();
+  }
+
+  document.getElementById('searchInput').addEventListener('input', applyFilters);
+  document.getElementById('sortSelect').addEventListener('change', applyFilters);
+
+  const cached = readCache(REPOS_CACHE_KEY);
+  if (cached) setProjects(cached.data, cached.cachedAt);
+
+  loadProfileAndRepos()
+    .then(({ repos }) => setProjects(repos, Date.now()))
+    .catch((err) => {
+      if (cached) return;
+      list.innerHTML = err.rateLimited ? quotaCard(err) : stateCard("Couldn't load the registry", 'Try again after the API reset.');
+      document.getElementById('statCount').textContent = '0';
+      document.getElementById('statUpdated').textContent = 'n/a';
+    });
+</script>

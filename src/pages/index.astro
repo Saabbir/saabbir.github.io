@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import tools from '../data/tools.json';
+
+const featuredTools = tools.slice(0, 2);
+---
+<BaseLayout
+  current="home"
+  title="saabbir — GitHub hub"
+  description="GitHub profile, published Pages, and developer tools from Saabbir."
+>
+  <section class="hero">
+    <span class="kicker">GitHub hub</span>
+    <div class="profile" id="profile">
+      <div>
+        <h1>What’s on <em>saabbir.github.io</em></h1>
+        <p class="lede" id="profileBio">
+          Profile, published Pages, and a few tools that talk to the public GitHub API. The personal site lives at
+          <a href="https://saabbir.com" target="_blank" rel="noopener noreferrer">saabbir.com</a>.
+        </p>
+        <div class="profile-meta" id="profileMeta"></div>
+        <div class="lang-pills" id="langPills"></div>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><span class="n" id="statRepos">—</span><span class="l">public repos</span></div>
+      <div class="stat"><span class="n" id="statFollowers">—</span><span class="l">followers</span></div>
+      <div class="stat"><span class="n" id="statStars">—</span><span class="l">repo stars</span></div>
+      <div class="stat"><span class="n" id="statPages">—</span><span class="l">pages live</span></div>
+    </div>
+  </section>
+
+  <div class="section-head">
+    <h2>Tools</h2>
+    <a class="more-link" href="/tools/">All tools</a>
+  </div>
+  <div class="tool-grid">
+    {featuredTools.map((tool) => (
+      <a
+        class="tool-card"
+        href={tool.url}
+        target={tool.external ? '_blank' : undefined}
+        rel={tool.external ? 'noopener noreferrer' : undefined}
+      >
+        <h3>{tool.title}</h3>
+        <p>{tool.blurb}</p>
+        <span class="tags">{tool.tags.join(' · ')}</span>
+      </a>
+    ))}
+  </div>
+
+  <div class="section-head">
+    <h2>Latest Pages</h2>
+    <a class="more-link" href="/pages/">All pages</a>
+  </div>
+  <div class="projects" id="projects">
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+    <div class="skeleton"></div>
+  </div>
+</BaseLayout>
+
+<script>
+  import { loadProfileAndRepos, isPagesProject, toProject, languageCounts, totalStars, quotaMessage } from '../lib/github.js';
+  import { escapeHtml, formatJoin, renderProjectGrid, stateCard, quotaCard } from '../lib/render.js';
+
+  const projectsEl = document.getElementById('projects');
+
+  function paintProfile(profile, repos) {
+    if (!profile) return;
+    const host = document.getElementById('profile');
+    const existing = host.querySelector('.profile-avatar');
+    if (!existing) {
+      const img = document.createElement('img');
+      img.className = 'profile-avatar';
+      img.alt = '';
+      img.width = 88;
+      img.height = 88;
+      img.src = profile.avatar_url;
+      host.insertBefore(img, host.firstElementChild);
+    } else {
+      existing.src = profile.avatar_url;
+    }
+
+    const lede = document.getElementById('profileBio');
+    if (profile.bio) {
+      lede.innerHTML =
+        escapeHtml(profile.bio) +
+        ' The personal site lives at <a href="https://saabbir.com" target="_blank" rel="noopener noreferrer">saabbir.com</a>.';
+    }
+
+    const bits = [];
+    if (profile.company) bits.push(escapeHtml(profile.company));
+    if (profile.location) bits.push(escapeHtml(profile.location));
+    bits.push(escapeHtml(formatJoin(profile.created_at)));
+    bits.push(
+      '<a href="' + escapeHtml(profile.html_url) + '" target="_blank" rel="noopener noreferrer">@' +
+        escapeHtml(profile.login) +
+        '</a>'
+    );
+    document.getElementById('profileMeta').innerHTML = bits.filter(Boolean).join('<span>·</span>');
+
+    const langs = languageCounts(repos || []);
+    document.getElementById('langPills').innerHTML = langs
+      .map((l) => '<span class="pill">' + escapeHtml(l.name) + ' ' + l.count + '</span>')
+      .join('');
+
+    document.getElementById('statRepos').textContent = String(profile.public_repos ?? '—');
+    document.getElementById('statFollowers').textContent = String(profile.followers ?? '—');
+    document.getElementById('statStars').textContent = String(totalStars(repos || []));
+  }
+
+  function paintPages(repos, instant) {
+    const projects = (repos || []).filter(isPagesProject).map(toProject);
+    projects.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+    document.getElementById('statPages').textContent = String(projects.length);
+    renderProjectGrid(projectsEl, projects.slice(0, 6), instant);
+  }
+
+  loadProfileAndRepos()
+    .then(({ profile, repos }) => {
+      paintProfile(profile, repos);
+      paintPages(repos, true);
+    })
+    .catch((err) => {
+      const cached = err.cached;
+      if (cached && cached.profile) {
+        paintProfile(cached.profile, cached.repos);
+        paintPages(cached.repos, true);
+      } else if (err.rateLimited) {
+        projectsEl.innerHTML = quotaCard(err);
+      } else {
+        projectsEl.innerHTML = stateCard("Couldn't load", quotaMessage(err));
+      }
+    });
+</script>
